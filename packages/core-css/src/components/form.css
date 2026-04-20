@@ -29,6 +29,20 @@
   color: var(--tui-color-muted);
 }
 
+.tui-input[aria-invalid="true"],
+.tui-textarea[aria-invalid="true"],
+.tui-select[aria-invalid="true"] {
+  border-color: var(--tui-color-error);
+}
+
+.tui-input:disabled,
+.tui-textarea:disabled,
+.tui-select:disabled {
+  color: var(--tui-color-muted);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .tui-field {
   display: flex;
   flex-direction: column;
