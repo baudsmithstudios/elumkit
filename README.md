@@ -47,6 +47,18 @@ Run the contract tests:
 node --test
 ```
 
+Capture visual baseline:
+
+```sh
+node scripts/capture-visual-baseline.mjs
+```
+
+Check visual baseline:
+
+```sh
+node scripts/check-visual-baseline.mjs
+```
+
 Use the local playground for quick UI iteration:
 
 - `examples/playground.html`

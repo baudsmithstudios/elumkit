@@ -1,0 +1,10 @@
+{
+  "file": "tests/visual-baseline/playground-dark.png",
+  "sha256": "6553de04281347633783443c1a013faf8f3f8cdb917d95cd2ccac8ed9773145d",
+  "generated_at": "2026-04-20T22:11:15.311Z",
+  "source": "examples/playground.html",
+  "viewport": {
+    "width": 1440,
+    "height": 2200
+  }
+}
