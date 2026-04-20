@@ -1,6 +1,6 @@
 # core-css
 
-Framework-agnostic style contract for project_tui.
+Framework-agnostic style contract for Gloamkit.
 
 ## Contents
 

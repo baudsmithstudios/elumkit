@@ -5,10 +5,10 @@ Use this guide to consume v0.1 components in Eleventy without a frontend framewo
 ## 1) Add core CSS in your base layout
 
 ```html
-<link rel="stylesheet" href="/assets/project_tui.css" />
+<link rel="stylesheet" href="/assets/gloamkit.css" />
 ```
 
-You can copy `packages/core-css/src/*.css` into your Eleventy asset pipeline and bundle as `project_tui.css`.
+You can copy `packages/core-css/src/*.css` into your Eleventy asset pipeline and bundle as `gloamkit.css`.
 
 ## 2) Set theme at document root
 
