@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>project_tui Playground</title>
+    <link rel="stylesheet" href="../packages/core-css/src/index.css" />
+    <style>
+      main {
+        margin: 0 auto;
+        max-width: 56rem;
+        padding: 1rem;
+      }
+
+      .playground-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      }
+    </style>
+  </head>
+  <body>
+    <main class="tui-stack">
+      <header class="tui-stack">
+        <h1>project_tui Playground</h1>
+        <p>Local preview page for fast visual and accessibility checks.</p>
+        <div>
+          <button class="tui-button" id="theme-dark" type="button">Dark</button>
+          <button class="tui-button" id="theme-light" type="button">Light</button>
+        </div>
+      </header>
+
+      <section class="playground-grid" aria-label="Component previews">
+        <article class="tui-card tui-stack">
+          <header>
+            <h2 class="tui-card-title">Card</h2>
+            <p class="tui-card-subtitle">Surface container for grouped content.</p>
+          </header>
+          <p>
+            System status <span class="tui-badge" data-tone="accent">healthy</span>
+          </p>
+          <div>
+            <button class="tui-button" type="button">Secondary</button>
+            <button class="tui-button" data-variant="primary" type="button">Primary</button>
+          </div>
+        </article>
+
+        <article class="tui-card tui-stack">
+          <header>
+            <h2 class="tui-card-title">Form Controls</h2>
+          </header>
+
+          <div class="tui-field">
+            <label class="tui-label" for="playground-name">Name</label>
+            <input class="tui-input" id="playground-name" name="name" type="text" placeholder="operator-01" />
+          </div>
+
+          <div class="tui-field">
+            <label class="tui-label" for="playground-role">Role</label>
+            <select class="tui-select" id="playground-role" name="role">
+              <option>Operator</option>
+              <option>Analyst</option>
+            </select>
+          </div>
+
+          <div class="tui-field">
+            <label class="tui-label" for="playground-notes">Notes</label>
+            <textarea class="tui-textarea" id="playground-notes" name="notes" placeholder="Brief status update"></textarea>
+          </div>
+
+          <label class="tui-choice" for="playground-notify">
+            <input class="tui-checkbox" id="playground-notify" name="notify" type="checkbox" />
+            Send notifications
+          </label>
+
+          <fieldset class="tui-field">
+            <legend class="tui-label">Mode</legend>
+            <label class="tui-choice" for="playground-mode-monitor">
+              <input class="tui-radio" id="playground-mode-monitor" name="mode" type="radio" value="monitor" checked />
+              Monitor
+            </label>
+            <label class="tui-choice" for="playground-mode-guard">
+              <input class="tui-radio" id="playground-mode-guard" name="mode" type="radio" value="guard" />
+              Guard
+            </label>
+          </fieldset>
+        </article>
+      </section>
+
+      <aside class="tui-alert" data-tone="warn" role="status" aria-live="polite">
+        Disk usage is nearing the warning threshold.
+      </aside>
+    </main>
+
+    <script>
+      const root = document.documentElement;
+      const dark = document.getElementById("theme-dark");
+      const light = document.getElementById("theme-light");
+
+      dark?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "dark");
+      });
+
+      light?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "light");
+      });
+    </script>
+  </body>
+</html>

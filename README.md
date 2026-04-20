@@ -46,3 +46,7 @@ Run the contract tests:
 ```sh
 node --test
 ```
+
+Use the local playground for quick UI iteration:
+
+- `examples/playground.html`
