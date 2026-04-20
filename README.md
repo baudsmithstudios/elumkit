@@ -54,3 +54,10 @@ Use the local playground for quick UI iteration:
 Acceptance criteria:
 
 - `docs/v0.1-acceptance-checklist.md`
+
+Documentation:
+
+- `docs/plain-html-quickstart.md`
+- `docs/eleventy-usage.md`
+- `docs/component-usage.md`
+- `docs/theming.md`
