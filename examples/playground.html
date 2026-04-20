@@ -17,6 +17,18 @@
         gap: 1rem;
         grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
       }
+
+      .state-matrix {
+        display: grid;
+        gap: 0.75rem;
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      }
+
+      .state-cell {
+        border: 1px dashed var(--tui-color-border);
+        border-radius: var(--tui-radius-sm);
+        padding: 0.75rem;
+      }
     </style>
   </head>
   <body>
@@ -90,6 +102,47 @@
       <aside class="tui-alert" data-tone="warn" role="status" aria-live="polite">
         Disk usage is nearing the warning threshold.
       </aside>
+
+      <section class="tui-card tui-stack" aria-label="State matrix">
+        <header>
+          <h2 class="tui-card-title">State Matrix</h2>
+          <p class="tui-card-subtitle">Use this section to verify normal, focus, disabled, and invalid states.</p>
+        </header>
+
+        <div class="state-matrix">
+          <div class="state-cell tui-stack">
+            <strong>Normal</strong>
+            <button class="tui-button" type="button">Normal Button</button>
+            <input class="tui-input" type="text" value="normal value" />
+          </div>
+
+          <div class="state-cell tui-stack">
+            <strong>Focus target</strong>
+            <p>Press <kbd>Tab</kbd> to focus the button and input.</p>
+            <button class="tui-button" id="focus-target-button" type="button">Focus me</button>
+            <input class="tui-input" id="focus-target-input" type="text" value="focus target" />
+          </div>
+
+          <div class="state-cell tui-stack">
+            <strong>Disabled</strong>
+            <button class="tui-button" type="button" disabled>Disabled button</button>
+            <button class="tui-button" type="button" aria-disabled="true">Aria-disabled button</button>
+            <input class="tui-input" type="text" value="disabled input" disabled />
+            <select class="tui-select" disabled>
+              <option>Disabled select</option>
+            </select>
+          </div>
+
+          <div class="state-cell tui-stack">
+            <strong>Invalid</strong>
+            <input class="tui-input" type="text" value="invalid input" aria-invalid="true" />
+            <textarea class="tui-textarea" aria-invalid="true">invalid textarea</textarea>
+            <select class="tui-select" aria-invalid="true">
+              <option>Invalid select</option>
+            </select>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script>

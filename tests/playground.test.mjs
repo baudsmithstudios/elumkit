@@ -29,3 +29,11 @@ test("playground includes core MVP component previews", () => {
     assert.match(html, new RegExp(className));
   }
 });
+
+test("playground includes state matrix samples", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /aria-label="State matrix"/);
+  assert.match(html, /aria-invalid="true"/);
+  assert.match(html, /:disabled|disabled/);
+  assert.match(html, /aria-disabled="true"/);
+});
