@@ -59,6 +59,12 @@ Check visual baseline:
 node scripts/check-visual-baseline.mjs
 ```
 
+Use strict mode in CI to fail if the render environment differs:
+
+```sh
+TUI_VISUAL_STRICT=1 node scripts/check-visual-baseline.mjs
+```
+
 Use the local playground for quick UI iteration:
 
 - `examples/playground.html`

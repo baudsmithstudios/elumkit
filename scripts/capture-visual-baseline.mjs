@@ -17,6 +17,18 @@ const targetUrl = `file://${targetFile}`;
 
 mkdirSync(baselineDir, { recursive: true });
 
+const versionProbe = spawnSync("chromium", ["--version"], { encoding: "utf8" });
+
+if (versionProbe.status !== 0) {
+  process.stderr.write(
+    "Failed to read chromium version.\n" +
+      (versionProbe.stderr || versionProbe.stdout || "No chromium output available.\n")
+  );
+  process.exit(versionProbe.status ?? 1);
+}
+
+const chromiumVersion = (versionProbe.stdout || versionProbe.stderr).trim();
+
 const chromiumArgs = [
   "--headless",
   "--disable-gpu",
@@ -47,6 +59,8 @@ const manifest = {
   generated_at: new Date().toISOString(),
   source: "examples/playground.html",
   viewport: { width: WIDTH, height: HEIGHT },
+  chromium_version: chromiumVersion,
+  platform: process.platform,
 };
 
 writeFileSync(manifestFile, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");

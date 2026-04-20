@@ -23,6 +23,46 @@ if (!existsSync(manifestFile) || !existsSync(baselineFile)) {
 }
 
 const manifest = JSON.parse(readFileSync(manifestFile, "utf8"));
+const strictMode = process.env.TUI_VISUAL_STRICT === "1";
+
+const versionProbe = spawnSync("chromium", ["--version"], { encoding: "utf8" });
+
+if (versionProbe.status !== 0) {
+  process.stderr.write(
+    "Failed to read chromium version.\n" +
+      (versionProbe.stderr || versionProbe.stdout || "No chromium output available.\n")
+  );
+  process.exit(versionProbe.status ?? 1);
+}
+
+const chromiumVersion = (versionProbe.stdout || versionProbe.stderr).trim();
+const environmentMatches =
+  manifest.chromium_version === chromiumVersion && manifest.platform === process.platform;
+
+if (!environmentMatches) {
+  const details =
+    `Manifest chromium: ${manifest.chromium_version ?? "missing"}\n` +
+    `Current chromium: ${chromiumVersion}\n` +
+    `Manifest platform: ${manifest.platform ?? "missing"}\n` +
+    `Current platform: ${process.platform}\n`;
+
+  if (strictMode) {
+    process.stderr.write(
+      "Visual baseline render environment differs from capture metadata.\n" +
+        "Strict mode is enabled (TUI_VISUAL_STRICT=1), so the check is failing.\n" +
+        "Run: node scripts/capture-visual-baseline.mjs in this environment to refresh.\n\n" +
+        details
+    );
+    process.exit(1);
+  }
+
+  process.stdout.write(
+    "Visual baseline render environment differs from capture metadata.\n" +
+      "Skipping strict hash comparison. Set TUI_VISUAL_STRICT=1 to fail on mismatch.\n\n" +
+      details
+  );
+  process.exit(0);
+}
 
 const screenshot = spawnSync(
   "chromium",
