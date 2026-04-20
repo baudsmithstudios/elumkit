@@ -1,1 +1,31 @@
 DEV_NOTES/
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Test artifacts
+coverage/
+.nyc_output/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
