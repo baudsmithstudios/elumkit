@@ -1,0 +1,47 @@
+.tui-label {
+  color: var(--tui-color-fg);
+  display: block;
+  font-size: var(--tui-text-sm);
+  margin-bottom: var(--tui-space-1);
+}
+
+.tui-input,
+.tui-textarea,
+.tui-select {
+  background: var(--tui-color-surface);
+  border: var(--tui-border-width) solid var(--tui-color-border);
+  border-radius: var(--tui-radius-sm);
+  color: var(--tui-color-fg);
+  font-family: inherit;
+  font-size: var(--tui-text-sm);
+  line-height: var(--tui-lh-normal);
+  padding: var(--tui-space-2) var(--tui-space-3);
+  width: 100%;
+}
+
+.tui-textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+.tui-input::placeholder,
+.tui-textarea::placeholder {
+  color: var(--tui-color-muted);
+}
+
+.tui-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tui-space-1);
+}
+
+.tui-choice {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--tui-space-2);
+}
+
+.tui-checkbox,
+.tui-radio {
+  accent-color: var(--tui-color-accent);
+}

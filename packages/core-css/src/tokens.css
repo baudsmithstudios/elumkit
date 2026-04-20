@@ -1,0 +1,49 @@
+:root,
+[data-theme="light"] {
+  --tui-font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  --tui-color-bg: #f7f7f7;
+  --tui-color-surface: #ffffff;
+  --tui-color-fg: #1d1f21;
+  --tui-color-muted: #6b7280;
+  --tui-color-border: #d1d5db;
+  --tui-color-accent: #0f766e;
+  --tui-color-success: #166534;
+  --tui-color-warn: #a16207;
+  --tui-color-error: #b91c1c;
+  --tui-color-info: #1d4ed8;
+
+  --tui-focus-ring: #0f766e;
+
+  --tui-text-xs: 0.75rem;
+  --tui-text-sm: 0.875rem;
+  --tui-text-md: 1rem;
+
+  --tui-lh-tight: 1.2;
+  --tui-lh-normal: 1.5;
+
+  --tui-space-1: 0.25rem;
+  --tui-space-2: 0.5rem;
+  --tui-space-3: 0.75rem;
+  --tui-space-4: 1rem;
+
+  --tui-radius-sm: 0.125rem;
+  --tui-radius-md: 0.25rem;
+
+  --tui-border-width: 1px;
+}
+
+[data-theme="dark"] {
+  --tui-color-bg: #121417;
+  --tui-color-surface: #1b1f24;
+  --tui-color-fg: #eceff4;
+  --tui-color-muted: #9ca3af;
+  --tui-color-border: #3f3f46;
+  --tui-color-accent: #2dd4bf;
+  --tui-color-success: #4ade80;
+  --tui-color-warn: #fbbf24;
+  --tui-color-error: #f87171;
+  --tui-color-info: #60a5fa;
+
+  --tui-focus-ring: #5eead4;
+}

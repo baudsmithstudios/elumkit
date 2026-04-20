@@ -1,0 +1,35 @@
+.tui-button {
+  appearance: none;
+  background: var(--tui-color-surface);
+  border: var(--tui-border-width) solid var(--tui-color-border);
+  border-radius: var(--tui-radius-sm);
+  color: var(--tui-color-fg);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: var(--tui-text-sm);
+  gap: var(--tui-space-2);
+  line-height: var(--tui-lh-tight);
+  padding: var(--tui-space-2) var(--tui-space-3);
+  text-decoration: none;
+}
+
+.tui-button:hover {
+  border-color: var(--tui-color-accent);
+}
+
+.tui-button:active {
+  transform: translateY(1px);
+}
+
+.tui-button[aria-disabled="true"],
+.tui-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.tui-button[data-variant="primary"] {
+  background: var(--tui-color-accent);
+  border-color: var(--tui-color-accent);
+  color: var(--tui-color-bg);
+}

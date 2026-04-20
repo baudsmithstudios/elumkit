@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--tui-color-bg);
+  color: var(--tui-color-fg);
+  font-family: var(--tui-font-family);
+  font-size: var(--tui-text-md);
+  line-height: var(--tui-lh-normal);
+}
+
+:focus-visible {
+  outline: 2px solid var(--tui-focus-ring);
+  outline-offset: 2px;
+}
+
+.tui-stack > * + * {
+  margin-top: var(--tui-space-3);
+}

@@ -1,0 +1,19 @@
+.tui-card {
+  background: var(--tui-color-surface);
+  border: var(--tui-border-width) solid var(--tui-color-border);
+  border-radius: var(--tui-radius-md);
+  padding: var(--tui-space-4);
+}
+
+.tui-card-title {
+  font-size: var(--tui-text-md);
+  font-weight: 600;
+  line-height: var(--tui-lh-tight);
+  margin: 0;
+}
+
+.tui-card-subtitle {
+  color: var(--tui-color-muted);
+  font-size: var(--tui-text-sm);
+  margin: var(--tui-space-1) 0 0;
+}
