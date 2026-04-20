@@ -12,6 +12,7 @@
   line-height: var(--tui-lh-tight);
   padding: var(--tui-space-2) var(--tui-space-3);
   text-decoration: none;
+  transition: border-color var(--tui-motion-fast) ease, background-color var(--tui-motion-fast) ease, color var(--tui-motion-fast) ease;
 }
 
 .tui-button:hover {

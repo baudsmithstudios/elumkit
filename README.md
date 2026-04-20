@@ -38,3 +38,11 @@ This project is intentionally HTML-first for v0.1. The goal is to ship a lean, a
 ## Status
 
 Foundation scaffold in progress.
+
+## Development
+
+Run the contract tests:
+
+```sh
+node --test
+```

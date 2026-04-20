@@ -31,6 +31,7 @@
   --tui-radius-md: 0.25rem;
 
   --tui-border-width: 1px;
+  --tui-motion-fast: 120ms;
 }
 
 [data-theme="dark"] {
