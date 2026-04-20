@@ -12,9 +12,9 @@ test("global focus-visible ring is defined", () => {
   assert.match(BASE_CSS, /outline:/);
 });
 
-test("button supports native and aria disabled hooks", () => {
+test("button supports only native disabled hook in v0.1", () => {
   assert.match(BUTTON_CSS, /\.tui-button:disabled/);
-  assert.match(BUTTON_CSS, /\.tui-button\[aria-disabled="true"\]/);
+  assert.doesNotMatch(BUTTON_CSS, /\.tui-button\[aria-disabled="true"\]/);
 });
 
 test("form controls expose invalid aria hooks", () => {

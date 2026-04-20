@@ -23,7 +23,6 @@
   transform: translateY(1px);
 }
 
-.tui-button[aria-disabled="true"],
 .tui-button:disabled {
   cursor: not-allowed;
   opacity: 0.6;

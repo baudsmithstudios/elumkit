@@ -34,6 +34,7 @@ test("playground includes state matrix samples", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.match(html, /aria-label="State matrix"/);
   assert.match(html, /aria-invalid="true"/);
-  assert.match(html, /:disabled|disabled/);
-  assert.match(html, /aria-disabled="true"/);
+  assert.match(html, /<button class="tui-button" type="button" disabled>/);
+  assert.match(html, /<input class="tui-input" type="text" value="disabled input" disabled \/>/);
+  assert.doesNotMatch(html, /aria-disabled="true"/);
 });
