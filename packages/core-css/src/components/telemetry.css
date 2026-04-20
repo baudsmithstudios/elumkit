@@ -1,0 +1,143 @@
+.elum-system-bar {
+  align-items: center;
+  background: transparent;
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-radius: var(--elum-radius-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--elum-space-2) var(--elum-space-4);
+  justify-content: space-between;
+  padding: var(--elum-space-2) var(--elum-space-3);
+}
+
+.elum-system-bar-brand {
+  color: var(--elum-color-accent);
+  font-size: var(--elum-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  text-transform: uppercase;
+}
+
+.elum-system-bar-group {
+  align-items: center;
+  color: var(--elum-color-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--elum-text-sm);
+  gap: var(--elum-space-2);
+}
+
+.elum-system-bar-item {
+  align-items: baseline;
+  display: inline-flex;
+  gap: var(--elum-space-1);
+  white-space: nowrap;
+}
+
+.elum-system-bar-key {
+  color: var(--elum-color-muted);
+}
+
+.elum-system-bar-value {
+  color: var(--elum-color-fg);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.elum-metrics {
+  display: grid;
+  gap: var(--elum-space-2);
+}
+
+.elum-metric {
+  align-items: center;
+  display: grid;
+  gap: var(--elum-space-2);
+  grid-template-columns: minmax(7rem, auto) 1fr auto;
+}
+
+.elum-metric-label {
+  color: var(--elum-color-muted);
+  font-size: var(--elum-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.elum-metric-value {
+  color: var(--elum-color-fg);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  justify-self: end;
+}
+
+.elum-metric-unit {
+  color: var(--elum-color-muted);
+  font-size: var(--elum-text-xs);
+}
+
+.elum-meter {
+  display: grid;
+  gap: var(--elum-space-1);
+}
+
+.elum-meter-header {
+  align-items: baseline;
+  display: flex;
+  gap: var(--elum-space-2);
+  justify-content: space-between;
+}
+
+.elum-meter-label {
+  color: var(--elum-color-muted);
+  font-size: var(--elum-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.elum-meter-value {
+  color: var(--elum-color-fg);
+  font-size: var(--elum-text-sm);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.elum-meter-track {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  background-image: linear-gradient(
+    to right,
+    var(--elum-color-accent) var(--elum-meter-fill-width, 0%),
+    transparent var(--elum-meter-fill-width, 0%)
+  );
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-radius: var(--elum-radius-sm);
+  display: block;
+  height: 0.75rem;
+  width: 100%;
+}
+
+.elum-meter-track[data-tone="success"] {
+  background-image: linear-gradient(
+    to right,
+    var(--elum-color-success) var(--elum-meter-fill-width, 0%),
+    transparent var(--elum-meter-fill-width, 0%)
+  );
+}
+
+.elum-meter-track[data-tone="warn"] {
+  background-image: linear-gradient(
+    to right,
+    var(--elum-color-warn) var(--elum-meter-fill-width, 0%),
+    transparent var(--elum-meter-fill-width, 0%)
+  );
+}
+
+.elum-meter-track[data-tone="error"] {
+  background-image: linear-gradient(
+    to right,
+    var(--elum-color-error) var(--elum-meter-fill-width, 0%),
+    transparent var(--elum-meter-fill-width, 0%)
+  );
+}

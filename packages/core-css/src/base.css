@@ -1,0 +1,37 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--elum-color-bg);
+  color: var(--elum-color-fg);
+  font-family: var(--elum-font-family);
+  font-size: var(--elum-text-md);
+  line-height: var(--elum-lh-normal);
+}
+
+:focus-visible {
+  outline: 2px solid var(--elum-color-focus);
+  outline-offset: 2px;
+}
+
+.elum-stack > * + * {
+  margin-top: var(--elum-space-3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

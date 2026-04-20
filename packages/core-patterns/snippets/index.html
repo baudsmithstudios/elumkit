@@ -1,0 +1,198 @@
+<section class="elum-stack" aria-label="Project ElumKit snippets">
+  <article class="elum-card elum-card-labeled elum-stack">
+    <header class="elum-card-header">
+      <h2 class="elum-card-title">Card Title</h2>
+    </header>
+    <p class="elum-card-subtitle">Dense, readable surface content.</p>
+    <p>Use cards for grouped content, settings sections, and compact panels.</p>
+    <p>Badge state <span class="elum-badge" data-tone="warn">[WARNING]</span></p>
+    <button class="elum-button" data-variant="tertiary" type="button">Tertiary Button</button>
+    <button class="elum-button" type="button">Secondary Button</button>
+    <button class="elum-button" data-variant="primary" type="button">Primary Button</button>
+  </article>
+
+  <form class="elum-stack" action="#" method="post">
+    <div class="elum-field">
+      <label class="elum-label" for="name">Name</label>
+      <span class="elum-prompt-field">
+        <span class="elum-input-prompt" aria-hidden="true">&gt;</span>
+        <input class="elum-input" id="name" name="name" type="text" placeholder="input_" />
+      </span>
+    </div>
+
+    <div class="elum-field">
+      <label class="elum-label" for="role">Role</label>
+      <select class="elum-select" id="role" name="role">
+        <option>Operator</option>
+        <option>Analyst</option>
+      </select>
+    </div>
+
+    <div class="elum-field">
+      <label class="elum-label" for="notes">Notes</label>
+      <textarea class="elum-textarea" id="notes" name="notes" placeholder="status update"></textarea>
+    </div>
+
+    <label class="elum-choice" for="notify">
+      <input class="elum-checkbox" id="notify" name="notify" type="checkbox" />
+      Send notifications
+    </label>
+
+    <fieldset class="elum-field">
+      <legend class="elum-label">Mode</legend>
+      <label class="elum-choice" for="mode-monitor">
+        <input class="elum-radio" id="mode-monitor" name="mode" type="radio" value="monitor" checked />
+        Monitor
+      </label>
+      <label class="elum-choice" for="mode-guard">
+        <input class="elum-radio" id="mode-guard" name="mode" type="radio" value="guard" />
+        Guard
+      </label>
+    </fieldset>
+  </form>
+
+  <aside class="elum-alert" data-tone="warn" role="status">
+    Disk usage crossed the configured warning threshold.
+  </aside>
+
+  <nav class="elum-system-bar" aria-label="System status">
+    <strong class="elum-system-bar-brand">ElumKit</strong>
+    <span class="elum-system-bar-group">
+      <span class="elum-system-bar-item">
+        <span class="elum-system-bar-key">theme</span>
+        <span class="elum-system-bar-value">[IRON]</span>
+      </span>
+      <span class="elum-system-bar-item">
+        <span class="elum-system-bar-key">state</span>
+        <span class="elum-system-bar-value">[READY]</span>
+      </span>
+    </span>
+  </nav>
+
+  <div class="elum-metrics" aria-label="Runtime metrics">
+    <div class="elum-metric">
+      <span class="elum-metric-label">Load</span>
+      <span class="elum-metric-value">0.42</span>
+      <span class="elum-metric-unit">avg</span>
+    </div>
+    <div class="elum-metric">
+      <span class="elum-metric-label">Memory</span>
+      <span class="elum-metric-value">64</span>
+      <span class="elum-metric-unit">%</span>
+    </div>
+  </div>
+
+  <div class="elum-meter">
+    <div class="elum-meter-header">
+      <span class="elum-meter-label">Memory</span>
+      <span class="elum-meter-value">64%</span>
+    </div>
+    <meter class="elum-meter-track" min="0" max="100" value="64" aria-label="Memory usage" style="--elum-meter-fill-width: 64%">64%</meter>
+  </div>
+
+  <div class="elum-list" role="list" aria-label="Service rows">
+    <a class="elum-row" href="#" role="listitem" data-selected="true" aria-current="true">
+      <span class="elum-row-main">
+        <span class="elum-row-title">api-gateway</span>
+        <span class="elum-row-meta">edge cluster :: [HEALTHY]</span>
+      </span>
+      <span class="elum-row-value">99.9%</span>
+    </a>
+    <a class="elum-row" href="#" role="listitem">
+      <span class="elum-row-main">
+        <span class="elum-row-title">worker-queue</span>
+        <span class="elum-row-meta">background jobs :: [DELAYED]</span>
+      </span>
+      <span class="elum-row-value">42ms</span>
+    </a>
+  </div>
+
+  <div class="elum-table-wrap">
+    <table class="elum-table">
+      <thead>
+        <tr>
+          <th scope="col">Service</th>
+          <th scope="col" data-column="status">Status</th>
+          <th scope="col" data-align="end">Latency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Service">api-gateway</td>
+          <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
+          <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
+        </tr>
+        <tr>
+          <td data-label="Service">worker-queue</td>
+          <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
+          <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <form class="elum-query" role="search" aria-label="Service filters" action="#" method="get">
+    <div class="elum-field">
+      <label class="elum-label" for="snippet-service-query">Search services</label>
+      <input class="elum-input" id="snippet-service-query" name="q" type="search" placeholder="api, queue, cache" />
+    </div>
+    <div class="elum-field">
+      <label class="elum-label" for="snippet-service-status">Status</label>
+      <select class="elum-select" id="snippet-service-status" name="status">
+        <option>Any status</option>
+        <option>Healthy</option>
+        <option>Delayed</option>
+      </select>
+    </div>
+    <button class="elum-button" type="submit">Apply</button>
+  </form>
+
+  <nav class="elum-pagination" aria-label="Pagination">
+    <button class="elum-button" data-variant="tertiary" type="button" aria-label="Previous page">Prev</button>
+    <span class="elum-pagination-status">2 of 4</span>
+    <button class="elum-button" data-variant="tertiary" type="button" aria-label="Next page">Next</button>
+  </nav>
+
+  <div class="elum-empty">
+    <div class="elum-empty-title">No results</div>
+    <p class="elum-empty-message">Adjust the filters and try again.</p>
+  </div>
+
+  <details class="elum-disclosure">
+    <summary class="elum-disclosure-summary">Restore step details</summary>
+    <div class="elum-disclosure-content">
+      Started at 10:42 and completed without recorded failures.
+    </div>
+  </details>
+
+  <dl class="elum-detail-list">
+    <div class="elum-detail">
+      <dt class="elum-detail-term">Run ID</dt>
+      <dd class="elum-detail-value">1842</dd>
+    </div>
+    <div class="elum-detail">
+      <dt class="elum-detail-term">Status</dt>
+      <dd class="elum-detail-value"><span class="elum-status-label" data-tone="success">passed</span></dd>
+    </div>
+    <div class="elum-detail">
+      <dt class="elum-detail-term">Duration</dt>
+      <dd class="elum-detail-value">42s</dd>
+    </div>
+  </dl>
+
+  <nav class="elum-tabs" aria-label="Primary navigation">
+    <a class="elum-tab" href="#" aria-current="page">Incidents</a>
+    <a class="elum-tab" href="#">Uptime</a>
+  </nav>
+
+  <div class="elum-toolbar" role="group" aria-label="Page actions">
+    <div class="elum-toolbar-group">
+      <button class="elum-button" type="button">Refresh</button>
+      <button class="elum-button" type="button">Export</button>
+    </div>
+    <div class="elum-toolbar-group" data-align="end">
+      <span class="elum-toolbar-label">freshness</span>
+      <span class="elum-toolbar-value">10:42</span>
+    </div>
+  </div>
+</section>

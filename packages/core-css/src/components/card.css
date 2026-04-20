@@ -1,0 +1,81 @@
+.elum-card {
+  background: transparent;
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-radius: var(--elum-radius-md);
+  padding: var(--elum-card-padding, var(--elum-space-3));
+  position: relative;
+}
+
+.elum-card-labeled {
+  padding-top: calc(var(--elum-space-4) * 0.5);
+}
+
+.elum-card-labeled > .elum-card-header:first-child {
+  margin: calc((var(--elum-space-4) * -0.5) - var(--elum-border-width)) 0 var(--elum-space-2);
+  transform: translateY(-45%);
+}
+
+.elum-card-title {
+  align-items: center;
+  background: var(--elum-card-label-bg, var(--elum-color-bg));
+  color: var(--elum-card-title-color, var(--elum-color-accent));
+  display: inline-flex;
+  font-size: var(--elum-card-title-size, var(--elum-text-sm));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  margin: 0;
+  padding: 0 var(--elum-space-2);
+  text-transform: uppercase;
+}
+
+.elum-card-subtitle {
+  color: var(--elum-card-subtitle-color, var(--elum-color-muted));
+  font-size: var(--elum-card-subtitle-size, var(--elum-text-xs));
+  letter-spacing: 0.06em;
+  margin: var(--elum-space-1) 0 0;
+  text-transform: uppercase;
+}
+
+.elum-card-header[data-inline="true"] {
+  align-items: baseline;
+  column-gap: 0;
+  display: flex;
+  row-gap: var(--elum-space-1);
+}
+
+.elum-card-header[data-inline="true"] > .elum-card-title {
+  flex: 0 0 auto;
+}
+
+.elum-card-header[data-inline="true"] > .elum-card-subtitle {
+  background: var(--elum-card-label-bg, var(--elum-color-bg));
+  margin: 0;
+  padding: 0 var(--elum-space-2) 0 0;
+}
+
+@media (max-width: 42rem) {
+  .elum-card-labeled:has(> .elum-card-header[data-inline="true"]:first-child) {
+    padding-top: var(--elum-card-padding, var(--elum-space-3));
+  }
+
+  .elum-card-labeled > .elum-card-header[data-inline="true"]:first-child {
+    margin: 0 0 var(--elum-space-2);
+    transform: none;
+  }
+
+  .elum-card-header[data-inline="true"] {
+    display: block;
+  }
+
+  .elum-card-header[data-inline="true"] > .elum-card-title {
+    background: transparent;
+    padding: 0;
+  }
+
+  .elum-card-header[data-inline="true"] > .elum-card-subtitle {
+    background: transparent;
+    margin: var(--elum-space-1) 0 0;
+    padding: 0;
+  }
+}

@@ -1,0 +1,67 @@
+:root {
+  --elum-font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+
+  --elum-text-xs: 0.75rem;
+  --elum-text-sm: 0.875rem;
+  --elum-text-md: 1rem;
+
+  --elum-lh-tight: 1.2;
+  --elum-lh-normal: 1.5;
+
+  --elum-space-1: 0.25rem;
+  --elum-space-2: 0.5rem;
+  --elum-space-3: 0.75rem;
+  --elum-space-4: 1rem;
+
+  --elum-radius-sm: 0.0625rem;
+  --elum-radius-md: 0.1875rem;
+
+  --elum-border-width: 1px;
+  --elum-motion-fast: 120ms;
+}
+
+:root,
+[data-theme="iron"] {
+  --elum-color-bg: #0d1117;
+  --elum-color-surface: #0d1117;
+  --elum-color-fg: #d4e1ec;
+  --elum-color-muted: #8a9eac;
+  --elum-color-border: #4a6275;
+  --elum-color-accent: #f08550;
+  --elum-color-success: #4ec898;
+  --elum-color-warn: #e05252;
+  --elum-color-error: #e05252;
+  --elum-color-info: #4ec898;
+
+  --elum-color-focus: #f08550;
+}
+
+[data-theme="neon"] {
+  --elum-color-bg: #050e12;
+  --elum-color-surface: #050e12;
+  --elum-color-fg: #d0f0ff;
+  --elum-color-muted: #4ab8cc;
+  --elum-color-border: #ff79c6;
+  --elum-color-accent: #00e5ff;
+  --elum-color-success: #00ff87;
+  --elum-color-warn: #ffbe0b;
+  --elum-color-error: #ffbe0b;
+  --elum-color-info: #00ff87;
+
+  --elum-color-focus: #00e5ff;
+}
+
+[data-theme="dust"] {
+  --elum-color-bg: #ddd6c4;
+  --elum-color-surface: #ddd6c4;
+  --elum-color-fg: #0e0e0e;
+  --elum-color-muted: #5f5648;
+  --elum-color-border: #3d2f20;
+  --elum-color-accent: #a3341b;
+  --elum-color-success: #2e6048;
+  --elum-color-warn: #7a4800;
+  --elum-color-error: #7a4800;
+  --elum-color-info: #2e6048;
+
+  --elum-color-focus: #a3341b;
+}

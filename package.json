@@ -1,0 +1,22 @@
+{
+  "name": "elumkit",
+  "description": "HTML-first UI primitives with copyable CSS, semantic patterns, and a clean terminal feel.",
+  "private": true,
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baudsmithstudios/elumkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/baudsmithstudios/elumkit/issues"
+  },
+  "homepage": "https://github.com/baudsmithstudios/elumkit#readme",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "playground": "python3 -m http.server 4173"
+  }
+}

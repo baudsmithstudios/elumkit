@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <defs>
+    <style>
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+      .label { fill: #4ab8cc; font-size: 17px; letter-spacing: 6px; }
+      .copy { fill: #d0f0ff; font-size: 18px; letter-spacing: 1px; }
+      .muted { fill: #4ab8cc; }
+      .accent { fill: #00e5ff; }
+      .success { fill: #00ff87; }
+      .warn { fill: #ffbe0b; }
+      .idle { fill: #4ab8cc; }
+      .frame { fill: none; stroke: #ff79c6; stroke-width: 2; }
+      .accent-frame { fill: none; stroke: #00e5ff; stroke-width: 2; }
+    </style>
+    <mask id="hero-border-cutout">
+      <rect width="100%" height="100%" fill="white"/>
+      <rect x="92" y="14" width="430" height="24" fill="black"/>
+    </mask>
+  </defs>
+
+  <rect width="1280" height="640" fill="#050e12"/>
+
+  <rect x="40" y="24" width="1200" height="260" rx="3" class="frame" mask="url(#hero-border-cutout)"/>
+  <circle cx="104" cy="25.5" r="6" class="success"/>
+  <text x="126" y="32" class="mono label">COMPONENT-SYSTEM · V0.1</text>
+  <text x="1120" y="89" class="mono label accent">READY</text>
+  <text x="102" y="176" class="mono" font-size="74" font-weight="600" letter-spacing="14" fill="#00e5ff">elumkit<tspan class="accent">.</tspan></text>
+  <text x="102" y="232" class="mono muted" font-size="26" letter-spacing="1">HTML-first web UI primitives with a clean terminal feel.</text>
+
+  <rect x="40" y="316" width="384" height="178" rx="3" class="frame"/>
+  <text x="64" y="356" class="mono label">STATUS</text>
+  <circle cx="70" cy="389" r="5" class="success"/>
+  <text x="96" y="395" class="mono copy success">build · ok</text>
+  <circle cx="70" cy="425" r="5" class="warn"/>
+  <text x="96" y="431" class="mono copy warn">a11y · review</text>
+  <circle cx="70" cy="461" r="5" class="idle"/>
+  <text x="96" y="467" class="mono copy idle">docs · idle</text>
+
+  <rect x="448" y="316" width="384" height="178" rx="3" class="frame"/>
+  <text x="472" y="356" class="mono label">COVERAGE</text>
+  <text x="810" y="356" text-anchor="end" class="mono accent" font-size="17" letter-spacing="2">82%</text>
+  <rect x="472" y="376" width="334" height="12" rx="1" class="frame"/>
+  <rect x="474" y="378" width="271" height="8" fill="#00e5ff"/>
+  <text x="472" y="421" class="mono label">TOKENS</text>
+  <text x="810" y="421" text-anchor="end" class="mono accent" font-size="17" letter-spacing="2">14</text>
+  <rect x="472" y="441" width="334" height="12" rx="1" class="frame"/>
+  <rect x="474" y="443" width="182" height="8" fill="#00e5ff"/>
+
+  <rect x="856" y="316" width="384" height="178" rx="3" class="frame"/>
+  <text x="880" y="356" class="mono label">CONTROLS</text>
+  <rect x="880" y="380" width="76" height="34" rx="1" class="accent-frame"/>
+  <text x="918" y="403" text-anchor="middle" class="mono accent" font-size="18" letter-spacing="2">RUN</text>
+  <rect x="880" y="426" width="336" height="40" rx="1" class="frame"/>
+  <text x="892" y="453" class="mono muted" font-size="18">&gt; input_</text>
+</svg>

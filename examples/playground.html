@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en" data-theme="iron">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ElumKit Playground</title>
+    <link rel="stylesheet" href="../packages/core-css/src/index.css" />
+    <style>
+      main {
+        margin: 0 auto;
+        max-width: 76rem;
+        padding: 1rem clamp(1rem, 3vw, 2rem) 2rem;
+      }
+
+      main.elum-stack > * + * {
+        margin-top: 1.25rem;
+      }
+
+      .playground-header {
+        --elum-card-padding: clamp(1.25rem, 4vw, 2rem);
+        min-height: 11rem;
+        padding-top: calc(var(--elum-space-4) * 0.5);
+      }
+
+      .playground-title-shell {
+        margin-top: var(--elum-space-4);
+      }
+
+      .playground-title-block {
+        min-width: 0;
+      }
+
+      .playground-title-text {
+        color: var(--elum-color-accent);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "JetBrains Mono", "IBM Plex Mono", monospace;
+        font-size: clamp(2.5rem, 7vw, 4.75rem);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        line-height: 1;
+        margin: var(--elum-space-3) 0 0;
+      }
+
+      .playground-title-subtitle {
+        color: var(--elum-color-muted);
+        font-size: clamp(var(--elum-text-sm), 2vw, var(--elum-text-md));
+        margin: var(--elum-space-4) 0 0;
+        max-width: 42rem;
+      }
+
+      .theme-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-end;
+      }
+
+      .playground-title-status {
+        white-space: nowrap;
+      }
+
+      .playground-board {
+        align-items: stretch;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-areas:
+          "table table table table table table table table form form form form"
+          "query query query query query query query query form form form form"
+          "toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar form form form form"
+          "telemetry telemetry telemetry telemetry card card card card navigation navigation navigation navigation"
+          "details details details details rows rows rows rows rows rows rows rows"
+          "states states states states states states states states states states states states";
+      }
+
+      .playground-tile {
+        height: 100%;
+        min-width: 0;
+      }
+
+      .playground-card-preview {
+        grid-area: card;
+      }
+
+      .playground-navigation-preview {
+        grid-area: navigation;
+      }
+
+      .playground-telemetry-preview {
+        grid-area: telemetry;
+      }
+
+      .playground-details-preview {
+        grid-area: details;
+      }
+
+      .playground-query-preview {
+        grid-area: query;
+      }
+
+      .playground-form-preview {
+        grid-area: form;
+      }
+
+      .playground-rows-preview {
+        grid-area: rows;
+      }
+
+      .playground-table-preview {
+        grid-area: table;
+      }
+
+      .playground-states-preview {
+        grid-area: states;
+      }
+
+      .playground-toolbar-preview {
+        grid-area: toolbar;
+      }
+
+      .state-matrix {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .state-cell {
+        border: 1px dashed var(--elum-color-border);
+        border-radius: var(--elum-radius-sm);
+        padding: 0.75rem;
+      }
+
+      @media (max-width: 64rem) {
+        .playground-board {
+          grid-template-areas:
+            "table table table table table table table table table table table table"
+            "query query query query query query form form form form form form"
+            "toolbar toolbar toolbar toolbar toolbar toolbar form form form form form form"
+            "card card card card card card telemetry telemetry telemetry telemetry telemetry telemetry"
+            "navigation navigation navigation navigation navigation navigation details details details details details details"
+            "rows rows rows rows rows rows rows rows rows rows rows rows"
+            "states states states states states states states states states states states states";
+        }
+
+        .state-matrix {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 42rem) {
+        .playground-title-shell {
+          margin-top: var(--elum-space-3);
+        }
+
+        .playground-title-status {
+          white-space: normal;
+        }
+
+        .theme-controls {
+          justify-content: flex-start;
+        }
+
+        .playground-board {
+          grid-template-areas:
+            "table table table table table table table table table table table table"
+            "query query query query query query query query query query query query"
+            "card card card card card card card card card card card card"
+            "telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry"
+            "details details details details details details details details details details details details"
+            "form form form form form form form form form form form form"
+            "toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar"
+            "navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation"
+            "rows rows rows rows rows rows rows rows rows rows rows rows"
+            "states states states states states states states states states states states states";
+        }
+
+        .state-matrix {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="elum-stack">
+      <header class="elum-card elum-card-labeled playground-header">
+        <div class="elum-card-header" data-inline="true">
+          <div class="elum-card-title">Component system · v0.1</div>
+          <p class="elum-card-subtitle playground-title-status">
+            theme <span id="theme-status">[IRON]</span> components [22]
+          </p>
+        </div>
+        <div class="theme-controls" aria-label="Theme controls">
+          <button class="elum-button" id="theme-iron" type="button">Iron</button>
+          <button class="elum-button" id="theme-neon" type="button">Neon</button>
+          <button class="elum-button" id="theme-dust" type="button">Dust</button>
+        </div>
+
+        <div class="playground-title-shell">
+          <div class="playground-title-block">
+            <h1 class="playground-title-text">elumkit.</h1>
+            <p class="playground-title-subtitle">HTML-first web UI primitives with a clean terminal feel.</p>
+          </div>
+        </div>
+      </header>
+
+      <section class="playground-board" aria-label="Component previews">
+        <section class="elum-card elum-card-labeled elum-stack playground-tile playground-table-preview" aria-label="Data table">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Data Table</h2>
+          </header>
+          <p class="elum-card-subtitle">Dense columns with mobile-readable data labels.</p>
+
+          <div class="elum-table-wrap">
+            <table class="elum-table">
+              <thead>
+                <tr>
+                  <th scope="col">Service</th>
+                  <th scope="col" data-column="status">Status</th>
+                  <th scope="col" data-align="end">Latency</th>
+                  <th scope="col" data-align="end">Events</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Service">api-gateway</td>
+                  <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
+                  <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
+                  <td data-label="Events" data-align="end" data-numeric="true">1,284</td>
+                </tr>
+                <tr>
+                  <td data-label="Service">worker-queue</td>
+                  <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
+                  <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
+                  <td data-label="Events" data-align="end" data-numeric="true">876</td>
+                </tr>
+                <tr>
+                  <td data-label="Service">cache-node</td>
+                  <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="accent">[WARM]</span></td>
+                  <td data-label="Latency" data-align="end" data-numeric="true">9ms</td>
+                  <td data-label="Events" data-align="end" data-numeric="true">2,048</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-query-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Query Controls</h2>
+          </header>
+          <p class="elum-card-subtitle">Search, filters, and page state composed from native controls.</p>
+
+          <form class="elum-query" role="search" aria-label="Service filters" action="#" method="get">
+            <div class="elum-field">
+              <label class="elum-label" for="playground-service-query">Search services</label>
+              <input class="elum-input" id="playground-service-query" name="q" type="search" placeholder="api, queue, cache" />
+            </div>
+            <div class="elum-field">
+              <label class="elum-label" for="playground-service-status">Status</label>
+              <select class="elum-select" id="playground-service-status" name="status">
+                <option>Any status</option>
+                <option>Healthy</option>
+                <option>Delayed</option>
+              </select>
+            </div>
+            <button class="elum-button" type="submit">Apply</button>
+          </form>
+
+          <nav class="elum-pagination" aria-label="Pagination">
+            <button class="elum-button" data-variant="tertiary" type="button" aria-label="Previous page">Prev</button>
+            <span class="elum-pagination-status">2 of 4</span>
+            <button class="elum-button" data-variant="tertiary" type="button" aria-label="Next page">Next</button>
+          </nav>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-form-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Form Controls</h2>
+          </header>
+
+          <div class="elum-field">
+            <label class="elum-label" for="playground-name">Name</label>
+            <span class="elum-prompt-field">
+              <span class="elum-input-prompt" aria-hidden="true">&gt;</span>
+              <input class="elum-input" id="playground-name" name="name" type="text" placeholder="input_" />
+            </span>
+          </div>
+
+          <div class="elum-field">
+            <label class="elum-label" for="playground-role">Role</label>
+            <select class="elum-select" id="playground-role" name="role">
+              <option>Operator</option>
+              <option>Analyst</option>
+            </select>
+          </div>
+
+          <div class="elum-field">
+            <label class="elum-label" for="playground-notes">Notes</label>
+            <textarea class="elum-textarea" id="playground-notes" name="notes" placeholder="Brief status update"></textarea>
+          </div>
+
+          <label class="elum-choice" for="playground-notify">
+            <input class="elum-checkbox" id="playground-notify" name="notify" type="checkbox" />
+            Send notifications
+          </label>
+
+          <fieldset class="elum-field">
+            <legend class="elum-label">Mode</legend>
+            <label class="elum-choice" for="playground-mode-monitor">
+              <input class="elum-radio" id="playground-mode-monitor" name="mode" type="radio" value="monitor" checked />
+              Monitor
+            </label>
+            <label class="elum-choice" for="playground-mode-guard">
+              <input class="elum-radio" id="playground-mode-guard" name="mode" type="radio" value="guard" />
+              Guard
+            </label>
+          </fieldset>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-card-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Card</h2>
+          </header>
+          <p class="elum-card-subtitle">Surface container for grouped content.</p>
+          <p>
+            System status <span class="elum-status-label" data-tone="success">ready</span>
+          </p>
+          <p>
+            Badge state <span class="elum-badge" data-tone="warn">[WARNING]</span>
+          </p>
+          <div>
+            <button class="elum-button" data-variant="tertiary" type="button">Tertiary</button>
+            <button class="elum-button" type="button">Secondary</button>
+            <button class="elum-button" data-variant="primary" type="button">Primary</button>
+          </div>
+          <nav class="elum-system-bar" aria-label="Example system bar">
+            <strong class="elum-system-bar-brand">ElumKit</strong>
+            <span class="elum-system-bar-group">
+              <span class="elum-system-bar-item">
+                <span class="elum-system-bar-key">state</span>
+                <span class="elum-system-bar-value">[READY]</span>
+              </span>
+            </span>
+          </nav>
+          <aside class="elum-alert" data-tone="warn" role="status" aria-live="polite">
+            Disk usage is nearing the warning threshold.
+          </aside>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-telemetry-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Telemetry</h2>
+          </header>
+          <p class="elum-card-subtitle">Aligned values and compact meter states.</p>
+
+          <div class="elum-metrics" aria-label="Runtime metrics">
+            <div class="elum-metric">
+              <span class="elum-metric-label">Load</span>
+              <span class="elum-metric-value">0.42</span>
+              <span class="elum-metric-unit">avg</span>
+            </div>
+            <div class="elum-metric">
+              <span class="elum-metric-label">Memory</span>
+              <span class="elum-metric-value">64</span>
+              <span class="elum-metric-unit">%</span>
+            </div>
+            <div class="elum-metric">
+              <span class="elum-metric-label">Requests</span>
+              <span class="elum-metric-value">1.8K</span>
+              <span class="elum-metric-unit">/min</span>
+            </div>
+          </div>
+
+          <div class="elum-meter">
+            <div class="elum-meter-header">
+              <span class="elum-meter-label">Memory</span>
+              <span class="elum-meter-value">64%</span>
+            </div>
+            <meter class="elum-meter-track" min="0" max="100" value="64" data-tone="warn" aria-label="Memory usage" style="--elum-meter-fill-width: 64%">64%</meter>
+          </div>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-navigation-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Navigation Tabs</h2>
+          </header>
+          <p class="elum-card-subtitle">Page links with native current-page state.</p>
+
+          <nav class="elum-tabs" aria-label="Primary navigation example">
+            <a class="elum-tab" href="#" aria-current="page">Incidents</a>
+            <a class="elum-tab" href="#">Uptime</a>
+          </nav>
+
+          <nav class="elum-tabs" aria-label="Secondary navigation example">
+            <a class="elum-tab" href="#">Incidents</a>
+            <a class="elum-tab" href="#" aria-current="page">Uptime</a>
+          </nav>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-details-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Detail States</h2>
+          </header>
+          <p class="elum-card-subtitle">Empty, expandable, and definition-list content.</p>
+
+          <div class="elum-empty">
+            <div class="elum-empty-title">No failures</div>
+            <p class="elum-empty-message">The current filters did not return any failed runs.</p>
+          </div>
+
+          <details class="elum-disclosure">
+            <summary class="elum-disclosure-summary">Check detail</summary>
+            <div class="elum-disclosure-content">
+              HTTP check returned the expected status before the timeout window closed.
+            </div>
+          </details>
+
+          <dl class="elum-detail-list">
+            <div class="elum-detail">
+              <dt class="elum-detail-term">Run ID</dt>
+              <dd class="elum-detail-value">1842</dd>
+            </div>
+            <div class="elum-detail">
+              <dt class="elum-detail-term">Status</dt>
+              <dd class="elum-detail-value"><span class="elum-status-label" data-tone="success">passed</span></dd>
+            </div>
+            <div class="elum-detail">
+              <dt class="elum-detail-term">Duration</dt>
+              <dd class="elum-detail-value">42s</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-toolbar-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Toolbar</h2>
+          </header>
+          <p class="elum-card-subtitle">Grouped page actions and compact metadata.</p>
+
+          <div class="elum-toolbar" role="group" aria-label="Page actions">
+            <div class="elum-toolbar-group">
+              <button class="elum-button" type="button">Refresh</button>
+              <button class="elum-button" type="button">Export</button>
+            </div>
+            <div class="elum-toolbar-group" data-align="end">
+              <span class="elum-status-label" data-tone="success">ready</span>
+              <span class="elum-toolbar-label">freshness</span>
+              <span class="elum-toolbar-value">10:42</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-rows-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Rows</h2>
+          </header>
+          <p class="elum-card-subtitle">Selectable-looking rows with aligned values.</p>
+
+          <div class="elum-list" role="list" aria-label="Service rows">
+            <a class="elum-row" href="#" role="listitem" data-selected="true" aria-current="true">
+              <span class="elum-row-main">
+                <span class="elum-row-title">api-gateway</span>
+                <span class="elum-row-meta">edge cluster :: [HEALTHY]</span>
+              </span>
+              <span class="elum-row-value">99.9%</span>
+            </a>
+            <a class="elum-row" href="#" role="listitem">
+              <span class="elum-row-main">
+                <span class="elum-row-title">worker-queue</span>
+                <span class="elum-row-meta">background jobs :: [DELAYED]</span>
+              </span>
+              <span class="elum-row-value">42ms</span>
+            </a>
+            <a class="elum-row" href="#" role="listitem">
+              <span class="elum-row-main">
+                <span class="elum-row-title">cache-node</span>
+                <span class="elum-row-meta">primary region :: [WARM]</span>
+              </span>
+              <span class="elum-row-value">1.8K</span>
+            </a>
+          </div>
+        </article>
+
+        <section class="elum-card elum-card-labeled elum-stack playground-tile playground-states-preview" aria-label="State matrix">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">State Matrix</h2>
+          </header>
+          <p class="elum-card-subtitle">Normal, focus, disabled, and invalid states.</p>
+
+          <div class="state-matrix">
+            <div class="state-cell elum-stack">
+              <strong>Normal</strong>
+              <button class="elum-button" type="button">Normal Button</button>
+              <input class="elum-input" type="text" value="normal value" aria-label="Normal input state" />
+            </div>
+
+            <div class="state-cell elum-stack">
+              <strong>Focus</strong>
+              <button class="elum-button" id="focus-target-button" type="button">Focus Button</button>
+              <input class="elum-input" id="focus-target-input" type="text" value="focus target" aria-label="Focus target input" />
+            </div>
+
+            <div class="state-cell elum-stack">
+              <strong>Disabled</strong>
+              <button class="elum-button" type="button" disabled>Disabled Button</button>
+              <input class="elum-input" type="text" value="disabled input" aria-label="Disabled input state" disabled />
+              <select class="elum-select" aria-label="Disabled select state" disabled>
+                <option>Disabled select</option>
+              </select>
+              <label class="elum-choice" data-disabled="true" for="state-disabled-notify">
+                <input class="elum-checkbox" id="state-disabled-notify" type="checkbox" disabled />
+                Disabled checkbox
+              </label>
+              <label class="elum-choice" data-disabled="true" for="state-disabled-mode">
+                <input class="elum-radio" id="state-disabled-mode" name="state-disabled-mode" type="radio" disabled />
+                Disabled radio
+              </label>
+            </div>
+
+            <div class="state-cell elum-stack">
+              <strong>Invalid</strong>
+              <input class="elum-input" type="text" value="invalid input" aria-label="Invalid input state" aria-invalid="true" />
+              <textarea class="elum-textarea" aria-label="Invalid textarea state" aria-invalid="true">invalid textarea</textarea>
+              <select class="elum-select" aria-label="Invalid select state" aria-invalid="true">
+                <option>Invalid select</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      const root = document.documentElement;
+      const iron = document.getElementById("theme-iron");
+      const dust = document.getElementById("theme-dust");
+      const neon = document.getElementById("theme-neon");
+      const themeStatus = document.getElementById("theme-status");
+
+      function setTheme(theme, label) {
+        root.setAttribute("data-theme", theme);
+        themeStatus.textContent = label;
+      }
+
+      iron.addEventListener("click", () => {
+        setTheme("iron", "[IRON]");
+      });
+
+      dust.addEventListener("click", () => {
+        setTheme("dust", "[DUST]");
+      });
+
+      neon.addEventListener("click", () => {
+        setTheme("neon", "[NEON]");
+      });
+    </script>
+  </body>
+</html>

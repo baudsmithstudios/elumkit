@@ -1,0 +1,52 @@
+.elum-query {
+  align-items: end;
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--elum-space-2);
+  padding: var(--elum-space-2);
+}
+
+.elum-query > .elum-field {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.elum-query > .elum-button {
+  flex: 0 0 auto;
+  min-height: 2.5rem;
+}
+
+.elum-pagination {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--elum-space-2);
+  justify-content: center;
+}
+
+.elum-pagination-status {
+  color: var(--elum-color-muted);
+  font-size: var(--elum-text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 42rem) {
+  .elum-query {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .elum-query > .elum-field {
+    flex-basis: auto;
+  }
+
+  .elum-query > .elum-button {
+    align-self: flex-start;
+  }
+
+  .elum-pagination {
+    justify-content: flex-start;
+  }
+}

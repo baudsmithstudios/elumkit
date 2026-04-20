@@ -1,0 +1,48 @@
+.elum-toolbar {
+  align-items: center;
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--elum-space-2);
+  padding: var(--elum-space-2);
+}
+
+.elum-toolbar-group {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--elum-space-2);
+  min-width: 0;
+}
+
+.elum-toolbar-group[data-align="end"] {
+  margin-left: auto;
+}
+
+.elum-toolbar-label {
+  color: var(--elum-color-muted);
+  font-size: var(--elum-text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.elum-toolbar-value {
+  color: var(--elum-color-fg);
+  font-size: var(--elum-text-sm);
+  font-weight: 700;
+}
+
+@media (max-width: 42rem) {
+  .elum-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .elum-toolbar-group {
+    width: 100%;
+  }
+
+  .elum-toolbar-group[data-align="end"] {
+    margin-left: 0;
+  }
+}

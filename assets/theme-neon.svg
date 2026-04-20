@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="25 257 1230 186" width="1230" height="186">
+  <defs>
+    <style>
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+      .label { fill: #4ab8cc; font-size: 17px; letter-spacing: 6px; }
+      .copy { fill: #d0f0ff; font-size: 18px; letter-spacing: 1px; }
+      .muted { fill: #4ab8cc; }
+      .accent { fill: #00e5ff; }
+      .accent-fill { fill: #00e5ff; }
+      .success { fill: #00ff87; }
+      .warn { fill: #ffbe0b; }
+      .idle { fill: #4ab8cc; }
+      .frame { fill: none; stroke: #ff79c6; stroke-width: 2; }
+      .accent-frame { fill: none; stroke: #00e5ff; stroke-width: 2; }
+    </style>
+  </defs>
+  <rect x="25" y="257" width="1230" height="186" rx="10" fill="#050e12"/>
+
+  <rect x="40" y="272" width="384" height="156" rx="3" class="frame"/>
+  <text x="64" y="310" class="mono label">STATUS</text>
+  <circle cx="70" cy="344" r="5" class="success"/>
+  <text x="96" y="350" class="mono copy success">build · ok</text>
+  <circle cx="70" cy="374" r="5" class="warn"/>
+  <text x="96" y="380" class="mono copy warn">a11y · review</text>
+  <circle cx="70" cy="404" r="5" class="idle"/>
+  <text x="96" y="410" class="mono copy idle">docs · idle</text>
+
+  <rect x="448" y="272" width="384" height="156" rx="3" class="frame"/>
+  <text x="472" y="310" class="mono label">COVERAGE</text>
+  <text x="810" y="310" text-anchor="end" class="mono accent" font-size="17" letter-spacing="2">82%</text>
+  <rect x="472" y="330" width="334" height="12" rx="1" class="frame"/>
+  <rect x="474" y="332" width="271" height="8" class="accent-fill"/>
+  <text x="472" y="375" class="mono label">TOKENS</text>
+  <text x="810" y="375" text-anchor="end" class="mono accent" font-size="17" letter-spacing="2">14</text>
+  <rect x="472" y="395" width="334" height="12" rx="1" class="frame"/>
+  <rect x="474" y="397" width="182" height="8" class="accent-fill"/>
+
+  <rect x="856" y="272" width="384" height="156" rx="3" class="frame"/>
+  <text x="880" y="310" class="mono label">CONTROLS</text>
+  <rect x="880" y="332" width="76" height="34" rx="1" class="accent-frame"/>
+  <text x="918" y="355" text-anchor="middle" class="mono accent" font-size="18" letter-spacing="2">RUN</text>
+  <rect x="880" y="378" width="336" height="40" rx="1" class="frame"/>
+  <text x="892" y="405" class="mono muted" font-size="18">&gt; input_</text>
+</svg>

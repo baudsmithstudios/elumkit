@@ -1,0 +1,55 @@
+.elum-button {
+  appearance: none;
+  background: transparent;
+  border: var(--elum-border-width) solid var(--elum-color-accent);
+  border-radius: var(--elum-radius-sm);
+  color: var(--elum-color-accent);
+  cursor: pointer;
+  align-items: center;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: var(--elum-text-sm);
+  gap: var(--elum-space-2);
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  padding: var(--elum-space-2) var(--elum-space-3);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color var(--elum-motion-fast) ease, background-color var(--elum-motion-fast) ease, color var(--elum-motion-fast) ease;
+}
+
+.elum-button:hover {
+  background: var(--elum-color-surface);
+  border-color: var(--elum-color-fg);
+  color: var(--elum-color-fg);
+}
+
+.elum-button:active {
+  transform: translateY(1px);
+}
+
+.elum-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.elum-button[data-variant="primary"] {
+  background: var(--elum-color-accent);
+  border-color: var(--elum-color-accent);
+  color: var(--elum-color-bg);
+}
+
+.elum-button[data-variant="tertiary"] {
+  border-color: transparent;
+}
+
+.elum-button[data-variant="primary"]:hover {
+  background: var(--elum-color-fg);
+  border-color: var(--elum-color-fg);
+  color: var(--elum-color-bg);
+}
+
+.elum-button[data-variant="tertiary"]:hover {
+  background: transparent;
+  border-color: transparent;
+}

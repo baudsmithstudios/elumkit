@@ -1,0 +1,89 @@
+.elum-alert {
+  background: var(--elum-color-surface);
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-left: 3px solid var(--elum-color-info);
+  border-radius: var(--elum-radius-sm);
+  color: var(--elum-color-fg);
+  padding: var(--elum-space-3);
+}
+
+.elum-alert[data-tone="success"] {
+  border-left-color: var(--elum-color-success);
+}
+
+.elum-alert[data-tone="warn"] {
+  border-left-color: var(--elum-color-warn);
+}
+
+.elum-alert[data-tone="error"] {
+  border-left-color: var(--elum-color-error);
+}
+
+.elum-badge {
+  color: var(--elum-color-muted);
+  display: inline-block;
+  font-size: var(--elum-text-xs);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  padding: 0.125rem var(--elum-space-1);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.elum-badge[data-tone="accent"] {
+  color: var(--elum-color-accent);
+}
+
+.elum-badge[data-tone="success"] {
+  color: var(--elum-color-success);
+}
+
+.elum-badge[data-tone="warn"] {
+  color: var(--elum-color-warn);
+}
+
+.elum-badge[data-tone="error"] {
+  color: var(--elum-color-error);
+}
+
+.elum-status-label {
+  align-items: baseline;
+  color: var(--elum-status-label-color, var(--elum-color-muted));
+  display: inline-flex;
+  font-size: var(--elum-text-sm);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  gap: var(--elum-space-1);
+  letter-spacing: 0.16em;
+  line-height: var(--elum-lh-tight);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.elum-status-label::before {
+  background: currentColor;
+  border-radius: 999px;
+  content: "";
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.elum-status-label[data-tone="accent"] {
+  --elum-status-label-color: var(--elum-color-accent);
+}
+
+.elum-status-label[data-tone="success"] {
+  --elum-status-label-color: var(--elum-color-success);
+}
+
+.elum-status-label[data-tone="warn"] {
+  --elum-status-label-color: var(--elum-color-warn);
+}
+
+.elum-status-label[data-tone="error"] {
+  --elum-status-label-color: var(--elum-color-error);
+}

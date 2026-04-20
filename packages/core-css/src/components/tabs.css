@@ -1,0 +1,38 @@
+.elum-tabs {
+  align-items: end;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.elum-tabs::after {
+  border-bottom: var(--elum-border-width) solid var(--elum-color-border);
+  content: "";
+  flex: 1 0 var(--elum-space-4);
+}
+
+.elum-tab {
+  border-bottom: var(--elum-border-width) solid var(--elum-color-border);
+  color: var(--elum-color-muted);
+  display: inline-flex;
+  padding: var(--elum-space-1) var(--elum-space-2);
+  text-decoration: none;
+}
+
+.elum-tab:hover {
+  color: var(--elum-color-fg);
+}
+
+.elum-tab:focus-visible {
+  outline: var(--elum-color-focus) solid var(--elum-border-width);
+  outline-offset: calc(var(--elum-border-width) * -1);
+}
+
+.elum-tab[aria-current="page"] {
+  background: var(--elum-color-bg);
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-bottom: 0;
+  border-radius: var(--elum-radius-md) var(--elum-radius-md) 0 0;
+  color: var(--elum-color-fg);
+}

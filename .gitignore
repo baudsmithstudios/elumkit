@@ -1,0 +1,7 @@
+DEV_NOTES/
+node_modules/
+*.tgz
+.env
+.env.*
+!.env.example
+.DS_Store
