@@ -50,3 +50,7 @@ node --test
 Use the local playground for quick UI iteration:
 
 - `examples/playground.html`
+
+Acceptance criteria:
+
+- `docs/v0.1-acceptance-checklist.md`
