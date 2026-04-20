@@ -29,6 +29,12 @@ test("form controls expose disabled hooks", () => {
   assert.match(FORM_CSS, /\.tui-select:disabled/);
 });
 
+test("checkbox and radio expose disabled hooks", () => {
+  assert.match(FORM_CSS, /\.tui-checkbox:disabled/);
+  assert.match(FORM_CSS, /\.tui-radio:disabled/);
+  assert.match(FORM_CSS, /\.tui-choice\[data-disabled="true"\]/);
+});
+
 test("alert supports success, warn, and error tones", () => {
   assert.match(FEEDBACK_CSS, /\.tui-alert\[data-tone="success"\]/);
   assert.match(FEEDBACK_CSS, /\.tui-alert\[data-tone="warn"\]/);

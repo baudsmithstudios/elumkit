@@ -37,5 +37,8 @@ test("playground includes state matrix samples", () => {
   assert.match(html, /<button[^>]*class="tui-button"[^>]*\sdisabled(?:\s|>)/);
   assert.match(html, /<input[^>]*class="tui-input"[^>]*\sdisabled(?:\s|\/?>)/);
   assert.match(html, /<select[^>]*class="tui-select"[^>]*\sdisabled(?:\s|>)/);
+  assert.match(html, /<input[^>]*class="tui-checkbox"[^>]*\sdisabled(?:\s|\/?>)/);
+  assert.match(html, /<input[^>]*class="tui-radio"[^>]*\sdisabled(?:\s|\/?>)/);
+  assert.match(html, /class="tui-choice"[^>]*data-disabled="true"/);
   assert.doesNotMatch(html, /aria-disabled="true"/);
 });
