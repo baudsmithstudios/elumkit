@@ -13,30 +13,30 @@ test("global focus-visible ring is defined", () => {
 });
 
 test("button supports only native disabled hook in v0.1", () => {
-  assert.match(BUTTON_CSS, /\.tui-button:disabled/);
-  assert.doesNotMatch(BUTTON_CSS, /\.tui-button\[aria-disabled="true"\]/);
+  assert.match(BUTTON_CSS, /\.pergyl-button:disabled/);
+  assert.doesNotMatch(BUTTON_CSS, /\.pergyl-button\[aria-disabled="true"\]/);
 });
 
 test("form controls expose invalid aria hooks", () => {
-  assert.match(FORM_CSS, /\.tui-input\[aria-invalid="true"\]/);
-  assert.match(FORM_CSS, /\.tui-textarea\[aria-invalid="true"\]/);
-  assert.match(FORM_CSS, /\.tui-select\[aria-invalid="true"\]/);
+  assert.match(FORM_CSS, /\.pergyl-input\[aria-invalid="true"\]/);
+  assert.match(FORM_CSS, /\.pergyl-textarea\[aria-invalid="true"\]/);
+  assert.match(FORM_CSS, /\.pergyl-select\[aria-invalid="true"\]/);
 });
 
 test("form controls expose disabled hooks", () => {
-  assert.match(FORM_CSS, /\.tui-input:disabled/);
-  assert.match(FORM_CSS, /\.tui-textarea:disabled/);
-  assert.match(FORM_CSS, /\.tui-select:disabled/);
+  assert.match(FORM_CSS, /\.pergyl-input:disabled/);
+  assert.match(FORM_CSS, /\.pergyl-textarea:disabled/);
+  assert.match(FORM_CSS, /\.pergyl-select:disabled/);
 });
 
 test("checkbox and radio expose disabled hooks", () => {
-  assert.match(FORM_CSS, /\.tui-checkbox:disabled/);
-  assert.match(FORM_CSS, /\.tui-radio:disabled/);
-  assert.match(FORM_CSS, /\.tui-choice\[data-disabled="true"\]/);
+  assert.match(FORM_CSS, /\.pergyl-checkbox:disabled/);
+  assert.match(FORM_CSS, /\.pergyl-radio:disabled/);
+  assert.match(FORM_CSS, /\.pergyl-choice\[data-disabled="true"\]/);
 });
 
 test("alert supports success, warn, and error tones", () => {
-  assert.match(FEEDBACK_CSS, /\.tui-alert\[data-tone="success"\]/);
-  assert.match(FEEDBACK_CSS, /\.tui-alert\[data-tone="warn"\]/);
-  assert.match(FEEDBACK_CSS, /\.tui-alert\[data-tone="error"\]/);
+  assert.match(FEEDBACK_CSS, /\.pergyl-alert\[data-tone="success"\]/);
+  assert.match(FEEDBACK_CSS, /\.pergyl-alert\[data-tone="warn"\]/);
+  assert.match(FEEDBACK_CSS, /\.pergyl-alert\[data-tone="error"\]/);
 });

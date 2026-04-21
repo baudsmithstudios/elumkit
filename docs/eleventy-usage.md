@@ -5,10 +5,10 @@ Use this guide to consume v0.1 components in Eleventy without a frontend framewo
 ## 1) Add core CSS in your base layout
 
 ```html
-<link rel="stylesheet" href="/assets/gloamkit.css" />
+<link rel="stylesheet" href="/assets/pergylkit.css" />
 ```
 
-You can copy `packages/core-css/src/*.css` into your Eleventy asset pipeline and bundle as `gloamkit.css`.
+You can copy `packages/core-css/src/*.css` into your Eleventy asset pipeline and bundle as `pergylkit.css`.
 
 ## 2) Set theme at document root
 
@@ -21,10 +21,10 @@ You can copy `packages/core-css/src/*.css` into your Eleventy asset pipeline and
 `_includes/components/card.njk`:
 
 ```njk
-<article class="tui-card tui-stack">
-  <h2 class="tui-card-title">{{ title }}</h2>
+<article class="pergyl-card pergyl-stack">
+  <h2 class="pergyl-card-title">{{ title }}</h2>
   {% if subtitle %}
-  <p class="tui-card-subtitle">{{ subtitle }}</p>
+  <p class="pergyl-card-subtitle">{{ subtitle }}</p>
   {% endif %}
   {{ content | safe }}
 </article>
@@ -34,7 +34,7 @@ You can copy `packages/core-css/src/*.css` into your Eleventy asset pipeline and
 
 ```njk
 {% from "components/card.njk" import card %}
-{{ card("Ops Status", "Last 5 minutes", "<button class='tui-button' type='button'>Refresh</button>") }}
+{{ card("Ops Status", "Last 5 minutes", "<button class='pergyl-button' type='button'>Refresh</button>") }}
 ```
 
 ## 5) Form state hooks

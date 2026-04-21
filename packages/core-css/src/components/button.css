@@ -1,35 +1,35 @@
-.tui-button {
+.pergyl-button {
   appearance: none;
-  background: var(--tui-color-surface);
-  border: var(--tui-border-width) solid var(--tui-color-border);
-  border-radius: var(--tui-radius-sm);
-  color: var(--tui-color-fg);
+  background: var(--pergyl-color-surface);
+  border: var(--pergyl-border-width) solid var(--pergyl-color-border);
+  border-radius: var(--pergyl-radius-sm);
+  color: var(--pergyl-color-fg);
   cursor: pointer;
   display: inline-flex;
   font-family: inherit;
-  font-size: var(--tui-text-sm);
-  gap: var(--tui-space-2);
-  line-height: var(--tui-lh-tight);
-  padding: var(--tui-space-2) var(--tui-space-3);
+  font-size: var(--pergyl-text-sm);
+  gap: var(--pergyl-space-2);
+  line-height: var(--pergyl-lh-tight);
+  padding: var(--pergyl-space-2) var(--pergyl-space-3);
   text-decoration: none;
-  transition: border-color var(--tui-motion-fast) ease, background-color var(--tui-motion-fast) ease, color var(--tui-motion-fast) ease;
+  transition: border-color var(--pergyl-motion-fast) ease, background-color var(--pergyl-motion-fast) ease, color var(--pergyl-motion-fast) ease;
 }
 
-.tui-button:hover {
-  border-color: var(--tui-color-accent);
+.pergyl-button:hover {
+  border-color: var(--pergyl-color-accent);
 }
 
-.tui-button:active {
+.pergyl-button:active {
   transform: translateY(1px);
 }
 
-.tui-button:disabled {
+.pergyl-button:disabled {
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-.tui-button[data-variant="primary"] {
-  background: var(--tui-color-accent);
-  border-color: var(--tui-color-accent);
-  color: var(--tui-color-bg);
+.pergyl-button[data-variant="primary"] {
+  background: var(--pergyl-color-accent);
+  border-color: var(--pergyl-color-accent);
+  color: var(--pergyl-color-bg);
 }

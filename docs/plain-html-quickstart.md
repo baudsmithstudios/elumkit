@@ -26,10 +26,10 @@ Start from:
 Example:
 
 ```html
-<article class="tui-card tui-stack">
-  <h2 class="tui-card-title">System</h2>
-  <p class="tui-card-subtitle">Current status</p>
-  <button class="tui-button" type="button">Run</button>
+<article class="pergyl-card pergyl-stack">
+  <h2 class="pergyl-card-title">System</h2>
+  <p class="pergyl-card-subtitle">Current status</p>
+  <button class="pergyl-button" type="button">Run</button>
 </article>
 ```
 

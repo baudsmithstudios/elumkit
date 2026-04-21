@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>Gloamkit</strong>
+  <strong>Pergylkit</strong>
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@
 
 ## What It Does
 
-Gloamkit is a lean, terminal-inspired component system for modern web interfaces. v0.1 is intentionally plain-HTML first so you can use it directly in static sites and lightweight stacks, then layer in framework adapters later.
+Pergylkit is a lean, terminal-inspired component system for modern web interfaces. v0.1 is intentionally plain-HTML first so you can use it directly in static sites and lightweight stacks, then layer in framework adapters later.
 
 ## Features
 
@@ -25,7 +25,7 @@ Gloamkit is a lean, terminal-inspired component system for modern web interfaces
 - **Optional JavaScript only** - progressive enhancement where native HTML is not enough
 - **Accessibility baseline** - keyboard-first patterns and WCAG 2.2 AA token targets
 
-## What Gloamkit Is Not
+## What Pergylkit Is Not
 
 - **Not a retro skin pack** - no scanlines, pixel-art frames, or novelty effects
 - **Not framework-coupled** - no React/Vue lock-in at the core layer
@@ -34,7 +34,7 @@ Gloamkit is a lean, terminal-inspired component system for modern web interfaces
 ## Quick Start
 
 ```sh
-cd gloamkit
+cd pergylkit
 node --test
 ```
 
@@ -70,4 +70,4 @@ Open `examples/playground.html` in a browser for local iteration.
 
 ## Naming
 
-Canonical project name is `Gloamkit`. `GloamkitUI` can remain an optional naming alias for package or org namespace if needed.
+Canonical project name is `Pergylkit`. `PergylKit` can remain an optional naming alias for package or org namespace if needed.

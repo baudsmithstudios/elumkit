@@ -1,50 +1,50 @@
 :root,
 [data-theme="light"] {
-  --tui-font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --pergyl-font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
-  --tui-color-bg: #f7f7f7;
-  --tui-color-surface: #ffffff;
-  --tui-color-fg: #1d1f21;
-  --tui-color-muted: #6b7280;
-  --tui-color-border: #d1d5db;
-  --tui-color-accent: #0f766e;
-  --tui-color-success: #166534;
-  --tui-color-warn: #a16207;
-  --tui-color-error: #b91c1c;
-  --tui-color-info: #1d4ed8;
+  --pergyl-color-bg: #f7f7f7;
+  --pergyl-color-surface: #ffffff;
+  --pergyl-color-fg: #1d1f21;
+  --pergyl-color-muted: #6b7280;
+  --pergyl-color-border: #d1d5db;
+  --pergyl-color-accent: #0f766e;
+  --pergyl-color-success: #166534;
+  --pergyl-color-warn: #a16207;
+  --pergyl-color-error: #b91c1c;
+  --pergyl-color-info: #1d4ed8;
 
-  --tui-focus-ring: #0f766e;
+  --pergyl-focus-ring: #0f766e;
 
-  --tui-text-xs: 0.75rem;
-  --tui-text-sm: 0.875rem;
-  --tui-text-md: 1rem;
+  --pergyl-text-xs: 0.75rem;
+  --pergyl-text-sm: 0.875rem;
+  --pergyl-text-md: 1rem;
 
-  --tui-lh-tight: 1.2;
-  --tui-lh-normal: 1.5;
+  --pergyl-lh-tight: 1.2;
+  --pergyl-lh-normal: 1.5;
 
-  --tui-space-1: 0.25rem;
-  --tui-space-2: 0.5rem;
-  --tui-space-3: 0.75rem;
-  --tui-space-4: 1rem;
+  --pergyl-space-1: 0.25rem;
+  --pergyl-space-2: 0.5rem;
+  --pergyl-space-3: 0.75rem;
+  --pergyl-space-4: 1rem;
 
-  --tui-radius-sm: 0.125rem;
-  --tui-radius-md: 0.25rem;
+  --pergyl-radius-sm: 0.125rem;
+  --pergyl-radius-md: 0.25rem;
 
-  --tui-border-width: 1px;
-  --tui-motion-fast: 120ms;
+  --pergyl-border-width: 1px;
+  --pergyl-motion-fast: 120ms;
 }
 
 [data-theme="dark"] {
-  --tui-color-bg: #121417;
-  --tui-color-surface: #1b1f24;
-  --tui-color-fg: #eceff4;
-  --tui-color-muted: #9ca3af;
-  --tui-color-border: #3f3f46;
-  --tui-color-accent: #2dd4bf;
-  --tui-color-success: #4ade80;
-  --tui-color-warn: #fbbf24;
-  --tui-color-error: #f87171;
-  --tui-color-info: #60a5fa;
+  --pergyl-color-bg: #121417;
+  --pergyl-color-surface: #1b1f24;
+  --pergyl-color-fg: #eceff4;
+  --pergyl-color-muted: #9ca3af;
+  --pergyl-color-border: #3f3f46;
+  --pergyl-color-accent: #2dd4bf;
+  --pergyl-color-success: #4ade80;
+  --pergyl-color-warn: #fbbf24;
+  --pergyl-color-error: #f87171;
+  --pergyl-color-info: #60a5fa;
 
-  --tui-focus-ring: #5eead4;
+  --pergyl-focus-ring: #5eead4;
 }

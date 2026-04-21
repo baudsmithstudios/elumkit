@@ -19,27 +19,27 @@ Supported values:
 
 Defined in `packages/core-css/src/tokens.css`:
 
-- Color tokens (`--tui-color-*`)
-- Typography tokens (`--tui-text-*`, `--tui-lh-*`, `--tui-font-family`)
-- Spacing tokens (`--tui-space-*`)
-- Radius/border tokens (`--tui-radius-*`, `--tui-border-width`)
-- Motion token (`--tui-motion-fast`)
+- Color tokens (`--pergyl-color-*`)
+- Typography tokens (`--pergyl-text-*`, `--pergyl-lh-*`, `--pergyl-font-family`)
+- Spacing tokens (`--pergyl-space-*`)
+- Radius/border tokens (`--pergyl-radius-*`, `--pergyl-border-width`)
+- Motion token (`--pergyl-motion-fast`)
 
 ## Override example
 
 ```css
 :root,
 [data-theme="light"] {
-  --tui-color-accent: #005f73;
-  --tui-focus-ring: #005f73;
+  --pergyl-color-accent: #005f73;
+  --pergyl-focus-ring: #005f73;
 }
 ```
 
 ## Component behavior notes
 
-- Button primary variant uses `--tui-color-accent`.
-- Invalid form states use `--tui-color-error`.
-- Alert tones use `--tui-color-success`, `--tui-color-warn`, `--tui-color-error`.
+- Button primary variant uses `--pergyl-color-accent`.
+- Invalid form states use `--pergyl-color-error`.
+- Alert tones use `--pergyl-color-success`, `--pergyl-color-warn`, `--pergyl-color-error`.
 
 ## Reduced motion
 

@@ -16,13 +16,13 @@ test("playground references core-css entrypoint", () => {
 test("playground includes core MVP component previews", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   const requiredClasses = [
-    "tui-card",
-    "tui-button",
-    "tui-input",
-    "tui-textarea",
-    "tui-select",
-    "tui-alert",
-    "tui-badge",
+    "pergyl-card",
+    "pergyl-button",
+    "pergyl-input",
+    "pergyl-textarea",
+    "pergyl-select",
+    "pergyl-alert",
+    "pergyl-badge",
   ];
 
   for (const className of requiredClasses) {
@@ -34,11 +34,11 @@ test("playground includes state matrix samples", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.match(html, /aria-label="State matrix"/);
   assert.match(html, /aria-invalid="true"/);
-  assert.match(html, /<button[^>]*class="tui-button"[^>]*\sdisabled(?:\s|>)/);
-  assert.match(html, /<input[^>]*class="tui-input"[^>]*\sdisabled(?:\s|\/?>)/);
-  assert.match(html, /<select[^>]*class="tui-select"[^>]*\sdisabled(?:\s|>)/);
-  assert.match(html, /<input[^>]*class="tui-checkbox"[^>]*\sdisabled(?:\s|\/?>)/);
-  assert.match(html, /<input[^>]*class="tui-radio"[^>]*\sdisabled(?:\s|\/?>)/);
-  assert.match(html, /class="tui-choice"[^>]*data-disabled="true"/);
+  assert.match(html, /<button[^>]*class="pergyl-button"[^>]*\sdisabled(?:\s|>)/);
+  assert.match(html, /<input[^>]*class="pergyl-input"[^>]*\sdisabled(?:\s|\/?>)/);
+  assert.match(html, /<select[^>]*class="pergyl-select"[^>]*\sdisabled(?:\s|>)/);
+  assert.match(html, /<input[^>]*class="pergyl-checkbox"[^>]*\sdisabled(?:\s|\/?>)/);
+  assert.match(html, /<input[^>]*class="pergyl-radio"[^>]*\sdisabled(?:\s|\/?>)/);
+  assert.match(html, /class="pergyl-choice"[^>]*data-disabled="true"/);
   assert.doesNotMatch(html, /aria-disabled="true"/);
 });

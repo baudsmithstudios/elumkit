@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gloamkit Playground</title>
+    <title>Pergylkit Playground</title>
     <link rel="stylesheet" href="../packages/core-css/src/index.css" />
     <style>
       main {
@@ -25,126 +25,126 @@
       }
 
       .state-cell {
-        border: 1px dashed var(--tui-color-border);
-        border-radius: var(--tui-radius-sm);
+        border: 1px dashed var(--pergyl-color-border);
+        border-radius: var(--pergyl-radius-sm);
         padding: 0.75rem;
       }
     </style>
   </head>
   <body>
-    <main class="tui-stack">
-      <header class="tui-stack">
-        <h1>Gloamkit Playground</h1>
+    <main class="pergyl-stack">
+      <header class="pergyl-stack">
+        <h1>Pergylkit Playground</h1>
         <p>Local preview page for fast visual and accessibility checks.</p>
         <div>
-          <button class="tui-button" id="theme-dark" type="button">Dark</button>
-          <button class="tui-button" id="theme-light" type="button">Light</button>
+          <button class="pergyl-button" id="theme-dark" type="button">Dark</button>
+          <button class="pergyl-button" id="theme-light" type="button">Light</button>
         </div>
       </header>
 
       <section class="playground-grid" aria-label="Component previews">
-        <article class="tui-card tui-stack">
+        <article class="pergyl-card pergyl-stack">
           <header>
-            <h2 class="tui-card-title">Card</h2>
-            <p class="tui-card-subtitle">Surface container for grouped content.</p>
+            <h2 class="pergyl-card-title">Card</h2>
+            <p class="pergyl-card-subtitle">Surface container for grouped content.</p>
           </header>
           <p>
-            System status <span class="tui-badge" data-tone="accent">healthy</span>
+            System status <span class="pergyl-badge" data-tone="accent">healthy</span>
           </p>
           <div>
-            <button class="tui-button" type="button">Secondary</button>
-            <button class="tui-button" data-variant="primary" type="button">Primary</button>
+            <button class="pergyl-button" type="button">Secondary</button>
+            <button class="pergyl-button" data-variant="primary" type="button">Primary</button>
           </div>
         </article>
 
-        <article class="tui-card tui-stack">
+        <article class="pergyl-card pergyl-stack">
           <header>
-            <h2 class="tui-card-title">Form Controls</h2>
+            <h2 class="pergyl-card-title">Form Controls</h2>
           </header>
 
-          <div class="tui-field">
-            <label class="tui-label" for="playground-name">Name</label>
-            <input class="tui-input" id="playground-name" name="name" type="text" placeholder="operator-01" />
+          <div class="pergyl-field">
+            <label class="pergyl-label" for="playground-name">Name</label>
+            <input class="pergyl-input" id="playground-name" name="name" type="text" placeholder="operator-01" />
           </div>
 
-          <div class="tui-field">
-            <label class="tui-label" for="playground-role">Role</label>
-            <select class="tui-select" id="playground-role" name="role">
+          <div class="pergyl-field">
+            <label class="pergyl-label" for="playground-role">Role</label>
+            <select class="pergyl-select" id="playground-role" name="role">
               <option>Operator</option>
               <option>Analyst</option>
             </select>
           </div>
 
-          <div class="tui-field">
-            <label class="tui-label" for="playground-notes">Notes</label>
-            <textarea class="tui-textarea" id="playground-notes" name="notes" placeholder="Brief status update"></textarea>
+          <div class="pergyl-field">
+            <label class="pergyl-label" for="playground-notes">Notes</label>
+            <textarea class="pergyl-textarea" id="playground-notes" name="notes" placeholder="Brief status update"></textarea>
           </div>
 
-          <label class="tui-choice" for="playground-notify">
-            <input class="tui-checkbox" id="playground-notify" name="notify" type="checkbox" />
+          <label class="pergyl-choice" for="playground-notify">
+            <input class="pergyl-checkbox" id="playground-notify" name="notify" type="checkbox" />
             Send notifications
           </label>
 
-          <fieldset class="tui-field">
-            <legend class="tui-label">Mode</legend>
-            <label class="tui-choice" for="playground-mode-monitor">
-              <input class="tui-radio" id="playground-mode-monitor" name="mode" type="radio" value="monitor" checked />
+          <fieldset class="pergyl-field">
+            <legend class="pergyl-label">Mode</legend>
+            <label class="pergyl-choice" for="playground-mode-monitor">
+              <input class="pergyl-radio" id="playground-mode-monitor" name="mode" type="radio" value="monitor" checked />
               Monitor
             </label>
-            <label class="tui-choice" for="playground-mode-guard">
-              <input class="tui-radio" id="playground-mode-guard" name="mode" type="radio" value="guard" />
+            <label class="pergyl-choice" for="playground-mode-guard">
+              <input class="pergyl-radio" id="playground-mode-guard" name="mode" type="radio" value="guard" />
               Guard
             </label>
           </fieldset>
         </article>
       </section>
 
-      <aside class="tui-alert" data-tone="warn" role="status" aria-live="polite">
+      <aside class="pergyl-alert" data-tone="warn" role="status" aria-live="polite">
         Disk usage is nearing the warning threshold.
       </aside>
 
-      <section class="tui-card tui-stack" aria-label="State matrix">
+      <section class="pergyl-card pergyl-stack" aria-label="State matrix">
         <header>
-          <h2 class="tui-card-title">State Matrix</h2>
-          <p class="tui-card-subtitle">Use this section to verify normal, focus, disabled, and invalid states.</p>
+          <h2 class="pergyl-card-title">State Matrix</h2>
+          <p class="pergyl-card-subtitle">Use this section to verify normal, focus, disabled, and invalid states.</p>
         </header>
 
         <div class="state-matrix">
-          <div class="state-cell tui-stack">
+          <div class="state-cell pergyl-stack">
             <strong>Normal</strong>
-            <button class="tui-button" type="button">Normal Button</button>
-            <input class="tui-input" type="text" value="normal value" />
+            <button class="pergyl-button" type="button">Normal Button</button>
+            <input class="pergyl-input" type="text" value="normal value" />
           </div>
 
-          <div class="state-cell tui-stack">
+          <div class="state-cell pergyl-stack">
             <strong>Focus target</strong>
             <p>Press <kbd>Tab</kbd> to focus the button and input.</p>
-            <button class="tui-button" id="focus-target-button" type="button">Focus me</button>
-            <input class="tui-input" id="focus-target-input" type="text" value="focus target" />
+            <button class="pergyl-button" id="focus-target-button" type="button">Focus me</button>
+            <input class="pergyl-input" id="focus-target-input" type="text" value="focus target" />
           </div>
 
-          <div class="state-cell tui-stack">
+          <div class="state-cell pergyl-stack">
             <strong>Disabled</strong>
-            <button class="tui-button" type="button" disabled>Disabled button</button>
-            <input class="tui-input" type="text" value="disabled input" disabled />
-            <select class="tui-select" disabled>
+            <button class="pergyl-button" type="button" disabled>Disabled button</button>
+            <input class="pergyl-input" type="text" value="disabled input" disabled />
+            <select class="pergyl-select" disabled>
               <option>Disabled select</option>
             </select>
-            <label class="tui-choice" data-disabled="true" for="state-disabled-notify">
-              <input class="tui-checkbox" id="state-disabled-notify" type="checkbox" disabled />
+            <label class="pergyl-choice" data-disabled="true" for="state-disabled-notify">
+              <input class="pergyl-checkbox" id="state-disabled-notify" type="checkbox" disabled />
               Disabled checkbox
             </label>
-            <label class="tui-choice" data-disabled="true" for="state-disabled-mode">
-              <input class="tui-radio" id="state-disabled-mode" name="state-disabled-mode" type="radio" disabled />
+            <label class="pergyl-choice" data-disabled="true" for="state-disabled-mode">
+              <input class="pergyl-radio" id="state-disabled-mode" name="state-disabled-mode" type="radio" disabled />
               Disabled radio
             </label>
           </div>
 
-          <div class="state-cell tui-stack">
+          <div class="state-cell pergyl-stack">
             <strong>Invalid</strong>
-            <input class="tui-input" type="text" value="invalid input" aria-invalid="true" />
-            <textarea class="tui-textarea" aria-invalid="true">invalid textarea</textarea>
-            <select class="tui-select" aria-invalid="true">
+            <input class="pergyl-input" type="text" value="invalid input" aria-invalid="true" />
+            <textarea class="pergyl-textarea" aria-invalid="true">invalid textarea</textarea>
+            <select class="pergyl-select" aria-invalid="true">
               <option>Invalid select</option>
             </select>
           </div>

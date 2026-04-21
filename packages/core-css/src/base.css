@@ -9,20 +9,20 @@ body {
 }
 
 body {
-  background: var(--tui-color-bg);
-  color: var(--tui-color-fg);
-  font-family: var(--tui-font-family);
-  font-size: var(--tui-text-md);
-  line-height: var(--tui-lh-normal);
+  background: var(--pergyl-color-bg);
+  color: var(--pergyl-color-fg);
+  font-family: var(--pergyl-font-family);
+  font-size: var(--pergyl-text-md);
+  line-height: var(--pergyl-lh-normal);
 }
 
 :focus-visible {
-  outline: 2px solid var(--tui-focus-ring);
+  outline: 2px solid var(--pergyl-focus-ring);
   outline-offset: 2px;
 }
 
-.tui-stack > * + * {
-  margin-top: var(--tui-space-3);
+.pergyl-stack > * + * {
+  margin-top: var(--pergyl-space-3);
 }
 
 @media (prefers-reduced-motion: reduce) {

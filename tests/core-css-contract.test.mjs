@@ -15,16 +15,16 @@ test("index.css imports the component bundles", () => {
 
 test("tokens include required semantic color and motion variables", () => {
   const requiredTokens = [
-    "--tui-color-bg",
-    "--tui-color-surface",
-    "--tui-color-fg",
-    "--tui-color-border",
-    "--tui-color-accent",
-    "--tui-color-success",
-    "--tui-color-warn",
-    "--tui-color-error",
-    "--tui-color-info",
-    "--tui-motion-fast",
+    "--pergyl-color-bg",
+    "--pergyl-color-surface",
+    "--pergyl-color-fg",
+    "--pergyl-color-border",
+    "--pergyl-color-accent",
+    "--pergyl-color-success",
+    "--pergyl-color-warn",
+    "--pergyl-color-error",
+    "--pergyl-color-info",
+    "--pergyl-motion-fast",
   ];
 
   for (const token of requiredTokens) {

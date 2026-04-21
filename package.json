@@ -1,0 +1,9 @@
+{
+  "name": "pergylkit",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "test": "node --test",
+    "preview": "python3 -m http.server 4173"
+  }
+}

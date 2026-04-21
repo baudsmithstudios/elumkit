@@ -1,34 +1,34 @@
-.tui-alert {
-  background: var(--tui-color-surface);
-  border: var(--tui-border-width) solid var(--tui-color-border);
-  border-left: 3px solid var(--tui-color-info);
-  border-radius: var(--tui-radius-sm);
-  color: var(--tui-color-fg);
-  padding: var(--tui-space-3);
+.pergyl-alert {
+  background: var(--pergyl-color-surface);
+  border: var(--pergyl-border-width) solid var(--pergyl-color-border);
+  border-left: 3px solid var(--pergyl-color-info);
+  border-radius: var(--pergyl-radius-sm);
+  color: var(--pergyl-color-fg);
+  padding: var(--pergyl-space-3);
 }
 
-.tui-alert[data-tone="success"] {
-  border-left-color: var(--tui-color-success);
+.pergyl-alert[data-tone="success"] {
+  border-left-color: var(--pergyl-color-success);
 }
 
-.tui-alert[data-tone="warn"] {
-  border-left-color: var(--tui-color-warn);
+.pergyl-alert[data-tone="warn"] {
+  border-left-color: var(--pergyl-color-warn);
 }
 
-.tui-alert[data-tone="error"] {
-  border-left-color: var(--tui-color-error);
+.pergyl-alert[data-tone="error"] {
+  border-left-color: var(--pergyl-color-error);
 }
 
-.tui-badge {
-  border: var(--tui-border-width) solid var(--tui-color-border);
+.pergyl-badge {
+  border: var(--pergyl-border-width) solid var(--pergyl-color-border);
   border-radius: 999px;
   display: inline-block;
-  font-size: var(--tui-text-xs);
-  line-height: var(--tui-lh-tight);
-  padding: var(--tui-space-1) var(--tui-space-2);
+  font-size: var(--pergyl-text-xs);
+  line-height: var(--pergyl-lh-tight);
+  padding: var(--pergyl-space-1) var(--pergyl-space-2);
 }
 
-.tui-badge[data-tone="accent"] {
-  border-color: var(--tui-color-accent);
-  color: var(--tui-color-accent);
+.pergyl-badge[data-tone="accent"] {
+  border-color: var(--pergyl-color-accent);
+  color: var(--pergyl-color-accent);
 }

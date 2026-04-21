@@ -1,6 +1,6 @@
 # core-css
 
-Framework-agnostic style contract for Gloamkit.
+Framework-agnostic style contract for Pergylkit.
 
 ## Contents
 
@@ -15,7 +15,7 @@ Framework-agnostic style contract for Gloamkit.
 <link rel="stylesheet" href="./src/index.css" />
 ```
 
-Use semantic classes such as `tui-button`, `tui-input`, `tui-card`, and `tui-alert`.
+Use semantic classes such as `pergyl-button`, `pergyl-input`, `pergyl-card`, and `pergyl-alert`.
 
 Theme switching is controlled with a `data-theme` attribute on `html` or `body`:
 
