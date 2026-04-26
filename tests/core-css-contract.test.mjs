@@ -102,5 +102,7 @@ test("data primitives support dense lists and responsive tables", () => {
   assert.match(DATA_CSS, /\.pergyl-row-value\s*{[^}]*font-variant-numeric:\s*tabular-nums;/s);
   assert.match(DATA_CSS, /\.pergyl-table\s*{[^}]*border-collapse:\s*collapse;/s);
   assert.match(DATA_CSS, /\.pergyl-table th\s*{[^}]*text-transform:\s*uppercase;/s);
+  assert.match(DATA_CSS, /\.pergyl-table td\s*{[^}]*border-bottom:\s*1px solid var\(--pergyl-color-border\);/s);
+  assert.match(DATA_CSS, /\.pergyl-table tr\s*{[^}]*border-bottom:\s*1px solid var\(--pergyl-color-border\);/s);
   assert.match(DATA_CSS, /@media \(max-width:\s*48rem\)[^]*\.pergyl-table td::before\s*{[^}]*content:\s*attr\(data-label\);/s);
 });

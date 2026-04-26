@@ -82,7 +82,7 @@
 }
 
 .pergyl-table td {
-  border-bottom: var(--pergyl-border-width) solid var(--pergyl-color-border);
+  border-bottom: 1px solid var(--pergyl-color-border);
   padding: var(--pergyl-space-2) var(--pergyl-space-3);
 }
 
@@ -112,7 +112,7 @@
   }
 
   .pergyl-table tr {
-    border-bottom: var(--pergyl-border-width) solid var(--pergyl-color-border);
+    border-bottom: 1px solid var(--pergyl-color-border);
     padding: var(--pergyl-space-2) 0;
   }
 
