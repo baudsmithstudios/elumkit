@@ -57,6 +57,12 @@ test("playground includes data list and table primitives", () => {
   assert.match(html, /\[WARM\]/);
 });
 
+test("playground system status uses borderless status text", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.doesNotMatch(html, /System status <span class="pergyl-badge"/);
+  assert.match(html, /System status <span class="pergyl-status-label"/);
+});
+
 test("playground status avoids terminal help prompts", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.doesNotMatch(html, /<span class="pergyl-status-key">help<\/span>/);
