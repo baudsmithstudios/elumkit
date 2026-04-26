@@ -23,6 +23,9 @@ test("playground includes core MVP component previews", () => {
     "pergyl-select",
     "pergyl-alert",
     "pergyl-badge",
+    "pergyl-status",
+    "pergyl-metrics",
+    "pergyl-meter",
   ];
 
   for (const className of requiredClasses) {
@@ -35,6 +38,14 @@ test("playground uses generous preview-only spacing", () => {
   assert.match(html, /main\.pergyl-stack\s*>\s*\*\s*\+\s*\*\s*{[^}]*margin-top:\s*2rem;/s);
   assert.match(html, /\.playground-grid\s*{[^}]*gap:\s*1\.5rem;/s);
   assert.match(html, /\.state-matrix\s*{[^}]*gap:\s*1\.25rem;/s);
+});
+
+test("playground includes telemetry primitives", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /class="pergyl-status"/);
+  assert.match(html, /class="pergyl-metric"/);
+  assert.match(html, /class="pergyl-meter"[^>]*role="meter"/);
+  assert.match(html, /aria-valuenow="64"/);
 });
 
 test("playground includes state matrix samples", () => {

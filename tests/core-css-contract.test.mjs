@@ -8,6 +8,7 @@ const CARD_CSS = readFileSync("packages/core-css/src/components/card.css", "utf8
 const FORM_CSS = readFileSync("packages/core-css/src/components/form.css", "utf8");
 const BUTTON_CSS = readFileSync("packages/core-css/src/components/button.css", "utf8");
 const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css", "utf8");
+const TELEMETRY_CSS = readFileSync("packages/core-css/src/components/telemetry.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 
 test("index.css imports the component bundles", () => {
@@ -15,6 +16,7 @@ test("index.css imports the component bundles", () => {
   assert.match(INDEX_CSS, /@import "\.\/components\/form\.css";/);
   assert.match(INDEX_CSS, /@import "\.\/components\/card\.css";/);
   assert.match(INDEX_CSS, /@import "\.\/components\/feedback\.css";/);
+  assert.match(INDEX_CSS, /@import "\.\/components\/telemetry\.css";/);
 });
 
 test("tokens include required semantic color and motion variables", () => {
@@ -73,4 +75,13 @@ test("fieldset legends share the card heading label padding", () => {
   assert.match(FORM_CSS, /fieldset\.pergyl-field\s*{[^}]*border:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-border\);/s);
   assert.match(FORM_CSS, /fieldset\.pergyl-field\s*{[^}]*padding:\s*var\(--pergyl-space-3\);/s);
   assert.match(FORM_CSS, /fieldset\.pergyl-field\s*>\s*\.pergyl-label\s*{[^}]*padding:\s*0 var\(--pergyl-space-2\);/s);
+});
+
+test("telemetry primitives support status, metrics, and meters", () => {
+  assert.match(TELEMETRY_CSS, /\.pergyl-status\s*{[^}]*border:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-border\);/s);
+  assert.match(TELEMETRY_CSS, /\.pergyl-status-brand\s*{[^}]*color:\s*var\(--pergyl-color-accent\);/s);
+  assert.match(TELEMETRY_CSS, /\.pergyl-metric\s*{[^}]*grid-template-columns:\s*minmax\(7rem,\s*auto\) 1fr auto;/s);
+  assert.match(TELEMETRY_CSS, /\.pergyl-metric-value\s*{[^}]*font-variant-numeric:\s*tabular-nums;/s);
+  assert.match(TELEMETRY_CSS, /\.pergyl-meter-track\s*{[^}]*border:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-border\);/s);
+  assert.match(TELEMETRY_CSS, /\.pergyl-meter-fill\[data-tone="warn"\]/);
 });

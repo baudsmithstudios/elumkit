@@ -46,6 +46,24 @@
         </div>
       </header>
 
+      <nav class="pergyl-status" aria-label="Playground status">
+        <strong class="pergyl-status-brand">Pergylkit</strong>
+        <span class="pergyl-status-group">
+          <span class="pergyl-status-item">
+            <span class="pergyl-status-key">theme</span>
+            <span class="pergyl-status-value">dark</span>
+          </span>
+          <span class="pergyl-status-item">
+            <span class="pergyl-status-key">components</span>
+            <span class="pergyl-status-value">12</span>
+          </span>
+          <span class="pergyl-status-item">
+            <span class="pergyl-status-key">help</span>
+            <span class="pergyl-status-value">?</span>
+          </span>
+        </span>
+      </nav>
+
       <section class="playground-grid" aria-label="Component previews">
         <article class="pergyl-card pergyl-stack">
           <header>
@@ -58,6 +76,41 @@
           <div>
             <button class="pergyl-button" type="button">Secondary</button>
             <button class="pergyl-button" data-variant="primary" type="button">Primary</button>
+          </div>
+        </article>
+
+        <article class="pergyl-card pergyl-stack">
+          <header>
+            <h2 class="pergyl-card-title">Telemetry</h2>
+            <p class="pergyl-card-subtitle">Aligned values and compact meter states.</p>
+          </header>
+
+          <div class="pergyl-metrics" aria-label="Runtime metrics">
+            <div class="pergyl-metric">
+              <span class="pergyl-metric-label">Load</span>
+              <span class="pergyl-metric-value">0.42</span>
+              <span class="pergyl-metric-unit">avg</span>
+            </div>
+            <div class="pergyl-metric">
+              <span class="pergyl-metric-label">Memory</span>
+              <span class="pergyl-metric-value">64</span>
+              <span class="pergyl-metric-unit">%</span>
+            </div>
+            <div class="pergyl-metric">
+              <span class="pergyl-metric-label">Requests</span>
+              <span class="pergyl-metric-value">1.8K</span>
+              <span class="pergyl-metric-unit">/min</span>
+            </div>
+          </div>
+
+          <div class="pergyl-meter" role="meter" aria-label="Memory usage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <div class="pergyl-meter-header">
+              <span class="pergyl-meter-label">Memory</span>
+              <span class="pergyl-meter-value">64%</span>
+            </div>
+            <div class="pergyl-meter-track">
+              <span class="pergyl-meter-fill" data-tone="warn" style="width: 64%"></span>
+            </div>
           </div>
         </article>
 

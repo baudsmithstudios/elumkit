@@ -39,3 +39,23 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - Base: `.pergyl-badge`
 - Accent tone: `data-tone="accent"`
+
+## Status Bar
+
+- Base: `.pergyl-status`
+- Use `.pergyl-status-brand` for the primary label
+- Group compact key/value items with `.pergyl-status-group`
+- Keep status bar copy short enough to wrap cleanly on narrow screens
+
+## Metrics
+
+- Base list: `.pergyl-metrics`
+- Row: `.pergyl-metric`
+- Use `.pergyl-metric-label`, `.pergyl-metric-value`, and `.pergyl-metric-unit` for aligned telemetry
+
+## Meter
+
+- Base: `.pergyl-meter`
+- Use `role="meter"` with `aria-valuemin`, `aria-valuemax`, and `aria-valuenow`
+- Use `.pergyl-meter-track` and `.pergyl-meter-fill` for the visual bar
+- Fill tones: `data-tone="success" | "warn" | "error"`

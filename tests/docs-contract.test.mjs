@@ -22,3 +22,10 @@ test("readme links to v0.1 usage docs", () => {
   assert.match(README, /docs\/component-usage\.md/);
   assert.match(README, /docs\/theming\.md/);
 });
+
+test("component docs cover telemetry primitives", () => {
+  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /## Status Bar/);
+  assert.match(componentUsage, /## Metrics/);
+  assert.match(componentUsage, /## Meter/);
+});

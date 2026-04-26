@@ -52,4 +52,41 @@
   <aside class="pergyl-alert" data-tone="warn" role="status">
     Disk usage crossed the configured warning threshold.
   </aside>
+
+  <nav class="pergyl-status" aria-label="System status">
+    <strong class="pergyl-status-brand">Pergylkit</strong>
+    <span class="pergyl-status-group">
+      <span class="pergyl-status-item">
+        <span class="pergyl-status-key">theme</span>
+        <span class="pergyl-status-value">dark</span>
+      </span>
+      <span class="pergyl-status-item">
+        <span class="pergyl-status-key">state</span>
+        <span class="pergyl-status-value">ready</span>
+      </span>
+    </span>
+  </nav>
+
+  <div class="pergyl-metrics" aria-label="Runtime metrics">
+    <div class="pergyl-metric">
+      <span class="pergyl-metric-label">Load</span>
+      <span class="pergyl-metric-value">0.42</span>
+      <span class="pergyl-metric-unit">avg</span>
+    </div>
+    <div class="pergyl-metric">
+      <span class="pergyl-metric-label">Memory</span>
+      <span class="pergyl-metric-value">64</span>
+      <span class="pergyl-metric-unit">%</span>
+    </div>
+  </div>
+
+  <div class="pergyl-meter" role="meter" aria-label="Memory usage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+    <div class="pergyl-meter-header">
+      <span class="pergyl-meter-label">Memory</span>
+      <span class="pergyl-meter-value">64%</span>
+    </div>
+    <div class="pergyl-meter-track">
+      <span class="pergyl-meter-fill" style="width: 64%"></span>
+    </div>
+  </div>
 </section>
