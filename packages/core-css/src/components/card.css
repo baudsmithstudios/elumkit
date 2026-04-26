@@ -20,7 +20,7 @@
   background: var(--pergyl-card-label-bg, var(--pergyl-color-bg));
   color: var(--pergyl-color-accent);
   display: inline-flex;
-  font-size: var(--pergyl-text-md);
+  font-size: var(--pergyl-text-sm);
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: var(--pergyl-lh-tight);
