@@ -89,9 +89,9 @@ test("theme colors use Aponis rust accents and grayscale neutrals", () => {
 
 test("status colors use Aponis colors with accessible theme variants", () => {
   const statusTokens = {
-    "--pergyl-color-success": ["#5c7a50", "#7a9e6b"],
-    "--pergyl-color-warn": ["#856f34", "#b89a4a"],
-    "--pergyl-color-error": ["#c3483d", "#c95a50"],
+    "--pergyl-color-success": ["#2f7d32", "#6abe5a"],
+    "--pergyl-color-warn": ["#966517", "#d49d2a"],
+    "--pergyl-color-error": ["#d12d22", "#e25a4f"],
   };
   const backgrounds = tokenValues("--pergyl-color-bg");
 
