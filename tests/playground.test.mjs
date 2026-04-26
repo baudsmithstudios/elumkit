@@ -30,6 +30,13 @@ test("playground includes core MVP component previews", () => {
   }
 });
 
+test("playground uses generous preview-only spacing", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /main\.pergyl-stack\s*>\s*\*\s*\+\s*\*\s*{[^}]*margin-top:\s*2rem;/s);
+  assert.match(html, /\.playground-grid\s*{[^}]*gap:\s*1\.5rem;/s);
+  assert.match(html, /\.state-matrix\s*{[^}]*gap:\s*1\.25rem;/s);
+});
+
 test("playground includes state matrix samples", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.match(html, /aria-label="State matrix"/);
