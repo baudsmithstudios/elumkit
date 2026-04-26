@@ -48,6 +48,12 @@ test("playground includes telemetry primitives", () => {
   assert.match(html, /aria-valuenow="64"/);
 });
 
+test("playground status avoids terminal help prompts", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.doesNotMatch(html, /<span class="pergyl-status-key">help<\/span>/);
+  assert.doesNotMatch(html, /<span class="pergyl-status-value">\?<\/span>/);
+});
+
 test("playground keeps card subtitles inside cards by default", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.match(html, /<header>\s*<h2 class="pergyl-card-title">Telemetry<\/h2>\s*<\/header>\s*<p class="pergyl-card-subtitle">Aligned values and compact meter states\.<\/p>/);
