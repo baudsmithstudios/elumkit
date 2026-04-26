@@ -52,12 +52,17 @@ test("playground includes data list and table primitives", () => {
   assert.match(html, /data-label="Status"/);
   assert.doesNotMatch(html, /<td data-label="Status"><span class="pergyl-badge"/);
   assert.match(html, /<td data-label="Status"><span class="pergyl-status-label"/);
+  assert.match(html, /\[HEALTHY\]/);
+  assert.match(html, /\[DELAYED\]/);
+  assert.match(html, /\[WARM\]/);
 });
 
 test("playground status avoids terminal help prompts", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.doesNotMatch(html, /<span class="pergyl-status-key">help<\/span>/);
   assert.doesNotMatch(html, /<span class="pergyl-status-value">\?<\/span>/);
+  assert.match(html, /<span class="pergyl-status-value">\[DARK\]<\/span>/);
+  assert.match(html, /<span class="pergyl-status-value">\[12\]<\/span>/);
 });
 
 test("playground includes state matrix samples", () => {

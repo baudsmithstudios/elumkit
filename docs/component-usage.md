@@ -49,12 +49,14 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Base: `.pergyl-status-label`
 - Tones: `data-tone="accent" | "success" | "warn" | "error"`
 - Use for compact inline status text in dense rows and tables
+- Prefer visible bracketed status text such as `[READY]` so copy/paste and assistive technology match the rendered UI
 
 ## Status Bar
 
 - Base: `.pergyl-status`
 - Use `.pergyl-status-brand` for the primary label
 - Group compact key/value items with `.pergyl-status-group`
+- Status values may use bracketed status text for terse terminal-style state
 - Keep status bar copy short enough to wrap cleanly on narrow screens
 
 ## Metrics

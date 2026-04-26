@@ -85,3 +85,16 @@ test("badges use compact terminal token styling", () => {
   assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*text-transform:\s*uppercase;/s);
   assert.doesNotMatch(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*border-radius:\s*999px;/s);
 });
+
+test("data rows use keyboard and selected accent bars", () => {
+  assert.match(DATA_CSS, /\.pergyl-row\s*{[^}]*padding:\s*var\(--pergyl-space-1\) var\(--pergyl-space-2\);/s);
+  assert.match(DATA_CSS, /\.pergyl-row:focus-visible,[\s\n]*\.pergyl-row\[data-selected="true"\]\s*{[^}]*box-shadow:\s*inset 3px 0 0 var\(--pergyl-color-accent\);/s);
+  assert.doesNotMatch(DATA_CSS, /\.pergyl-row:hover,[\s\n]*\.pergyl-row:focus-visible,[\s\n]*\.pergyl-row\[data-selected="true"\]/);
+});
+
+test("data tables keep compact responsive spacing", () => {
+  assert.match(DATA_CSS, /\.pergyl-table th\s*{[^}]*padding:\s*var\(--pergyl-space-1\) var\(--pergyl-space-2\);/s);
+  assert.match(DATA_CSS, /\.pergyl-table td\s*{[^}]*padding:\s*var\(--pergyl-space-1\) var\(--pergyl-space-2\);/s);
+  assert.match(DATA_CSS, /@media \(max-width: 48rem\)/);
+  assert.match(DATA_CSS, /\.pergyl-table td::before\s*{[^}]*content:\s*attr\(data-label\);/s);
+});

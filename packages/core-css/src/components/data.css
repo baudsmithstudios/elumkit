@@ -11,7 +11,7 @@
   display: grid;
   gap: var(--pergyl-space-2);
   grid-template-columns: minmax(0, 1fr) auto;
-  padding: var(--pergyl-space-2) var(--pergyl-space-3);
+  padding: var(--pergyl-space-1) var(--pergyl-space-2);
   text-decoration: none;
 }
 
@@ -19,7 +19,6 @@
   border-top: var(--pergyl-border-width) solid var(--pergyl-color-border);
 }
 
-.pergyl-row:hover,
 .pergyl-row:focus-visible,
 .pergyl-row[data-selected="true"] {
   box-shadow: inset 3px 0 0 var(--pergyl-color-accent);
@@ -72,14 +71,14 @@
   font-size: var(--pergyl-text-xs);
   font-weight: 700;
   letter-spacing: 0.08em;
-  padding: var(--pergyl-space-2) var(--pergyl-space-3);
+  padding: var(--pergyl-space-1) var(--pergyl-space-2);
   text-align: left;
   text-transform: uppercase;
 }
 
 .pergyl-table td {
   border-bottom: 1px solid var(--pergyl-color-border);
-  padding: var(--pergyl-space-2) var(--pergyl-space-3);
+  padding: var(--pergyl-space-1) var(--pergyl-space-2);
 }
 
 .pergyl-table tr:last-child td {

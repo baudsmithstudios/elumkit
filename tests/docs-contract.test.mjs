@@ -26,10 +26,16 @@ test("readme links to v0.1 usage docs", () => {
 test("component docs cover telemetry primitives", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
   assert.match(componentUsage, /## Status Bar/);
+  assert.match(componentUsage, /## Status Label/);
   assert.match(componentUsage, /## Metrics/);
   assert.match(componentUsage, /## Meter/);
   assert.match(componentUsage, /## Data List/);
   assert.match(componentUsage, /## Data Table/);
+});
+
+test("component docs describe bracketed terminal status text", () => {
+  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /bracketed status text/);
 });
 
 test("component docs describe optional inline card subtitles", () => {
