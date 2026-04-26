@@ -71,3 +71,17 @@ test("card and data components expose explicit state hooks", () => {
   assert.match(DATA_CSS, /\.pergyl-row\[data-selected="true"\]/);
   assert.doesNotMatch(DATA_CSS, /\.pergyl-row\[aria-selected="true"\]/);
 });
+
+test("feedback exposes inline status labels", () => {
+  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{/);
+  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="success"\]/);
+  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="warn"\]/);
+});
+
+test("badges use compact terminal token styling", () => {
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*border-radius:\s*var\(--pergyl-radius-sm\);/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*font-weight:\s*700;/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*letter-spacing:\s*0\.08em;/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*text-transform:\s*uppercase;/s);
+  assert.doesNotMatch(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*border-radius:\s*999px;/s);
+});

@@ -44,6 +44,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Base: `.pergyl-badge`
 - Accent tone: `data-tone="accent"`
 
+## Status Label
+
+- Base: `.pergyl-status-label`
+- Tones: `data-tone="accent" | "success" | "warn" | "error"`
+- Use for compact inline status text in dense rows and tables
+
 ## Status Bar
 
 - Base: `.pergyl-status`

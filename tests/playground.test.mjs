@@ -50,6 +50,8 @@ test("playground includes data list and table primitives", () => {
   assert.match(html, /class="pergyl-table-wrap"/);
   assert.match(html, /class="pergyl-table"/);
   assert.match(html, /data-label="Status"/);
+  assert.doesNotMatch(html, /<td data-label="Status"><span class="pergyl-badge"/);
+  assert.match(html, /<td data-label="Status"><span class="pergyl-status-label"/);
 });
 
 test("playground status avoids terminal help prompts", () => {
