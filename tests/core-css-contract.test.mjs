@@ -68,8 +68,10 @@ test("card headings use a border label pattern", () => {
   assert.match(CARD_CSS, /\.pergyl-card:has\(>\s*header:first-child\s*>\s*\.pergyl-card-title:first-child\)\s*{[^}]*padding-top:/s);
   assert.match(CARD_CSS, /\.pergyl-card-title::after\s*{[^}]*border-top:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-border\);/s);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*color:\s*var\(--pergyl-color-accent\);/s);
+  assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*background:\s*var\(--pergyl-card-label-bg,\s*var\(--pergyl-color-bg\)\);/s);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*display:\s*flex;/s);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*letter-spacing:\s*0\.08em;/s);
+  assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*padding:\s*0 var\(--pergyl-space-2\);/s);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*text-transform:\s*uppercase;/s);
   assert.match(CARD_CSS, /\.pergyl-card-subtitle\s*{[^}]*color:\s*var\(--pergyl-color-muted\);/s);
   assert.match(CARD_CSS, /\.pergyl-card-subtitle\s*{[^}]*margin:\s*var\(--pergyl-space-1\) 0 0;/s);
