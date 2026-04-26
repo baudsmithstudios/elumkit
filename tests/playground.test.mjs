@@ -51,7 +51,6 @@ test("playground includes data list and table primitives", () => {
   assert.match(html, /class="pergyl-table"/);
   assert.match(html, /data-label="Status"/);
   assert.match(html, /data-column="status"/);
-  assert.doesNotMatch(html, /<td data-label="Status"><span class="pergyl-badge"/);
   assert.match(html, /<td data-label="Status" data-column="status"><span class="pergyl-status-label"/);
   assert.match(html, /\[HEALTHY\]/);
   assert.match(html, /\[DELAYED\]/);
@@ -60,20 +59,21 @@ test("playground includes data list and table primitives", () => {
 
 test("playground system status uses borderless status text", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.doesNotMatch(html, /System status <span class="pergyl-badge"/);
   assert.match(html, /System status <span class="pergyl-status-label"/);
 });
 
-test("playground release example does not use a bordered badge", () => {
+test("playground updates theme status text when theme changes", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.doesNotMatch(html, /Release <span class="pergyl-badge"/);
+  assert.match(html, /id="theme-status">\[DARK\]<\/span>/);
+  assert.match(html, /themeStatus\.textContent = "\[DARK\]";/);
+  assert.match(html, /themeStatus\.textContent = "\[LIGHT\]";/);
 });
 
 test("playground status avoids terminal help prompts", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.doesNotMatch(html, /<span class="pergyl-status-key">help<\/span>/);
   assert.doesNotMatch(html, /<span class="pergyl-status-value">\?<\/span>/);
-  assert.match(html, /<span class="pergyl-status-value">\[DARK\]<\/span>/);
+  assert.match(html, /<span class="pergyl-status-value" id="theme-status">\[DARK\]<\/span>/);
   assert.match(html, /<span class="pergyl-status-value">\[12\]<\/span>/);
 });
 

@@ -51,7 +51,7 @@
         <span class="pergyl-status-group">
           <span class="pergyl-status-item">
             <span class="pergyl-status-key">theme</span>
-            <span class="pergyl-status-value">[DARK]</span>
+            <span class="pergyl-status-value" id="theme-status">[DARK]</span>
           </span>
           <span class="pergyl-status-item">
             <span class="pergyl-status-key">components</span>
@@ -280,13 +280,20 @@
       const root = document.documentElement;
       const dark = document.getElementById("theme-dark");
       const light = document.getElementById("theme-light");
+      const themeStatus = document.getElementById("theme-status");
 
       dark?.addEventListener("click", () => {
         root.setAttribute("data-theme", "dark");
+        if (themeStatus) {
+          themeStatus.textContent = "[DARK]";
+        }
       });
 
       light?.addEventListener("click", () => {
         root.setAttribute("data-theme", "light");
+        if (themeStatus) {
+          themeStatus.textContent = "[LIGHT]";
+        }
       });
     </script>
   </body>

@@ -93,14 +93,6 @@
   font-variant-numeric: tabular-nums;
 }
 
-.pergyl-table [data-column="status"] {
-  width: 9rem;
-}
-
-.pergyl-table td[data-column="status"] {
-  white-space: nowrap;
-}
-
 @media (max-width: 48rem) {
   .pergyl-table thead {
     display: none;
@@ -133,5 +125,15 @@
     letter-spacing: 0.08em;
     margin-bottom: var(--pergyl-space-1);
     text-transform: uppercase;
+  }
+}
+
+@media (min-width: 48.001rem) {
+  .pergyl-table [data-column="status"] {
+    width: 9rem;
+  }
+
+  .pergyl-table td[data-column="status"] {
+    white-space: nowrap;
   }
 }

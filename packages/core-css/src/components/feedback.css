@@ -19,24 +19,6 @@
   border-left-color: var(--pergyl-color-error);
 }
 
-.pergyl-badge {
-  border: var(--pergyl-border-width) solid var(--pergyl-color-border);
-  border-radius: var(--pergyl-radius-sm);
-  color: var(--pergyl-color-muted);
-  display: inline-block;
-  font-size: var(--pergyl-text-xs);
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  line-height: var(--pergyl-lh-tight);
-  padding: 0.125rem var(--pergyl-space-1);
-  text-transform: uppercase;
-}
-
-.pergyl-badge[data-tone="accent"] {
-  border-color: var(--pergyl-color-accent);
-  color: var(--pergyl-color-accent);
-}
-
 .pergyl-status-label {
   align-items: baseline;
   color: var(--pergyl-color-fg);
