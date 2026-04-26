@@ -57,6 +57,10 @@ test("radius tokens use tight corners", () => {
   assert.match(TOKENS_CSS, /--pergyl-radius-md:\s*0\.1875rem;/);
 });
 
+test("border token gives elements a stronger outline", () => {
+  assert.match(TOKENS_CSS, /--pergyl-border-width:\s*2px;/);
+});
+
 test("card headings use a border label pattern", () => {
   assert.match(CARD_CSS, /\.pergyl-card:has\(>\s*header:first-child\s*>\s*\.pergyl-card-title:first-child\)/);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*color:\s*var\(--pergyl-color-accent\);/s);
