@@ -30,8 +30,8 @@ Defined in `packages/core-css/src/tokens.css`:
 ```css
 :root,
 [data-theme="light"] {
-  --pergyl-color-accent: #005f73;
-  --pergyl-focus-ring: #005f73;
+  --pergyl-color-accent: #8b4a2a;
+  --pergyl-focus-ring: #8b4a2a;
 }
 ```
 
@@ -51,7 +51,7 @@ Card custom properties keep the default card behavior unless they are set global
 ```css
 :root {
   --pergyl-card-title-size: var(--pergyl-text-md);
-  --pergyl-card-title-color: #005f73;
+  --pergyl-card-title-color: #8b4a2a;
 }
 
 .status-card {

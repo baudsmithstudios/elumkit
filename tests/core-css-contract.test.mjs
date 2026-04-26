@@ -11,6 +11,16 @@ const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css
 const DATA_CSS = readFileSync("packages/core-css/src/components/data.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 
+function tokenValues(tokenName) {
+  return [...TOKENS_CSS.matchAll(new RegExp(`${tokenName}:\\s*(#[0-9a-fA-F]{6});`, "g"))]
+    .map((match) => match[1].toLowerCase());
+}
+
+function isGrayscale(hexColor) {
+  const [, red, green, blue] = hexColor.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/);
+  return red === green && green === blue;
+}
+
 test("index.css imports the component bundles", () => {
   assert.match(INDEX_CSS, /@import "\.\/components\/button\.css";/);
   assert.match(INDEX_CSS, /@import "\.\/components\/form\.css";/);
@@ -36,6 +46,47 @@ test("tokens include required semantic color and motion variables", () => {
 
   for (const token of requiredTokens) {
     assert.match(TOKENS_CSS, new RegExp(`${token}:`));
+  }
+});
+
+test("theme colors use Aponis rust accents and grayscale semantics", () => {
+  assert.deepEqual(tokenValues("--pergyl-color-accent"), ["#8b4a2a", "#c47a5a"]);
+  assert.deepEqual(tokenValues("--pergyl-focus-ring"), ["#8b4a2a", "#c47a5a"]);
+
+  const grayscaleTokens = [
+    "--pergyl-color-bg",
+    "--pergyl-color-surface",
+    "--pergyl-color-fg",
+    "--pergyl-color-muted",
+    "--pergyl-color-border",
+    "--pergyl-color-success",
+    "--pergyl-color-warn",
+    "--pergyl-color-error",
+    "--pergyl-color-info",
+  ];
+
+  for (const token of grayscaleTokens) {
+    for (const value of tokenValues(token)) {
+      assert.equal(isGrayscale(value), true, `${token} should be grayscale, got ${value}`);
+    }
+  }
+});
+
+test("semantic tone colors remain distinct from foreground text", () => {
+  const foregroundColors = tokenValues("--pergyl-color-fg");
+  const toneTokens = [
+    "--pergyl-color-success",
+    "--pergyl-color-warn",
+    "--pergyl-color-error",
+    "--pergyl-color-info",
+  ];
+
+  for (const token of toneTokens) {
+    const values = tokenValues(token);
+
+    for (const [index, value] of values.entries()) {
+      assert.notEqual(value, foregroundColors[index], `${token} should differ from foreground text`);
+    }
   }
 });
 
