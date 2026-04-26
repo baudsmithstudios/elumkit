@@ -25,8 +25,9 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Card
 
-- Use `<article class="pergyl-card">`
-- Use `<header class="pergyl-card-header">` when the title should sit in the card border
+- Use `<article class="pergyl-card">` for a plain card
+- Use `<article class="pergyl-card pergyl-card-labeled">` when the title should sit in the card border
+- Use `<header class="pergyl-card-header">` for the card title region
 - Title class: `.pergyl-card-title`
 - Subtitle class: `.pergyl-card-subtitle`
 - Subtitle defaults to card body flow, below the border label

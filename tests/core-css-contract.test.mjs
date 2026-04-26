@@ -65,7 +65,9 @@ test("border token gives elements a stronger outline", () => {
 });
 
 test("card and data components expose explicit state hooks", () => {
+  assert.match(CARD_CSS, /\.pergyl-card-labeled/);
   assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\]/);
+  assert.doesNotMatch(CARD_CSS, /:has\(/);
   assert.match(DATA_CSS, /\.pergyl-row\[data-selected="true"\]/);
   assert.doesNotMatch(DATA_CSS, /\.pergyl-row\[aria-selected="true"\]/);
 });

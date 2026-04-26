@@ -21,8 +21,10 @@ You can copy `packages/core-css/src/*.css` into your Eleventy asset pipeline and
 `_includes/components/card.njk`:
 
 ```njk
-<article class="pergyl-card pergyl-stack">
-  <h2 class="pergyl-card-title">{{ title }}</h2>
+<article class="pergyl-card pergyl-card-labeled pergyl-stack">
+  <header class="pergyl-card-header">
+    <h2 class="pergyl-card-title">{{ title }}</h2>
+  </header>
   {% if subtitle %}
   <p class="pergyl-card-subtitle">{{ subtitle }}</p>
   {% endif %}

@@ -6,11 +6,11 @@
   position: relative;
 }
 
-.pergyl-card:has(> .pergyl-card-header:first-child) {
+.pergyl-card-labeled {
   padding-top: calc(var(--pergyl-space-4) * 0.5);
 }
 
-.pergyl-card > .pergyl-card-header:first-child {
+.pergyl-card-labeled > .pergyl-card-header:first-child {
   margin: calc((var(--pergyl-space-4) * -0.5) - var(--pergyl-border-width)) 0 var(--pergyl-space-2);
   transform: translateY(-50%);
 }
