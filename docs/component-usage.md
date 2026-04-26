@@ -85,3 +85,4 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Table: `.pergyl-table`
 - Use `data-label` on each cell so rows remain readable on narrow screens
 - Use `data-numeric="true"` and `data-align="end"` for tabular numeric columns
+- Use `data-column="status"` on status headers and cells to keep status output aligned

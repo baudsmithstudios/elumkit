@@ -47,11 +47,13 @@ test("playground includes data list and table primitives", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.match(html, /class="pergyl-list"/);
   assert.match(html, /class="pergyl-row"[^>]*data-selected="true"/);
+  assert.match(html, /edge cluster :: \[HEALTHY\]/);
   assert.match(html, /class="pergyl-table-wrap"/);
   assert.match(html, /class="pergyl-table"/);
   assert.match(html, /data-label="Status"/);
+  assert.match(html, /data-column="status"/);
   assert.doesNotMatch(html, /<td data-label="Status"><span class="pergyl-badge"/);
-  assert.match(html, /<td data-label="Status"><span class="pergyl-status-label"/);
+  assert.match(html, /<td data-label="Status" data-column="status"><span class="pergyl-status-label"/);
   assert.match(html, /\[HEALTHY\]/);
   assert.match(html, /\[DELAYED\]/);
   assert.match(html, /\[WARM\]/);

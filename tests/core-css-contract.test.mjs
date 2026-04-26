@@ -98,3 +98,8 @@ test("data tables keep compact responsive spacing", () => {
   assert.match(DATA_CSS, /@media \(max-width: 48rem\)/);
   assert.match(DATA_CSS, /\.pergyl-table td::before\s*{[^}]*content:\s*attr\(data-label\);/s);
 });
+
+test("data tables support fixed status columns", () => {
+  assert.match(DATA_CSS, /\.pergyl-table \[data-column="status"\]\s*{[^}]*width:\s*9rem;/s);
+  assert.match(DATA_CSS, /\.pergyl-table td\[data-column="status"\]\s*{[^}]*white-space:\s*nowrap;/s);
+});

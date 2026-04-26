@@ -36,6 +36,7 @@ test("component docs cover telemetry primitives", () => {
 test("component docs describe bracketed terminal status text", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
   assert.match(componentUsage, /bracketed status text/);
+  assert.match(componentUsage, /data-column="status"/);
 });
 
 test("component docs describe optional inline card subtitles", () => {
