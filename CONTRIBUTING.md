@@ -1,6 +1,6 @@
-# Contributing to Pergylkit
+# Contributing to Pergyl
 
-Thanks for your interest in contributing. Pergylkit is a small project and focused contributions are welcome.
+Thanks for your interest in contributing. Pergyl is a small project and focused contributions are welcome.
 
 ## Getting Started
 

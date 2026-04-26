@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>Pergylkit</strong>
+  <strong>Pergyl</strong>
 </p>
 
 <p align="center">
@@ -15,7 +15,7 @@
 
 ## What It Does
 
-Pergylkit is a lean, terminal-inspired component system for modern web interfaces. v0.1 is intentionally plain-HTML first, so you can use it directly in static sites and lightweight stacks and layer in framework adapters later.
+Pergyl is a lean, terminal-inspired component system for modern web interfaces. v0.1 is intentionally plain-HTML first, so you can use it directly in static sites and lightweight stacks and layer in framework adapters later.
 
 ## Features
 
@@ -25,7 +25,7 @@ Pergylkit is a lean, terminal-inspired component system for modern web interface
 - **Optional JavaScript only** — progressive enhancement where native HTML is not enough
 - **Accessibility baseline** — keyboard-first patterns and WCAG 2.2 AA contrast targets
 
-## What Pergylkit Is Not
+## What Pergyl Is Not
 
 - **Not a retro skin pack** — no scanlines, pixel-art frames, or novelty CRT effects
 - **Not framework-coupled** — no React/Vue lock-in at the core layer
@@ -39,7 +39,7 @@ Link the core CSS, set a theme on the document root, and use the semantic classe
 <!doctype html>
 <html data-theme="dark">
   <head>
-    <link rel="stylesheet" href="path/to/pergylkit/index.css" />
+    <link rel="stylesheet" href="path/to/pergyl/index.css" />
   </head>
   <body>
     <article class="pergyl-card pergyl-card-labeled">

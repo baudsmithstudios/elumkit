@@ -1,6 +1,6 @@
 # core-css
 
-Framework-agnostic style contract for Pergylkit.
+Framework-agnostic style contract for Pergyl.
 
 ## Contents
 

@@ -5,10 +5,10 @@ Use this guide to consume v0.1 components in Eleventy without a frontend framewo
 ## 1) Include the core CSS in your base layout
 
 ```html
-<link rel="stylesheet" href="/assets/pergylkit.css" />
+<link rel="stylesheet" href="/assets/pergyl.css" />
 ```
 
-Either copy `packages/core-css/src/*.css` into your asset pipeline and bundle as `pergylkit.css`, or serve `packages/core-css/src/index.css` directly.
+Either copy `packages/core-css/src/*.css` into your asset pipeline and bundle as `pergyl.css`, or serve `packages/core-css/src/index.css` directly.
 
 ## 2) Set the theme at the document root
 

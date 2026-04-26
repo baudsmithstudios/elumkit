@@ -27,7 +27,7 @@ Defined in `packages/core-css/src/tokens.css`:
 
 ## Override example
 
-Override one or more tokens after loading Pergylkit's CSS. For example, to swap the accent and focus ring to a different color:
+Override one or more tokens after loading Pergyl's CSS. For example, to swap the accent and focus ring to a different color:
 
 ```css
 :root {
@@ -38,7 +38,7 @@ Override one or more tokens after loading Pergylkit's CSS. For example, to swap 
 
 ## Customization protocol
 
-Load Pergylkit first, then load application CSS after it. Override global tokens when the whole system should change, and override component custom properties when one component needs a supported adjustment.
+Load Pergyl first, then load application CSS after it. Override global tokens when the whole system should change, and override component custom properties when one component needs a supported adjustment.
 
 ```html
 <link rel="stylesheet" href="../packages/core-css/src/index.css" />
