@@ -35,6 +35,41 @@ Defined in `packages/core-css/src/tokens.css`:
 }
 ```
 
+## Customization protocol
+
+Load Pergylkit first, then load application CSS after it. Override global tokens when the whole system should change, and override component custom properties when one component needs a supported adjustment.
+
+```html
+<link rel="stylesheet" href="../packages/core-css/src/index.css" />
+<link rel="stylesheet" href="./app.css" />
+```
+
+## Card custom properties
+
+Card custom properties keep the default card behavior unless they are set globally or on a scoped parent.
+
+```css
+:root {
+  --pergyl-card-title-size: var(--pergyl-text-md);
+  --pergyl-card-title-color: #005f73;
+}
+
+.status-card {
+  --pergyl-card-padding: var(--pergyl-space-3);
+  --pergyl-card-subtitle-color: var(--pergyl-color-fg);
+  --pergyl-card-subtitle-size: var(--pergyl-text-sm);
+}
+```
+
+Supported card properties:
+
+- `--pergyl-card-padding`
+- `--pergyl-card-label-bg`
+- `--pergyl-card-title-color`
+- `--pergyl-card-title-size`
+- `--pergyl-card-subtitle-color`
+- `--pergyl-card-subtitle-size`
+
 ## Component behavior notes
 
 - Button primary variant uses `--pergyl-color-accent`.

@@ -72,6 +72,14 @@ test("card and data components expose explicit state hooks", () => {
   assert.doesNotMatch(DATA_CSS, /\.pergyl-row\[aria-selected="true"\]/);
 });
 
+test("card titles and subtitles expose customization properties", () => {
+  assert.match(CARD_CSS, /padding:\s*var\(--pergyl-card-padding,\s*var\(--pergyl-space-4\)\);/);
+  assert.match(CARD_CSS, /color:\s*var\(--pergyl-card-title-color,\s*var\(--pergyl-color-accent\)\);/);
+  assert.match(CARD_CSS, /font-size:\s*var\(--pergyl-card-title-size,\s*var\(--pergyl-text-sm\)\);/);
+  assert.match(CARD_CSS, /color:\s*var\(--pergyl-card-subtitle-color,\s*var\(--pergyl-color-muted\)\);/);
+  assert.match(CARD_CSS, /font-size:\s*var\(--pergyl-card-subtitle-size,\s*var\(--pergyl-text-xs\)\);/);
+});
+
 test("feedback exposes inline status labels", () => {
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{/);
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="success"\]/);

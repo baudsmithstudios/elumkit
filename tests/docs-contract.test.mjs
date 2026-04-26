@@ -44,3 +44,12 @@ test("component docs describe optional inline card subtitles", () => {
   assert.match(componentUsage, /Subtitle defaults to card body flow/);
   assert.match(componentUsage, /data-inline="true"/);
 });
+
+test("theming docs describe card customization properties", () => {
+  const theming = readFileSync("docs/theming.md", "utf8");
+  assert.match(theming, /--pergyl-card-padding/);
+  assert.match(theming, /--pergyl-card-title-color/);
+  assert.match(theming, /--pergyl-card-title-size/);
+  assert.match(theming, /--pergyl-card-subtitle-color/);
+  assert.match(theming, /--pergyl-card-subtitle-size/);
+});
