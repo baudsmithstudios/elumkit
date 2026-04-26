@@ -26,6 +26,8 @@ test("playground includes core MVP component previews", () => {
     "pergyl-status",
     "pergyl-metrics",
     "pergyl-meter",
+    "pergyl-list",
+    "pergyl-table",
   ];
 
   for (const className of requiredClasses) {
@@ -46,6 +48,15 @@ test("playground includes telemetry primitives", () => {
   assert.match(html, /class="pergyl-metric"/);
   assert.match(html, /class="pergyl-meter"[^>]*role="meter"/);
   assert.match(html, /aria-valuenow="64"/);
+});
+
+test("playground includes data list and table primitives", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /class="pergyl-list"/);
+  assert.match(html, /class="pergyl-row"[^>]*aria-selected="true"/);
+  assert.match(html, /class="pergyl-table-wrap"/);
+  assert.match(html, /class="pergyl-table"/);
+  assert.match(html, /data-label="Status"/);
 });
 
 test("playground status avoids terminal help prompts", () => {

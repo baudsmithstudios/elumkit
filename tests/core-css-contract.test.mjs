@@ -9,6 +9,7 @@ const FORM_CSS = readFileSync("packages/core-css/src/components/form.css", "utf8
 const BUTTON_CSS = readFileSync("packages/core-css/src/components/button.css", "utf8");
 const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css", "utf8");
 const TELEMETRY_CSS = readFileSync("packages/core-css/src/components/telemetry.css", "utf8");
+const DATA_CSS = readFileSync("packages/core-css/src/components/data.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 
 test("index.css imports the component bundles", () => {
@@ -17,6 +18,7 @@ test("index.css imports the component bundles", () => {
   assert.match(INDEX_CSS, /@import "\.\/components\/card\.css";/);
   assert.match(INDEX_CSS, /@import "\.\/components\/feedback\.css";/);
   assert.match(INDEX_CSS, /@import "\.\/components\/telemetry\.css";/);
+  assert.match(INDEX_CSS, /@import "\.\/components\/data\.css";/);
 });
 
 test("tokens include required semantic color and motion variables", () => {
@@ -91,4 +93,14 @@ test("telemetry primitives support status, metrics, and meters", () => {
   assert.match(TELEMETRY_CSS, /\.pergyl-metric-value\s*{[^}]*font-variant-numeric:\s*tabular-nums;/s);
   assert.match(TELEMETRY_CSS, /\.pergyl-meter-track\s*{[^}]*border:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-border\);/s);
   assert.match(TELEMETRY_CSS, /\.pergyl-meter-fill\[data-tone="warn"\]/);
+});
+
+test("data primitives support dense lists and responsive tables", () => {
+  assert.match(DATA_CSS, /\.pergyl-list\s*{[^}]*border:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-border\);/s);
+  assert.match(DATA_CSS, /\.pergyl-row\s*{[^}]*grid-template-columns:\s*minmax\(0,\s*1fr\) auto;/s);
+  assert.match(DATA_CSS, /\.pergyl-row\[aria-selected="true"\]/);
+  assert.match(DATA_CSS, /\.pergyl-row-value\s*{[^}]*font-variant-numeric:\s*tabular-nums;/s);
+  assert.match(DATA_CSS, /\.pergyl-table\s*{[^}]*border-collapse:\s*collapse;/s);
+  assert.match(DATA_CSS, /\.pergyl-table th\s*{[^}]*text-transform:\s*uppercase;/s);
+  assert.match(DATA_CSS, /@media \(max-width:\s*48rem\)[^]*\.pergyl-table td::before\s*{[^}]*content:\s*attr\(data-label\);/s);
 });

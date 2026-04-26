@@ -61,3 +61,17 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Use `role="meter"` with `aria-valuemin`, `aria-valuemax`, and `aria-valuenow`
 - Use `.pergyl-meter-track` and `.pergyl-meter-fill` for the visual bar
 - Fill tones: `data-tone="success" | "warn" | "error"`
+
+## Data List
+
+- Base: `.pergyl-list`
+- Row: `.pergyl-row`
+- Use `.pergyl-row-title`, `.pergyl-row-meta`, and `.pergyl-row-value` for compact aligned content
+- Use `aria-selected="true"` only when a row is selected in the current UI state
+
+## Data Table
+
+- Wrapper: `.pergyl-table-wrap`
+- Table: `.pergyl-table`
+- Use `data-label` on each cell so rows remain readable on narrow screens
+- Use `data-numeric="true"` and `data-align="end"` for tabular numeric columns

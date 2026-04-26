@@ -28,6 +28,8 @@ test("component docs cover telemetry primitives", () => {
   assert.match(componentUsage, /## Status Bar/);
   assert.match(componentUsage, /## Metrics/);
   assert.match(componentUsage, /## Meter/);
+  assert.match(componentUsage, /## Data List/);
+  assert.match(componentUsage, /## Data Table/);
 });
 
 test("component docs describe optional inline card subtitles", () => {

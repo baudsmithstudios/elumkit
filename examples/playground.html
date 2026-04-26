@@ -112,6 +112,37 @@
 
         <article class="pergyl-card pergyl-stack">
           <header>
+            <h2 class="pergyl-card-title">Rows</h2>
+          </header>
+          <p class="pergyl-card-subtitle">Selectable-looking rows with aligned values.</p>
+
+          <div class="pergyl-list" role="list" aria-label="Service rows">
+            <a class="pergyl-row" href="#" role="listitem" aria-selected="true">
+              <span class="pergyl-row-main">
+                <span class="pergyl-row-title">api-gateway</span>
+                <span class="pergyl-row-meta">edge cluster · healthy</span>
+              </span>
+              <span class="pergyl-row-value">99.9%</span>
+            </a>
+            <a class="pergyl-row" href="#" role="listitem">
+              <span class="pergyl-row-main">
+                <span class="pergyl-row-title">worker-queue</span>
+                <span class="pergyl-row-meta">background jobs · delayed</span>
+              </span>
+              <span class="pergyl-row-value">42ms</span>
+            </a>
+            <a class="pergyl-row" href="#" role="listitem">
+              <span class="pergyl-row-main">
+                <span class="pergyl-row-title">cache-node</span>
+                <span class="pergyl-row-meta">primary region · warm</span>
+              </span>
+              <span class="pergyl-row-value">1.8K</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="pergyl-card pergyl-stack">
+          <header>
             <h2 class="pergyl-card-title">Form Controls</h2>
           </header>
 
@@ -155,6 +186,46 @@
       <aside class="pergyl-alert" data-tone="warn" role="status" aria-live="polite">
         Disk usage is nearing the warning threshold.
       </aside>
+
+      <section class="pergyl-card pergyl-stack" aria-label="Data table">
+        <header>
+          <h2 class="pergyl-card-title">Data Table</h2>
+        </header>
+        <p class="pergyl-card-subtitle">Dense columns with mobile-readable data labels.</p>
+
+        <div class="pergyl-table-wrap">
+          <table class="pergyl-table">
+            <thead>
+              <tr>
+                <th scope="col">Service</th>
+                <th scope="col">Status</th>
+                <th scope="col" data-align="end">Latency</th>
+                <th scope="col" data-align="end">Events</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Service">api-gateway</td>
+                <td data-label="Status"><span class="pergyl-badge" data-tone="accent">healthy</span></td>
+                <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
+                <td data-label="Events" data-align="end" data-numeric="true">1,284</td>
+              </tr>
+              <tr>
+                <td data-label="Service">worker-queue</td>
+                <td data-label="Status"><span class="pergyl-badge">delayed</span></td>
+                <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
+                <td data-label="Events" data-align="end" data-numeric="true">876</td>
+              </tr>
+              <tr>
+                <td data-label="Service">cache-node</td>
+                <td data-label="Status"><span class="pergyl-badge" data-tone="accent">warm</span></td>
+                <td data-label="Latency" data-align="end" data-numeric="true">9ms</td>
+                <td data-label="Events" data-align="end" data-numeric="true">2,048</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <section class="pergyl-card pergyl-stack" aria-label="State matrix">
         <header>

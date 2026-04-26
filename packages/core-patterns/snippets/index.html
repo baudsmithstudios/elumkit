@@ -89,4 +89,45 @@
       <span class="pergyl-meter-fill" style="width: 64%"></span>
     </div>
   </div>
+
+  <div class="pergyl-list" role="list" aria-label="Service rows">
+    <a class="pergyl-row" href="#" role="listitem" aria-selected="true">
+      <span class="pergyl-row-main">
+        <span class="pergyl-row-title">api-gateway</span>
+        <span class="pergyl-row-meta">edge cluster · healthy</span>
+      </span>
+      <span class="pergyl-row-value">99.9%</span>
+    </a>
+    <a class="pergyl-row" href="#" role="listitem">
+      <span class="pergyl-row-main">
+        <span class="pergyl-row-title">worker-queue</span>
+        <span class="pergyl-row-meta">background jobs · delayed</span>
+      </span>
+      <span class="pergyl-row-value">42ms</span>
+    </a>
+  </div>
+
+  <div class="pergyl-table-wrap">
+    <table class="pergyl-table">
+      <thead>
+        <tr>
+          <th scope="col">Service</th>
+          <th scope="col">Status</th>
+          <th scope="col" data-align="end">Latency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Service">api-gateway</td>
+          <td data-label="Status"><span class="pergyl-badge" data-tone="accent">healthy</span></td>
+          <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
+        </tr>
+        <tr>
+          <td data-label="Service">worker-queue</td>
+          <td data-label="Status"><span class="pergyl-badge">delayed</span></td>
+          <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
