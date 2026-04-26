@@ -22,7 +22,6 @@ test("playground includes core MVP component previews", () => {
     "pergyl-textarea",
     "pergyl-select",
     "pergyl-alert",
-    "pergyl-badge",
     "pergyl-status",
     "pergyl-metrics",
     "pergyl-meter",
@@ -63,6 +62,11 @@ test("playground system status uses borderless status text", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.doesNotMatch(html, /System status <span class="pergyl-badge"/);
   assert.match(html, /System status <span class="pergyl-status-label"/);
+});
+
+test("playground release example does not use a bordered badge", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.doesNotMatch(html, /Release <span class="pergyl-badge"/);
 });
 
 test("playground status avoids terminal help prompts", () => {
