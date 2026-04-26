@@ -49,6 +49,24 @@
   gap: var(--pergyl-space-1);
 }
 
+fieldset.pergyl-field {
+  background: transparent;
+  border: var(--pergyl-border-width) solid var(--pergyl-color-border);
+  border-radius: var(--pergyl-radius-sm);
+  margin: 0;
+  padding: var(--pergyl-space-3);
+}
+
+fieldset.pergyl-field > .pergyl-label {
+  color: var(--pergyl-color-accent);
+  font-size: var(--pergyl-text-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--pergyl-space-1);
+  padding: 0 var(--pergyl-space-2);
+  text-transform: uppercase;
+}
+
 .pergyl-choice {
   align-items: center;
   display: inline-flex;

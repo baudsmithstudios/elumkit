@@ -68,3 +68,9 @@ test("card headings use a border label pattern", () => {
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*text-transform:\s*uppercase;/s);
   assert.match(CARD_CSS, /\.pergyl-card-subtitle\s*{[^}]*color:\s*var\(--pergyl-color-muted\);/s);
 });
+
+test("fieldset legends share the card heading label padding", () => {
+  assert.match(FORM_CSS, /fieldset\.pergyl-field\s*{[^}]*border:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-border\);/s);
+  assert.match(FORM_CSS, /fieldset\.pergyl-field\s*{[^}]*padding:\s*var\(--pergyl-space-3\);/s);
+  assert.match(FORM_CSS, /fieldset\.pergyl-field\s*>\s*\.pergyl-label\s*{[^}]*padding:\s*0 var\(--pergyl-space-2\);/s);
+});
