@@ -4,80 +4,76 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Button
 
-- Markup: `<button class="pergyl-button" type="button">...`
-- Variant: `data-variant="primary"`
-- Disabled: native `disabled`
-- Keyboard: Enter/Space activate native button behavior
+- **Class:** `.pergyl-button` on a native `<button>`
+- **Variants:** `data-variant="primary"` for the accent style
+- **Disabled:** native `disabled`
+- **Keyboard:** native button activation (Enter / Space)
 
 ## Input / Textarea / Select
 
-- Use `.pergyl-field` with a connected `<label for="...">`
-- Invalid state: `aria-invalid="true"`
-- Disabled state: native `disabled`
-- Keyboard: native form element behavior
+- **Class:** `.pergyl-field` on the input, with a connected `<label for="...">`
+- **Invalid state:** `aria-invalid="true"`
+- **Disabled state:** native `disabled`
+- **Keyboard:** native form element behavior
 
 ## Checkbox / Radio Group
 
-- Wrap with `.pergyl-choice` labels for larger click targets
-- Radio groups should use `fieldset` + `legend`
-- Disabled inputs should use native `disabled`
-- Optional visual label hint for disabled choice: `data-disabled="true"` on `.pergyl-choice`
+- **Wrapper:** `.pergyl-choice` label for larger click targets
+- **Radio groups:** wrap in `<fieldset>` with `<legend>`
+- **Disabled:** native `disabled` on the input; optional `data-disabled="true"` on `.pergyl-choice` for the visual hint
 
 ## Card
 
-- Use `<article class="pergyl-card">` for a plain card
-- Use `<article class="pergyl-card pergyl-card-labeled">` when the title should sit in the card border
-- Use `<header class="pergyl-card-header">` for the card title region
-- Title class: `.pergyl-card-title`
-- Subtitle class: `.pergyl-card-subtitle`
-- Subtitle defaults to card body flow, below the border label
-- Use `<header class="pergyl-card-header" data-inline="true">` only for short subtitles that should sit beside the title
+- **Plain card:** `<article class="pergyl-card">`
+- **Labeled card** (title in border): `<article class="pergyl-card pergyl-card-labeled">`
+- **Header region:** `<header class="pergyl-card-header">` with `.pergyl-card-title` and optional `.pergyl-card-subtitle`
+- Subtitle defaults to card body flow, below the border label.
+- **Inline subtitle** (beside the title): `<header class="pergyl-card-header" data-inline="true">` — only for short subtitles
 
 ## Alert
 
-- Base: `.pergyl-alert`
-- Tones: `data-tone="success" | "warn" | "error"`
-- For status messaging, prefer `role="status"` and/or `aria-live="polite"` where appropriate
+- **Class:** `.pergyl-alert`
+- **Tones:** `data-tone="success" | "warn" | "error"`
+- **Live region:** prefer `role="status"` and/or `aria-live="polite"` for status messaging
 
 ## Status Label
 
-- Base: `.pergyl-status-label`
-- Tones: `data-tone="accent" | "success" | "warn" | "error"`
-- Use for compact inline status text in dense rows and tables
-- Prefer visible bracketed status text such as `[READY]` so copy/paste and assistive technology match the rendered UI
+- **Class:** `.pergyl-status-label`
+- **Tones:** `data-tone="accent" | "success" | "warn" | "error"`
+- Use for compact inline status text in dense rows and tables.
+- Prefer visible bracketed status text such as `[READY]` so copy/paste and assistive technology match the rendered UI.
 
 ## Status Bar
 
-- Base: `.pergyl-status`
-- Use `.pergyl-status-brand` for the primary label
-- Group compact key/value items with `.pergyl-status-group`
-- Status values may use bracketed status text for terse terminal-style state
-- Keep status bar copy short enough to wrap cleanly on narrow screens
+- **Class:** `.pergyl-status`
+- **Brand label:** `.pergyl-status-brand` for the primary label
+- **Compact key/value items:** group with `.pergyl-status-group`
+- Status values may use bracketed status text for terse terminal-style state.
+- Keep status bar copy short enough to wrap cleanly on narrow screens.
 
 ## Metrics
 
-- Base list: `.pergyl-metrics`
-- Row: `.pergyl-metric`
-- Use `.pergyl-metric-label`, `.pergyl-metric-value`, and `.pergyl-metric-unit` for aligned telemetry
+- **List:** `.pergyl-metrics`
+- **Row:** `.pergyl-metric`
+- Use `.pergyl-metric-label`, `.pergyl-metric-value`, and `.pergyl-metric-unit` for aligned telemetry.
 
 ## Meter
 
-- Base: `.pergyl-meter`
-- Use `role="meter"` with `aria-valuemin`, `aria-valuemax`, and `aria-valuenow`
-- Use `.pergyl-meter-track` and `.pergyl-meter-fill` for the visual bar
-- Fill tones: `data-tone="success" | "warn" | "error"`
+- **Class:** `.pergyl-meter` with `role="meter"` and `aria-valuemin`, `aria-valuemax`, `aria-valuenow`
+- **Visual bar:** `.pergyl-meter-track` and `.pergyl-meter-fill`
+- **Fill tones:** `data-tone="success" | "warn" | "error"`
 
 ## Data List
 
-- Base: `.pergyl-list`
-- Row: `.pergyl-row`
-- Use `.pergyl-row-title`, `.pergyl-row-meta`, and `.pergyl-row-value` for compact aligned content
-- Use `data-selected="true"` for visual selection state
+- **List:** `.pergyl-list`
+- **Row:** `.pergyl-row`
+- Use `.pergyl-row-title`, `.pergyl-row-meta`, and `.pergyl-row-value` for compact aligned content.
+- **Selected state:** `data-selected="true"`
 
 ## Data Table
 
-- Wrapper: `.pergyl-table-wrap`
-- Table: `.pergyl-table`
-- Use `data-label` on each cell so rows remain readable on narrow screens
-- Use `data-numeric="true"` and `data-align="end"` for tabular numeric columns
-- Use `data-column="status"` on status headers and cells to keep status output aligned
+- **Wrapper:** `.pergyl-table-wrap`
+- **Table:** `.pergyl-table`
+- **Responsive narrow rows:** `data-label` on each cell
+- **Numeric columns:** `data-numeric="true"` and `data-align="end"`
+- **Status column:** `data-column="status"` on header and cells to keep status output aligned

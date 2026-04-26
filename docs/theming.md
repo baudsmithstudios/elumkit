@@ -27,11 +27,12 @@ Defined in `packages/core-css/src/tokens.css`:
 
 ## Override example
 
+Override one or more tokens after loading Pergylkit's CSS. For example, to swap the accent and focus ring to a different color:
+
 ```css
-:root,
-[data-theme="light"] {
-  --pergyl-color-accent: #8b4a2a;
-  --pergyl-focus-ring: #8b4a2a;
+:root {
+  --pergyl-color-accent: #5faf87;
+  --pergyl-focus-ring: #5faf87;
 }
 ```
 
@@ -74,7 +75,7 @@ Supported card properties:
 
 - Button primary variant uses `--pergyl-color-accent`.
 - Invalid form states use `--pergyl-color-error`.
-- Alert tones use Aponis-derived `--pergyl-color-success`, `--pergyl-color-warn`, and `--pergyl-color-error` values adjusted per theme for contrast.
+- Alert tones use `--pergyl-color-success`, `--pergyl-color-warn`, and `--pergyl-color-error`. Each theme defines its own values to meet contrast targets against the theme background.
 
 ## Reduced motion
 
