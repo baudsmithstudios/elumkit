@@ -21,6 +21,24 @@ function isGrayscale(hexColor) {
   return red === green && green === blue;
 }
 
+function relativeLuminance(hexColor) {
+  const channels = hexColor.slice(1).match(/../g).map((channel) => {
+    const value = parseInt(channel, 16) / 255;
+    return value <= 0.03928 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+  });
+
+  return (0.2126 * channels[0]) + (0.7152 * channels[1]) + (0.0722 * channels[2]);
+}
+
+function contrastRatio(firstColor, secondColor) {
+  const first = relativeLuminance(firstColor);
+  const second = relativeLuminance(secondColor);
+  const lighter = Math.max(first, second);
+  const darker = Math.min(first, second);
+
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 test("index.css imports the component bundles", () => {
   assert.match(INDEX_CSS, /@import "\.\/components\/button\.css";/);
   assert.match(INDEX_CSS, /@import "\.\/components\/form\.css";/);
@@ -49,7 +67,7 @@ test("tokens include required semantic color and motion variables", () => {
   }
 });
 
-test("theme colors use Aponis rust accents and grayscale semantics", () => {
+test("theme colors use Aponis rust accents and grayscale neutrals", () => {
   assert.deepEqual(tokenValues("--pergyl-color-accent"), ["#8b4a2a", "#c47a5a"]);
   assert.deepEqual(tokenValues("--pergyl-focus-ring"), ["#8b4a2a", "#c47a5a"]);
 
@@ -59,15 +77,29 @@ test("theme colors use Aponis rust accents and grayscale semantics", () => {
     "--pergyl-color-fg",
     "--pergyl-color-muted",
     "--pergyl-color-border",
-    "--pergyl-color-success",
-    "--pergyl-color-warn",
-    "--pergyl-color-error",
     "--pergyl-color-info",
   ];
 
   for (const token of grayscaleTokens) {
     for (const value of tokenValues(token)) {
       assert.equal(isGrayscale(value), true, `${token} should be grayscale, got ${value}`);
+    }
+  }
+});
+
+test("status colors use Aponis colors with accessible theme variants", () => {
+  const statusTokens = {
+    "--pergyl-color-success": ["#5c7a50", "#7a9e6b"],
+    "--pergyl-color-warn": ["#856f34", "#b89a4a"],
+    "--pergyl-color-error": ["#c3483d", "#c95a50"],
+  };
+  const backgrounds = tokenValues("--pergyl-color-bg");
+
+  for (const [token, expectedValues] of Object.entries(statusTokens)) {
+    assert.deepEqual(tokenValues(token), expectedValues);
+
+    for (const [index, value] of expectedValues.entries()) {
+      assert.ok(contrastRatio(value, backgrounds[index]) >= 4.5, `${token} ${value} should meet contrast`);
     }
   }
 });

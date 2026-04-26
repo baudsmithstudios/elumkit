@@ -74,7 +74,7 @@ Supported card properties:
 
 - Button primary variant uses `--pergyl-color-accent`.
 - Invalid form states use `--pergyl-color-error`.
-- Alert tones use `--pergyl-color-success`, `--pergyl-color-warn`, `--pergyl-color-error`.
+- Alert tones use Aponis-derived `--pergyl-color-success`, `--pergyl-color-warn`, and `--pergyl-color-error` values adjusted per theme for contrast.
 
 ## Reduced motion
 
