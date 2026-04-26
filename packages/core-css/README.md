@@ -15,7 +15,7 @@ Framework-agnostic style contract for Pergylkit.
 <link rel="stylesheet" href="./src/index.css" />
 ```
 
-Use semantic classes such as `pergyl-button`, `pergyl-input`, `pergyl-card`, and `pergyl-alert`.
+Use semantic classes such as `pergyl-button`, `pergyl-input`, `pergyl-card`, `pergyl-alert`, `pergyl-meter`, and `pergyl-table`.
 
 Theme switching is controlled with a `data-theme` attribute on `html` or `body`:
 

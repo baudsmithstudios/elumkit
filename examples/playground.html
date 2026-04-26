@@ -12,15 +12,19 @@
         padding: 1rem;
       }
 
+      main.pergyl-stack > * + * {
+        margin-top: 2rem;
+      }
+
       .playground-grid {
         display: grid;
-        gap: 1rem;
+        gap: 1.5rem;
         grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
       }
 
       .state-matrix {
         display: grid;
-        gap: 0.75rem;
+        gap: 1.25rem;
         grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
       }
 
@@ -42,12 +46,26 @@
         </div>
       </header>
 
+      <nav class="pergyl-status" aria-label="Playground status">
+        <strong class="pergyl-status-brand">Pergylkit</strong>
+        <span class="pergyl-status-group">
+          <span class="pergyl-status-item">
+            <span class="pergyl-status-key">theme</span>
+            <span class="pergyl-status-value">dark</span>
+          </span>
+          <span class="pergyl-status-item">
+            <span class="pergyl-status-key">components</span>
+            <span class="pergyl-status-value">12</span>
+          </span>
+        </span>
+      </nav>
+
       <section class="playground-grid" aria-label="Component previews">
-        <article class="pergyl-card pergyl-stack">
-          <header>
+        <article class="pergyl-card pergyl-card-labeled pergyl-stack">
+          <header class="pergyl-card-header">
             <h2 class="pergyl-card-title">Card</h2>
-            <p class="pergyl-card-subtitle">Surface container for grouped content.</p>
           </header>
+          <p class="pergyl-card-subtitle">Surface container for grouped content.</p>
           <p>
             System status <span class="pergyl-badge" data-tone="accent">healthy</span>
           </p>
@@ -57,8 +75,74 @@
           </div>
         </article>
 
-        <article class="pergyl-card pergyl-stack">
-          <header>
+        <article class="pergyl-card pergyl-card-labeled pergyl-stack">
+          <header class="pergyl-card-header">
+            <h2 class="pergyl-card-title">Telemetry</h2>
+          </header>
+          <p class="pergyl-card-subtitle">Aligned values and compact meter states.</p>
+
+          <div class="pergyl-metrics" aria-label="Runtime metrics">
+            <div class="pergyl-metric">
+              <span class="pergyl-metric-label">Load</span>
+              <span class="pergyl-metric-value">0.42</span>
+              <span class="pergyl-metric-unit">avg</span>
+            </div>
+            <div class="pergyl-metric">
+              <span class="pergyl-metric-label">Memory</span>
+              <span class="pergyl-metric-value">64</span>
+              <span class="pergyl-metric-unit">%</span>
+            </div>
+            <div class="pergyl-metric">
+              <span class="pergyl-metric-label">Requests</span>
+              <span class="pergyl-metric-value">1.8K</span>
+              <span class="pergyl-metric-unit">/min</span>
+            </div>
+          </div>
+
+          <div class="pergyl-meter" role="meter" aria-label="Memory usage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <div class="pergyl-meter-header">
+              <span class="pergyl-meter-label">Memory</span>
+              <span class="pergyl-meter-value">64%</span>
+            </div>
+            <div class="pergyl-meter-track">
+              <span class="pergyl-meter-fill" data-tone="warn" style="width: 64%"></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="pergyl-card pergyl-card-labeled pergyl-stack">
+          <header class="pergyl-card-header">
+            <h2 class="pergyl-card-title">Rows</h2>
+          </header>
+          <p class="pergyl-card-subtitle">Selectable-looking rows with aligned values.</p>
+
+          <div class="pergyl-list" role="list" aria-label="Service rows">
+            <a class="pergyl-row" href="#" role="listitem" data-selected="true">
+              <span class="pergyl-row-main">
+                <span class="pergyl-row-title">api-gateway</span>
+                <span class="pergyl-row-meta">edge cluster · healthy</span>
+              </span>
+              <span class="pergyl-row-value">99.9%</span>
+            </a>
+            <a class="pergyl-row" href="#" role="listitem">
+              <span class="pergyl-row-main">
+                <span class="pergyl-row-title">worker-queue</span>
+                <span class="pergyl-row-meta">background jobs · delayed</span>
+              </span>
+              <span class="pergyl-row-value">42ms</span>
+            </a>
+            <a class="pergyl-row" href="#" role="listitem">
+              <span class="pergyl-row-main">
+                <span class="pergyl-row-title">cache-node</span>
+                <span class="pergyl-row-meta">primary region · warm</span>
+              </span>
+              <span class="pergyl-row-value">1.8K</span>
+            </a>
+          </div>
+        </article>
+
+        <article class="pergyl-card pergyl-card-labeled pergyl-stack">
+          <header class="pergyl-card-header">
             <h2 class="pergyl-card-title">Form Controls</h2>
           </header>
 
@@ -103,11 +187,51 @@
         Disk usage is nearing the warning threshold.
       </aside>
 
-      <section class="pergyl-card pergyl-stack" aria-label="State matrix">
-        <header>
-          <h2 class="pergyl-card-title">State Matrix</h2>
-          <p class="pergyl-card-subtitle">Use this section to verify normal, focus, disabled, and invalid states.</p>
+      <section class="pergyl-card pergyl-card-labeled pergyl-stack" aria-label="Data table">
+        <header class="pergyl-card-header">
+          <h2 class="pergyl-card-title">Data Table</h2>
         </header>
+        <p class="pergyl-card-subtitle">Dense columns with mobile-readable data labels.</p>
+
+        <div class="pergyl-table-wrap">
+          <table class="pergyl-table">
+            <thead>
+              <tr>
+                <th scope="col">Service</th>
+                <th scope="col">Status</th>
+                <th scope="col" data-align="end">Latency</th>
+                <th scope="col" data-align="end">Events</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Service">api-gateway</td>
+                <td data-label="Status"><span class="pergyl-badge" data-tone="accent">healthy</span></td>
+                <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
+                <td data-label="Events" data-align="end" data-numeric="true">1,284</td>
+              </tr>
+              <tr>
+                <td data-label="Service">worker-queue</td>
+                <td data-label="Status"><span class="pergyl-badge">delayed</span></td>
+                <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
+                <td data-label="Events" data-align="end" data-numeric="true">876</td>
+              </tr>
+              <tr>
+                <td data-label="Service">cache-node</td>
+                <td data-label="Status"><span class="pergyl-badge" data-tone="accent">warm</span></td>
+                <td data-label="Latency" data-align="end" data-numeric="true">9ms</td>
+                <td data-label="Events" data-align="end" data-numeric="true">2,048</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="pergyl-card pergyl-card-labeled pergyl-stack" aria-label="State matrix">
+        <header class="pergyl-card-header">
+          <h2 class="pergyl-card-title">State Matrix</h2>
+        </header>
+        <p class="pergyl-card-subtitle">Use this section to verify normal, focus, disabled, and invalid states.</p>
 
         <div class="state-matrix">
           <div class="state-cell pergyl-stack">

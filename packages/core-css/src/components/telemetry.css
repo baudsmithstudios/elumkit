@@ -1,0 +1,129 @@
+.pergyl-status {
+  align-items: center;
+  background: transparent;
+  border: var(--pergyl-border-width) solid var(--pergyl-color-border);
+  border-radius: var(--pergyl-radius-sm);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pergyl-space-2) var(--pergyl-space-4);
+  justify-content: space-between;
+  padding: var(--pergyl-space-2) var(--pergyl-space-3);
+}
+
+.pergyl-status-brand {
+  color: var(--pergyl-color-accent);
+  font-size: var(--pergyl-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: var(--pergyl-lh-tight);
+  text-transform: uppercase;
+}
+
+.pergyl-status-group {
+  align-items: center;
+  color: var(--pergyl-color-muted);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: var(--pergyl-text-sm);
+  gap: var(--pergyl-space-2);
+}
+
+.pergyl-status-item {
+  align-items: baseline;
+  display: inline-flex;
+  gap: var(--pergyl-space-1);
+  white-space: nowrap;
+}
+
+.pergyl-status-key {
+  color: var(--pergyl-color-muted);
+}
+
+.pergyl-status-value {
+  color: var(--pergyl-color-fg);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.pergyl-metrics {
+  display: grid;
+  gap: var(--pergyl-space-2);
+}
+
+.pergyl-metric {
+  align-items: center;
+  display: grid;
+  gap: var(--pergyl-space-2);
+  grid-template-columns: minmax(7rem, auto) 1fr auto;
+}
+
+.pergyl-metric-label {
+  color: var(--pergyl-color-muted);
+  font-size: var(--pergyl-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pergyl-metric-value {
+  color: var(--pergyl-color-fg);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  justify-self: end;
+}
+
+.pergyl-metric-unit {
+  color: var(--pergyl-color-muted);
+  font-size: var(--pergyl-text-xs);
+}
+
+.pergyl-meter {
+  display: grid;
+  gap: var(--pergyl-space-1);
+}
+
+.pergyl-meter-header {
+  align-items: baseline;
+  display: flex;
+  gap: var(--pergyl-space-2);
+  justify-content: space-between;
+}
+
+.pergyl-meter-label {
+  color: var(--pergyl-color-muted);
+  font-size: var(--pergyl-text-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pergyl-meter-value {
+  color: var(--pergyl-color-fg);
+  font-size: var(--pergyl-text-sm);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.pergyl-meter-track {
+  background: transparent;
+  border: var(--pergyl-border-width) solid var(--pergyl-color-border);
+  border-radius: var(--pergyl-radius-sm);
+  height: 0.75rem;
+  overflow: hidden;
+}
+
+.pergyl-meter-fill {
+  background: var(--pergyl-color-accent);
+  display: block;
+  height: 100%;
+}
+
+.pergyl-meter-fill[data-tone="success"] {
+  background: var(--pergyl-color-success);
+}
+
+.pergyl-meter-fill[data-tone="warn"] {
+  background: var(--pergyl-color-warn);
+}
+
+.pergyl-meter-fill[data-tone="error"] {
+  background: var(--pergyl-color-error);
+}

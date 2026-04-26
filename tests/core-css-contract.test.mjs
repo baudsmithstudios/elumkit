@@ -4,6 +4,11 @@ import { test } from "node:test";
 
 const TOKENS_CSS = readFileSync("packages/core-css/src/tokens.css", "utf8");
 const BASE_CSS = readFileSync("packages/core-css/src/base.css", "utf8");
+const CARD_CSS = readFileSync("packages/core-css/src/components/card.css", "utf8");
+const FORM_CSS = readFileSync("packages/core-css/src/components/form.css", "utf8");
+const BUTTON_CSS = readFileSync("packages/core-css/src/components/button.css", "utf8");
+const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css", "utf8");
+const DATA_CSS = readFileSync("packages/core-css/src/components/data.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 
 test("index.css imports the component bundles", () => {
@@ -11,6 +16,8 @@ test("index.css imports the component bundles", () => {
   assert.match(INDEX_CSS, /@import "\.\/components\/form\.css";/);
   assert.match(INDEX_CSS, /@import "\.\/components\/card\.css";/);
   assert.match(INDEX_CSS, /@import "\.\/components\/feedback\.css";/);
+  assert.match(INDEX_CSS, /@import "\.\/components\/telemetry\.css";/);
+  assert.match(INDEX_CSS, /@import "\.\/components\/data\.css";/);
 });
 
 test("tokens include required semantic color and motion variables", () => {
@@ -36,4 +43,31 @@ test("base styles respect reduced-motion preferences", () => {
   assert.match(BASE_CSS, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(BASE_CSS, /animation-duration/);
   assert.match(BASE_CSS, /transition-duration/);
+});
+
+test("default panels and form controls inherit page backgrounds", () => {
+  assert.match(CARD_CSS, /\.pergyl-card\s*{[^}]*background:\s*transparent;/s);
+  assert.match(FORM_CSS, /\.pergyl-input,[^}]*background:\s*transparent;/s);
+});
+
+test("buttons and alerts keep explicit surface backgrounds", () => {
+  assert.match(BUTTON_CSS, /\.pergyl-button\s*{[^}]*background:\s*var\(--pergyl-color-surface\);/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-alert\s*{[^}]*background:\s*var\(--pergyl-color-surface\);/s);
+});
+
+test("radius tokens use tight corners", () => {
+  assert.match(TOKENS_CSS, /--pergyl-radius-sm:\s*0\.0625rem;/);
+  assert.match(TOKENS_CSS, /--pergyl-radius-md:\s*0\.1875rem;/);
+});
+
+test("border token gives elements a stronger outline", () => {
+  assert.match(TOKENS_CSS, /--pergyl-border-width:\s*2px;/);
+});
+
+test("card and data components expose explicit state hooks", () => {
+  assert.match(CARD_CSS, /\.pergyl-card-labeled/);
+  assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\]/);
+  assert.doesNotMatch(CARD_CSS, /:has\(/);
+  assert.match(DATA_CSS, /\.pergyl-row\[data-selected="true"\]/);
+  assert.doesNotMatch(DATA_CSS, /\.pergyl-row\[aria-selected="true"\]/);
 });

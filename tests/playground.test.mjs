@@ -23,11 +23,39 @@ test("playground includes core MVP component previews", () => {
     "pergyl-select",
     "pergyl-alert",
     "pergyl-badge",
+    "pergyl-status",
+    "pergyl-metrics",
+    "pergyl-meter",
+    "pergyl-list",
+    "pergyl-table",
   ];
 
   for (const className of requiredClasses) {
     assert.match(html, new RegExp(className));
   }
+});
+
+test("playground includes telemetry primitives", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /class="pergyl-status"/);
+  assert.match(html, /class="pergyl-metric"/);
+  assert.match(html, /class="pergyl-meter"[^>]*role="meter"/);
+  assert.match(html, /aria-valuenow="64"/);
+});
+
+test("playground includes data list and table primitives", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /class="pergyl-list"/);
+  assert.match(html, /class="pergyl-row"[^>]*data-selected="true"/);
+  assert.match(html, /class="pergyl-table-wrap"/);
+  assert.match(html, /class="pergyl-table"/);
+  assert.match(html, /data-label="Status"/);
+});
+
+test("playground status avoids terminal help prompts", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.doesNotMatch(html, /<span class="pergyl-status-key">help<\/span>/);
+  assert.doesNotMatch(html, /<span class="pergyl-status-value">\?<\/span>/);
 });
 
 test("playground includes state matrix samples", () => {

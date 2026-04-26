@@ -1,9 +1,9 @@
 <section class="pergyl-stack" aria-label="Project Pergyl snippets">
-  <article class="pergyl-card pergyl-stack">
-    <header>
+  <article class="pergyl-card pergyl-card-labeled pergyl-stack">
+    <header class="pergyl-card-header">
       <h2 class="pergyl-card-title">Card Title</h2>
-      <p class="pergyl-card-subtitle">Dense, readable surface content.</p>
     </header>
+    <p class="pergyl-card-subtitle">Dense, readable surface content.</p>
     <div>
       <span class="pergyl-badge" data-tone="accent">active</span>
     </div>
@@ -52,4 +52,82 @@
   <aside class="pergyl-alert" data-tone="warn" role="status">
     Disk usage crossed the configured warning threshold.
   </aside>
+
+  <nav class="pergyl-status" aria-label="System status">
+    <strong class="pergyl-status-brand">Pergylkit</strong>
+    <span class="pergyl-status-group">
+      <span class="pergyl-status-item">
+        <span class="pergyl-status-key">theme</span>
+        <span class="pergyl-status-value">dark</span>
+      </span>
+      <span class="pergyl-status-item">
+        <span class="pergyl-status-key">state</span>
+        <span class="pergyl-status-value">ready</span>
+      </span>
+    </span>
+  </nav>
+
+  <div class="pergyl-metrics" aria-label="Runtime metrics">
+    <div class="pergyl-metric">
+      <span class="pergyl-metric-label">Load</span>
+      <span class="pergyl-metric-value">0.42</span>
+      <span class="pergyl-metric-unit">avg</span>
+    </div>
+    <div class="pergyl-metric">
+      <span class="pergyl-metric-label">Memory</span>
+      <span class="pergyl-metric-value">64</span>
+      <span class="pergyl-metric-unit">%</span>
+    </div>
+  </div>
+
+  <div class="pergyl-meter" role="meter" aria-label="Memory usage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+    <div class="pergyl-meter-header">
+      <span class="pergyl-meter-label">Memory</span>
+      <span class="pergyl-meter-value">64%</span>
+    </div>
+    <div class="pergyl-meter-track">
+      <span class="pergyl-meter-fill" style="width: 64%"></span>
+    </div>
+  </div>
+
+  <div class="pergyl-list" role="list" aria-label="Service rows">
+    <a class="pergyl-row" href="#" role="listitem" data-selected="true">
+      <span class="pergyl-row-main">
+        <span class="pergyl-row-title">api-gateway</span>
+        <span class="pergyl-row-meta">edge cluster · healthy</span>
+      </span>
+      <span class="pergyl-row-value">99.9%</span>
+    </a>
+    <a class="pergyl-row" href="#" role="listitem">
+      <span class="pergyl-row-main">
+        <span class="pergyl-row-title">worker-queue</span>
+        <span class="pergyl-row-meta">background jobs · delayed</span>
+      </span>
+      <span class="pergyl-row-value">42ms</span>
+    </a>
+  </div>
+
+  <div class="pergyl-table-wrap">
+    <table class="pergyl-table">
+      <thead>
+        <tr>
+          <th scope="col">Service</th>
+          <th scope="col">Status</th>
+          <th scope="col" data-align="end">Latency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Service">api-gateway</td>
+          <td data-label="Status"><span class="pergyl-badge" data-tone="accent">healthy</span></td>
+          <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
+        </tr>
+        <tr>
+          <td data-label="Service">worker-queue</td>
+          <td data-label="Status"><span class="pergyl-badge">delayed</span></td>
+          <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>

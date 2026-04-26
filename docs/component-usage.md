@@ -25,9 +25,13 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Card
 
-- Use `<article class="pergyl-card">`
+- Use `<article class="pergyl-card">` for a plain card
+- Use `<article class="pergyl-card pergyl-card-labeled">` when the title should sit in the card border
+- Use `<header class="pergyl-card-header">` for the card title region
 - Title class: `.pergyl-card-title`
 - Subtitle class: `.pergyl-card-subtitle`
+- Subtitle defaults to card body flow, below the border label
+- Use `<header class="pergyl-card-header" data-inline="true">` only for short subtitles that should sit beside the title
 
 ## Alert
 
@@ -39,3 +43,37 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - Base: `.pergyl-badge`
 - Accent tone: `data-tone="accent"`
+
+## Status Bar
+
+- Base: `.pergyl-status`
+- Use `.pergyl-status-brand` for the primary label
+- Group compact key/value items with `.pergyl-status-group`
+- Keep status bar copy short enough to wrap cleanly on narrow screens
+
+## Metrics
+
+- Base list: `.pergyl-metrics`
+- Row: `.pergyl-metric`
+- Use `.pergyl-metric-label`, `.pergyl-metric-value`, and `.pergyl-metric-unit` for aligned telemetry
+
+## Meter
+
+- Base: `.pergyl-meter`
+- Use `role="meter"` with `aria-valuemin`, `aria-valuemax`, and `aria-valuenow`
+- Use `.pergyl-meter-track` and `.pergyl-meter-fill` for the visual bar
+- Fill tones: `data-tone="success" | "warn" | "error"`
+
+## Data List
+
+- Base: `.pergyl-list`
+- Row: `.pergyl-row`
+- Use `.pergyl-row-title`, `.pergyl-row-meta`, and `.pergyl-row-value` for compact aligned content
+- Use `data-selected="true"` for visual selection state
+
+## Data Table
+
+- Wrapper: `.pergyl-table-wrap`
+- Table: `.pergyl-table`
+- Use `data-label` on each cell so rows remain readable on narrow screens
+- Use `data-numeric="true"` and `data-align="end"` for tabular numeric columns

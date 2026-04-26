@@ -27,10 +27,10 @@
   --pergyl-space-3: 0.75rem;
   --pergyl-space-4: 1rem;
 
-  --pergyl-radius-sm: 0.125rem;
-  --pergyl-radius-md: 0.25rem;
+  --pergyl-radius-sm: 0.0625rem;
+  --pergyl-radius-md: 0.1875rem;
 
-  --pergyl-border-width: 1px;
+  --pergyl-border-width: 2px;
   --pergyl-motion-fast: 120ms;
 }
 

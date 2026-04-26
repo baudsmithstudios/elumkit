@@ -59,6 +59,11 @@ Open `examples/playground.html` in a browser for local iteration.
 - Card
 - Alert
 - Badge
+- Status Bar
+- Metrics
+- Meter
+- Data List
+- Data Table
 
 ## Documentation
 

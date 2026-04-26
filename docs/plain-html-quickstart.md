@@ -26,8 +26,10 @@ Start from:
 Example:
 
 ```html
-<article class="pergyl-card pergyl-stack">
-  <h2 class="pergyl-card-title">System</h2>
+<article class="pergyl-card pergyl-card-labeled pergyl-stack">
+  <header class="pergyl-card-header">
+    <h2 class="pergyl-card-title">System</h2>
+  </header>
   <p class="pergyl-card-subtitle">Current status</p>
   <button class="pergyl-button" type="button">Run</button>
 </article>
