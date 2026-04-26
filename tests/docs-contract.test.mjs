@@ -29,3 +29,9 @@ test("component docs cover telemetry primitives", () => {
   assert.match(componentUsage, /## Metrics/);
   assert.match(componentUsage, /## Meter/);
 });
+
+test("component docs describe optional inline card subtitles", () => {
+  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /Subtitle defaults to card body flow/);
+  assert.match(componentUsage, /data-inline="true"/);
+});

@@ -7,46 +7,51 @@
 }
 
 .pergyl-card:has(> header:first-child > .pergyl-card-title:first-child) {
-  border-top: 0;
+  padding-top: calc(var(--pergyl-space-4) * 0.5);
 }
 
 .pergyl-card:has(> header:first-child > .pergyl-card-title:first-child) > header:first-child {
-  align-items: center;
-  display: flex;
-  gap: var(--pergyl-space-2);
-  margin: calc(var(--pergyl-space-4) * -1) calc(var(--pergyl-space-4) * -1) var(--pergyl-space-2);
+  margin: calc((var(--pergyl-space-4) * -0.5) - var(--pergyl-border-width)) 0 var(--pergyl-space-2);
   transform: translateY(-50%);
 }
 
-.pergyl-card:has(> header:first-child > .pergyl-card-title:first-child) > header:first-child::before,
-.pergyl-card:has(> header:first-child > .pergyl-card-title:first-child) > header:first-child::after {
-  border-top: var(--pergyl-border-width) solid var(--pergyl-color-border);
-  content: "";
-}
-
-.pergyl-card:has(> header:first-child > .pergyl-card-title:first-child) > header:first-child::before {
-  flex-shrink: 0;
-  width: var(--pergyl-space-3);
-}
-
-.pergyl-card:has(> header:first-child > .pergyl-card-title:first-child) > header:first-child::after {
-  flex: 1;
-}
-
 .pergyl-card-title {
+  align-items: center;
   color: var(--pergyl-color-accent);
+  display: flex;
   font-size: var(--pergyl-text-md);
   font-weight: 700;
+  gap: var(--pergyl-space-2);
   letter-spacing: 0.08em;
   line-height: var(--pergyl-lh-tight);
   margin: 0;
   text-transform: uppercase;
 }
 
+.pergyl-card-title::after {
+  border-top: var(--pergyl-border-width) solid var(--pergyl-color-border);
+  content: "";
+  flex: 1;
+}
+
 .pergyl-card-subtitle {
   color: var(--pergyl-color-muted);
   font-size: var(--pergyl-text-xs);
   letter-spacing: 0.06em;
-  margin: 0;
+  margin: var(--pergyl-space-1) 0 0;
   text-transform: uppercase;
+}
+
+.pergyl-card-header[data-inline="true"] {
+  align-items: baseline;
+  display: flex;
+  gap: var(--pergyl-space-2);
+}
+
+.pergyl-card-header[data-inline="true"] > .pergyl-card-title {
+  flex: 1;
+}
+
+.pergyl-card-header[data-inline="true"] > .pergyl-card-subtitle {
+  margin: 0;
 }

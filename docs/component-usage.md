@@ -28,6 +28,8 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Use `<article class="pergyl-card">`
 - Title class: `.pergyl-card-title`
 - Subtitle class: `.pergyl-card-subtitle`
+- Subtitle defaults to card body flow, below the border label
+- Use `<header class="pergyl-card-header" data-inline="true">` only for short subtitles that should sit beside the title
 
 ## Alert
 

@@ -48,6 +48,12 @@ test("playground includes telemetry primitives", () => {
   assert.match(html, /aria-valuenow="64"/);
 });
 
+test("playground keeps card subtitles inside cards by default", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /<header>\s*<h2 class="pergyl-card-title">Telemetry<\/h2>\s*<\/header>\s*<p class="pergyl-card-subtitle">Aligned values and compact meter states\.<\/p>/);
+  assert.doesNotMatch(html, /class="pergyl-card-header" data-inline="true"/);
+});
+
 test("playground includes state matrix samples", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.match(html, /aria-label="State matrix"/);
