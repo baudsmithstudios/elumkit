@@ -66,10 +66,10 @@ test("border token gives elements a stronger outline", () => {
 test("card headings use a border label pattern", () => {
   assert.doesNotMatch(CARD_CSS, /border-top:\s*0;/);
   assert.match(CARD_CSS, /\.pergyl-card:has\(>\s*header:first-child\s*>\s*\.pergyl-card-title:first-child\)\s*{[^}]*padding-top:/s);
-  assert.match(CARD_CSS, /\.pergyl-card-title::after\s*{[^}]*border-top:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-border\);/s);
+  assert.doesNotMatch(CARD_CSS, /\.pergyl-card-title::after/);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*color:\s*var\(--pergyl-color-accent\);/s);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*background:\s*var\(--pergyl-card-label-bg,\s*var\(--pergyl-color-bg\)\);/s);
-  assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*display:\s*flex;/s);
+  assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*display:\s*inline-flex;/s);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*letter-spacing:\s*0\.08em;/s);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*padding:\s*0 var\(--pergyl-space-2\);/s);
   assert.match(CARD_CSS, /\.pergyl-card-title\s*{[^}]*text-transform:\s*uppercase;/s);

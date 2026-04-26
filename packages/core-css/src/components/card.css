@@ -19,21 +19,14 @@
   align-items: center;
   background: var(--pergyl-card-label-bg, var(--pergyl-color-bg));
   color: var(--pergyl-color-accent);
-  display: flex;
+  display: inline-flex;
   font-size: var(--pergyl-text-md);
   font-weight: 700;
-  gap: var(--pergyl-space-2);
   letter-spacing: 0.08em;
   line-height: var(--pergyl-lh-tight);
   margin: 0;
   padding: 0 var(--pergyl-space-2);
   text-transform: uppercase;
-}
-
-.pergyl-card-title::after {
-  border-top: var(--pergyl-border-width) solid var(--pergyl-color-border);
-  content: "";
-  flex: 1;
 }
 
 .pergyl-card-subtitle {
