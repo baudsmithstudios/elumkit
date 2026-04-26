@@ -21,13 +21,9 @@
 
 .pergyl-row:hover,
 .pergyl-row:focus-visible,
-.pergyl-row[aria-selected="true"] {
-  border-color: var(--pergyl-color-accent);
-  color: var(--pergyl-color-fg);
-}
-
-.pergyl-row[aria-selected="true"] {
+.pergyl-row[data-selected="true"] {
   box-shadow: inset 3px 0 0 var(--pergyl-color-accent);
+  color: var(--pergyl-color-fg);
 }
 
 .pergyl-row-main {

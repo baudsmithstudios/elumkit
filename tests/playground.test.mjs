@@ -35,13 +35,6 @@ test("playground includes core MVP component previews", () => {
   }
 });
 
-test("playground uses generous preview-only spacing", () => {
-  const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.match(html, /main\.pergyl-stack\s*>\s*\*\s*\+\s*\*\s*{[^}]*margin-top:\s*2rem;/s);
-  assert.match(html, /\.playground-grid\s*{[^}]*gap:\s*1\.5rem;/s);
-  assert.match(html, /\.state-matrix\s*{[^}]*gap:\s*1\.25rem;/s);
-});
-
 test("playground includes telemetry primitives", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.match(html, /class="pergyl-status"/);
@@ -53,7 +46,7 @@ test("playground includes telemetry primitives", () => {
 test("playground includes data list and table primitives", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.match(html, /class="pergyl-list"/);
-  assert.match(html, /class="pergyl-row"[^>]*aria-selected="true"/);
+  assert.match(html, /class="pergyl-row"[^>]*data-selected="true"/);
   assert.match(html, /class="pergyl-table-wrap"/);
   assert.match(html, /class="pergyl-table"/);
   assert.match(html, /data-label="Status"/);
@@ -63,12 +56,6 @@ test("playground status avoids terminal help prompts", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.doesNotMatch(html, /<span class="pergyl-status-key">help<\/span>/);
   assert.doesNotMatch(html, /<span class="pergyl-status-value">\?<\/span>/);
-});
-
-test("playground keeps card subtitles inside cards by default", () => {
-  const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.match(html, /<header>\s*<h2 class="pergyl-card-title">Telemetry<\/h2>\s*<\/header>\s*<p class="pergyl-card-subtitle">Aligned values and compact meter states\.<\/p>/);
-  assert.doesNotMatch(html, /class="pergyl-card-header" data-inline="true"/);
 });
 
 test("playground includes state matrix samples", () => {

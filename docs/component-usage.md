@@ -26,6 +26,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Card
 
 - Use `<article class="pergyl-card">`
+- Use `<header class="pergyl-card-header">` when the title should sit in the card border
 - Title class: `.pergyl-card-title`
 - Subtitle class: `.pergyl-card-subtitle`
 - Subtitle defaults to card body flow, below the border label
@@ -67,7 +68,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Base: `.pergyl-list`
 - Row: `.pergyl-row`
 - Use `.pergyl-row-title`, `.pergyl-row-meta`, and `.pergyl-row-value` for compact aligned content
-- Use `aria-selected="true"` only when a row is selected in the current UI state
+- Use `data-selected="true"` for visual selection state
 
 ## Data Table
 
