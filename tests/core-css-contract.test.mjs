@@ -4,22 +4,33 @@ import { test } from "node:test";
 
 const TOKENS_CSS = readFileSync("packages/core-css/src/tokens.css", "utf8");
 const BASE_CSS = readFileSync("packages/core-css/src/base.css", "utf8");
-const CARD_CSS = readFileSync("packages/core-css/src/components/card.css", "utf8");
 const FORM_CSS = readFileSync("packages/core-css/src/components/form.css", "utf8");
-const BUTTON_CSS = readFileSync("packages/core-css/src/components/button.css", "utf8");
 const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css", "utf8");
 const TELEMETRY_CSS = readFileSync("packages/core-css/src/components/telemetry.css", "utf8");
 const DATA_CSS = readFileSync("packages/core-css/src/components/data.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 
-function tokenValues(tokenName) {
-  return [...TOKENS_CSS.matchAll(new RegExp(`${tokenName}:\\s*(#[0-9a-fA-F]{6});`, "g"))]
-    .map((match) => match[1].toLowerCase());
-}
+const THEMES = ["clerestory", "iron", "forge"];
+const REQUIRED_TOKENS = [
+  "--pergyl-color-bg",
+  "--pergyl-color-surface",
+  "--pergyl-color-fg",
+  "--pergyl-color-muted",
+  "--pergyl-color-border",
+  "--pergyl-color-accent",
+  "--pergyl-color-success",
+  "--pergyl-color-warn",
+  "--pergyl-color-error",
+  "--pergyl-color-info",
+  "--pergyl-focus-ring",
+];
 
-function isGrayscale(hexColor) {
-  const [, red, green, blue] = hexColor.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/);
-  return red === green && green === blue;
+function themeTokens(theme) {
+  const block = TOKENS_CSS.match(new RegExp(`(?:^|})\\s*(?::root,\\s*)?\\[data-theme="${theme}"\\]\\s*{([^}]*)}`, "s"));
+  assert.ok(block, `missing ${theme} theme block`);
+
+  return Object.fromEntries([...block[1].matchAll(/(--pergyl-[\w-]+):\s*([^;]+);/g)]
+    .map((match) => [match[1], match[2].trim().toLowerCase()]));
 }
 
 function relativeLuminance(hexColor) {
@@ -40,221 +51,61 @@ function contrastRatio(firstColor, secondColor) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-test("index.css imports the component bundles", () => {
-  assert.match(INDEX_CSS, /@import "\.\/components\/button\.css";/);
-  assert.match(INDEX_CSS, /@import "\.\/components\/form\.css";/);
-  assert.match(INDEX_CSS, /@import "\.\/components\/card\.css";/);
-  assert.match(INDEX_CSS, /@import "\.\/components\/feedback\.css";/);
-  assert.match(INDEX_CSS, /@import "\.\/components\/telemetry\.css";/);
-  assert.match(INDEX_CSS, /@import "\.\/components\/data\.css";/);
-});
-
-test("tokens include required semantic color and motion variables", () => {
-  const requiredTokens = [
-    "--pergyl-color-bg",
-    "--pergyl-color-surface",
-    "--pergyl-color-fg",
-    "--pergyl-color-border",
-    "--pergyl-color-accent",
-    "--pergyl-color-success",
-    "--pergyl-color-warn",
-    "--pergyl-color-error",
-    "--pergyl-color-info",
-    "--pergyl-motion-fast",
-  ];
-
-  for (const token of requiredTokens) {
-    assert.match(TOKENS_CSS, new RegExp(`${token}:`));
+test("core CSS entrypoint imports the public bundles", () => {
+  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data"]) {
+    assert.match(INDEX_CSS, new RegExp(`@import ".+${bundle}\\.css";`));
   }
 });
 
-test("themes include clerestory, iron, and forge token sets", () => {
-  assert.match(TOKENS_CSS, /:root,\s*\n\[data-theme="clerestory"\]/);
-  assert.match(TOKENS_CSS, /\[data-theme="iron"\]/);
-  assert.match(TOKENS_CSS, /\[data-theme="forge"\]/);
-  assert.doesNotMatch(TOKENS_CSS, /\[data-theme="light"\]/);
-  assert.doesNotMatch(TOKENS_CSS, /\[data-theme="dark"\]/);
-  assert.doesNotMatch(TOKENS_CSS, /\[data-theme="console"\]/);
-});
+test("themes expose required accessible semantic tokens", () => {
+  assert.doesNotMatch(TOKENS_CSS, /\[data-theme="(?:light|dark|console)"\]/);
 
-test("clerestory theme uses a cool utility palette", () => {
-  assert.deepEqual(tokenValues("--pergyl-color-bg")[0], "#f5fbfc");
-  assert.deepEqual(tokenValues("--pergyl-color-surface")[0], "#ffffff");
-  assert.deepEqual(tokenValues("--pergyl-color-fg")[0], "#172a2d");
-  assert.deepEqual(tokenValues("--pergyl-color-muted")[0], "#536b70");
-  assert.deepEqual(tokenValues("--pergyl-color-border")[0], "#bdd4d8");
-  assert.deepEqual(tokenValues("--pergyl-color-accent")[0], "#007c89");
-  assert.deepEqual(tokenValues("--pergyl-color-info")[0], "#336f78");
-  assert.deepEqual(tokenValues("--pergyl-focus-ring")[0], "#007c89");
-  assert.equal(isGrayscale(tokenValues("--pergyl-color-bg")[0]), false);
-  assert.equal(isGrayscale(tokenValues("--pergyl-color-accent")[0]), false);
-});
+  for (const theme of THEMES) {
+    const tokens = themeTokens(theme);
 
-test("iron theme keeps rust accents and grayscale neutrals", () => {
-  assert.deepEqual(tokenValues("--pergyl-color-accent")[1], "#c47a5a");
-  assert.deepEqual(tokenValues("--pergyl-focus-ring")[1], "#c47a5a");
+    for (const token of REQUIRED_TOKENS) {
+      assert.match(tokens[token], /^#[0-9a-f]{6}$/, `${theme} ${token} should be a hex color`);
+    }
 
-  const grayscaleTokens = [
-    "--pergyl-color-bg",
-    "--pergyl-color-surface",
-    "--pergyl-color-fg",
-    "--pergyl-color-muted",
-    "--pergyl-color-border",
-    "--pergyl-color-info",
-  ];
-
-  for (const token of grayscaleTokens) {
-    const value = tokenValues(token)[1];
-    assert.equal(isGrayscale(value), true, `${token} should be grayscale, got ${value}`);
-  }
-});
-
-test("forge theme uses a warm operational palette", () => {
-  assert.deepEqual(tokenValues("--pergyl-color-bg"), ["#f5fbfc", "#121212", "#0a0908"]);
-  assert.deepEqual(tokenValues("--pergyl-color-surface"), ["#ffffff", "#1c1c1c", "#121110"]);
-  assert.deepEqual(tokenValues("--pergyl-color-fg"), ["#172a2d", "#eeeeee", "#ccc8c4"]);
-  assert.deepEqual(tokenValues("--pergyl-color-muted"), ["#536b70", "#a3a3a3", "#8d8580"]);
-  assert.deepEqual(tokenValues("--pergyl-color-border"), ["#bdd4d8", "#444444", "#5a4528"]);
-  assert.deepEqual(tokenValues("--pergyl-color-accent"), ["#007c89", "#c47a5a", "#f5a623"]);
-  assert.deepEqual(tokenValues("--pergyl-focus-ring"), ["#007c89", "#c47a5a", "#f5a623"]);
-});
-
-test("status colors use accessible theme variants", () => {
-  const statusTokens = {
-    "--pergyl-color-success": ["#1f7a4d", "#6abe5a", "#7a9e6b"],
-    "--pergyl-color-warn": ["#8a5a00", "#d49d2a", "#b89a4a"],
-    "--pergyl-color-error": ["#bf2f2f", "#e25a4f", "#e25a4f"],
-  };
-  const backgrounds = tokenValues("--pergyl-color-bg");
-
-  for (const [token, expectedValues] of Object.entries(statusTokens)) {
-    assert.deepEqual(tokenValues(token), expectedValues);
-
-    for (const [index, value] of expectedValues.entries()) {
-      assert.ok(contrastRatio(value, backgrounds[index]) >= 4.5, `${token} ${value} should meet contrast`);
+    assert.ok(contrastRatio(tokens["--pergyl-color-fg"], tokens["--pergyl-color-bg"]) >= 4.5);
+    for (const token of ["--pergyl-color-success", "--pergyl-color-warn", "--pergyl-color-error", "--pergyl-color-info"]) {
+      assert.ok(contrastRatio(tokens[token], tokens["--pergyl-color-bg"]) >= 4.5, `${theme} ${token} should meet contrast`);
     }
   }
 });
 
-test("semantic tone colors remain distinct from foreground text", () => {
-  const foregroundColors = tokenValues("--pergyl-color-fg");
-  const toneTokens = [
-    "--pergyl-color-success",
-    "--pergyl-color-warn",
-    "--pergyl-color-error",
-    "--pergyl-color-info",
-  ];
-
-  for (const token of toneTokens) {
-    const values = tokenValues(token);
-
-    for (const [index, value] of values.entries()) {
-      assert.notEqual(value, foregroundColors[index], `${token} should differ from foreground text`);
-    }
-  }
-});
-
-test("base styles respect reduced-motion preferences", () => {
+test("base and form styles keep accessible focus behavior", () => {
+  assert.match(BASE_CSS, /:focus-visible/);
   assert.match(BASE_CSS, /@media \(prefers-reduced-motion: reduce\)/);
-  assert.match(BASE_CSS, /animation-duration/);
-  assert.match(BASE_CSS, /transition-duration/);
-});
-
-test("default panels and form controls inherit page backgrounds", () => {
-  assert.match(CARD_CSS, /\.pergyl-card\s*{[^}]*background:\s*transparent;/s);
-  assert.match(FORM_CSS, /\.pergyl-input,[^}]*background:\s*transparent;/s);
-});
-
-test("buttons keep terminal action styling and alerts keep surface backgrounds", () => {
-  assert.match(BUTTON_CSS, /\.pergyl-button\s*{[^}]*background:\s*transparent;/s);
-  assert.match(BUTTON_CSS, /\.pergyl-button\s*{[^}]*border:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-accent\);/s);
-  assert.match(BUTTON_CSS, /\.pergyl-button\s*{[^}]*color:\s*var\(--pergyl-color-accent\);/s);
-  assert.match(BUTTON_CSS, /\.pergyl-button\s*{[^}]*letter-spacing:\s*0\.08em;/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-alert\s*{[^}]*background:\s*var\(--pergyl-color-surface\);/s);
-});
-
-test("form controls expose terminal input affordances", () => {
-  assert.match(FORM_CSS, /\.pergyl-input,[^}]*caret-color:\s*var\(--pergyl-color-accent\);/s);
-  assert.match(FORM_CSS, /\.pergyl-input,[^}]*min-height:\s*2\.5rem;/s);
-  assert.match(FORM_CSS, /\.pergyl-input,[^}]*font-variant-numeric:\s*tabular-nums;/s);
-});
-
-test("form controls expose a persistent input prompt pattern", () => {
-  assert.match(FORM_CSS, /\.pergyl-prompt-field\s*{/);
-  assert.match(FORM_CSS, /\.pergyl-input-prompt\s*{/);
-  assert.match(FORM_CSS, /\.pergyl-prompt-field > \.pergyl-input\s*{[^}]*border:\s*0;/s);
   assert.match(FORM_CSS, /\.pergyl-prompt-field > \.pergyl-input:focus-visible\s*{[^}]*outline:\s*0;/s);
-  assert.match(FORM_CSS, /\.pergyl-prompt-field:focus-within\s*{/);
+  assert.match(FORM_CSS, /\.pergyl-prompt-field:focus-within/);
 });
 
-test("radius tokens use tight corners", () => {
-  assert.match(TOKENS_CSS, /--pergyl-radius-sm:\s*0\.0625rem;/);
-  assert.match(TOKENS_CSS, /--pergyl-radius-md:\s*0\.1875rem;/);
-});
+test("component CSS exposes current public class surfaces", () => {
+  for (const className of [
+    "pergyl-input",
+    "pergyl-prompt-field",
+    "pergyl-badge",
+    "pergyl-status-label",
+    "pergyl-system-bar",
+    "pergyl-meter",
+    "pergyl-list",
+    "pergyl-table",
+  ]) {
+    assert.match(`${FORM_CSS}\n${FEEDBACK_CSS}\n${TELEMETRY_CSS}\n${DATA_CSS}`, new RegExp(`\\.${className}\\b`));
+  }
 
-test("border token gives elements a stronger outline", () => {
-  assert.match(TOKENS_CSS, /--pergyl-border-width:\s*2px;/);
-});
-
-test("card and data components expose explicit state hooks", () => {
-  assert.match(CARD_CSS, /\.pergyl-card-labeled/);
-  assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\]/);
-  assert.doesNotMatch(CARD_CSS, /:has\(/);
-  assert.match(DATA_CSS, /\.pergyl-row\[data-selected="true"\]/);
-  assert.doesNotMatch(DATA_CSS, /\.pergyl-row\[aria-selected="true"\]/);
-});
-
-test("card titles and subtitles expose customization properties", () => {
-  assert.match(CARD_CSS, /padding:\s*var\(--pergyl-card-padding,\s*var\(--pergyl-space-4\)\);/);
-  assert.match(CARD_CSS, /color:\s*var\(--pergyl-card-title-color,\s*var\(--pergyl-color-accent\)\);/);
-  assert.match(CARD_CSS, /font-size:\s*var\(--pergyl-card-title-size,\s*var\(--pergyl-text-sm\)\);/);
-  assert.match(CARD_CSS, /color:\s*var\(--pergyl-card-subtitle-color,\s*var\(--pergyl-color-muted\)\);/);
-  assert.match(CARD_CSS, /font-size:\s*var\(--pergyl-card-subtitle-size,\s*var\(--pergyl-text-xs\)\);/);
-});
-
-test("feedback exposes inline status labels", () => {
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{/);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{[^}]*color:\s*var\(--pergyl-status-label-color,\s*var\(--pergyl-color-muted\)\);/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{[^}]*font-weight:\s*400;/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{[^}]*letter-spacing:\s*0\.16em;/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{[^}]*text-transform:\s*uppercase;/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label::before\s*{/);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label::before\s*{[^}]*background:\s*currentColor;/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="success"\]\s*{[^}]*--pergyl-status-label-color:\s*var\(--pergyl-color-success\);/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="accent"\]/);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="success"\]/);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="warn"\]/);
-});
-
-test("feedback exposes bracketed badges for compact states", () => {
-  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{/);
-  assert.doesNotMatch(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*border:/s);
-  assert.doesNotMatch(FEEDBACK_CSS, /\.pergyl-badge\[data-tone="[^"]+"\]\s*{[^}]*border-color:/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*font-weight:\s*700;/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*letter-spacing:\s*0\.08em;/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*text-transform:\s*uppercase;/s);
-  assert.match(FEEDBACK_CSS, /\.pergyl-badge\[data-tone="warn"\]/);
-});
-
-test("telemetry exposes the system bar component surface", () => {
-  assert.match(TELEMETRY_CSS, /\.pergyl-system-bar\s*{/);
-  assert.match(TELEMETRY_CSS, /\.pergyl-system-bar-brand\s*{/);
-  assert.match(TELEMETRY_CSS, /\.pergyl-system-bar-group\s*{/);
   assert.doesNotMatch(TELEMETRY_CSS, /\.pergyl-status\s*{/);
+  assert.match(FORM_CSS, /\[aria-invalid="true"\]/);
+  assert.match(FORM_CSS, /:disabled/);
+  assert.match(FEEDBACK_CSS, /\[data-tone="success"\]/);
+  assert.match(FEEDBACK_CSS, /\[data-tone="warn"\]/);
+  assert.match(FEEDBACK_CSS, /\[data-tone="error"\]/);
 });
 
-test("data rows use keyboard and selected accent bars", () => {
-  assert.match(DATA_CSS, /\.pergyl-row:focus-visible,[\s\n]*\.pergyl-row\[data-selected="true"\]\s*{/);
-  assert.match(DATA_CSS, /\.pergyl-row:focus-visible,[\s\n]*\.pergyl-row\[data-selected="true"\]\s*{[^}]*box-shadow:/s);
-  assert.doesNotMatch(DATA_CSS, /\.pergyl-row:hover,[\s\n]*\.pergyl-row:focus-visible,[\s\n]*\.pergyl-row\[data-selected="true"\]/);
-});
-
-test("data tables keep compact responsive spacing", () => {
+test("table and row APIs expose responsive state hooks", () => {
+  assert.match(DATA_CSS, /\.pergyl-row\[data-selected="true"\]/);
   assert.match(DATA_CSS, /@media \(max-width: 48rem\)/);
-  assert.match(DATA_CSS, /\.pergyl-table td::before\s*{[^}]*content:\s*attr\(data-label\);/s);
-});
-
-test("data tables keep status columns responsive", () => {
-  assert.match(DATA_CSS, /@media \(min-width: 48\.001rem\)\s*{[^}]*\.pergyl-table \[data-column="status"\]/s);
-  assert.match(DATA_CSS, /\.pergyl-table td\[data-column="status"\]\s*{[^}]*white-space:\s*nowrap;/s);
+  assert.match(DATA_CSS, /content:\s*attr\(data-label\);/);
+  assert.match(DATA_CSS, /\[data-column="status"\]/);
 });

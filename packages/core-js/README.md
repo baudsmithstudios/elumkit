@@ -2,4 +2,4 @@
 
 Optional progressive-enhancement scripts for interactions that need behavior beyond native HTML.
 
-v0.1 keeps this minimal and framework-neutral.
+Pergyl ships no JavaScript behavior for components that native HTML already handles.
