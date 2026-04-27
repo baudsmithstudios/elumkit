@@ -183,6 +183,7 @@ test("form controls expose a persistent input prompt pattern", () => {
   assert.match(FORM_CSS, /\.pergyl-prompt-field\s*{/);
   assert.match(FORM_CSS, /\.pergyl-input-prompt\s*{/);
   assert.match(FORM_CSS, /\.pergyl-prompt-field > \.pergyl-input\s*{[^}]*border:\s*0;/s);
+  assert.match(FORM_CSS, /\.pergyl-prompt-field > \.pergyl-input:focus-visible\s*{[^}]*outline:\s*0;/s);
   assert.match(FORM_CSS, /\.pergyl-prompt-field:focus-within\s*{/);
 });
 

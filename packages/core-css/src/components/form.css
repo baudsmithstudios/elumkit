@@ -55,6 +55,10 @@
   padding: var(--pergyl-space-2) 0;
 }
 
+.pergyl-prompt-field > .pergyl-input:focus-visible {
+  outline: 0;
+}
+
 .pergyl-input::placeholder,
 .pergyl-textarea::placeholder {
   color: var(--pergyl-color-muted);
