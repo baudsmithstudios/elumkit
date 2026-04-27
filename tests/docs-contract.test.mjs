@@ -26,7 +26,7 @@ test("readme links to v0.1 usage docs", () => {
 test("component docs cover telemetry primitives", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
   assert.match(componentUsage, /## Badge/);
-  assert.match(componentUsage, /## Status Bar/);
+  assert.match(componentUsage, /## System Bar/);
   assert.match(componentUsage, /## Status Label/);
   assert.match(componentUsage, /## Metrics/);
   assert.match(componentUsage, /## Meter/);
@@ -36,8 +36,15 @@ test("component docs cover telemetry primitives", () => {
 
 test("component docs describe terminal status labels", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /same-color dot/);
   assert.match(componentUsage, /uppercase status text/);
   assert.match(componentUsage, /data-column="status"/);
+});
+
+test("component docs describe system bars", () => {
+  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /pergyl-system-bar/);
+  assert.doesNotMatch(componentUsage, /pergyl-status-brand/);
 });
 
 test("component docs describe persistent input prompts", () => {

@@ -1,4 +1,4 @@
-.pergyl-status {
+.pergyl-system-bar {
   align-items: center;
   background: transparent;
   border: var(--pergyl-border-width) solid var(--pergyl-color-border);
@@ -10,7 +10,7 @@
   padding: var(--pergyl-space-2) var(--pergyl-space-3);
 }
 
-.pergyl-status-brand {
+.pergyl-system-bar-brand {
   color: var(--pergyl-color-accent);
   font-size: var(--pergyl-text-sm);
   font-weight: 700;
@@ -19,7 +19,7 @@
   text-transform: uppercase;
 }
 
-.pergyl-status-group {
+.pergyl-system-bar-group {
   align-items: center;
   color: var(--pergyl-color-muted);
   display: flex;
@@ -28,18 +28,18 @@
   gap: var(--pergyl-space-2);
 }
 
-.pergyl-status-item {
+.pergyl-system-bar-item {
   align-items: baseline;
   display: inline-flex;
   gap: var(--pergyl-space-1);
   white-space: nowrap;
 }
 
-.pergyl-status-key {
+.pergyl-system-bar-key {
   color: var(--pergyl-color-muted);
 }
 
-.pergyl-status-value {
+.pergyl-system-bar-value {
   color: var(--pergyl-color-fg);
   font-variant-numeric: tabular-nums;
   font-weight: 600;

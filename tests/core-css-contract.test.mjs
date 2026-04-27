@@ -182,10 +182,13 @@ test("card titles and subtitles expose customization properties", () => {
 
 test("feedback exposes inline status labels", () => {
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{/);
-  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{[^}]*color:\s*var\(--pergyl-color-muted\);/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{[^}]*color:\s*var\(--pergyl-status-label-color,\s*var\(--pergyl-color-muted\)\);/s);
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{[^}]*font-weight:\s*400;/s);
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{[^}]*letter-spacing:\s*0\.16em;/s);
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\s*{[^}]*text-transform:\s*uppercase;/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-status-label::before\s*{/);
+  assert.match(FEEDBACK_CSS, /\.pergyl-status-label::before\s*{[^}]*background:\s*currentColor;/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="success"\]\s*{[^}]*--pergyl-status-label-color:\s*var\(--pergyl-color-success\);/s);
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="accent"\]/);
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="success"\]/);
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="warn"\]/);
@@ -201,10 +204,11 @@ test("feedback exposes bracketed badges for compact states", () => {
   assert.match(FEEDBACK_CSS, /\.pergyl-badge\[data-tone="warn"\]/);
 });
 
-test("telemetry keeps the existing status component surface", () => {
-  assert.match(TELEMETRY_CSS, /\.pergyl-status\s*{/);
-  assert.doesNotMatch(TELEMETRY_CSS, /\.pergyl-status-list\s*{/);
-  assert.doesNotMatch(TELEMETRY_CSS, /\.pergyl-status-dot\s*{/);
+test("telemetry exposes the system bar component surface", () => {
+  assert.match(TELEMETRY_CSS, /\.pergyl-system-bar\s*{/);
+  assert.match(TELEMETRY_CSS, /\.pergyl-system-bar-brand\s*{/);
+  assert.match(TELEMETRY_CSS, /\.pergyl-system-bar-group\s*{/);
+  assert.doesNotMatch(TELEMETRY_CSS, /\.pergyl-status\s*{/);
 });
 
 test("data rows use keyboard and selected accent bars", () => {

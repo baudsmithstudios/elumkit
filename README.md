@@ -57,7 +57,7 @@ Open `examples/playground.html` in a browser to see every component rendered tog
 
 ## v0.1 Component Scope
 
-Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, Status Bar, Status Label, Metrics, Meter, Data List, Data Table.
+Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, System Bar, Status Label, Metrics, Meter, Data List, Data Table.
 
 ## Documentation
 

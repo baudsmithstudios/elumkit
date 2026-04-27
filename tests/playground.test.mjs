@@ -24,7 +24,7 @@ test("playground includes core MVP component previews", () => {
     "pergyl-textarea",
     "pergyl-select",
     "pergyl-alert",
-    "pergyl-status",
+    "pergyl-system-bar",
     "pergyl-metrics",
     "pergyl-meter",
     "pergyl-list",
@@ -38,7 +38,8 @@ test("playground includes core MVP component previews", () => {
 
 test("playground includes telemetry primitives", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.match(html, /class="pergyl-status"/);
+  assert.match(html, /class="pergyl-system-bar"/);
+  assert.doesNotMatch(html, /class="pergyl-status"/);
   assert.match(html, /class="pergyl-metric"/);
   assert.match(html, /class="pergyl-meter"[^>]*role="meter"/);
   assert.match(html, /aria-valuenow="64"/);
@@ -93,10 +94,10 @@ test("playground updates theme status text when theme changes", () => {
 
 test("playground status avoids terminal help prompts", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.doesNotMatch(html, /<span class="pergyl-status-key">help<\/span>/);
-  assert.doesNotMatch(html, /<span class="pergyl-status-value">\?<\/span>/);
-  assert.match(html, /<span class="pergyl-status-value" id="theme-status">\[DARK\]<\/span>/);
-  assert.match(html, /<span class="pergyl-status-value">\[13\]<\/span>/);
+  assert.doesNotMatch(html, /<span class="pergyl-system-bar-key">help<\/span>/);
+  assert.doesNotMatch(html, /<span class="pergyl-system-bar-value">\?<\/span>/);
+  assert.match(html, /<span class="pergyl-system-bar-value" id="theme-status">\[DARK\]<\/span>/);
+  assert.match(html, /<span class="pergyl-system-bar-value">\[13\]<\/span>/);
 });
 
 test("playground includes state matrix samples", () => {
