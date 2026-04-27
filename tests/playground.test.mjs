@@ -18,6 +18,7 @@ test("playground includes core MVP component previews", () => {
   const requiredClasses = [
     "pergyl-card",
     "pergyl-button",
+    "pergyl-badge",
     "pergyl-input",
     "pergyl-textarea",
     "pergyl-select",
@@ -51,7 +52,7 @@ test("playground includes data list and table primitives", () => {
   assert.match(html, /class="pergyl-table"/);
   assert.match(html, /data-label="Status"/);
   assert.match(html, /data-column="status"/);
-  assert.match(html, /<td data-label="Status" data-column="status"><span class="pergyl-status-label"/);
+  assert.match(html, /<td data-label="Status" data-column="status"><span class="pergyl-badge"/);
   assert.match(html, /\[HEALTHY\]/);
   assert.match(html, /\[DELAYED\]/);
   assert.match(html, /\[WARM\]/);
@@ -59,7 +60,13 @@ test("playground includes data list and table primitives", () => {
 
 test("playground system status uses borderless status text", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.match(html, /System status <span class="pergyl-status-label"/);
+  assert.match(html, /System status <span class="pergyl-status-label" data-tone="success">ready<\/span>/);
+  assert.doesNotMatch(html, /System status <span class="pergyl-status-label"[^>]*>\[/);
+});
+
+test("playground includes bracketed badge states", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /<span class="pergyl-badge" data-tone="warn">\[WARNING\]<\/span>/);
 });
 
 test("playground updates theme status text when theme changes", () => {
@@ -74,7 +81,7 @@ test("playground status avoids terminal help prompts", () => {
   assert.doesNotMatch(html, /<span class="pergyl-status-key">help<\/span>/);
   assert.doesNotMatch(html, /<span class="pergyl-status-value">\?<\/span>/);
   assert.match(html, /<span class="pergyl-status-value" id="theme-status">\[DARK\]<\/span>/);
-  assert.match(html, /<span class="pergyl-status-value">\[12\]<\/span>/);
+  assert.match(html, /<span class="pergyl-status-value">\[13\]<\/span>/);
 });
 
 test("playground includes state matrix samples", () => {

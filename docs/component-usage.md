@@ -36,6 +36,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Tones:** `data-tone="success" | "warn" | "error"`
 - **Live region:** prefer `role="status"` and/or `aria-live="polite"` for status messaging
 
+## Badge
+
+- **Class:** `.pergyl-badge`
+- **Tones:** `data-tone="accent" | "success" | "warn" | "error"`
+- Use for compact bracketed status text such as `[WARNING]`.
+
 ## Status Label
 
 - **Class:** `.pergyl-status-label`

@@ -184,6 +184,17 @@ test("feedback exposes inline status labels", () => {
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="warn"\]/);
 });
 
+test("feedback exposes bracketed badges for compact states", () => {
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{/);
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*border:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-border\);/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*border-radius:\s*var\(--pergyl-radius-sm\);/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*font-weight:\s*700;/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*letter-spacing:\s*0\.08em;/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*text-transform:\s*uppercase;/s);
+  assert.match(FEEDBACK_CSS, /\.pergyl-badge\[data-tone="warn"\]/);
+  assert.doesNotMatch(FEEDBACK_CSS, /\.pergyl-badge\s*{[^}]*border-radius:\s*999px;/s);
+});
+
 test("telemetry keeps the existing status component surface", () => {
   assert.match(TELEMETRY_CSS, /\.pergyl-status\s*{/);
   assert.doesNotMatch(TELEMETRY_CSS, /\.pergyl-status-list\s*{/);

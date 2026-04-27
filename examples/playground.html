@@ -55,7 +55,7 @@
           </span>
           <span class="pergyl-status-item">
             <span class="pergyl-status-key">components</span>
-            <span class="pergyl-status-value">[12]</span>
+            <span class="pergyl-status-value">[13]</span>
           </span>
         </span>
       </nav>
@@ -67,7 +67,10 @@
           </header>
           <p class="pergyl-card-subtitle">Surface container for grouped content.</p>
           <p>
-            System status <span class="pergyl-status-label" data-tone="success">[HEALTHY]</span>
+            System status <span class="pergyl-status-label" data-tone="success">ready</span>
+          </p>
+          <p>
+            Badge state <span class="pergyl-badge" data-tone="warn">[WARNING]</span>
           </p>
           <div>
             <button class="pergyl-button" type="button">Secondary</button>
@@ -206,19 +209,19 @@
             <tbody>
               <tr>
                 <td data-label="Service">api-gateway</td>
-                <td data-label="Status" data-column="status"><span class="pergyl-status-label" data-tone="success">[HEALTHY]</span></td>
+                <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="success">[HEALTHY]</span></td>
                 <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
                 <td data-label="Events" data-align="end" data-numeric="true">1,284</td>
               </tr>
               <tr>
                 <td data-label="Service">worker-queue</td>
-                <td data-label="Status" data-column="status"><span class="pergyl-status-label" data-tone="warn">[DELAYED]</span></td>
+                <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="warn">[DELAYED]</span></td>
                 <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
                 <td data-label="Events" data-align="end" data-numeric="true">876</td>
               </tr>
               <tr>
                 <td data-label="Service">cache-node</td>
-                <td data-label="Status" data-column="status"><span class="pergyl-status-label" data-tone="accent">[WARM]</span></td>
+                <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="accent">[WARM]</span></td>
                 <td data-label="Latency" data-align="end" data-numeric="true">9ms</td>
                 <td data-label="Events" data-align="end" data-numeric="true">2,048</td>
               </tr>

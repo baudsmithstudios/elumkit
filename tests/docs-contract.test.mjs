@@ -25,6 +25,7 @@ test("readme links to v0.1 usage docs", () => {
 
 test("component docs cover telemetry primitives", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /## Badge/);
   assert.match(componentUsage, /## Status Bar/);
   assert.match(componentUsage, /## Status Label/);
   assert.match(componentUsage, /## Metrics/);
@@ -37,6 +38,12 @@ test("component docs describe terminal status labels", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
   assert.match(componentUsage, /uppercase status text/);
   assert.match(componentUsage, /data-column="status"/);
+});
+
+test("component docs describe bracketed badges", () => {
+  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /pergyl-badge/);
+  assert.match(componentUsage, /\[WARNING\]/);
 });
 
 test("component docs describe optional inline card subtitles", () => {
