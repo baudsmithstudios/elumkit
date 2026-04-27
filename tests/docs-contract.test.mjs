@@ -80,3 +80,9 @@ test("theming docs list the console theme", () => {
   assert.match(theming, /`console`/);
   assert.match(theming, /warm operational console/);
 });
+
+test("theming docs describe the light theme palette", () => {
+  const theming = readFileSync("docs/theming.md", "utf8");
+  assert.match(theming, /`light`/);
+  assert.match(theming, /cool utility palette/);
+});

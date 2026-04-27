@@ -16,6 +16,7 @@ Supported values:
 - `light`
 - `console`
 
+`light` is a cool utility palette for clear documentation and general application surfaces.
 `console` is a warm operational console theme for dense local dashboards and control surfaces.
 
 ## Core token groups

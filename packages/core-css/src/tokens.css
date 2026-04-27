@@ -2,18 +2,18 @@
 [data-theme="light"] {
   --pergyl-font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
-  --pergyl-color-bg: #f7f7f7;
+  --pergyl-color-bg: #f5fbfc;
   --pergyl-color-surface: #ffffff;
-  --pergyl-color-fg: #1f1f1f;
-  --pergyl-color-muted: #666666;
-  --pergyl-color-border: #d4d4d4;
-  --pergyl-color-accent: #8b4a2a;
-  --pergyl-color-success: #2f7d32;
-  --pergyl-color-warn: #966517;
-  --pergyl-color-error: #d12d22;
-  --pergyl-color-info: #3a3a3a;
+  --pergyl-color-fg: #172a2d;
+  --pergyl-color-muted: #536b70;
+  --pergyl-color-border: #bdd4d8;
+  --pergyl-color-accent: #007c89;
+  --pergyl-color-success: #1f7a4d;
+  --pergyl-color-warn: #8a5a00;
+  --pergyl-color-error: #bf2f2f;
+  --pergyl-color-info: #336f78;
 
-  --pergyl-focus-ring: #8b4a2a;
+  --pergyl-focus-ring: #007c89;
 
   --pergyl-text-xs: 0.75rem;
   --pergyl-text-sm: 0.875rem;

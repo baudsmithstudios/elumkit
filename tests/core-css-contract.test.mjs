@@ -74,9 +74,22 @@ test("themes include light, dark, and console token sets", () => {
   assert.match(TOKENS_CSS, /\[data-theme="console"\]/);
 });
 
-test("default themes use rust accents and grayscale neutrals", () => {
-  assert.deepEqual(tokenValues("--pergyl-color-accent").slice(0, 2), ["#8b4a2a", "#c47a5a"]);
-  assert.deepEqual(tokenValues("--pergyl-focus-ring").slice(0, 2), ["#8b4a2a", "#c47a5a"]);
+test("light theme uses a cool utility palette", () => {
+  assert.deepEqual(tokenValues("--pergyl-color-bg")[0], "#f5fbfc");
+  assert.deepEqual(tokenValues("--pergyl-color-surface")[0], "#ffffff");
+  assert.deepEqual(tokenValues("--pergyl-color-fg")[0], "#172a2d");
+  assert.deepEqual(tokenValues("--pergyl-color-muted")[0], "#536b70");
+  assert.deepEqual(tokenValues("--pergyl-color-border")[0], "#bdd4d8");
+  assert.deepEqual(tokenValues("--pergyl-color-accent")[0], "#007c89");
+  assert.deepEqual(tokenValues("--pergyl-color-info")[0], "#336f78");
+  assert.deepEqual(tokenValues("--pergyl-focus-ring")[0], "#007c89");
+  assert.equal(isGrayscale(tokenValues("--pergyl-color-bg")[0]), false);
+  assert.equal(isGrayscale(tokenValues("--pergyl-color-accent")[0]), false);
+});
+
+test("dark theme keeps rust accents and grayscale neutrals", () => {
+  assert.deepEqual(tokenValues("--pergyl-color-accent")[1], "#c47a5a");
+  assert.deepEqual(tokenValues("--pergyl-focus-ring")[1], "#c47a5a");
 
   const grayscaleTokens = [
     "--pergyl-color-bg",
@@ -88,27 +101,26 @@ test("default themes use rust accents and grayscale neutrals", () => {
   ];
 
   for (const token of grayscaleTokens) {
-    for (const value of tokenValues(token).slice(0, 2)) {
-      assert.equal(isGrayscale(value), true, `${token} should be grayscale, got ${value}`);
-    }
+    const value = tokenValues(token)[1];
+    assert.equal(isGrayscale(value), true, `${token} should be grayscale, got ${value}`);
   }
 });
 
 test("console theme uses a warm operational palette", () => {
-  assert.deepEqual(tokenValues("--pergyl-color-bg"), ["#f7f7f7", "#121212", "#0a0908"]);
+  assert.deepEqual(tokenValues("--pergyl-color-bg"), ["#f5fbfc", "#121212", "#0a0908"]);
   assert.deepEqual(tokenValues("--pergyl-color-surface"), ["#ffffff", "#1c1c1c", "#121110"]);
-  assert.deepEqual(tokenValues("--pergyl-color-fg"), ["#1f1f1f", "#eeeeee", "#ccc8c4"]);
-  assert.deepEqual(tokenValues("--pergyl-color-muted"), ["#666666", "#a3a3a3", "#8d8580"]);
-  assert.deepEqual(tokenValues("--pergyl-color-border"), ["#d4d4d4", "#444444", "#5a4528"]);
-  assert.deepEqual(tokenValues("--pergyl-color-accent"), ["#8b4a2a", "#c47a5a", "#f5a623"]);
-  assert.deepEqual(tokenValues("--pergyl-focus-ring"), ["#8b4a2a", "#c47a5a", "#f5a623"]);
+  assert.deepEqual(tokenValues("--pergyl-color-fg"), ["#172a2d", "#eeeeee", "#ccc8c4"]);
+  assert.deepEqual(tokenValues("--pergyl-color-muted"), ["#536b70", "#a3a3a3", "#8d8580"]);
+  assert.deepEqual(tokenValues("--pergyl-color-border"), ["#bdd4d8", "#444444", "#5a4528"]);
+  assert.deepEqual(tokenValues("--pergyl-color-accent"), ["#007c89", "#c47a5a", "#f5a623"]);
+  assert.deepEqual(tokenValues("--pergyl-focus-ring"), ["#007c89", "#c47a5a", "#f5a623"]);
 });
 
 test("status colors use accessible theme variants", () => {
   const statusTokens = {
-    "--pergyl-color-success": ["#2f7d32", "#6abe5a", "#7a9e6b"],
-    "--pergyl-color-warn": ["#966517", "#d49d2a", "#b89a4a"],
-    "--pergyl-color-error": ["#d12d22", "#e25a4f", "#e25a4f"],
+    "--pergyl-color-success": ["#1f7a4d", "#6abe5a", "#7a9e6b"],
+    "--pergyl-color-warn": ["#8a5a00", "#d49d2a", "#b89a4a"],
+    "--pergyl-color-error": ["#bf2f2f", "#e25a4f", "#e25a4f"],
   };
   const backgrounds = tokenValues("--pergyl-color-bg");
 
