@@ -20,8 +20,6 @@
 }
 
 .pergyl-badge {
-  border: var(--pergyl-border-width) solid var(--pergyl-color-border);
-  border-radius: var(--pergyl-radius-sm);
   color: var(--pergyl-color-muted);
   display: inline-block;
   font-size: var(--pergyl-text-xs);
@@ -35,22 +33,18 @@
 }
 
 .pergyl-badge[data-tone="accent"] {
-  border-color: var(--pergyl-color-accent);
   color: var(--pergyl-color-accent);
 }
 
 .pergyl-badge[data-tone="success"] {
-  border-color: var(--pergyl-color-success);
   color: var(--pergyl-color-success);
 }
 
 .pergyl-badge[data-tone="warn"] {
-  border-color: var(--pergyl-color-warn);
   color: var(--pergyl-color-warn);
 }
 
 .pergyl-badge[data-tone="error"] {
-  border-color: var(--pergyl-color-error);
   color: var(--pergyl-color-error);
 }
 
