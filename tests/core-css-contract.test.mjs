@@ -148,6 +148,13 @@ test("form controls expose terminal input affordances", () => {
   assert.match(FORM_CSS, /\.pergyl-input,[^}]*font-variant-numeric:\s*tabular-nums;/s);
 });
 
+test("form controls expose a persistent input prompt pattern", () => {
+  assert.match(FORM_CSS, /\.pergyl-prompt-field\s*{/);
+  assert.match(FORM_CSS, /\.pergyl-input-prompt\s*{/);
+  assert.match(FORM_CSS, /\.pergyl-prompt-field > \.pergyl-input\s*{[^}]*border:\s*0;/s);
+  assert.match(FORM_CSS, /\.pergyl-prompt-field:focus-within\s*{/);
+});
+
 test("radius tokens use tight corners", () => {
   assert.match(TOKENS_CSS, /--pergyl-radius-sm:\s*0\.0625rem;/);
   assert.match(TOKENS_CSS, /--pergyl-radius-md:\s*0\.1875rem;/);

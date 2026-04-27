@@ -27,6 +27,34 @@
   resize: vertical;
 }
 
+.pergyl-prompt-field {
+  align-items: center;
+  border: var(--pergyl-border-width) solid var(--pergyl-color-border);
+  border-radius: var(--pergyl-radius-sm);
+  display: flex;
+  min-height: 2.5rem;
+  padding: 0 var(--pergyl-space-3);
+  width: 100%;
+}
+
+.pergyl-prompt-field:focus-within {
+  border-color: var(--pergyl-focus-ring);
+}
+
+.pergyl-input-prompt {
+  color: var(--pergyl-color-muted);
+  flex: 0 0 auto;
+  font-size: var(--pergyl-text-sm);
+  line-height: var(--pergyl-lh-normal);
+  margin-right: var(--pergyl-space-2);
+}
+
+.pergyl-prompt-field > .pergyl-input {
+  border: 0;
+  min-height: auto;
+  padding: var(--pergyl-space-2) 0;
+}
+
 .pergyl-input::placeholder,
 .pergyl-textarea::placeholder {
   color: var(--pergyl-color-muted);

@@ -12,6 +12,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Input / Textarea / Select
 
 - **Class:** `.pergyl-field` on the input, with a connected `<label for="...">`
+- **Prompt input:** wrap `.pergyl-input` in `.pergyl-prompt-field` and place `.pergyl-input-prompt` before it for a persistent prompt such as `>`
 - **Invalid state:** `aria-invalid="true"`
 - **Disabled state:** native `disabled`
 - **Keyboard:** native form element behavior

@@ -72,12 +72,16 @@ test("playground includes bracketed badge states", () => {
 
 test("preview inputs show the terminal prompt text", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.match(html, /<input class="pergyl-input"[^>]*placeholder="> input_"/);
+  assert.match(html, /<span class="pergyl-input-prompt" aria-hidden="true">&gt;<\/span>/);
+  assert.match(html, /<input class="pergyl-input"[^>]*placeholder="input_"/);
+  assert.doesNotMatch(html, /placeholder="> input_"/);
 });
 
 test("snippets include the terminal prompt input text", () => {
   const html = readFileSync(SNIPPETS_PATH, "utf8");
-  assert.match(html, /<input class="pergyl-input"[^>]*placeholder="> input_"/);
+  assert.match(html, /<span class="pergyl-input-prompt" aria-hidden="true">&gt;<\/span>/);
+  assert.match(html, /<input class="pergyl-input"[^>]*placeholder="input_"/);
+  assert.doesNotMatch(html, /placeholder="> input_"/);
 });
 
 test("playground updates theme status text when theme changes", () => {

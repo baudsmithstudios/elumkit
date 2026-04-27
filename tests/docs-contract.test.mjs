@@ -40,6 +40,13 @@ test("component docs describe terminal status labels", () => {
   assert.match(componentUsage, /data-column="status"/);
 });
 
+test("component docs describe persistent input prompts", () => {
+  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /pergyl-prompt-field/);
+  assert.match(componentUsage, /pergyl-input-prompt/);
+  assert.match(componentUsage, /persistent prompt/);
+});
+
 test("component docs describe bracketed badges", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
   assert.match(componentUsage, /pergyl-badge/);
