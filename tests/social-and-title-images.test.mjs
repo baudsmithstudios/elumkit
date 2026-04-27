@@ -18,7 +18,7 @@ test("title.svg uses 600x96 dimensions matching sibling projects", () => {
 test("title.svg renders the brand mark with rust accent on the period", () => {
   const svg = readFileSync(TITLE_SVG, "utf8");
   assert.match(svg, />pergyl</);
-  assert.match(svg, /class="accent"[^>]*>\.</);
+  assert.match(svg, /<tspan[^>]*fill="#c47a5a"[^>]*>\.<\/tspan>/);
 });
 
 test("title.svg labels the card with component-system v0.1", () => {
