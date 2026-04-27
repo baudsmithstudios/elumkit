@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 96" width="600" height="96">
-  <!-- Token values mirror packages/core-css/src/tokens.css. -->
-  <!-- Resync if Pergyl tokens change. -->
+  <!-- Iron-theme palette mirrors packages/core-css/src/tokens.css. -->
+  <!-- Resync if Pergyl iron tokens change. -->
   <defs>
     <style>
       .surface     { fill: #1c1c1c; }
@@ -9,14 +9,6 @@
       .label-text  { fill: #a3a3a3; }
       .brand       { fill: #eeeeee; }
       .accent      { fill: #c47a5a; }
-      @media (prefers-color-scheme: light) {
-        .surface    { fill: #ffffff; }
-        .border     { stroke: #d4d4d4; }
-        .label-bg   { fill: #f7f7f7; }
-        .label-text { fill: #666666; }
-        .brand      { fill: #1f1f1f; }
-        .accent     { fill: #8b4a2a; }
-      }
       .mono { font-family: 'JetBrains Mono','IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; }
     </style>
   </defs>

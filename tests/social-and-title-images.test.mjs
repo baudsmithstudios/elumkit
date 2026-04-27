@@ -15,11 +15,6 @@ test("title.svg uses 600x96 dimensions matching sibling projects", () => {
   assert.match(svg, /height="96"/);
 });
 
-test("title.svg switches palette via prefers-color-scheme", () => {
-  const svg = readFileSync(TITLE_SVG, "utf8");
-  assert.match(svg, /@media \(prefers-color-scheme: light\)/);
-});
-
 test("title.svg renders the brand mark with rust accent on the period", () => {
   const svg = readFileSync(TITLE_SVG, "utf8");
   assert.match(svg, />pergyl</);
@@ -31,12 +26,15 @@ test("title.svg labels the card with component-system v0.1", () => {
   assert.match(svg, /COMPONENT-SYSTEM\s*·\s*V0\.1/i);
 });
 
-test("title.svg uses Pergyl tokens for both themes", () => {
+test("title.svg uses iron token values", () => {
   const svg = readFileSync(TITLE_SVG, "utf8");
-  assert.match(svg, /#444444/);
-  assert.match(svg, /#c47a5a/);
-  assert.match(svg, /#d4d4d4/);
-  assert.match(svg, /#8b4a2a/);
+  // iron palette from packages/core-css/src/tokens.css
+  assert.match(svg, /#1c1c1c/); // surface
+  assert.match(svg, /#444444/); // border
+  assert.match(svg, /#121212/); // bg
+  assert.match(svg, /#a3a3a3/); // muted
+  assert.match(svg, /#eeeeee/); // fg
+  assert.match(svg, /#c47a5a/); // accent
 });
 
 const SOCIAL_HTML = "examples/social-card.html";
@@ -77,4 +75,28 @@ test("social-card.html shows demo strip with status, meter, controls", () => {
   assert.match(html, /class="pergyl-meter"/);
   assert.match(html, /class="pergyl-button"/);
   assert.match(html, /class="pergyl-input"/);
+});
+
+const SOCIAL_PNG = "assets/social.png";
+
+test("social.png exists", () => {
+  assert.equal(existsSync(SOCIAL_PNG), true, "expected assets/social.png to exist");
+});
+
+test("social.png is a non-empty PNG with the magic header", () => {
+  const buf = readFileSync(SOCIAL_PNG);
+  assert.ok(buf.length > 1024, "expected social.png to be larger than 1KB");
+  assert.equal(buf[0], 0x89);
+  assert.equal(buf[1], 0x50);
+  assert.equal(buf[2], 0x4e);
+  assert.equal(buf[3], 0x47);
+});
+
+test("social.png is exactly 1280x640", () => {
+  const buf = readFileSync(SOCIAL_PNG);
+  // PNG IHDR chunk: width is bytes 16..19, height bytes 20..23, big-endian.
+  const width  = buf.readUInt32BE(16);
+  const height = buf.readUInt32BE(20);
+  assert.equal(width, 1280, `expected 1280px wide, got ${width}`);
+  assert.equal(height, 640, `expected 640px tall, got ${height}`);
 });
