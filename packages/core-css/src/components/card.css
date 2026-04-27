@@ -1,5 +1,5 @@
 .pergyl-card {
-  background: var(--pergyl-color-surface);
+  background: transparent;
   border: var(--pergyl-border-width) solid var(--pergyl-color-border);
   border-radius: var(--pergyl-radius-md);
   padding: var(--pergyl-card-padding, var(--pergyl-space-4));
@@ -17,12 +17,12 @@
 
 .pergyl-card-title {
   align-items: center;
-  background: var(--pergyl-card-label-bg, var(--pergyl-color-surface));
-  color: var(--pergyl-card-title-color, var(--pergyl-color-muted));
+  background: var(--pergyl-card-label-bg, var(--pergyl-color-bg));
+  color: var(--pergyl-card-title-color, var(--pergyl-color-accent));
   display: inline-flex;
   font-size: var(--pergyl-card-title-size, var(--pergyl-text-sm));
-  font-weight: 400;
-  letter-spacing: 0.16em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   line-height: var(--pergyl-lh-tight);
   margin: 0;
   padding: 0 var(--pergyl-space-2);

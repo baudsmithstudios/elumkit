@@ -43,14 +43,6 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Use for compact inline status text in dense rows and tables.
 - Prefer short uppercase status text such as `READY` or `REVIEW` so copy/paste and assistive technology match the rendered UI.
 
-## Status List
-
-- **List:** `.pergyl-status-list`
-- **Row:** `.pergyl-status-row`
-- **Dot:** `.pergyl-status-dot`
-- **Dot tones:** `data-tone="success" | "warn" | "muted"`
-- Use for compact status groups where a colored dot carries the state and nearby text carries the readable label.
-
 ## Status Bar
 
 - **Class:** `.pergyl-status`

@@ -45,44 +45,6 @@
   font-weight: 600;
 }
 
-.pergyl-status-list {
-  display: grid;
-  gap: var(--pergyl-space-2);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.pergyl-status-row {
-  align-items: center;
-  color: var(--pergyl-color-fg);
-  display: flex;
-  font-size: var(--pergyl-text-sm);
-  gap: var(--pergyl-space-3);
-  line-height: var(--pergyl-lh-tight);
-}
-
-.pergyl-status-dot {
-  background: var(--pergyl-color-info);
-  border-radius: 999px;
-  display: inline-block;
-  flex: 0 0 auto;
-  height: 0.5rem;
-  width: 0.5rem;
-}
-
-.pergyl-status-dot[data-tone="success"] {
-  background: var(--pergyl-color-success);
-}
-
-.pergyl-status-dot[data-tone="warn"] {
-  background: var(--pergyl-color-warn);
-}
-
-.pergyl-status-dot[data-tone="muted"] {
-  background: var(--pergyl-color-info);
-}
-
 .pergyl-metrics {
   display: grid;
   gap: var(--pergyl-space-2);

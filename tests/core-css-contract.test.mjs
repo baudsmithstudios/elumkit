@@ -129,12 +129,12 @@ test("base styles respect reduced-motion preferences", () => {
   assert.match(BASE_CSS, /transition-duration/);
 });
 
-test("default panels use the surface background and form controls stay transparent", () => {
-  assert.match(CARD_CSS, /\.pergyl-card\s*{[^}]*background:\s*var\(--pergyl-color-surface\);/s);
+test("default panels and form controls inherit page backgrounds", () => {
+  assert.match(CARD_CSS, /\.pergyl-card\s*{[^}]*background:\s*transparent;/s);
   assert.match(FORM_CSS, /\.pergyl-input,[^}]*background:\s*transparent;/s);
 });
 
-test("buttons and alerts keep explicit terminal styling", () => {
+test("buttons keep terminal action styling and alerts keep surface backgrounds", () => {
   assert.match(BUTTON_CSS, /\.pergyl-button\s*{[^}]*background:\s*transparent;/s);
   assert.match(BUTTON_CSS, /\.pergyl-button\s*{[^}]*border:\s*var\(--pergyl-border-width\) solid var\(--pergyl-color-accent\);/s);
   assert.match(BUTTON_CSS, /\.pergyl-button\s*{[^}]*color:\s*var\(--pergyl-color-accent\);/s);
@@ -167,7 +167,7 @@ test("card and data components expose explicit state hooks", () => {
 
 test("card titles and subtitles expose customization properties", () => {
   assert.match(CARD_CSS, /padding:\s*var\(--pergyl-card-padding,\s*var\(--pergyl-space-4\)\);/);
-  assert.match(CARD_CSS, /color:\s*var\(--pergyl-card-title-color,\s*var\(--pergyl-color-muted\)\);/);
+  assert.match(CARD_CSS, /color:\s*var\(--pergyl-card-title-color,\s*var\(--pergyl-color-accent\)\);/);
   assert.match(CARD_CSS, /font-size:\s*var\(--pergyl-card-title-size,\s*var\(--pergyl-text-sm\)\);/);
   assert.match(CARD_CSS, /color:\s*var\(--pergyl-card-subtitle-color,\s*var\(--pergyl-color-muted\)\);/);
   assert.match(CARD_CSS, /font-size:\s*var\(--pergyl-card-subtitle-size,\s*var\(--pergyl-text-xs\)\);/);
@@ -184,13 +184,10 @@ test("feedback exposes inline status labels", () => {
   assert.match(FEEDBACK_CSS, /\.pergyl-status-label\[data-tone="warn"\]/);
 });
 
-test("telemetry exposes compact status list rows with tone dots", () => {
-  assert.match(TELEMETRY_CSS, /\.pergyl-status-list\s*{/);
-  assert.match(TELEMETRY_CSS, /\.pergyl-status-row\s*{/);
-  assert.match(TELEMETRY_CSS, /\.pergyl-status-dot\s*{/);
-  assert.match(TELEMETRY_CSS, /\.pergyl-status-dot\[data-tone="success"\]/);
-  assert.match(TELEMETRY_CSS, /\.pergyl-status-dot\[data-tone="warn"\]/);
-  assert.match(TELEMETRY_CSS, /\.pergyl-status-dot\[data-tone="muted"\]/);
+test("telemetry keeps the existing status component surface", () => {
+  assert.match(TELEMETRY_CSS, /\.pergyl-status\s*{/);
+  assert.doesNotMatch(TELEMETRY_CSS, /\.pergyl-status-list\s*{/);
+  assert.doesNotMatch(TELEMETRY_CSS, /\.pergyl-status-dot\s*{/);
 });
 
 test("data rows use keyboard and selected accent bars", () => {
