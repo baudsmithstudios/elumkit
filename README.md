@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>Pergyl</strong>
+  <img src="assets/title.svg" alt="Pergyl" width="600">
 </p>
 
 <p align="center">

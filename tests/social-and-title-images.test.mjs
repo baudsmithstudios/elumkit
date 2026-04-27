@@ -100,3 +100,15 @@ test("social.png is exactly 1280x640", () => {
   assert.equal(width, 1280, `expected 1280px wide, got ${width}`);
   assert.equal(height, 640, `expected 640px tall, got ${height}`);
 });
+
+const README = "README.md";
+
+test("README embeds the title banner SVG", () => {
+  const md = readFileSync(README, "utf8");
+  assert.match(md, /<img\s+src="assets\/title\.svg"[^>]*alt="Pergyl"/);
+});
+
+test("README still includes the project tagline beneath the banner", () => {
+  const md = readFileSync(README, "utf8");
+  assert.match(md, /HTML-first web UI primitives with a clean terminal feel\./);
+});
