@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pergyl — social card</title>
+    <link rel="stylesheet" href="../packages/core-css/src/index.css" />
+    <style>
+      html, body { margin: 0; padding: 0; }
+      body {
+        width: 1280px;
+        height: 640px;
+        background: var(--pergyl-color-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--pergyl-font-family);
+      }
+      .stage {
+        width: 760px;
+        display: flex;
+        flex-direction: column;
+        gap: 1.125rem;
+      }
+      .strip {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 0.875rem;
+      }
+      .card-brand {
+        color: var(--pergyl-color-fg);
+        font-family: var(--pergyl-font-family);
+        font-size: 3rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        line-height: 1;
+        margin: 0.625rem 0 0;
+      }
+      .card-brand-accent { color: var(--pergyl-color-accent); }
+      .card-tagline {
+        color: var(--pergyl-color-muted);
+        font-size: 0.9375rem;
+        letter-spacing: 0.02em;
+        margin: 0.625rem 0 0;
+      }
+      .strip-label {
+        color: var(--pergyl-color-muted);
+        font-size: 0.6875rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin: 0 0 0.5rem;
+      }
+      .strip-status { display: flex; flex-direction: column; gap: 0.375rem; }
+    </style>
+  </head>
+  <body>
+    <div class="stage">
+      <article class="pergyl-card pergyl-card-labeled">
+        <header class="pergyl-card-header">
+          <h2 class="pergyl-card-title">component-system · v0.1</h2>
+        </header>
+        <p class="card-brand">pergyl<span class="card-brand-accent">.</span></p>
+        <p class="card-tagline">HTML-first web UI primitives with a clean terminal feel.</p>
+      </article>
+
+      <div class="strip">
+        <article class="pergyl-card">
+          <p class="strip-label">status</p>
+          <div class="strip-status">
+            <span class="pergyl-status-label" data-tone="success">build · ok</span>
+            <span class="pergyl-status-label" data-tone="warn">a11y · review</span>
+            <span class="pergyl-status-label">docs · idle</span>
+          </div>
+        </article>
+
+        <article class="pergyl-card">
+          <p class="strip-label">coverage</p>
+          <div class="pergyl-meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="82">
+            <div class="pergyl-meter-header">
+              <span class="pergyl-meter-label">coverage</span>
+              <span class="pergyl-meter-value">82%</span>
+            </div>
+            <div class="pergyl-meter-track"><div class="pergyl-meter-fill" style="width:82%"></div></div>
+          </div>
+          <div class="pergyl-meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="55" style="margin-top:0.5rem">
+            <div class="pergyl-meter-header">
+              <span class="pergyl-meter-label">tokens</span>
+              <span class="pergyl-meter-value">14</span>
+            </div>
+            <div class="pergyl-meter-track"><div class="pergyl-meter-fill" style="width:55%"></div></div>
+          </div>
+        </article>
+
+        <article class="pergyl-card">
+          <p class="strip-label">controls</p>
+          <button class="pergyl-button" type="button" style="margin-bottom:0.375rem">Run</button>
+          <label class="pergyl-prompt-field">
+            <span class="pergyl-input-prompt" aria-hidden="true">&gt;</span>
+            <input class="pergyl-input" type="text" placeholder="input_" />
+          </label>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>

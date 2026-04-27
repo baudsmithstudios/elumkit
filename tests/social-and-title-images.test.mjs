@@ -38,3 +38,43 @@ test("title.svg uses Pergyl tokens for both themes", () => {
   assert.match(svg, /#d4d4d4/);
   assert.match(svg, /#8b4a2a/);
 });
+
+const SOCIAL_HTML = "examples/social-card.html";
+
+test("social-card.html exists", () => {
+  assert.equal(existsSync(SOCIAL_HTML), true, "expected examples/social-card.html to exist");
+});
+
+test("social-card.html links Pergyl core CSS", () => {
+  const html = readFileSync(SOCIAL_HTML, "utf8");
+  assert.match(html, /href="\.\.\/packages\/core-css\/src\/index\.css"/);
+});
+
+test("social-card.html declares 1280x640 viewport via body sizing", () => {
+  const html = readFileSync(SOCIAL_HTML, "utf8");
+  assert.match(html, /width:\s*1280px/);
+  assert.match(html, /height:\s*640px/);
+});
+
+test("social-card.html uses real Pergyl primitives for the title card", () => {
+  const html = readFileSync(SOCIAL_HTML, "utf8");
+  assert.match(html, /class="pergyl-card pergyl-card-labeled"/);
+  assert.match(html, /class="pergyl-card-title">component-system/);
+  assert.match(html, /v0\.1/);
+});
+
+test("social-card.html renders the brand mark and tagline", () => {
+  const html = readFileSync(SOCIAL_HTML, "utf8");
+  assert.match(html, /class="card-brand"/);
+  assert.match(html, />pergyl<span class="card-brand-accent">\.<\/span></);
+  assert.match(html, /HTML-first web UI primitives with a clean terminal feel\./);
+});
+
+test("social-card.html shows demo strip with status, meter, controls", () => {
+  const html = readFileSync(SOCIAL_HTML, "utf8");
+  assert.match(html, /class="pergyl-status-label" data-tone="success"/);
+  assert.match(html, /class="pergyl-status-label" data-tone="warn"/);
+  assert.match(html, /class="pergyl-meter"/);
+  assert.match(html, /class="pergyl-button"/);
+  assert.match(html, /class="pergyl-input"/);
+});
