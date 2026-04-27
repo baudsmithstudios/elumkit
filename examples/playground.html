@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="iron">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,9 +41,9 @@
         <h1>Pergyl Playground</h1>
         <p>Local preview page for fast visual and accessibility checks.</p>
         <div>
-          <button class="pergyl-button" id="theme-dark" type="button">Dark</button>
-          <button class="pergyl-button" id="theme-light" type="button">Light</button>
-          <button class="pergyl-button" id="theme-console" type="button">Console</button>
+          <button class="pergyl-button" id="theme-iron" type="button">Iron</button>
+          <button class="pergyl-button" id="theme-clerestory" type="button">Clerestory</button>
+          <button class="pergyl-button" id="theme-forge" type="button">Forge</button>
         </div>
       </header>
 
@@ -52,7 +52,7 @@
         <span class="pergyl-system-bar-group">
           <span class="pergyl-system-bar-item">
             <span class="pergyl-system-bar-key">theme</span>
-            <span class="pergyl-system-bar-value" id="theme-status">[DARK]</span>
+            <span class="pergyl-system-bar-value" id="theme-status">[IRON]</span>
           </span>
           <span class="pergyl-system-bar-item">
             <span class="pergyl-system-bar-key">components</span>
@@ -285,29 +285,29 @@
 
     <script>
       const root = document.documentElement;
-      const dark = document.getElementById("theme-dark");
-      const light = document.getElementById("theme-light");
-      const themeConsole = document.getElementById("theme-console");
+      const iron = document.getElementById("theme-iron");
+      const clerestory = document.getElementById("theme-clerestory");
+      const forge = document.getElementById("theme-forge");
       const themeStatus = document.getElementById("theme-status");
 
-      dark?.addEventListener("click", () => {
-        root.setAttribute("data-theme", "dark");
+      iron?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "iron");
         if (themeStatus) {
-          themeStatus.textContent = "[DARK]";
+          themeStatus.textContent = "[IRON]";
         }
       });
 
-      light?.addEventListener("click", () => {
-        root.setAttribute("data-theme", "light");
+      clerestory?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "clerestory");
         if (themeStatus) {
-          themeStatus.textContent = "[LIGHT]";
+          themeStatus.textContent = "[CLERESTORY]";
         }
       });
 
-      themeConsole?.addEventListener("click", () => {
-        root.setAttribute("data-theme", "console");
+      forge?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "forge");
         if (themeStatus) {
-          themeStatus.textContent = "[CONSOLE]";
+          themeStatus.textContent = "[FORGE]";
         }
       });
     </script>

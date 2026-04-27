@@ -1,5 +1,5 @@
 :root,
-[data-theme="light"] {
+[data-theme="clerestory"] {
   --pergyl-font-family: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   --pergyl-color-bg: #f5fbfc;
@@ -34,7 +34,7 @@
   --pergyl-motion-fast: 120ms;
 }
 
-[data-theme="dark"] {
+[data-theme="iron"] {
   --pergyl-color-bg: #121212;
   --pergyl-color-surface: #1c1c1c;
   --pergyl-color-fg: #eeeeee;
@@ -49,7 +49,7 @@
   --pergyl-focus-ring: #c47a5a;
 }
 
-[data-theme="console"] {
+[data-theme="forge"] {
   --pergyl-color-bg: #0a0908;
   --pergyl-color-surface: #121110;
   --pergyl-color-fg: #ccc8c4;

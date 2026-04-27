@@ -37,7 +37,7 @@ Link the core CSS, set a theme on the document root, and use the semantic classe
 
 ```html
 <!doctype html>
-<html data-theme="dark">
+<html data-theme="iron">
   <head>
     <link rel="stylesheet" href="path/to/pergyl/index.css" />
   </head>

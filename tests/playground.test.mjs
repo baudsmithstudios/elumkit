@@ -50,9 +50,12 @@ test("playground header uses the simple preview intro", () => {
   assert.match(html, /<header class="pergyl-stack">/);
   assert.match(html, /<h1>Pergyl Playground<\/h1>/);
   assert.match(html, /Local preview page for fast visual and accessibility checks\./);
-  assert.match(html, /<button class="pergyl-button" id="theme-dark" type="button">Dark<\/button>/);
-  assert.match(html, /<button class="pergyl-button" id="theme-light" type="button">Light<\/button>/);
-  assert.match(html, /<button class="pergyl-button" id="theme-console" type="button">Console<\/button>/);
+  assert.match(html, /<button class="pergyl-button" id="theme-iron" type="button">Iron<\/button>/);
+  assert.match(html, /<button class="pergyl-button" id="theme-clerestory" type="button">Clerestory<\/button>/);
+  assert.match(html, /<button class="pergyl-button" id="theme-forge" type="button">Forge<\/button>/);
+  assert.doesNotMatch(html, /id="theme-dark"/);
+  assert.doesNotMatch(html, /id="theme-light"/);
+  assert.doesNotMatch(html, /id="theme-console"/);
   assert.doesNotMatch(html, /playground-hero/);
   assert.doesNotMatch(html, /playground-brand/);
 });
@@ -99,17 +102,21 @@ test("snippets include the terminal prompt input text", () => {
 
 test("playground updates theme status text when theme changes", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.match(html, /<span class="pergyl-system-bar-value" id="theme-status">\[DARK\]<\/span>/);
-  assert.match(html, /themeStatus\.textContent = "\[DARK\]";/);
-  assert.match(html, /themeStatus\.textContent = "\[LIGHT\]";/);
-  assert.match(html, /themeStatus\.textContent = "\[CONSOLE\]";/);
+  assert.match(html, /<html lang="en" data-theme="iron">/);
+  assert.match(html, /<span class="pergyl-system-bar-value" id="theme-status">\[IRON\]<\/span>/);
+  assert.match(html, /themeStatus\.textContent = "\[IRON\]";/);
+  assert.match(html, /themeStatus\.textContent = "\[CLERESTORY\]";/);
+  assert.match(html, /themeStatus\.textContent = "\[FORGE\]";/);
+  assert.doesNotMatch(html, /data-theme", "dark"/);
+  assert.doesNotMatch(html, /data-theme", "light"/);
+  assert.doesNotMatch(html, /data-theme", "console"/);
 });
 
 test("playground status avoids terminal help prompts", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   assert.doesNotMatch(html, /<span class="pergyl-system-bar-key">help<\/span>/);
   assert.doesNotMatch(html, /<span class="pergyl-system-bar-value">\?<\/span>/);
-  assert.match(html, /<span class="pergyl-system-bar-value" id="theme-status">\[DARK\]<\/span>/);
+  assert.match(html, /<span class="pergyl-system-bar-value" id="theme-status">\[IRON\]<\/span>/);
   assert.match(html, /<span class="pergyl-system-bar-value">\[13\]<\/span>/);
 });
 

@@ -7,17 +7,18 @@ v0.1 theming is token-driven through CSS variables.
 Set theme via `data-theme`:
 
 ```html
-<html data-theme="dark">
+<html data-theme="iron">
 ```
 
 Supported values:
 
-- `dark`
-- `light`
-- `console`
+- `clerestory`
+- `iron`
+- `forge`
 
-`light` is a cool utility palette for clear documentation and general application surfaces.
-`console` is a warm operational console theme for dense local dashboards and control surfaces.
+`clerestory` is a cool utility palette for clear documentation and general application surfaces.
+`iron` is a neutral dark palette for dense terminal-flavored interfaces.
+`forge` is a warm operational console theme for dense local dashboards and control surfaces.
 
 ## Core token groups
 

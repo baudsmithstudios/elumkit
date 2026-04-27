@@ -68,13 +68,16 @@ test("tokens include required semantic color and motion variables", () => {
   }
 });
 
-test("themes include light, dark, and console token sets", () => {
-  assert.match(TOKENS_CSS, /:root,\s*\n\[data-theme="light"\]/);
-  assert.match(TOKENS_CSS, /\[data-theme="dark"\]/);
-  assert.match(TOKENS_CSS, /\[data-theme="console"\]/);
+test("themes include clerestory, iron, and forge token sets", () => {
+  assert.match(TOKENS_CSS, /:root,\s*\n\[data-theme="clerestory"\]/);
+  assert.match(TOKENS_CSS, /\[data-theme="iron"\]/);
+  assert.match(TOKENS_CSS, /\[data-theme="forge"\]/);
+  assert.doesNotMatch(TOKENS_CSS, /\[data-theme="light"\]/);
+  assert.doesNotMatch(TOKENS_CSS, /\[data-theme="dark"\]/);
+  assert.doesNotMatch(TOKENS_CSS, /\[data-theme="console"\]/);
 });
 
-test("light theme uses a cool utility palette", () => {
+test("clerestory theme uses a cool utility palette", () => {
   assert.deepEqual(tokenValues("--pergyl-color-bg")[0], "#f5fbfc");
   assert.deepEqual(tokenValues("--pergyl-color-surface")[0], "#ffffff");
   assert.deepEqual(tokenValues("--pergyl-color-fg")[0], "#172a2d");
@@ -87,7 +90,7 @@ test("light theme uses a cool utility palette", () => {
   assert.equal(isGrayscale(tokenValues("--pergyl-color-accent")[0]), false);
 });
 
-test("dark theme keeps rust accents and grayscale neutrals", () => {
+test("iron theme keeps rust accents and grayscale neutrals", () => {
   assert.deepEqual(tokenValues("--pergyl-color-accent")[1], "#c47a5a");
   assert.deepEqual(tokenValues("--pergyl-focus-ring")[1], "#c47a5a");
 
@@ -106,7 +109,7 @@ test("dark theme keeps rust accents and grayscale neutrals", () => {
   }
 });
 
-test("console theme uses a warm operational palette", () => {
+test("forge theme uses a warm operational palette", () => {
   assert.deepEqual(tokenValues("--pergyl-color-bg"), ["#f5fbfc", "#121212", "#0a0908"]);
   assert.deepEqual(tokenValues("--pergyl-color-surface"), ["#ffffff", "#1c1c1c", "#121110"]);
   assert.deepEqual(tokenValues("--pergyl-color-fg"), ["#172a2d", "#eeeeee", "#ccc8c4"]);

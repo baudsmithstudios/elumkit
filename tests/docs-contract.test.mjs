@@ -75,14 +75,19 @@ test("theming docs describe card customization properties", () => {
   assert.match(theming, /--pergyl-card-subtitle-size/);
 });
 
-test("theming docs list the console theme", () => {
+test("theming docs list the industrial gothic theme names", () => {
   const theming = readFileSync("docs/theming.md", "utf8");
-  assert.match(theming, /`console`/);
+  assert.match(theming, /`clerestory`/);
+  assert.match(theming, /`iron`/);
+  assert.match(theming, /`forge`/);
+  assert.doesNotMatch(theming, /`light`/);
+  assert.doesNotMatch(theming, /`dark`/);
+  assert.doesNotMatch(theming, /`console`/);
   assert.match(theming, /warm operational console/);
 });
 
-test("theming docs describe the light theme palette", () => {
+test("theming docs describe the clerestory palette", () => {
   const theming = readFileSync("docs/theming.md", "utf8");
-  assert.match(theming, /`light`/);
+  assert.match(theming, /`clerestory`/);
   assert.match(theming, /cool utility palette/);
 });
