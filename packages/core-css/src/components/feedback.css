@@ -19,30 +19,71 @@
   border-left-color: var(--pergyl-color-error);
 }
 
-.pergyl-status-label {
-  align-items: baseline;
-  color: var(--pergyl-color-fg);
-  display: inline-flex;
-  font-size: var(--pergyl-text-sm);
+.pergyl-badge {
+  color: var(--pergyl-color-muted);
+  display: inline-block;
+  font-size: var(--pergyl-text-xs);
   font-variant-numeric: tabular-nums;
   font-weight: 700;
-  gap: var(--pergyl-space-1);
+  letter-spacing: 0.08em;
   line-height: var(--pergyl-lh-tight);
+  padding: 0.125rem var(--pergyl-space-1);
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
-.pergyl-status-label[data-tone="accent"] {
+.pergyl-badge[data-tone="accent"] {
   color: var(--pergyl-color-accent);
 }
 
-.pergyl-status-label[data-tone="success"] {
+.pergyl-badge[data-tone="success"] {
   color: var(--pergyl-color-success);
 }
 
-.pergyl-status-label[data-tone="warn"] {
+.pergyl-badge[data-tone="warn"] {
   color: var(--pergyl-color-warn);
 }
 
-.pergyl-status-label[data-tone="error"] {
+.pergyl-badge[data-tone="error"] {
   color: var(--pergyl-color-error);
+}
+
+.pergyl-status-label {
+  align-items: baseline;
+  color: var(--pergyl-status-label-color, var(--pergyl-color-muted));
+  display: inline-flex;
+  font-size: var(--pergyl-text-sm);
+  font-variant-numeric: tabular-nums;
+  font-weight: 400;
+  gap: var(--pergyl-space-1);
+  letter-spacing: 0.16em;
+  line-height: var(--pergyl-lh-tight);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.pergyl-status-label::before {
+  background: currentColor;
+  border-radius: 999px;
+  content: "";
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.pergyl-status-label[data-tone="accent"] {
+  --pergyl-status-label-color: var(--pergyl-color-accent);
+}
+
+.pergyl-status-label[data-tone="success"] {
+  --pergyl-status-label-color: var(--pergyl-color-success);
+}
+
+.pergyl-status-label[data-tone="warn"] {
+  --pergyl-status-label-color: var(--pergyl-color-warn);
+}
+
+.pergyl-status-label[data-tone="error"] {
+  --pergyl-status-label-color: var(--pergyl-color-error);
 }

@@ -20,5 +20,7 @@ Use semantic classes such as `pergyl-button`, `pergyl-input`, `pergyl-card`, `pe
 Theme switching is controlled with a `data-theme` attribute on `html` or `body`:
 
 ```html
-<html data-theme="dark">
+<html data-theme="iron">
 ```
+
+Supported values are `clerestory`, `iron`, and `forge`.

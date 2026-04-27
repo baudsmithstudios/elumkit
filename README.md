@@ -1,5 +1,5 @@
 <p align="center">
-  <strong>Pergyl</strong>
+  <img src="assets/title.svg" alt="Pergyl" width="600">
 </p>
 
 <p align="center">
@@ -37,7 +37,7 @@ Link the core CSS, set a theme on the document root, and use the semantic classe
 
 ```html
 <!doctype html>
-<html data-theme="dark">
+<html data-theme="iron">
   <head>
     <link rel="stylesheet" href="path/to/pergyl/index.css" />
   </head>
@@ -57,7 +57,7 @@ Open `examples/playground.html` in a browser to see every component rendered tog
 
 ## v0.1 Component Scope
 
-Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Status Bar, Status Label, Metrics, Meter, Data List, Data Table.
+Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, System Bar, Status Label, Metrics, Meter, Data List, Data Table.
 
 ## Documentation
 

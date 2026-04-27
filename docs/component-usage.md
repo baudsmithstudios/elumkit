@@ -12,6 +12,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Input / Textarea / Select
 
 - **Class:** `.pergyl-field` on the input, with a connected `<label for="...">`
+- **Prompt input:** wrap `.pergyl-input` in `.pergyl-prompt-field` and place `.pergyl-input-prompt` before it for a persistent prompt such as `>`
 - **Invalid state:** `aria-invalid="true"`
 - **Disabled state:** native `disabled`
 - **Keyboard:** native form element behavior
@@ -36,20 +37,26 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Tones:** `data-tone="success" | "warn" | "error"`
 - **Live region:** prefer `role="status"` and/or `aria-live="polite"` for status messaging
 
+## Badge
+
+- **Class:** `.pergyl-badge`
+- **Tones:** `data-tone="accent" | "success" | "warn" | "error"`
+- Use for compact bracketed status text such as `[WARNING]`.
+
 ## Status Label
 
 - **Class:** `.pergyl-status-label`
 - **Tones:** `data-tone="accent" | "success" | "warn" | "error"`
 - Use for compact inline status text in dense rows and tables.
-- Prefer visible bracketed status text such as `[READY]` so copy/paste and assistive technology match the rendered UI.
+- Status labels render with a same-color dot and short uppercase status text such as `READY` or `REVIEW`.
 
-## Status Bar
+## System Bar
 
-- **Class:** `.pergyl-status`
-- **Brand label:** `.pergyl-status-brand` for the primary label
-- **Compact key/value items:** group with `.pergyl-status-group`
+- **Class:** `.pergyl-system-bar`
+- **Brand label:** `.pergyl-system-bar-brand` for the primary label
+- **Compact key/value items:** group with `.pergyl-system-bar-group`
 - Status values may use bracketed status text for terse terminal-style state.
-- Keep status bar copy short enough to wrap cleanly on narrow screens.
+- Keep system bar copy short enough to wrap cleanly on narrow screens.
 
 ## Metrics
 

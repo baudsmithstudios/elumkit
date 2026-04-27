@@ -13,7 +13,7 @@ Either copy `packages/core-css/src/*.css` into your asset pipeline and bundle as
 ## 2) Set the theme at the document root
 
 ```html
-<html data-theme="{{ theme or 'dark' }}">
+<html data-theme="{{ theme or 'iron' }}">
 ```
 
 ## 3) Define a Nunjucks macro for repeated markup

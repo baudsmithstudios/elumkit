@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 
 const PLAYGROUND_PATH = "examples/playground.html";
+const SNIPPETS_PATH = "packages/core-patterns/snippets/index.html";
 
 test("playground example exists", () => {
   assert.equal(existsSync(PLAYGROUND_PATH), true, "expected examples/playground.html to exist");
@@ -18,11 +19,12 @@ test("playground includes core MVP component previews", () => {
   const requiredClasses = [
     "pergyl-card",
     "pergyl-button",
+    "pergyl-badge",
     "pergyl-input",
     "pergyl-textarea",
     "pergyl-select",
     "pergyl-alert",
-    "pergyl-status",
+    "pergyl-system-bar",
     "pergyl-metrics",
     "pergyl-meter",
     "pergyl-list",
@@ -36,10 +38,26 @@ test("playground includes core MVP component previews", () => {
 
 test("playground includes telemetry primitives", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.match(html, /class="pergyl-status"/);
+  assert.match(html, /class="pergyl-system-bar"/);
+  assert.doesNotMatch(html, /class="pergyl-status"/);
   assert.match(html, /class="pergyl-metric"/);
   assert.match(html, /class="pergyl-meter"[^>]*role="meter"/);
   assert.match(html, /aria-valuenow="64"/);
+});
+
+test("playground header uses the simple preview intro", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /<header class="pergyl-stack">/);
+  assert.match(html, /<h1>Pergyl Playground<\/h1>/);
+  assert.match(html, /Local preview page for fast visual and accessibility checks\./);
+  assert.match(html, /<button class="pergyl-button" id="theme-iron" type="button">Iron<\/button>/);
+  assert.match(html, /<button class="pergyl-button" id="theme-clerestory" type="button">Clerestory<\/button>/);
+  assert.match(html, /<button class="pergyl-button" id="theme-forge" type="button">Forge<\/button>/);
+  assert.doesNotMatch(html, /id="theme-dark"/);
+  assert.doesNotMatch(html, /id="theme-light"/);
+  assert.doesNotMatch(html, /id="theme-console"/);
+  assert.doesNotMatch(html, /playground-hero/);
+  assert.doesNotMatch(html, /playground-brand/);
 });
 
 test("playground includes data list and table primitives", () => {
@@ -51,7 +69,7 @@ test("playground includes data list and table primitives", () => {
   assert.match(html, /class="pergyl-table"/);
   assert.match(html, /data-label="Status"/);
   assert.match(html, /data-column="status"/);
-  assert.match(html, /<td data-label="Status" data-column="status"><span class="pergyl-status-label"/);
+  assert.match(html, /<td data-label="Status" data-column="status"><span class="pergyl-badge"/);
   assert.match(html, /\[HEALTHY\]/);
   assert.match(html, /\[DELAYED\]/);
   assert.match(html, /\[WARM\]/);
@@ -59,22 +77,47 @@ test("playground includes data list and table primitives", () => {
 
 test("playground system status uses borderless status text", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.match(html, /System status <span class="pergyl-status-label"/);
+  assert.match(html, /System status <span class="pergyl-status-label" data-tone="success">ready<\/span>/);
+  assert.doesNotMatch(html, /System status <span class="pergyl-status-label"[^>]*>\[/);
+});
+
+test("playground includes bracketed badge states", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /<span class="pergyl-badge" data-tone="warn">\[WARNING\]<\/span>/);
+});
+
+test("preview inputs show the terminal prompt text", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  assert.match(html, /<span class="pergyl-input-prompt" aria-hidden="true">&gt;<\/span>/);
+  assert.match(html, /<input class="pergyl-input"[^>]*placeholder="input_"/);
+  assert.doesNotMatch(html, /placeholder="> input_"/);
+});
+
+test("snippets include the terminal prompt input text", () => {
+  const html = readFileSync(SNIPPETS_PATH, "utf8");
+  assert.match(html, /<span class="pergyl-input-prompt" aria-hidden="true">&gt;<\/span>/);
+  assert.match(html, /<input class="pergyl-input"[^>]*placeholder="input_"/);
+  assert.doesNotMatch(html, /placeholder="> input_"/);
 });
 
 test("playground updates theme status text when theme changes", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.match(html, /id="theme-status">\[DARK\]<\/span>/);
-  assert.match(html, /themeStatus\.textContent = "\[DARK\]";/);
-  assert.match(html, /themeStatus\.textContent = "\[LIGHT\]";/);
+  assert.match(html, /<html lang="en" data-theme="iron">/);
+  assert.match(html, /<span class="pergyl-system-bar-value" id="theme-status">\[IRON\]<\/span>/);
+  assert.match(html, /themeStatus\.textContent = "\[IRON\]";/);
+  assert.match(html, /themeStatus\.textContent = "\[CLERESTORY\]";/);
+  assert.match(html, /themeStatus\.textContent = "\[FORGE\]";/);
+  assert.doesNotMatch(html, /data-theme", "dark"/);
+  assert.doesNotMatch(html, /data-theme", "light"/);
+  assert.doesNotMatch(html, /data-theme", "console"/);
 });
 
 test("playground status avoids terminal help prompts", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  assert.doesNotMatch(html, /<span class="pergyl-status-key">help<\/span>/);
-  assert.doesNotMatch(html, /<span class="pergyl-status-value">\?<\/span>/);
-  assert.match(html, /<span class="pergyl-status-value" id="theme-status">\[DARK\]<\/span>/);
-  assert.match(html, /<span class="pergyl-status-value">\[12\]<\/span>/);
+  assert.doesNotMatch(html, /<span class="pergyl-system-bar-key">help<\/span>/);
+  assert.doesNotMatch(html, /<span class="pergyl-system-bar-value">\?<\/span>/);
+  assert.match(html, /<span class="pergyl-system-bar-value" id="theme-status">\[IRON\]<\/span>/);
+  assert.match(html, /<span class="pergyl-system-bar-value">\[13\]<\/span>/);
 });
 
 test("playground includes state matrix samples", () => {

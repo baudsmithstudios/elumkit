@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="iron">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -41,21 +41,22 @@
         <h1>Pergyl Playground</h1>
         <p>Local preview page for fast visual and accessibility checks.</p>
         <div>
-          <button class="pergyl-button" id="theme-dark" type="button">Dark</button>
-          <button class="pergyl-button" id="theme-light" type="button">Light</button>
+          <button class="pergyl-button" id="theme-iron" type="button">Iron</button>
+          <button class="pergyl-button" id="theme-clerestory" type="button">Clerestory</button>
+          <button class="pergyl-button" id="theme-forge" type="button">Forge</button>
         </div>
       </header>
 
-      <nav class="pergyl-status" aria-label="Playground status">
-        <strong class="pergyl-status-brand">Pergyl</strong>
-        <span class="pergyl-status-group">
-          <span class="pergyl-status-item">
-            <span class="pergyl-status-key">theme</span>
-            <span class="pergyl-status-value" id="theme-status">[DARK]</span>
+      <nav class="pergyl-system-bar" aria-label="Playground status">
+        <strong class="pergyl-system-bar-brand">Pergyl</strong>
+        <span class="pergyl-system-bar-group">
+          <span class="pergyl-system-bar-item">
+            <span class="pergyl-system-bar-key">theme</span>
+            <span class="pergyl-system-bar-value" id="theme-status">[IRON]</span>
           </span>
-          <span class="pergyl-status-item">
-            <span class="pergyl-status-key">components</span>
-            <span class="pergyl-status-value">[12]</span>
+          <span class="pergyl-system-bar-item">
+            <span class="pergyl-system-bar-key">components</span>
+            <span class="pergyl-system-bar-value">[13]</span>
           </span>
         </span>
       </nav>
@@ -67,7 +68,10 @@
           </header>
           <p class="pergyl-card-subtitle">Surface container for grouped content.</p>
           <p>
-            System status <span class="pergyl-status-label" data-tone="success">[HEALTHY]</span>
+            System status <span class="pergyl-status-label" data-tone="success">ready</span>
+          </p>
+          <p>
+            Badge state <span class="pergyl-badge" data-tone="warn">[WARNING]</span>
           </p>
           <div>
             <button class="pergyl-button" type="button">Secondary</button>
@@ -148,7 +152,10 @@
 
           <div class="pergyl-field">
             <label class="pergyl-label" for="playground-name">Name</label>
-            <input class="pergyl-input" id="playground-name" name="name" type="text" placeholder="operator-01" />
+            <span class="pergyl-prompt-field">
+              <span class="pergyl-input-prompt" aria-hidden="true">&gt;</span>
+              <input class="pergyl-input" id="playground-name" name="name" type="text" placeholder="input_" />
+            </span>
           </div>
 
           <div class="pergyl-field">
@@ -206,19 +213,19 @@
             <tbody>
               <tr>
                 <td data-label="Service">api-gateway</td>
-                <td data-label="Status" data-column="status"><span class="pergyl-status-label" data-tone="success">[HEALTHY]</span></td>
+                <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="success">[HEALTHY]</span></td>
                 <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
                 <td data-label="Events" data-align="end" data-numeric="true">1,284</td>
               </tr>
               <tr>
                 <td data-label="Service">worker-queue</td>
-                <td data-label="Status" data-column="status"><span class="pergyl-status-label" data-tone="warn">[DELAYED]</span></td>
+                <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="warn">[DELAYED]</span></td>
                 <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
                 <td data-label="Events" data-align="end" data-numeric="true">876</td>
               </tr>
               <tr>
                 <td data-label="Service">cache-node</td>
-                <td data-label="Status" data-column="status"><span class="pergyl-status-label" data-tone="accent">[WARM]</span></td>
+                <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="accent">[WARM]</span></td>
                 <td data-label="Latency" data-align="end" data-numeric="true">9ms</td>
                 <td data-label="Events" data-align="end" data-numeric="true">2,048</td>
               </tr>
@@ -278,21 +285,29 @@
 
     <script>
       const root = document.documentElement;
-      const dark = document.getElementById("theme-dark");
-      const light = document.getElementById("theme-light");
+      const iron = document.getElementById("theme-iron");
+      const clerestory = document.getElementById("theme-clerestory");
+      const forge = document.getElementById("theme-forge");
       const themeStatus = document.getElementById("theme-status");
 
-      dark?.addEventListener("click", () => {
-        root.setAttribute("data-theme", "dark");
+      iron?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "iron");
         if (themeStatus) {
-          themeStatus.textContent = "[DARK]";
+          themeStatus.textContent = "[IRON]";
         }
       });
 
-      light?.addEventListener("click", () => {
-        root.setAttribute("data-theme", "light");
+      clerestory?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "clerestory");
         if (themeStatus) {
-          themeStatus.textContent = "[LIGHT]";
+          themeStatus.textContent = "[CLERESTORY]";
+        }
+      });
+
+      forge?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "forge");
+        if (themeStatus) {
+          themeStatus.textContent = "[FORGE]";
         }
       });
     </script>

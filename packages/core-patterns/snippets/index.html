@@ -5,6 +5,7 @@
     </header>
     <p class="pergyl-card-subtitle">Dense, readable surface content.</p>
     <p>Use cards for grouped content, settings sections, and compact panels.</p>
+    <p>Badge state <span class="pergyl-badge" data-tone="warn">[WARNING]</span></p>
     <button class="pergyl-button" type="button">Secondary Button</button>
     <button class="pergyl-button" data-variant="primary" type="button">Primary Button</button>
   </article>
@@ -12,7 +13,10 @@
   <form class="pergyl-stack" action="#" method="post">
     <div class="pergyl-field">
       <label class="pergyl-label" for="name">Name</label>
-      <input class="pergyl-input" id="name" name="name" type="text" placeholder="your-name" />
+      <span class="pergyl-prompt-field">
+        <span class="pergyl-input-prompt" aria-hidden="true">&gt;</span>
+        <input class="pergyl-input" id="name" name="name" type="text" placeholder="input_" />
+      </span>
     </div>
 
     <div class="pergyl-field">
@@ -50,16 +54,16 @@
     Disk usage crossed the configured warning threshold.
   </aside>
 
-  <nav class="pergyl-status" aria-label="System status">
-    <strong class="pergyl-status-brand">Pergyl</strong>
-    <span class="pergyl-status-group">
-      <span class="pergyl-status-item">
-        <span class="pergyl-status-key">theme</span>
-        <span class="pergyl-status-value">[DARK]</span>
+  <nav class="pergyl-system-bar" aria-label="System status">
+    <strong class="pergyl-system-bar-brand">Pergyl</strong>
+    <span class="pergyl-system-bar-group">
+      <span class="pergyl-system-bar-item">
+        <span class="pergyl-system-bar-key">theme</span>
+        <span class="pergyl-system-bar-value">[IRON]</span>
       </span>
-      <span class="pergyl-status-item">
-        <span class="pergyl-status-key">state</span>
-        <span class="pergyl-status-value">[READY]</span>
+      <span class="pergyl-system-bar-item">
+        <span class="pergyl-system-bar-key">state</span>
+        <span class="pergyl-system-bar-value">[READY]</span>
       </span>
     </span>
   </nav>
@@ -116,12 +120,12 @@
       <tbody>
         <tr>
           <td data-label="Service">api-gateway</td>
-          <td data-label="Status" data-column="status"><span class="pergyl-status-label" data-tone="success">[HEALTHY]</span></td>
+          <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="success">[HEALTHY]</span></td>
           <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
         </tr>
         <tr>
           <td data-label="Service">worker-queue</td>
-          <td data-label="Status" data-column="status"><span class="pergyl-status-label" data-tone="warn">[DELAYED]</span></td>
+          <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="warn">[DELAYED]</span></td>
           <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
         </tr>
       </tbody>

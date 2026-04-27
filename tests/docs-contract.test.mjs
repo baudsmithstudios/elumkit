@@ -25,7 +25,8 @@ test("readme links to v0.1 usage docs", () => {
 
 test("component docs cover telemetry primitives", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
-  assert.match(componentUsage, /## Status Bar/);
+  assert.match(componentUsage, /## Badge/);
+  assert.match(componentUsage, /## System Bar/);
   assert.match(componentUsage, /## Status Label/);
   assert.match(componentUsage, /## Metrics/);
   assert.match(componentUsage, /## Meter/);
@@ -33,10 +34,30 @@ test("component docs cover telemetry primitives", () => {
   assert.match(componentUsage, /## Data Table/);
 });
 
-test("component docs describe bracketed terminal status text", () => {
+test("component docs describe terminal status labels", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
-  assert.match(componentUsage, /bracketed status text/);
+  assert.match(componentUsage, /same-color dot/);
+  assert.match(componentUsage, /uppercase status text/);
   assert.match(componentUsage, /data-column="status"/);
+});
+
+test("component docs describe system bars", () => {
+  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /pergyl-system-bar/);
+  assert.doesNotMatch(componentUsage, /pergyl-status-brand/);
+});
+
+test("component docs describe persistent input prompts", () => {
+  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /pergyl-prompt-field/);
+  assert.match(componentUsage, /pergyl-input-prompt/);
+  assert.match(componentUsage, /persistent prompt/);
+});
+
+test("component docs describe bracketed badges", () => {
+  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+  assert.match(componentUsage, /pergyl-badge/);
+  assert.match(componentUsage, /\[WARNING\]/);
 });
 
 test("component docs describe optional inline card subtitles", () => {
@@ -52,4 +73,21 @@ test("theming docs describe card customization properties", () => {
   assert.match(theming, /--pergyl-card-title-size/);
   assert.match(theming, /--pergyl-card-subtitle-color/);
   assert.match(theming, /--pergyl-card-subtitle-size/);
+});
+
+test("theming docs list the industrial gothic theme names", () => {
+  const theming = readFileSync("docs/theming.md", "utf8");
+  assert.match(theming, /`clerestory`/);
+  assert.match(theming, /`iron`/);
+  assert.match(theming, /`forge`/);
+  assert.doesNotMatch(theming, /`light`/);
+  assert.doesNotMatch(theming, /`dark`/);
+  assert.doesNotMatch(theming, /`console`/);
+  assert.match(theming, /warm operational console/);
+});
+
+test("theming docs describe the clerestory palette", () => {
+  const theming = readFileSync("docs/theming.md", "utf8");
+  assert.match(theming, /`clerestory`/);
+  assert.match(theming, /cool utility palette/);
 });
