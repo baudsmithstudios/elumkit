@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 96" width="600" height="96">
+  <!-- Token values mirror packages/core-css/src/tokens.css. -->
+  <!-- Resync if Pergyl tokens change. -->
+  <defs>
+    <style>
+      .surface     { fill: #1c1c1c; }
+      .border      { stroke: #444444; fill: none; }
+      .label-bg    { fill: #121212; }
+      .label-text  { fill: #a3a3a3; }
+      .brand       { fill: #eeeeee; }
+      .accent      { fill: #c47a5a; }
+      @media (prefers-color-scheme: light) {
+        .surface    { fill: #ffffff; }
+        .border     { stroke: #d4d4d4; }
+        .label-bg   { fill: #f7f7f7; }
+        .label-text { fill: #666666; }
+        .brand      { fill: #1f1f1f; }
+        .accent     { fill: #8b4a2a; }
+      }
+      .mono { font-family: 'JetBrains Mono','IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace; }
+    </style>
+  </defs>
+
+  <!-- Card surface and 2px border (radius 3px = --pergyl-radius-md). -->
+  <rect class="surface" x="20" y="20" width="560" height="60" rx="3" />
+  <rect class="border" x="21" y="21" width="558" height="58" rx="3" stroke-width="2" />
+
+  <!-- Card label inset across the top border. -->
+  <rect class="label-bg" x="40" y="14" width="220" height="14" />
+  <text class="mono label-text" x="50" y="25" font-size="11" letter-spacing="2">COMPONENT-SYSTEM · V0.1</text>
+
+  <!-- Brand mark, centered vertically inside the card body. -->
+  <text class="mono brand" x="40" y="60" font-size="26" font-weight="600" letter-spacing="1.5">pergyl<tspan class="accent">.</tspan></text>
+</svg>
