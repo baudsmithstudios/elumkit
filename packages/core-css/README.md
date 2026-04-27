@@ -22,3 +22,5 @@ Theme switching is controlled with a `data-theme` attribute on `html` or `body`:
 ```html
 <html data-theme="dark">
 ```
+
+Supported values are `light`, `dark`, and `console`.

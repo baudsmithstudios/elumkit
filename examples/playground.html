@@ -43,6 +43,7 @@
         <div>
           <button class="pergyl-button" id="theme-dark" type="button">Dark</button>
           <button class="pergyl-button" id="theme-light" type="button">Light</button>
+          <button class="pergyl-button" id="theme-console" type="button">Console</button>
         </div>
       </header>
 
@@ -286,6 +287,7 @@
       const root = document.documentElement;
       const dark = document.getElementById("theme-dark");
       const light = document.getElementById("theme-light");
+      const themeConsole = document.getElementById("theme-console");
       const themeStatus = document.getElementById("theme-status");
 
       dark?.addEventListener("click", () => {
@@ -299,6 +301,13 @@
         root.setAttribute("data-theme", "light");
         if (themeStatus) {
           themeStatus.textContent = "[LIGHT]";
+        }
+      });
+
+      themeConsole?.addEventListener("click", () => {
+        root.setAttribute("data-theme", "console");
+        if (themeStatus) {
+          themeStatus.textContent = "[CONSOLE]";
         }
       });
     </script>

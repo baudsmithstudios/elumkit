@@ -14,6 +14,9 @@ Supported values:
 
 - `dark`
 - `light`
+- `console`
+
+`console` is a warm operational console theme for dense local dashboards and control surfaces.
 
 ## Core token groups
 

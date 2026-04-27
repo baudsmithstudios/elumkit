@@ -74,3 +74,9 @@ test("theming docs describe card customization properties", () => {
   assert.match(theming, /--pergyl-card-subtitle-color/);
   assert.match(theming, /--pergyl-card-subtitle-size/);
 });
+
+test("theming docs list the console theme", () => {
+  const theming = readFileSync("docs/theming.md", "utf8");
+  assert.match(theming, /`console`/);
+  assert.match(theming, /warm operational console/);
+});

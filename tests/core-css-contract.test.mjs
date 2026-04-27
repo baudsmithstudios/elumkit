@@ -68,9 +68,15 @@ test("tokens include required semantic color and motion variables", () => {
   }
 });
 
-test("theme colors use Aponis rust accents and grayscale neutrals", () => {
-  assert.deepEqual(tokenValues("--pergyl-color-accent"), ["#8b4a2a", "#c47a5a"]);
-  assert.deepEqual(tokenValues("--pergyl-focus-ring"), ["#8b4a2a", "#c47a5a"]);
+test("themes include light, dark, and console token sets", () => {
+  assert.match(TOKENS_CSS, /:root,\s*\n\[data-theme="light"\]/);
+  assert.match(TOKENS_CSS, /\[data-theme="dark"\]/);
+  assert.match(TOKENS_CSS, /\[data-theme="console"\]/);
+});
+
+test("default themes use rust accents and grayscale neutrals", () => {
+  assert.deepEqual(tokenValues("--pergyl-color-accent").slice(0, 2), ["#8b4a2a", "#c47a5a"]);
+  assert.deepEqual(tokenValues("--pergyl-focus-ring").slice(0, 2), ["#8b4a2a", "#c47a5a"]);
 
   const grayscaleTokens = [
     "--pergyl-color-bg",
@@ -82,17 +88,27 @@ test("theme colors use Aponis rust accents and grayscale neutrals", () => {
   ];
 
   for (const token of grayscaleTokens) {
-    for (const value of tokenValues(token)) {
+    for (const value of tokenValues(token).slice(0, 2)) {
       assert.equal(isGrayscale(value), true, `${token} should be grayscale, got ${value}`);
     }
   }
 });
 
-test("status colors use Aponis colors with accessible theme variants", () => {
+test("console theme uses a warm operational palette", () => {
+  assert.deepEqual(tokenValues("--pergyl-color-bg"), ["#f7f7f7", "#121212", "#0a0908"]);
+  assert.deepEqual(tokenValues("--pergyl-color-surface"), ["#ffffff", "#1c1c1c", "#121110"]);
+  assert.deepEqual(tokenValues("--pergyl-color-fg"), ["#1f1f1f", "#eeeeee", "#ccc8c4"]);
+  assert.deepEqual(tokenValues("--pergyl-color-muted"), ["#666666", "#a3a3a3", "#8d8580"]);
+  assert.deepEqual(tokenValues("--pergyl-color-border"), ["#d4d4d4", "#444444", "#5a4528"]);
+  assert.deepEqual(tokenValues("--pergyl-color-accent"), ["#8b4a2a", "#c47a5a", "#f5a623"]);
+  assert.deepEqual(tokenValues("--pergyl-focus-ring"), ["#8b4a2a", "#c47a5a", "#f5a623"]);
+});
+
+test("status colors use accessible theme variants", () => {
   const statusTokens = {
-    "--pergyl-color-success": ["#2f7d32", "#6abe5a"],
-    "--pergyl-color-warn": ["#966517", "#d49d2a"],
-    "--pergyl-color-error": ["#d12d22", "#e25a4f"],
+    "--pergyl-color-success": ["#2f7d32", "#6abe5a", "#7a9e6b"],
+    "--pergyl-color-warn": ["#966517", "#d49d2a", "#b89a4a"],
+    "--pergyl-color-error": ["#d12d22", "#e25a4f", "#e25a4f"],
   };
   const backgrounds = tokenValues("--pergyl-color-bg");
 

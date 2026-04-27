@@ -52,6 +52,7 @@ test("playground header uses the simple preview intro", () => {
   assert.match(html, /Local preview page for fast visual and accessibility checks\./);
   assert.match(html, /<button class="pergyl-button" id="theme-dark" type="button">Dark<\/button>/);
   assert.match(html, /<button class="pergyl-button" id="theme-light" type="button">Light<\/button>/);
+  assert.match(html, /<button class="pergyl-button" id="theme-console" type="button">Console<\/button>/);
   assert.doesNotMatch(html, /playground-hero/);
   assert.doesNotMatch(html, /playground-brand/);
 });
@@ -101,6 +102,7 @@ test("playground updates theme status text when theme changes", () => {
   assert.match(html, /<span class="pergyl-system-bar-value" id="theme-status">\[DARK\]<\/span>/);
   assert.match(html, /themeStatus\.textContent = "\[DARK\]";/);
   assert.match(html, /themeStatus\.textContent = "\[LIGHT\]";/);
+  assert.match(html, /themeStatus\.textContent = "\[CONSOLE\]";/);
 });
 
 test("playground status avoids terminal help prompts", () => {

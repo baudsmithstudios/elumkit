@@ -48,3 +48,18 @@
 
   --pergyl-focus-ring: #c47a5a;
 }
+
+[data-theme="console"] {
+  --pergyl-color-bg: #0a0908;
+  --pergyl-color-surface: #121110;
+  --pergyl-color-fg: #ccc8c4;
+  --pergyl-color-muted: #8d8580;
+  --pergyl-color-border: #5a4528;
+  --pergyl-color-accent: #f5a623;
+  --pergyl-color-success: #7a9e6b;
+  --pergyl-color-warn: #b89a4a;
+  --pergyl-color-error: #e25a4f;
+  --pergyl-color-info: #c8b88a;
+
+  --pergyl-focus-ring: #f5a623;
+}

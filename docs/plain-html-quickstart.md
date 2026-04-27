@@ -14,7 +14,7 @@ Use this path when you want v0.1 components in a plain HTML project.
 <html data-theme="dark">
 ```
 
-Use `data-theme="light"` for light mode.
+Use `data-theme="light"` for light mode or `data-theme="console"` for a warmer operational console palette.
 
 ## 3) Copy component markup
 
