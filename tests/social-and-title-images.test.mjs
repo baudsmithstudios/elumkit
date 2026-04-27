@@ -37,6 +37,18 @@ test("title.svg uses iron token values", () => {
   assert.match(svg, /#c47a5a/); // accent
 });
 
+test("title.svg is well-formed XML (strict parsers reject any `--` inside comments)", () => {
+  const svg = readFileSync(TITLE_SVG, "utf8");
+  // Walk every comment body and confirm none contain `--`. This catches the
+  // class of failure where strict SVG renderers (GitHub, most markdown
+  // previewers) reject the file as malformed and display a broken-image icon.
+  const commentBody = /<!--([\s\S]*?)-->/g;
+  let match;
+  while ((match = commentBody.exec(svg)) !== null) {
+    assert.doesNotMatch(match[1], /--/, `XML comment contains "--": ${match[0]}`);
+  }
+});
+
 const SOCIAL_HTML = "examples/social-card.html";
 
 test("social-card.html exists", () => {

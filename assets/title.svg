@@ -3,7 +3,7 @@
   <!-- Iron-theme palette mirrors packages/core-css/src/tokens.css. -->
   <!-- Resync if Pergyl iron tokens change. -->
 
-  <!-- Card surface and 2px border (radius 3px = --pergyl-radius-md). -->
+  <!-- Card surface and 2px border (3px radius matches the pergyl-radius-md token). -->
   <rect x="20" y="20" width="560" height="60" rx="3" fill="#1c1c1c" />
   <rect x="21" y="21" width="558" height="58" rx="3" fill="none" stroke="#444444" stroke-width="2" />
 
