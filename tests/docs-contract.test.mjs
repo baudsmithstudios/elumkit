@@ -33,9 +33,11 @@ test("component docs cover telemetry primitives", () => {
   assert.match(componentUsage, /## Data Table/);
 });
 
-test("component docs describe bracketed terminal status text", () => {
+test("component docs describe terminal status labels and dot rows", () => {
   const componentUsage = readFileSync("docs/component-usage.md", "utf8");
-  assert.match(componentUsage, /bracketed status text/);
+  assert.match(componentUsage, /uppercase status text/);
+  assert.match(componentUsage, /pergyl-status-list/);
+  assert.match(componentUsage, /pergyl-status-dot/);
   assert.match(componentUsage, /data-column="status"/);
 });
 

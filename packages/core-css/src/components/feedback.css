@@ -21,13 +21,15 @@
 
 .pergyl-status-label {
   align-items: baseline;
-  color: var(--pergyl-color-fg);
+  color: var(--pergyl-color-muted);
   display: inline-flex;
   font-size: var(--pergyl-text-sm);
   font-variant-numeric: tabular-nums;
-  font-weight: 700;
+  font-weight: 400;
   gap: var(--pergyl-space-1);
+  letter-spacing: 0.16em;
   line-height: var(--pergyl-lh-tight);
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
