@@ -44,9 +44,11 @@
 }
 
 .pergyl-card-header[data-inline="true"] > .pergyl-card-title {
-  flex: 1;
+  flex: 0 0 auto;
 }
 
 .pergyl-card-header[data-inline="true"] > .pergyl-card-subtitle {
+  background: var(--pergyl-card-label-bg, var(--pergyl-color-bg));
   margin: 0;
+  padding: 0 var(--pergyl-space-2);
 }

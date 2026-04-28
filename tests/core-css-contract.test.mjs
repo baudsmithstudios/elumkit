@@ -4,6 +4,7 @@ import { test } from "node:test";
 
 const TOKENS_CSS = readFileSync("packages/core-css/src/tokens.css", "utf8");
 const BASE_CSS = readFileSync("packages/core-css/src/base.css", "utf8");
+const CARD_CSS = readFileSync("packages/core-css/src/components/card.css", "utf8");
 const FORM_CSS = readFileSync("packages/core-css/src/components/form.css", "utf8");
 const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css", "utf8");
 const TELEMETRY_CSS = readFileSync("packages/core-css/src/components/telemetry.css", "utf8");
@@ -79,6 +80,13 @@ test("base and form styles keep accessible focus behavior", () => {
   assert.match(BASE_CSS, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(FORM_CSS, /\.pergyl-prompt-field > \.pergyl-input:focus-visible\s*{[^}]*outline:\s*0;/s);
   assert.match(FORM_CSS, /\.pergyl-prompt-field:focus-within/);
+});
+
+test("inline card headers keep title and subtitle adjacent", () => {
+  assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\]\s*{[^}]*display:\s*flex;/s);
+  assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\] > \.pergyl-card-title\s*{[^}]*flex:\s*0 0 auto;/s);
+  assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\] > \.pergyl-card-subtitle\s*{[^}]*background:\s*var\(--pergyl-card-label-bg, var\(--pergyl-color-bg\)\);/s);
+  assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\] > \.pergyl-card-subtitle\s*{[^}]*padding:\s*0 var\(--pergyl-space-2\);/s);
 });
 
 test("component CSS exposes current public class surfaces", () => {
