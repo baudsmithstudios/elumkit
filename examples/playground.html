@@ -121,7 +121,7 @@
           <p class="pergyl-card-subtitle">Selectable-looking rows with aligned values.</p>
 
           <div class="pergyl-list" role="list" aria-label="Service rows">
-            <a class="pergyl-row" href="#" role="listitem" data-selected="true">
+            <a class="pergyl-row" href="#" role="listitem" data-selected="true" aria-current="true">
               <span class="pergyl-row-main">
                 <span class="pergyl-row-title">api-gateway</span>
                 <span class="pergyl-row-meta">edge cluster :: [HEALTHY]</span>
@@ -244,21 +244,21 @@
           <div class="state-cell pergyl-stack">
             <strong>Normal</strong>
             <button class="pergyl-button" type="button">Normal Button</button>
-            <input class="pergyl-input" type="text" value="normal value" />
+            <input class="pergyl-input" type="text" value="normal value" aria-label="Normal input state" />
           </div>
 
           <div class="state-cell pergyl-stack">
             <strong>Focus target</strong>
             <p>Press <kbd>Tab</kbd> to focus the button and input.</p>
             <button class="pergyl-button" id="focus-target-button" type="button">Focus me</button>
-            <input class="pergyl-input" id="focus-target-input" type="text" value="focus target" />
+            <input class="pergyl-input" id="focus-target-input" type="text" value="focus target" aria-label="Focus target input" />
           </div>
 
           <div class="state-cell pergyl-stack">
             <strong>Disabled</strong>
             <button class="pergyl-button" type="button" disabled>Disabled button</button>
-            <input class="pergyl-input" type="text" value="disabled input" disabled />
-            <select class="pergyl-select" disabled>
+            <input class="pergyl-input" type="text" value="disabled input" aria-label="Disabled input state" disabled />
+            <select class="pergyl-select" aria-label="Disabled select state" disabled>
               <option>Disabled select</option>
             </select>
             <label class="pergyl-choice" data-disabled="true" for="state-disabled-notify">
@@ -273,9 +273,9 @@
 
           <div class="state-cell pergyl-stack">
             <strong>Invalid</strong>
-            <input class="pergyl-input" type="text" value="invalid input" aria-invalid="true" />
-            <textarea class="pergyl-textarea" aria-invalid="true">invalid textarea</textarea>
-            <select class="pergyl-select" aria-invalid="true">
+            <input class="pergyl-input" type="text" value="invalid input" aria-label="Invalid input state" aria-invalid="true" />
+            <textarea class="pergyl-textarea" aria-label="Invalid textarea state" aria-invalid="true">invalid textarea</textarea>
+            <select class="pergyl-select" aria-label="Invalid select state" aria-invalid="true">
               <option>Invalid select</option>
             </select>
           </div>

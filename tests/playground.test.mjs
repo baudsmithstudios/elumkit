@@ -61,3 +61,32 @@ test("playground covers critical form states", () => {
   assert.match(html, /<input[^>]*class="pergyl-input"[^>]*\sdisabled(?:\s|\/?>)/);
   assert.match(html, /class="pergyl-choice"[^>]*data-disabled="true"/);
 });
+
+test("example form controls expose accessible names", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const html = readFileSync(file, "utf8");
+    const labels = new Set([...html.matchAll(/<label\b[^>]*\bfor="([^"]+)"/g)].map((match) => match[1]));
+    const controls = html.match(/<(?:input|select|textarea)\b[^>]*>/g) ?? [];
+
+    for (const control of controls) {
+      const id = control.match(/\bid="([^"]+)"/)?.[1];
+      const hasExplicitLabel = id && labels.has(id);
+      const hasAriaLabel = /\baria-label="[^"]+"/.test(control);
+      const hasAriaLabelledBy = /\baria-labelledby="[^"]+"/.test(control);
+
+      assert.ok(hasExplicitLabel || hasAriaLabel || hasAriaLabelledBy, `missing accessible name in ${file}: ${control}`);
+    }
+  }
+});
+
+test("selected row examples expose semantic state", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const html = readFileSync(file, "utf8");
+    const selectedRows = html.match(/<a\b[^>]*class="pergyl-row"[^>]*data-selected="true"[^>]*>/g) ?? [];
+
+    assert.ok(selectedRows.length > 0, `expected selected row example in ${file}`);
+    for (const row of selectedRows) {
+      assert.match(row, /\baria-current="true"/);
+    }
+  }
+});

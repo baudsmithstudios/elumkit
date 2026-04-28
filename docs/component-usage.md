@@ -11,7 +11,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Input / Textarea / Select
 
-- **Class:** `.pergyl-field` on the input, with a connected `<label for="...">`
+- **Wrapper:** `.pergyl-field` around the control, with a connected `<label for="...">`
 - **Prompt input:** wrap `.pergyl-input` in `.pergyl-prompt-field` and place `.pergyl-input-prompt` before it for a persistent prompt such as `>`
 - **Invalid state:** `aria-invalid="true"`
 - **Disabled state:** native `disabled`
@@ -75,7 +75,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **List:** `.pergyl-list`
 - **Row:** `.pergyl-row`
 - Use `.pergyl-row-title`, `.pergyl-row-meta`, and `.pergyl-row-value` for compact aligned content.
-- **Selected state:** `data-selected="true"`
+- **Selected state:** `data-selected="true"` for the visual hook, plus the appropriate semantic state for the context. For a current link, use `aria-current="true"`.
 
 ## Data Table
 

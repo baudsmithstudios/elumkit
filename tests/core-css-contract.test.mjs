@@ -108,4 +108,6 @@ test("table and row APIs expose responsive state hooks", () => {
   assert.match(DATA_CSS, /@media \(max-width: 48rem\)/);
   assert.match(DATA_CSS, /content:\s*attr\(data-label\);/);
   assert.match(DATA_CSS, /\[data-column="status"\]/);
+  assert.doesNotMatch(DATA_CSS, /\.pergyl-table thead\s*{[^}]*display:\s*none;/s);
+  assert.match(DATA_CSS, /\.pergyl-table thead\s*{[^}]*clip-path:\s*inset\(50%\);/s);
 });
