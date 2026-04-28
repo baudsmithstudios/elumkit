@@ -53,3 +53,24 @@
   margin: 0;
   padding: 0 var(--pergyl-space-2) 0 0;
 }
+
+@media (max-width: 42rem) {
+  .pergyl-card-labeled:has(> .pergyl-card-header[data-inline="true"]:first-child) {
+    padding-top: var(--pergyl-card-padding, var(--pergyl-space-4));
+  }
+
+  .pergyl-card-labeled > .pergyl-card-header[data-inline="true"]:first-child {
+    margin: 0 0 var(--pergyl-space-2);
+    transform: none;
+  }
+
+  .pergyl-card-header[data-inline="true"] {
+    display: block;
+  }
+
+  .pergyl-card-header[data-inline="true"] > .pergyl-card-subtitle {
+    background: transparent;
+    margin: var(--pergyl-space-1) 0 0;
+    padding: 0;
+  }
+}

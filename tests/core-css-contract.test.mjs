@@ -90,6 +90,13 @@ test("inline card headers keep title and subtitle adjacent", () => {
   assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\] > \.pergyl-card-subtitle\s*{[^}]*padding:\s*0 var\(--pergyl-space-2\) 0 0;/s);
 });
 
+test("inline labeled card headers move inside cards on narrow screens", () => {
+  assert.match(CARD_CSS, /@media \(max-width: 42rem\)\s*{[^}]*\.pergyl-card-labeled:has\(> \.pergyl-card-header\[data-inline="true"\]:first-child\)\s*{[^}]*padding-top:\s*var\(--pergyl-card-padding, var\(--pergyl-space-4\)\);/s);
+  assert.match(CARD_CSS, /@media \(max-width: 42rem\)\s*{[\s\S]*\.pergyl-card-labeled > \.pergyl-card-header\[data-inline="true"\]:first-child\s*{[^}]*margin:\s*0 0 var\(--pergyl-space-2\);[^}]*transform:\s*none;/s);
+  assert.match(CARD_CSS, /@media \(max-width: 42rem\)\s*{[\s\S]*\.pergyl-card-header\[data-inline="true"\]\s*{[^}]*display:\s*block;/s);
+  assert.match(CARD_CSS, /@media \(max-width: 42rem\)\s*{[\s\S]*\.pergyl-card-header\[data-inline="true"\] > \.pergyl-card-subtitle\s*{[^}]*background:\s*transparent;[^}]*margin:\s*var\(--pergyl-space-1\) 0 0;[^}]*padding:\s*0;/s);
+});
+
 test("component CSS exposes current public class surfaces", () => {
   for (const className of [
     "pergyl-input",
