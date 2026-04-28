@@ -290,25 +290,23 @@
       const forge = document.getElementById("theme-forge");
       const themeStatus = document.getElementById("theme-status");
 
-      iron?.addEventListener("click", () => {
-        root.setAttribute("data-theme", "iron");
+      function setTheme(theme, label) {
+        root.setAttribute("data-theme", theme);
         if (themeStatus) {
-          themeStatus.textContent = "[IRON]";
+          themeStatus.textContent = label;
         }
+      }
+
+      iron?.addEventListener("click", () => {
+        setTheme("iron", "[IRON]");
       });
 
       clerestory?.addEventListener("click", () => {
-        root.setAttribute("data-theme", "clerestory");
-        if (themeStatus) {
-          themeStatus.textContent = "[CLERESTORY]";
-        }
+        setTheme("clerestory", "[CLERESTORY]");
       });
 
       forge?.addEventListener("click", () => {
-        root.setAttribute("data-theme", "forge");
-        if (themeStatus) {
-          themeStatus.textContent = "[FORGE]";
-        }
+        setTheme("forge", "[FORGE]");
       });
     </script>
   </body>

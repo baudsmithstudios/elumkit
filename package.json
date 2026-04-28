@@ -1,7 +1,20 @@
 {
   "name": "pergyl",
+  "description": "HTML-first web UI primitives with a clean terminal feel.",
   "private": true,
   "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baudsmithstudios/pergyl.git"
+  },
+  "bugs": {
+    "url": "https://github.com/baudsmithstudios/pergyl/issues"
+  },
+  "homepage": "https://github.com/baudsmithstudios/pergyl#readme",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "test": "node --test",
     "preview": "python3 -m http.server 4173"

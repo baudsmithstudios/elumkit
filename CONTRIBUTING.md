@@ -26,6 +26,16 @@ Then open `http://localhost:4173/examples/playground.html`. Every v0.1 component
 - Add or update tests in `tests/` for new behavior or contract changes
 - Make sure `npm test` passes before submitting
 
+## Release Checklist
+
+Before tagging a release:
+
+- Run `npm test`
+- Review `examples/playground.html` across the supported themes
+- Check keyboard focus, disabled, and invalid states in the playground
+- Update `CHANGELOG.md`
+- Verify README, roadmap, security, and license links still resolve
+
 ## Reporting Bugs
 
 Open an issue with:

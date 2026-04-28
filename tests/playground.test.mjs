@@ -27,13 +27,18 @@ test("playground loads core CSS and renders current component set", () => {
 
 test("playground exposes the supported theme values", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  const themes = {
+    clerestory: "CLERESTORY",
+    iron: "IRON",
+    forge: "FORGE",
+  };
 
   assert.match(html, /data-theme="iron"/);
-  for (const theme of ["clerestory", "iron", "forge"]) {
-    assert.match(html, new RegExp(`data-theme", "${theme}"`));
+  for (const [theme, label] of Object.entries(themes)) {
     assert.match(html, new RegExp(`theme-${theme}`));
+    assert.match(html, new RegExp(`setTheme\\("${theme}", "\\[${label}\\]"\\)`));
   }
-  assert.doesNotMatch(html, /data-theme", "(light|dark|console)"/);
+  assert.doesNotMatch(html, /setTheme\("(light|dark|console)"/);
 });
 
 test("prompt input markup is present in examples and snippets", () => {
