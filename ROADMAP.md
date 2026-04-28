@@ -18,7 +18,31 @@ v0.1 establishes the plain HTML core:
 
 ---
 
-## Potential v0.2 - Frontend Framework Support
+## Potential v0.2 - Distribution And Consumption
+
+Make Pergyl easier to consume from real projects before adding framework-specific layers.
+
+### Static app consumption
+
+- Document copying or vendoring Pergyl CSS into non-JavaScript apps
+- Show how projects such as static HTML, server-rendered apps, and Go-embedded UIs can use the CSS directly
+- Keep the plain CSS files usable without a build step
+
+### Asset pipeline integrations
+
+- Add minimal examples for copying or bundling Pergyl CSS into common static-site pipelines
+- Keep examples focused on usage, not framework-specific abstractions
+- Document how downstream projects should pin or update vendored Pergyl files
+
+### Optional npm package
+
+- Decide whether publishing to npm is useful for the project
+- If adopted, define the package export shape for core CSS and any adapter entrypoints
+- Document installation and version pinning
+
+---
+
+## Potential v0.3 - Frontend Framework Support
 
 Add framework support without forking the core design system.
 
@@ -41,22 +65,9 @@ Add framework support without forking the core design system.
 
 ---
 
-## Potential v0.3 - Distribution Options
+## Potential v0.4 - Playground Polish
 
-Make Pergyl easier to consume from real projects after the framework support shape is clear.
-
-### Asset pipeline integrations
-
-- Add minimal examples for copying or bundling Pergyl CSS into common static-site pipelines
-- Keep examples focused on usage, not framework-specific abstractions
-
-### Optional npm package
-
-- Decide whether publishing to npm is useful for the project
-- If adopted, define the package export shape for core CSS and any adapter entrypoints
-- Document installation and version pinning
-
-### Playground polish
+Keep the public examples aligned with the component contract as the visual language stabilizes.
 
 - Keep snippets and playground coverage aligned
 - Add a README screenshot once the public visual language stabilizes
