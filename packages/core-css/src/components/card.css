@@ -68,6 +68,11 @@
     display: block;
   }
 
+  .pergyl-card-header[data-inline="true"] > .pergyl-card-title {
+    background: transparent;
+    padding: 0;
+  }
+
   .pergyl-card-header[data-inline="true"] > .pergyl-card-subtitle {
     background: transparent;
     margin: var(--pergyl-space-1) 0 0;
