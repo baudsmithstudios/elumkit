@@ -123,6 +123,10 @@
     padding: var(--pergyl-space-1) 0;
   }
 
+  .pergyl-table [data-align="end"] {
+    text-align: left;
+  }
+
   .pergyl-table td::before {
     color: var(--pergyl-color-accent);
     content: attr(data-label);
