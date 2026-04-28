@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 
 const TITLE_SVG = "assets/title.svg";
-const SOCIAL_HTML = "examples/social-card.html";
+const SOCIAL_SVG = "assets/social.svg";
 const SOCIAL_PNG = "assets/social.png";
 
 test("README title image asset exists and has the expected shape", () => {
@@ -16,14 +16,14 @@ test("README title image asset exists and has the expected shape", () => {
   assert.match(svg, />pergyl</);
 });
 
-test("social card source uses Pergyl CSS and fixed image dimensions", () => {
-  assert.equal(existsSync(SOCIAL_HTML), true, "expected examples/social-card.html to exist");
-  const html = readFileSync(SOCIAL_HTML, "utf8");
+test("social card source is a fixed-size SVG asset", () => {
+  assert.equal(existsSync(SOCIAL_SVG), true, "expected assets/social.svg to exist");
+  const svg = readFileSync(SOCIAL_SVG, "utf8");
 
-  assert.match(html, /href="\.\.\/packages\/core-css\/src\/index\.css"/);
-  assert.match(html, /width:\s*1280px/);
-  assert.match(html, /height:\s*640px/);
-  assert.match(html, /class="pergyl-card pergyl-card-labeled"/);
+  assert.match(svg, /viewBox="0 0 1280 640"/);
+  assert.match(svg, /width="1280"/);
+  assert.match(svg, /height="640"/);
+  assert.match(svg, />pergyl</);
 });
 
 test("social PNG exists and matches the OpenGraph dimensions", () => {

@@ -1,15 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 96" width="600" height="96"
-     font-family="'JetBrains Mono','IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace">
-  <!-- Static README banner palette. -->
-
-  <!-- Card surface and 2px border (3px radius matches the pergyl-radius-md token). -->
-  <rect x="20" y="20" width="560" height="60" rx="3" fill="#1c1c1c" />
-  <rect x="21" y="21" width="558" height="58" rx="3" fill="none" stroke="#444444" stroke-width="2" />
-
-  <!-- Card label inset across the top border. -->
-  <rect x="40" y="14" width="220" height="14" fill="#121212" />
-  <text x="50" y="25" font-size="11" letter-spacing="2" fill="#a3a3a3">COMPONENT-SYSTEM · V0.1</text>
-
-  <!-- Brand mark, centered vertically inside the card body. -->
-  <text x="40" y="60" font-size="26" font-weight="600" letter-spacing="1.5" fill="#eeeeee">pergyl<tspan fill="#c47a5a">.</tspan></text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 96" width="600" height="96">
+  <defs>
+    <style>
+      .surface { fill: #1c1c1c; }
+      .border { fill: none; stroke: #444444; stroke-width: 2; }
+      .label-bg { fill: #121212; }
+      .label { fill: #a3a3a3; font: 11px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: 2px; }
+      .brand { fill: #eeeeee; font: 600 29px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; letter-spacing: 2px; }
+      .accent { fill: #c47a5a; }
+      .tick { stroke: #c47a5a; stroke-width: 2; }
+      @media (prefers-color-scheme: light) {
+        .surface { fill: #f5fbfc; }
+        .border { stroke: #bdd4d8; }
+        .label-bg { fill: #ffffff; }
+        .label { fill: #536b70; }
+        .brand { fill: #172a2d; }
+        .accent { fill: #007c89; }
+        .tick { stroke: #007c89; }
+      }
+    </style>
+  </defs>
+  <rect x="20" y="20" width="560" height="60" rx="3" class="surface"/>
+  <rect x="21" y="21" width="558" height="58" rx="3" class="border"/>
+  <rect x="38" y="14" width="224" height="14" class="label-bg"/>
+  <text x="50" y="25" class="label">COMPONENT-SYSTEM · V0.1</text>
+  <line x1="50" y1="52" x2="68" y2="52" class="tick"/>
+  <line x1="50" y1="52" x2="50" y2="64" class="tick"/>
+  <text x="84" y="63" class="brand">pergyl<tspan class="accent">.</tspan></text>
 </svg>
