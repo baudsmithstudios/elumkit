@@ -8,24 +8,113 @@
     <style>
       main {
         margin: 0 auto;
-        max-width: 56rem;
-        padding: 1rem;
+        max-width: 76rem;
+        padding: 1rem clamp(1rem, 3vw, 2rem) 2rem;
       }
 
       main.pergyl-stack > * + * {
-        margin-top: 2rem;
+        margin-top: 1.25rem;
       }
 
-      .playground-grid {
+      .playground-header {
+        --pergyl-card-padding: clamp(1.25rem, 4vw, 2rem);
+        min-height: 11rem;
+        padding-top: calc(var(--pergyl-space-4) * 0.5);
+      }
+
+      .playground-title-shell {
+        margin-top: var(--pergyl-space-4);
+      }
+
+      .playground-title-block {
+        min-width: 0;
+      }
+
+      .playground-title-text {
+        color: var(--pergyl-color-accent);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "JetBrains Mono", "IBM Plex Mono", monospace;
+        font-size: clamp(2.5rem, 7vw, 4.75rem);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        line-height: 1;
+        margin: var(--pergyl-space-3) 0 0;
+      }
+
+      .playground-title-subtitle {
+        color: var(--pergyl-color-muted);
+        font-size: clamp(var(--pergyl-text-sm), 2vw, var(--pergyl-text-md));
+        margin: var(--pergyl-space-4) 0 0;
+        max-width: 42rem;
+      }
+
+      .theme-controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-end;
+      }
+
+      .playground-title-status {
+        background: var(--pergyl-card-label-bg, var(--pergyl-color-bg));
+        margin: 0;
+        padding: 0 var(--pergyl-space-2);
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .playground-header > .pergyl-card-header[data-inline="true"] {
+        flex-wrap: wrap;
+      }
+
+      .playground-header > .pergyl-card-header[data-inline="true"] > .pergyl-card-title {
+        flex: 0 0 auto;
+      }
+
+      .playground-board {
+        align-items: stretch;
         display: grid;
-        gap: 1.5rem;
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        gap: 1rem;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-areas:
+          "table table table table table table table table form form form form"
+          "card card card card telemetry telemetry telemetry telemetry form form form form"
+          "rows rows rows rows rows rows rows rows rows rows rows rows"
+          "states states states states states states states states states states states states";
+      }
+
+      .playground-tile {
+        height: 100%;
+        min-width: 0;
+      }
+
+      .playground-card-preview {
+        grid-area: card;
+      }
+
+      .playground-telemetry-preview {
+        grid-area: telemetry;
+      }
+
+      .playground-form-preview {
+        grid-area: form;
+      }
+
+      .playground-rows-preview {
+        grid-area: rows;
+      }
+
+      .playground-table-preview {
+        grid-area: table;
+      }
+
+      .playground-states-preview {
+        grid-area: states;
       }
 
       .state-matrix {
         display: grid;
-        gap: 1.25rem;
-        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+        gap: 1rem;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
       .state-cell {
@@ -33,119 +122,132 @@
         border-radius: var(--pergyl-radius-sm);
         padding: 0.75rem;
       }
+
+      .screen-reader-only {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+      }
+
+      @media (max-width: 64rem) {
+        .playground-board {
+          grid-template-areas:
+            "table table table table table table table table table table table table"
+            "card card card card card card telemetry telemetry telemetry telemetry telemetry telemetry"
+            "form form form form form form rows rows rows rows rows rows"
+            "states states states states states states states states states states states states";
+        }
+
+        .state-matrix {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 42rem) {
+        .playground-header > .pergyl-card-header[data-inline="true"] {
+          display: block;
+        }
+
+        .playground-title-shell {
+          margin-top: var(--pergyl-space-3);
+        }
+
+        .playground-title-status {
+          margin-top: var(--pergyl-space-1);
+          padding-left: 0;
+          text-align: left;
+          white-space: normal;
+        }
+
+        .theme-controls {
+          justify-content: flex-start;
+        }
+
+        .playground-board {
+          grid-template-areas:
+            "table table table table table table table table table table table table"
+            "card card card card card card card card card card card card"
+            "telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry"
+            "form form form form form form form form form form form form"
+            "rows rows rows rows rows rows rows rows rows rows rows rows"
+            "states states states states states states states states states states states states";
+        }
+
+        .state-matrix {
+          grid-template-columns: 1fr;
+        }
+      }
     </style>
   </head>
   <body>
     <main class="pergyl-stack">
-      <header class="pergyl-stack">
-        <h1>Pergyl Playground</h1>
-        <p>Local preview page for fast visual and accessibility checks.</p>
-        <div>
+      <header class="pergyl-card pergyl-card-labeled playground-header">
+        <div class="pergyl-card-header" data-inline="true">
+          <div class="pergyl-card-title">Component system · v0.1</div>
+          <p class="pergyl-card-subtitle playground-title-status">
+            theme <span id="theme-status">[IRON]</span> components [13]
+          </p>
+        </div>
+        <div class="playground-title-shell">
+          <div class="playground-title-block">
+            <h1 class="playground-title-text">pergyl.</h1>
+            <p class="playground-title-subtitle">HTML-first web UI primitives with a clean terminal feel.</p>
+          </div>
+        </div>
+        <div class="theme-controls" aria-label="Theme controls">
           <button class="pergyl-button" id="theme-iron" type="button">Iron</button>
           <button class="pergyl-button" id="theme-clerestory" type="button">Clerestory</button>
           <button class="pergyl-button" id="theme-forge" type="button">Forge</button>
         </div>
       </header>
 
-      <nav class="pergyl-system-bar" aria-label="Playground status">
-        <strong class="pergyl-system-bar-brand">Pergyl</strong>
-        <span class="pergyl-system-bar-group">
-          <span class="pergyl-system-bar-item">
-            <span class="pergyl-system-bar-key">theme</span>
-            <span class="pergyl-system-bar-value" id="theme-status">[IRON]</span>
-          </span>
-          <span class="pergyl-system-bar-item">
-            <span class="pergyl-system-bar-key">components</span>
-            <span class="pergyl-system-bar-value">[13]</span>
-          </span>
-        </span>
-      </nav>
-
-      <section class="playground-grid" aria-label="Component previews">
-        <article class="pergyl-card pergyl-card-labeled pergyl-stack">
+      <section class="playground-board" aria-label="Component previews">
+        <section class="pergyl-card pergyl-card-labeled pergyl-stack playground-tile playground-table-preview" aria-label="Data table">
           <header class="pergyl-card-header">
-            <h2 class="pergyl-card-title">Card</h2>
+            <h2 class="pergyl-card-title">Data Table</h2>
           </header>
-          <p class="pergyl-card-subtitle">Surface container for grouped content.</p>
-          <p>
-            System status <span class="pergyl-status-label" data-tone="success">ready</span>
-          </p>
-          <p>
-            Badge state <span class="pergyl-badge" data-tone="warn">[WARNING]</span>
-          </p>
-          <div>
-            <button class="pergyl-button" type="button">Secondary</button>
-            <button class="pergyl-button" data-variant="primary" type="button">Primary</button>
+          <p class="pergyl-card-subtitle">Dense columns with mobile-readable data labels.</p>
+
+          <div class="pergyl-table-wrap">
+            <table class="pergyl-table">
+              <thead>
+                <tr>
+                  <th scope="col">Service</th>
+                  <th scope="col" data-column="status">Status</th>
+                  <th scope="col" data-align="end">Latency</th>
+                  <th scope="col" data-align="end">Events</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Service">api-gateway</td>
+                  <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="success">[HEALTHY]</span></td>
+                  <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
+                  <td data-label="Events" data-align="end" data-numeric="true">1,284</td>
+                </tr>
+                <tr>
+                  <td data-label="Service">worker-queue</td>
+                  <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="warn">[DELAYED]</span></td>
+                  <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
+                  <td data-label="Events" data-align="end" data-numeric="true">876</td>
+                </tr>
+                <tr>
+                  <td data-label="Service">cache-node</td>
+                  <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="accent">[WARM]</span></td>
+                  <td data-label="Latency" data-align="end" data-numeric="true">9ms</td>
+                  <td data-label="Events" data-align="end" data-numeric="true">2,048</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </article>
+        </section>
 
-        <article class="pergyl-card pergyl-card-labeled pergyl-stack">
-          <header class="pergyl-card-header">
-            <h2 class="pergyl-card-title">Telemetry</h2>
-          </header>
-          <p class="pergyl-card-subtitle">Aligned values and compact meter states.</p>
-
-          <div class="pergyl-metrics" aria-label="Runtime metrics">
-            <div class="pergyl-metric">
-              <span class="pergyl-metric-label">Load</span>
-              <span class="pergyl-metric-value">0.42</span>
-              <span class="pergyl-metric-unit">avg</span>
-            </div>
-            <div class="pergyl-metric">
-              <span class="pergyl-metric-label">Memory</span>
-              <span class="pergyl-metric-value">64</span>
-              <span class="pergyl-metric-unit">%</span>
-            </div>
-            <div class="pergyl-metric">
-              <span class="pergyl-metric-label">Requests</span>
-              <span class="pergyl-metric-value">1.8K</span>
-              <span class="pergyl-metric-unit">/min</span>
-            </div>
-          </div>
-
-          <div class="pergyl-meter" role="meter" aria-label="Memory usage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
-            <div class="pergyl-meter-header">
-              <span class="pergyl-meter-label">Memory</span>
-              <span class="pergyl-meter-value">64%</span>
-            </div>
-            <div class="pergyl-meter-track">
-              <span class="pergyl-meter-fill" data-tone="warn" style="width: 64%"></span>
-            </div>
-          </div>
-        </article>
-
-        <article class="pergyl-card pergyl-card-labeled pergyl-stack">
-          <header class="pergyl-card-header">
-            <h2 class="pergyl-card-title">Rows</h2>
-          </header>
-          <p class="pergyl-card-subtitle">Selectable-looking rows with aligned values.</p>
-
-          <div class="pergyl-list" role="list" aria-label="Service rows">
-            <a class="pergyl-row" href="#" role="listitem" data-selected="true" aria-current="true">
-              <span class="pergyl-row-main">
-                <span class="pergyl-row-title">api-gateway</span>
-                <span class="pergyl-row-meta">edge cluster :: [HEALTHY]</span>
-              </span>
-              <span class="pergyl-row-value">99.9%</span>
-            </a>
-            <a class="pergyl-row" href="#" role="listitem">
-              <span class="pergyl-row-main">
-                <span class="pergyl-row-title">worker-queue</span>
-                <span class="pergyl-row-meta">background jobs :: [DELAYED]</span>
-              </span>
-              <span class="pergyl-row-value">42ms</span>
-            </a>
-            <a class="pergyl-row" href="#" role="listitem">
-              <span class="pergyl-row-main">
-                <span class="pergyl-row-title">cache-node</span>
-                <span class="pergyl-row-meta">primary region :: [WARM]</span>
-              </span>
-              <span class="pergyl-row-value">1.8K</span>
-            </a>
-          </div>
-        </article>
-
-        <article class="pergyl-card pergyl-card-labeled pergyl-stack">
+        <article class="pergyl-card pergyl-card-labeled pergyl-stack playground-tile playground-form-preview">
           <header class="pergyl-card-header">
             <h2 class="pergyl-card-title">Form Controls</h2>
           </header>
@@ -188,98 +290,148 @@
             </label>
           </fieldset>
         </article>
-      </section>
 
-      <aside class="pergyl-alert" data-tone="warn" role="status" aria-live="polite">
-        Disk usage is nearing the warning threshold.
-      </aside>
+        <article class="pergyl-card pergyl-card-labeled pergyl-stack playground-tile playground-card-preview">
+          <header class="pergyl-card-header">
+            <h2 class="pergyl-card-title">Card</h2>
+          </header>
+          <p class="pergyl-card-subtitle">Surface container for grouped content.</p>
+          <p>
+            System status <span class="pergyl-status-label" data-tone="success">ready</span>
+          </p>
+          <p>
+            Badge state <span class="pergyl-badge" data-tone="warn">[WARNING]</span>
+          </p>
+          <div>
+            <button class="pergyl-button" type="button">Secondary</button>
+            <button class="pergyl-button" data-variant="primary" type="button">Primary</button>
+          </div>
+          <nav class="pergyl-system-bar" aria-label="Example system bar">
+            <strong class="pergyl-system-bar-brand">Pergyl</strong>
+            <span class="pergyl-system-bar-group">
+              <span class="pergyl-system-bar-item">
+                <span class="pergyl-system-bar-key">state</span>
+                <span class="pergyl-system-bar-value">[READY]</span>
+              </span>
+            </span>
+          </nav>
+          <aside class="pergyl-alert" data-tone="warn" role="status" aria-live="polite">
+            Disk usage is nearing the warning threshold.
+          </aside>
+        </article>
 
-      <section class="pergyl-card pergyl-card-labeled pergyl-stack" aria-label="Data table">
-        <header class="pergyl-card-header">
-          <h2 class="pergyl-card-title">Data Table</h2>
-        </header>
-        <p class="pergyl-card-subtitle">Dense columns with mobile-readable data labels.</p>
+        <article class="pergyl-card pergyl-card-labeled pergyl-stack playground-tile playground-telemetry-preview">
+          <header class="pergyl-card-header">
+            <h2 class="pergyl-card-title">Telemetry</h2>
+          </header>
+          <p class="pergyl-card-subtitle">Aligned values and compact meter states.</p>
 
-        <div class="pergyl-table-wrap">
-          <table class="pergyl-table">
-            <thead>
-              <tr>
-                <th scope="col">Service</th>
-                <th scope="col" data-column="status">Status</th>
-                <th scope="col" data-align="end">Latency</th>
-                <th scope="col" data-align="end">Events</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td data-label="Service">api-gateway</td>
-                <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="success">[HEALTHY]</span></td>
-                <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
-                <td data-label="Events" data-align="end" data-numeric="true">1,284</td>
-              </tr>
-              <tr>
-                <td data-label="Service">worker-queue</td>
-                <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="warn">[DELAYED]</span></td>
-                <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
-                <td data-label="Events" data-align="end" data-numeric="true">876</td>
-              </tr>
-              <tr>
-                <td data-label="Service">cache-node</td>
-                <td data-label="Status" data-column="status"><span class="pergyl-badge" data-tone="accent">[WARM]</span></td>
-                <td data-label="Latency" data-align="end" data-numeric="true">9ms</td>
-                <td data-label="Events" data-align="end" data-numeric="true">2,048</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section class="pergyl-card pergyl-card-labeled pergyl-stack" aria-label="State matrix">
-        <header class="pergyl-card-header">
-          <h2 class="pergyl-card-title">State Matrix</h2>
-        </header>
-        <p class="pergyl-card-subtitle">Use this section to verify normal, focus, disabled, and invalid states.</p>
-
-        <div class="state-matrix">
-          <div class="state-cell pergyl-stack">
-            <strong>Normal</strong>
-            <button class="pergyl-button" type="button">Normal Button</button>
-            <input class="pergyl-input" type="text" value="normal value" aria-label="Normal input state" />
+          <div class="pergyl-metrics" aria-label="Runtime metrics">
+            <div class="pergyl-metric">
+              <span class="pergyl-metric-label">Load</span>
+              <span class="pergyl-metric-value">0.42</span>
+              <span class="pergyl-metric-unit">avg</span>
+            </div>
+            <div class="pergyl-metric">
+              <span class="pergyl-metric-label">Memory</span>
+              <span class="pergyl-metric-value">64</span>
+              <span class="pergyl-metric-unit">%</span>
+            </div>
+            <div class="pergyl-metric">
+              <span class="pergyl-metric-label">Requests</span>
+              <span class="pergyl-metric-value">1.8K</span>
+              <span class="pergyl-metric-unit">/min</span>
+            </div>
           </div>
 
-          <div class="state-cell pergyl-stack">
-            <strong>Focus target</strong>
-            <p>Press <kbd>Tab</kbd> to focus the button and input.</p>
-            <button class="pergyl-button" id="focus-target-button" type="button">Focus me</button>
-            <input class="pergyl-input" id="focus-target-input" type="text" value="focus target" aria-label="Focus target input" />
+          <div class="pergyl-meter" role="meter" aria-label="Memory usage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="64">
+            <div class="pergyl-meter-header">
+              <span class="pergyl-meter-label">Memory</span>
+              <span class="pergyl-meter-value">64%</span>
+            </div>
+            <div class="pergyl-meter-track">
+              <span class="pergyl-meter-fill" data-tone="warn" style="width: 64%"></span>
+            </div>
           </div>
+        </article>
 
-          <div class="state-cell pergyl-stack">
-            <strong>Disabled</strong>
-            <button class="pergyl-button" type="button" disabled>Disabled button</button>
-            <input class="pergyl-input" type="text" value="disabled input" aria-label="Disabled input state" disabled />
-            <select class="pergyl-select" aria-label="Disabled select state" disabled>
-              <option>Disabled select</option>
-            </select>
-            <label class="pergyl-choice" data-disabled="true" for="state-disabled-notify">
-              <input class="pergyl-checkbox" id="state-disabled-notify" type="checkbox" disabled />
-              Disabled checkbox
-            </label>
-            <label class="pergyl-choice" data-disabled="true" for="state-disabled-mode">
-              <input class="pergyl-radio" id="state-disabled-mode" name="state-disabled-mode" type="radio" disabled />
-              Disabled radio
-            </label>
-          </div>
+        <article class="pergyl-card pergyl-card-labeled pergyl-stack playground-tile playground-rows-preview">
+          <header class="pergyl-card-header">
+            <h2 class="pergyl-card-title">Rows</h2>
+          </header>
+          <p class="pergyl-card-subtitle">Selectable-looking rows with aligned values.</p>
 
-          <div class="state-cell pergyl-stack">
-            <strong>Invalid</strong>
-            <input class="pergyl-input" type="text" value="invalid input" aria-label="Invalid input state" aria-invalid="true" />
-            <textarea class="pergyl-textarea" aria-label="Invalid textarea state" aria-invalid="true">invalid textarea</textarea>
-            <select class="pergyl-select" aria-label="Invalid select state" aria-invalid="true">
-              <option>Invalid select</option>
-            </select>
+          <div class="pergyl-list" role="list" aria-label="Service rows">
+            <a class="pergyl-row" href="#" role="listitem" data-selected="true" aria-current="true">
+              <span class="pergyl-row-main">
+                <span class="pergyl-row-title">api-gateway</span>
+                <span class="pergyl-row-meta">edge cluster :: [HEALTHY]</span>
+              </span>
+              <span class="pergyl-row-value">99.9%</span>
+            </a>
+            <a class="pergyl-row" href="#" role="listitem">
+              <span class="pergyl-row-main">
+                <span class="pergyl-row-title">worker-queue</span>
+                <span class="pergyl-row-meta">background jobs :: [DELAYED]</span>
+              </span>
+              <span class="pergyl-row-value">42ms</span>
+            </a>
+            <a class="pergyl-row" href="#" role="listitem">
+              <span class="pergyl-row-main">
+                <span class="pergyl-row-title">cache-node</span>
+                <span class="pergyl-row-meta">primary region :: [WARM]</span>
+              </span>
+              <span class="pergyl-row-value">1.8K</span>
+            </a>
           </div>
-        </div>
+        </article>
+
+        <section class="pergyl-card pergyl-card-labeled pergyl-stack playground-tile playground-states-preview" aria-label="State matrix">
+          <header class="pergyl-card-header">
+            <h2 class="pergyl-card-title">State Matrix</h2>
+          </header>
+          <p class="pergyl-card-subtitle">Normal, focus, disabled, and invalid states.</p>
+
+          <div class="state-matrix">
+            <div class="state-cell pergyl-stack">
+              <strong>Normal</strong>
+              <button class="pergyl-button" type="button">Normal Button</button>
+              <input class="pergyl-input" type="text" value="normal value" aria-label="Normal input state" />
+            </div>
+
+            <div class="state-cell pergyl-stack">
+              <strong>Focus</strong>
+              <button class="pergyl-button" id="focus-target-button" type="button">Focus Button</button>
+              <input class="pergyl-input" id="focus-target-input" type="text" value="focus target" aria-label="Focus target input" />
+            </div>
+
+            <div class="state-cell pergyl-stack">
+              <strong>Disabled</strong>
+              <button class="pergyl-button" type="button" disabled>Disabled Button</button>
+              <input class="pergyl-input" type="text" value="disabled input" aria-label="Disabled input state" disabled />
+              <select class="pergyl-select" aria-label="Disabled select state" disabled>
+                <option>Disabled select</option>
+              </select>
+              <label class="pergyl-choice" data-disabled="true" for="state-disabled-notify">
+                <input class="pergyl-checkbox" id="state-disabled-notify" type="checkbox" disabled />
+                Disabled checkbox
+              </label>
+              <label class="pergyl-choice" data-disabled="true" for="state-disabled-mode">
+                <input class="pergyl-radio" id="state-disabled-mode" name="state-disabled-mode" type="radio" disabled />
+                Disabled radio
+              </label>
+            </div>
+
+            <div class="state-cell pergyl-stack">
+              <strong>Invalid</strong>
+              <input class="pergyl-input" type="text" value="invalid input" aria-label="Invalid input state" aria-invalid="true" />
+              <textarea class="pergyl-textarea" aria-label="Invalid textarea state" aria-invalid="true">invalid textarea</textarea>
+              <select class="pergyl-select" aria-label="Invalid select state" aria-invalid="true">
+                <option>Invalid select</option>
+              </select>
+            </div>
+          </div>
+        </section>
       </section>
     </main>
 

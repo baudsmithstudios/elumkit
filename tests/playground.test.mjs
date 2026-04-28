@@ -25,6 +25,32 @@ test("playground loads core CSS and renders current component set", () => {
   }
 });
 
+test("playground uses the branded header and collage layout", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+
+  assert.match(html, /<header class="pergyl-card pergyl-card-labeled playground-header">/);
+  assert.match(html, /<div class="pergyl-card-header" data-inline="true">/);
+  assert.match(html, /<div class="pergyl-card-title">Component system · v0\.1<\/div>/);
+  assert.match(html, /<h1 class="playground-title-text">pergyl\.<\/h1>/);
+  assert.match(html, /class="pergyl-card-subtitle playground-title-status"/);
+  assert.match(html, /theme <span id="theme-status">\[IRON\]<\/span> components \[13\]/);
+  assert.doesNotMatch(html, /<img class="playground-title"/);
+  assert.match(html, /class="playground-board"/);
+  for (const area of [
+    "playground-card-preview",
+    "playground-telemetry-preview",
+    "playground-form-preview",
+    "playground-rows-preview",
+    "playground-table-preview",
+    "playground-states-preview",
+  ]) {
+    assert.match(html, new RegExp(area));
+  }
+  assert.match(html, /grid-template-areas:/);
+  assert.match(html, /@media \(max-width: 64rem\)/);
+  assert.match(html, /@media \(max-width: 42rem\)/);
+});
+
 test("playground exposes the supported theme values", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
   const themes = {
