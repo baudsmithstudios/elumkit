@@ -39,9 +39,10 @@ test("social PNG exists and matches the OpenGraph dimensions", () => {
   assert.equal(buf.readUInt32BE(20), 640);
 });
 
-test("README embeds the title banner and project tagline", () => {
+test("README embeds the title banner; tagline lives inside the banner SVG", () => {
   const readme = readFileSync("README.md", "utf8");
-
   assert.match(readme, /<img\s+src="assets\/title\.svg"[^>]*alt="Pergyl"/);
-  assert.match(readme, /HTML-first web UI primitives with a clean terminal feel\./);
+
+  const svg = readFileSync(TITLE_SVG, "utf8");
+  assert.match(svg, /HTML-first web UI primitives with a clean terminal feel\./);
 });

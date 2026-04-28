@@ -1,0 +1,88 @@
+<h2>Pergyl — three design directions</h2>
+<p class="subtitle">Tagline candidate: "HTML-first web UI primitives with a clean terminal feel."</p>
+
+<div class="section">
+  <p class="label">Constraints I'm reading from the project</p>
+  <ul style="line-height:1.6">
+    <li><strong>Anti-retro:</strong> README rules out scanlines, pixel art, CRT glow — so the umberrelay phosphor treatment is off the table.</li>
+    <li><strong>Monospace-forward:</strong> JetBrains Mono / IBM Plex Mono is the product's typeface. The banner should use it too, not borrow Cinzel from vigil.</li>
+    <li><strong>Aponis rust accent:</strong> #8b4a2a (light) / #c47a5a (dark). This is the only chromatic note — everything else is neutrals.</li>
+    <li><strong>Calm and dense:</strong> "Clean terminal feel" — instrument, not decoration. Vigil's corner-tick grammar is closer to right than umberrelay's panel chrome.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <p class="label">Three directions — click one to mark a preference</p>
+</div>
+
+<div class="cards" style="grid-template-columns:1fr">
+
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#121212;padding:32px 24px;display:block">
+      <!-- Direction A mockup: vigil grammar, mono type, rust accent -->
+      <svg viewBox="0 0 600 96" width="100%" style="max-width:600px;display:block;margin:0 auto" xmlns="http://www.w3.org/2000/svg">
+        <line x1="10" y1="10" x2="26" y2="10" stroke="#5a3520" stroke-width="1"/>
+        <line x1="10" y1="10" x2="10" y2="26" stroke="#5a3520" stroke-width="1"/>
+        <line x1="574" y1="10" x2="590" y2="10" stroke="#5a3520" stroke-width="1"/>
+        <line x1="590" y1="10" x2="590" y2="26" stroke="#5a3520" stroke-width="1"/>
+        <line x1="10" y1="86" x2="26" y2="86" stroke="#5a3520" stroke-width="1"/>
+        <line x1="10" y1="70" x2="10" y2="86" stroke="#5a3520" stroke-width="1"/>
+        <line x1="574" y1="86" x2="590" y2="86" stroke="#5a3520" stroke-width="1"/>
+        <line x1="590" y1="70" x2="590" y2="86" stroke="#5a3520" stroke-width="1"/>
+        <line x1="32" y1="48" x2="206" y2="48" stroke="#5a3520" stroke-width="1"/>
+        <line x1="206" y1="42" x2="206" y2="54" stroke="#5a3520" stroke-width="1"/>
+        <line x1="394" y1="48" x2="568" y2="48" stroke="#5a3520" stroke-width="1"/>
+        <line x1="394" y1="42" x2="394" y2="54" stroke="#5a3520" stroke-width="1"/>
+        <text x="300" y="48" font-family="'JetBrains Mono','IBM Plex Mono',ui-monospace,monospace" font-size="34" font-weight="500" text-anchor="middle" dominant-baseline="central" letter-spacing="6" fill="#c47a5a">PERGYL</text>
+      </svg>
+    </div>
+    <div class="card-body">
+      <h3>A. Sibling of Vigil — same chrome, mono type, rust ink</h3>
+      <p>Inherit vigil's corner-tick + flanking-rule frame so the three projects feel related, but swap Cinzel for JetBrains Mono and teal for Pergyl's rust accent. Quietest of the three. Ascetic.</p>
+      <p style="opacity:0.7;font-size:0.85em"><strong>Pro:</strong> family resemblance to vigil; truly anti-retro. <strong>Con:</strong> reads as "vigil but rust" if we don't push further.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#121212;padding:32px 24px;display:block;font-family:'JetBrains Mono',ui-monospace,monospace">
+      <!-- Direction B mockup: render the banner as if it were Pergyl components -->
+      <div style="max-width:600px;margin:0 auto;border:2px solid #444;border-radius:3px;background:#1c1c1c;padding:14px 18px;color:#eeeeee">
+        <div style="display:flex;align-items:center;gap:10px;font-size:11px;text-transform:uppercase;letter-spacing:0.12em;color:#a3a3a3;margin-bottom:6px">
+          <span style="width:6px;height:6px;background:#6abe5a;border-radius:50%;display:inline-block"></span>
+          <span>component-system / v0.1</span>
+          <span style="margin-left:auto;color:#c47a5a">READY</span>
+        </div>
+        <div style="font-size:30px;font-weight:600;letter-spacing:0.04em;color:#eeeeee">pergyl<span style="color:#c47a5a">.</span></div>
+        <div style="font-size:13px;color:#a3a3a3;margin-top:4px">HTML-first web UI primitives with a clean terminal feel.</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. Eat your own dog food — banner is a Pergyl card</h3>
+      <p>The README banner is built from actual Pergyl primitives — a labeled card with a status label, title, and subtitle. The product demonstrates itself in the first impression.</p>
+      <p style="opacity:0.7;font-size:0.85em"><strong>Pro:</strong> strongest identity — the banner <em>is</em> the product. <strong>Con:</strong> denser; needs care so the social card (1280×640) doesn't feel sparse.</p>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image" style="background:#121212;padding:32px 24px;display:block;font-family:'JetBrains Mono',ui-monospace,monospace">
+      <!-- Direction C mockup: ASCII box-drawing frame -->
+      <pre style="margin:0;color:#c47a5a;font-size:14px;line-height:1.25;text-align:center;letter-spacing:0">┌─────────────────────────────────────────────────────────────┐
+│                                                             │
+│                       <span style="color:#eeeeee;font-size:24px;letter-spacing:6px">P E R G Y L</span>                         │
+│                                                             │
+│           <span style="color:#a3a3a3;font-size:12px;letter-spacing:0">html-first ui primitives · terminal feel</span>          │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘</pre>
+    </div>
+    <div class="card-body">
+      <h3>C. ASCII chrome — box-drawing frame, no decoration</h3>
+      <p>Frame is rendered with Unicode box-drawing characters (or stroked SVG approximations of them). Most overtly "terminal" of the three without resorting to glow or scanlines.</p>
+      <p style="opacity:0.7;font-size:0.85em"><strong>Pro:</strong> distinctive; couldn't be mistaken for any other project. <strong>Con:</strong> can feel novelty if pushed too hard; needs careful kerning at every size.</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="section" style="margin-top:32px">
+  <p class="subtitle"><strong>My recommendation:</strong> B (eat your own dog food) for the social card, with the title banner a tighter restatement of the same composition. It says more about what Pergyl is than A or C, and avoids reading as a vigil reskin. Happy to defend any of the three — what's your gut?</p>
+</div>

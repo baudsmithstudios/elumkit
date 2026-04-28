@@ -3,10 +3,6 @@
 </p>
 
 <p align="center">
-  <em>HTML-first web UI primitives with a clean terminal feel.</em>
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/status-v0.1%20pre--release-333333.svg" alt="v0.1 pre-release">
   <img src="https://img.shields.io/badge/approach-HTML--first-4f6d7a.svg" alt="HTML-first">
   <img src="https://img.shields.io/badge/scope-framework--agnostic-5faf87.svg" alt="Framework agnostic">
