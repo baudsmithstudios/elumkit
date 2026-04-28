@@ -39,8 +39,9 @@
 
 .pergyl-card-header[data-inline="true"] {
   align-items: baseline;
+  column-gap: 0;
   display: flex;
-  gap: var(--pergyl-space-2);
+  row-gap: var(--pergyl-space-1);
 }
 
 .pergyl-card-header[data-inline="true"] > .pergyl-card-title {
@@ -50,5 +51,5 @@
 .pergyl-card-header[data-inline="true"] > .pergyl-card-subtitle {
   background: var(--pergyl-card-label-bg, var(--pergyl-color-bg));
   margin: 0;
-  padding: 0 var(--pergyl-space-2);
+  padding: 0 var(--pergyl-space-2) 0 0;
 }

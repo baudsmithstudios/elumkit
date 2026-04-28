@@ -84,9 +84,10 @@ test("base and form styles keep accessible focus behavior", () => {
 
 test("inline card headers keep title and subtitle adjacent", () => {
   assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\]\s*{[^}]*display:\s*flex;/s);
+  assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\]\s*{[^}]*column-gap:\s*0;/s);
   assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\] > \.pergyl-card-title\s*{[^}]*flex:\s*0 0 auto;/s);
   assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\] > \.pergyl-card-subtitle\s*{[^}]*background:\s*var\(--pergyl-card-label-bg, var\(--pergyl-color-bg\)\);/s);
-  assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\] > \.pergyl-card-subtitle\s*{[^}]*padding:\s*0 var\(--pergyl-space-2\);/s);
+  assert.match(CARD_CSS, /\.pergyl-card-header\[data-inline="true"\] > \.pergyl-card-subtitle\s*{[^}]*padding:\s*0 var\(--pergyl-space-2\) 0 0;/s);
 });
 
 test("component CSS exposes current public class surfaces", () => {
