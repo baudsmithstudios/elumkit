@@ -1,8 +1,32 @@
 # Plain HTML Quickstart
 
-Use this path when you want v0.1 components in a plain HTML project and want to own the copied source.
+Use this path when you want v0.1 components in a plain HTML project and want to own the copied source. You can either copy the source code directly or install from npm.
 
-## 1) Copy the core CSS
+## 1) Install from npm
+
+Install ElumKit as a dev dependency:
+
+```sh
+npm install -D @baudsmithstudios/elumkit
+```
+
+Copy the CSS source into your app:
+
+```sh
+mkdir -p public/assets/elumkit
+cp -R node_modules/@baudsmithstudios/elumkit/packages/core-css/src/* public/assets/elumkit/
+```
+
+Copy the HTML snippets as a local reference (optional):
+
+```sh
+cp node_modules/@baudsmithstudios/elumkit/packages/core-patterns/snippets/index.html ./elumkit-snippets.html
+
+```
+> [!IMPORTANT]
+> Do not edit the files in `node_modules`. Copy them into your app, commit them, and modify the source directly.
+
+## OR copy the core CSS
 
 Copy the full CSS source directory into your project:
 
