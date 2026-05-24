@@ -126,10 +126,11 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Meter
 
 - **Wrapper:** `.elum-meter` on a `<div>`
-- **Track:** `.elum-meter-track` on a native `<meter>` with `min`, `max`, and `value` attributes for correct AT announcements
-- **Fill width:** `style="--elum-meter-fill-width: N%"` on the `<meter>` element, matching the `value` as a percentage of the range
-- **Fill tones:** `data-tone="success" | "warn" | "error"` on the `<meter>` element
-- **Label:** `aria-label` on the `<meter>`, or `aria-labelledby` pointing to a visible `.elum-meter-label`
+- **Track:** `.elum-meter-track` on a `<div>` with `role="meter"`, `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` for correct AT announcements
+- **Fill width:** `style="--elum-meter-fill-width: N%"` on the track element, matching the value as a percentage of the range
+- **Fill tones:** `data-tone="success" | "warn" | "error"` on the track element
+- **Label:** `aria-label` on the track element, or `aria-labelledby` pointing to a visible `.elum-meter-label`
+- **Why not `<meter>`:** styling `<meter>` internals requires deprecated non-standard pseudo-elements (`::-webkit-meter-bar` etc.) that MDN recommends against. `<div role="meter">` provides equivalent accessibility with full CSS control.
 
 ## Data List
 
