@@ -22,6 +22,7 @@
 
 :root,
 [data-theme="iron"] {
+  color-scheme: dark;
   --elum-color-bg: #0d1117;
   --elum-color-surface: #0d1117;
   --elum-color-fg: #d4e1ec;
@@ -37,6 +38,7 @@
 }
 
 [data-theme="neon"] {
+  color-scheme: dark;
   --elum-color-bg: #050e12;
   --elum-color-surface: #050e12;
   --elum-color-fg: #d0f0ff;
@@ -52,6 +54,7 @@
 }
 
 [data-theme="dust"] {
+  color-scheme:light;
   --elum-color-bg: #ddd6c4;
   --elum-color-surface: #ddd6c4;
   --elum-color-fg: #0e0e0e;

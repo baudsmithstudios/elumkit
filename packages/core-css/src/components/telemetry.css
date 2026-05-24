@@ -118,6 +118,23 @@
   width: 100%;
 }
 
+.elum-meter-track::-webkit-meter-bar {
+  background:transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.elum-meter-track::-webkit-meter-optimum-value,
+.elum-meter-track::-webkit-meter-suboptimum-value,
+.elum-meter-track::-webkit-meter-even-less-good-value {
+  background: var(--elum-color-accent);
+  box-shadow: none;
+}
+
+.elum-meter-track::-moz-meter-bar {
+  background: var(--elum-color-accent);
+}
+
 .elum-meter-track[data-tone="success"] {
   background-image: linear-gradient(
     to right,

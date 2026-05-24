@@ -16,6 +16,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Invalid state:** `aria-invalid="true"`
 - **Disabled state:** native `disabled`
 - **Keyboard:** native form element behavior
+- Note: the `<select>` dropdown pop-up on Linux running Chromium is rendered as a native GTK window and follows the system GTK theme regardless of `color-scheme`. On dark themes, the popup will appear light if the system GTK theme is light. This is a platform boundary. Switch to a dark system GTK theme for full consistency.
 
 ## Checkbox / Radio Group
 
