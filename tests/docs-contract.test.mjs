@@ -12,7 +12,7 @@ const REQUIRED_DOCS = [
 ];
 
 test("package metadata uses the project name", () => {
-  assert.equal(PACKAGE_JSON.name, "elumkit");
+  assert.equal(PACKAGE_JSON.name, "@baudsmithstudios/elumkit");
   assert.equal(PACKAGE_JSON.repository.url, "git+https://github.com/baudsmithstudios/elumkit.git");
   assert.equal(PACKAGE_JSON.bugs.url, "https://github.com/baudsmithstudios/elumkit/issues");
   assert.equal(PACKAGE_JSON.homepage, "https://github.com/baudsmithstudios/elumkit#readme");

@@ -31,7 +31,31 @@ ElumKit is a lean, terminal-inspired component system for modern web interfaces.
 - **Favor dense clarity** — terminal influence should improve scannability without novelty effects or decorative noise
 - **Keep ownership clear** — copied source should stay readable, editable, and easy to audit
 
-## Quick Start
+## Install From npm
+
+Install ElumKit as a dev dependency:
+
+```sh
+npm install -D @baudsmithstudios/elumkit
+```
+
+Copy the CSS source into your app:
+
+```sh
+mkdir -p public/assets/elumkit
+cp -R node_modules/@baudsmithstudios/elumkit/packages/core-css/src/* public/assets/elumkit/
+```
+
+Copy the HTML snippets as a local reference (optional):
+
+```sh
+cp node_modules/@baudsmithstudios/elumkit/packages/core-patterns/snippets/index.html ./elumkit-snippets.html
+
+```
+> [!IMPORTANT]
+> Do not edit the files in `node_modules`. Copy them into your app, commit them, and modify the source directly.
+
+## Manual Quick Start
 
 Copy the core CSS source directory into your app while preserving its internal structure:
 
