@@ -173,3 +173,11 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Responsive narrow rows:** `data-label` on each cell
 - **Numeric columns:** `data-numeric="true"` and `data-align="end"`
 - **Status column:** `data-column="status"` on header and cells to keep status output aligned
+
+## Code Block
+
+- **Block:** `<pre class="elum-pre">` wrapping a `<code>` child for multi-line snippets
+- **Language tag:** `data-language="bash"`, `data-language="html"`, etc. surfaces a small uppercase label in the top-left of the block. Tag is decorative, not announced.
+- **Inline:** `<code class="elum-code">` for short opt-in inline runs that need a stronger visual edge than the body `<code>` default. Use plain `<code>` for in-prose runs that should blend.
+- **Long lines:** the block scrolls horizontally; do not pre-wrap. Authors may add explicit line breaks for narrow surfaces.
+- Keep snippets short. For longer programs, link out to a file in the repo and quote the relevant block.

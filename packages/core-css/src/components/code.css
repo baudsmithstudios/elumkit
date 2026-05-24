@@ -1,0 +1,51 @@
+.elum-pre {
+  background: var(--elum-pre-bg, var(--elum-color-surface));
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-radius: var(--elum-radius-md);
+  color: var(--elum-color-fg);
+  font-family: var(--elum-font-family);
+  font-size: var(--elum-text-sm);
+  line-height: var(--elum-lh-normal);
+  margin: 0;
+  overflow-x: auto;
+  padding: var(--elum-space-3);
+  position: relative;
+  tab-size: 2;
+}
+
+.elum-pre > code {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  display: block;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+}
+
+.elum-pre[data-language] {
+  padding-top: calc(var(--elum-space-3) + var(--elum-space-3));
+}
+
+.elum-pre[data-language]::before {
+  color: var(--elum-color-muted);
+  content: attr(data-language);
+  font-size: var(--elum-text-xs);
+  font-weight: 600;
+  left: var(--elum-space-3);
+  letter-spacing: 0.06em;
+  pointer-events: none;
+  position: absolute;
+  text-transform: uppercase;
+  top: var(--elum-space-1);
+}
+
+.elum-code {
+  background: var(--elum-code-bg, transparent);
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-radius: var(--elum-radius-sm);
+  color: var(--elum-color-fg);
+  font-family: var(--elum-font-family);
+  font-size: 0.9em;
+  padding: 0 var(--elum-space-1);
+}
