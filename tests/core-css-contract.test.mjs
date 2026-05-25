@@ -163,19 +163,24 @@ test("public CSS contract uses only the current prefix", () => {
 });
 
 test("tokens define the full named text size scale", () => {
-  for (const token of ["--elum-text-lg", "--elum-text-xl", "--elum-text-2xl", "--elum-text-3xl"]) {
+  for (const token of ["--elum-text-xs", "--elum-text-sm", "--elum-text-md", "--elum-text-lg", "--elum-text-xl", "--elum-text-2xl", "--elum-text-3xl"]) {
     assert.match(TOKENS_CSS, new RegExp(`${token}:`), `missing token ${token}`);
   }
 });
 
 test("base CSS resets heading margins and applies the token scale", () => {
   assert.match(BASE_CSS, /h1,\s*h2,\s*h3,\s*h4,\s*h5,\s*h6\s*\{[^}]*margin:\s*0;/s);
-  assert.match(BASE_CSS, /h1\s*\{[^}]*font-size:\s*var\(--elum-text-3xl\)/s);
-  assert.match(BASE_CSS, /h2\s*\{[^}]*font-size:\s*var\(--elum-text-2xl\)/s);
-  assert.match(BASE_CSS, /h3\s*\{[^}]*font-size:\s*var\(--elum-text-xl\)/s);
-  assert.match(BASE_CSS, /h4\s*\{[^}]*font-size:\s*var\(--elum-text-lg\)/s);
-  assert.match(BASE_CSS, /h5\s*\{[^}]*font-size:\s*var\(--elum-text-md\)/s);
-  assert.match(BASE_CSS, /h6\s*\{[^}]*font-size:\s*var\(--elum-text-sm\)/s);
+
+  for (const [tag, token] of [
+    ["h1", "--elum-text-3xl"],
+    ["h2", "--elum-text-2xl"],
+    ["h3", "--elum-text-xl"],
+    ["h4", "--elum-text-lg"],
+    ["h5", "--elum-text-md"],
+    ["h6", "--elum-text-sm"],
+  ]) {
+    assert.match(BASE_CSS, new RegExp(`${tag}\\s*\\{[^}]*font-size:\\s*var\\(${token}\\)`, "s"));
+  }
 });
 
 test("base CSS forces form controls to inherit document typography", () => {
