@@ -2,6 +2,11 @@
 
 Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
+## Layout
+
+- **Page container:** `.elum-container` on `<main>` (or any block element) — centers content, applies `--elum-container-width` max width, and pads with `--elum-container-padding-inline` / `--elum-container-padding-block`. Override the tokens to reframe the page.
+- **Vertical rhythm:** `.elum-stack` on a container adds a top margin (`--elum-space-3`) to every child after the first. Compose with `.elum-container` for a complete page skeleton: `<main class="elum-container elum-stack">`.
+
 ## Button
 
 - **Class:** `.elum-button` on a native `<button>`

@@ -8,16 +8,25 @@ body {
   padding: 0;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background: var(--elum-color-bg);
   color: var(--elum-color-fg);
   font-family: var(--elum-font-family);
   font-size: var(--elum-text-md);
   line-height: var(--elum-lh-normal);
+  overflow-wrap: break-word;
 }
 
-button, input, select, textarea {
+button, input, select, textarea, optgroup, option {
   font: inherit;
+}
+
+fieldset {
+  min-width: 0;
 }
 
 a {
@@ -70,6 +79,13 @@ h6 {
 :focus-visible {
   outline: 2px solid var(--elum-color-focus);
   outline-offset: 2px;
+}
+
+.elum-container {
+  margin-inline: auto;
+  max-width: var(--elum-container-width);
+  padding-inline: var(--elum-container-padding-inline);
+  padding-block: var(--elum-container-padding-block);
 }
 
 .elum-stack > * + * {

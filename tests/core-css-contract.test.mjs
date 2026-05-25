@@ -112,6 +112,7 @@ test("core CSS exposes accessible focus and motion behavior", () => {
 test("component CSS exposes current public class surfaces", () => {
   for (const className of [
     "elum-stack",
+    "elum-container",
     "elum-button",
     "elum-card",
     "elum-card-labeled",
@@ -178,7 +179,17 @@ test("base CSS resets heading margins and applies the token scale", () => {
 });
 
 test("base CSS forces form controls to inherit document typography", () => {
-  assert.match(BASE_CSS, /button,\s*input,\s*select,\s*textarea\s*\{[^}]*font:\s*inherit/s);
+  assert.match(BASE_CSS, /button,\s*input,\s*select,\s*textarea[^{]*\{[^}]*font:\s*inherit/s);
+});
+
+test("base CSS container utility wires to the width token", () => {
+  assert.match(BASE_CSS, /\.elum-container\s*\{[^}]*max-width:\s*var\(--elum-container-width\)/s);
+});
+
+test("base CSS hardens against known cross-browser layout pitfalls", () => {
+  assert.match(BASE_CSS, /html\s*\{[^}]*-webkit-text-size-adjust:\s*100%/s);
+  assert.match(BASE_CSS, /body\s*\{[^}]*overflow-wrap:\s*break-word/s);
+  assert.match(BASE_CSS, /fieldset\s*\{[^}]*min-width:\s*0/s);
 });
 
 test("table and row APIs expose responsive state hooks", () => {

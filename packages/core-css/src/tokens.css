@@ -22,6 +22,10 @@
 
   --elum-border-width: 1px;
   --elum-motion-fast: 120ms;
+
+  --elum-container-width: 76rem;
+  --elum-container-padding-inline: clamp(1rem, 3vw, 2rem);
+  --elum-container-padding-block: 1rem;
 }
 
 :root,

@@ -52,9 +52,13 @@ Preserve the directory structure so `index.css` can keep importing `tokens.css`,
 
 ## 5) Call the macro from a page or layout
 
+Wrap page content in `<main class="elum-container elum-stack">` for a centered, max-width-bounded frame with consistent vertical rhythm:
+
 ```njk
 {% from "components/card.njk" import card %}
-{{ card("Ops Status", "Last 5 minutes", '<button class="elum-button" type="button">Refresh</button>') }}
+<main class="elum-container elum-stack">
+  {{ card("Ops Status", "Last 5 minutes", '<button class="elum-button" type="button">Refresh</button>') }}
+</main>
 ```
 
 Copy broader examples from `packages/core-patterns/snippets/index.html` when you want markup for additional components.
