@@ -4,6 +4,10 @@
   --elum-text-xs: 0.75rem;
   --elum-text-sm: 0.875rem;
   --elum-text-md: 1rem;
+  --elum-text-lg: 1.125rem;
+  --elum-text-xl: 1.25rem;
+  --elum-text-2xl: 1.5rem;
+  --elum-text-3xl: 2rem;
 
   --elum-lh-tight: 1.2;
   --elum-lh-normal: 1.5;

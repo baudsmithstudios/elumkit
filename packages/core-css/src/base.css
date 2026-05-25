@@ -16,6 +16,44 @@ body {
   line-height: var(--elum-lh-normal);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--elum-text-3xl);
+  line-height: var(--elum-lh-tight);
+}
+
+h2 {
+  font-size: var(--elum-text-2xl);
+  line-height: var(--elum-lh-tight);
+}
+
+h3 {
+  font-size: var(--elum-text-xl);
+  line-height: var(--elum-lh-tight);
+}
+
+h4 {
+  font-size: var(--elum-text-lg);
+  line-height: var(--elum-lh-tight);
+}
+
+h5 {
+  font-size: var(--elum-text-md);
+}
+
+h6 {
+  font-size: var(--elum-text-sm);
+}
+
 :focus-visible {
   outline: 2px solid var(--elum-color-focus);
   outline-offset: 2px;

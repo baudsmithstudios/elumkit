@@ -161,6 +161,22 @@ test("public CSS contract uses only the current prefix", () => {
   assert.doesNotMatch(PUBLIC_CSS, /\.pergyl-|--pergyl-/);
 });
 
+test("tokens define the full named text size scale", () => {
+  for (const token of ["--elum-text-lg", "--elum-text-xl", "--elum-text-2xl", "--elum-text-3xl"]) {
+    assert.match(TOKENS_CSS, new RegExp(`${token}:`), `missing token ${token}`);
+  }
+});
+
+test("base CSS resets heading margins and applies the token scale", () => {
+  assert.match(BASE_CSS, /h1,\s*h2,\s*h3,\s*h4,\s*h5,\s*h6\s*\{[^}]*margin:\s*0;/s);
+  assert.match(BASE_CSS, /h1\s*\{[^}]*font-size:\s*var\(--elum-text-3xl\)/s);
+  assert.match(BASE_CSS, /h2\s*\{[^}]*font-size:\s*var\(--elum-text-2xl\)/s);
+  assert.match(BASE_CSS, /h3\s*\{[^}]*font-size:\s*var\(--elum-text-xl\)/s);
+  assert.match(BASE_CSS, /h4\s*\{[^}]*font-size:\s*var\(--elum-text-lg\)/s);
+  assert.match(BASE_CSS, /h5\s*\{[^}]*font-size:\s*var\(--elum-text-md\)/s);
+  assert.match(BASE_CSS, /h6\s*\{[^}]*font-size:\s*var\(--elum-text-sm\)/s);
+});
+
 test("table and row APIs expose responsive state hooks", () => {
   assert.match(DATA_CSS, /\.elum-row\[data-selected="true"\]/);
   assert.match(DATA_CSS, /@media \(max-width: 48rem\)/);
