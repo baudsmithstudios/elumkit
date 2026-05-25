@@ -177,6 +177,10 @@ test("base CSS resets heading margins and applies the token scale", () => {
   assert.match(BASE_CSS, /h6\s*\{[^}]*font-size:\s*var\(--elum-text-sm\)/s);
 });
 
+test("base CSS forces form controls to inherit document typography", () => {
+  assert.match(BASE_CSS, /button,\s*input,\s*select,\s*textarea\s*\{[^}]*font:\s*inherit/s);
+});
+
 test("table and row APIs expose responsive state hooks", () => {
   assert.match(DATA_CSS, /\.elum-row\[data-selected="true"\]/);
   assert.match(DATA_CSS, /@media \(max-width: 48rem\)/);
