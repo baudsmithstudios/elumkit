@@ -14,15 +14,15 @@
     </style>
     <mask id="hero-border-cutout">
       <rect width="100%" height="100%" fill="white"/>
-      <rect x="92" y="14" width="430" height="24" fill="black"/>
+      <rect x="109" y="14" width="391" height="24" fill="black"/>
     </mask>
   </defs>
 
   <rect width="1280" height="640" fill="#050e12"/>
 
+  <g transform="translate(0 63)">
   <rect x="40" y="24" width="1200" height="260" rx="3" class="frame" mask="url(#hero-border-cutout)"/>
-  <circle cx="104" cy="25.5" r="6" class="success"/>
-  <text x="126" y="32" class="mono label">COMPONENT-SYSTEM · V0.1</text>
+  <text x="126" y="32" class="mono label">COMPONENT-SYSTEM · MIT</text>
   <text x="1120" y="89" class="mono label accent">READY</text>
   <text x="102" y="176" class="mono" font-size="74" font-weight="600" letter-spacing="14" fill="#00e5ff">elumkit<tspan class="accent">.</tspan></text>
   <text x="102" y="232" class="mono muted" font-size="26" letter-spacing="1">HTML-first web UI primitives with a clean terminal feel.</text>
@@ -52,4 +52,5 @@
   <text x="918" y="403" text-anchor="middle" class="mono accent" font-size="18" letter-spacing="2">RUN</text>
   <rect x="880" y="426" width="336" height="40" rx="1" class="frame"/>
   <text x="892" y="453" class="mono muted" font-size="18">&gt; input_</text>
+  </g>
 </svg>
