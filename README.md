@@ -12,7 +12,7 @@
 
 ## What It Does
 
-ElumKit is a lean, terminal-inspired component system for modern web interfaces. ElumKit is intentionally plain-HTML first and distributed as source you copy into your project, commit, and modify directly.
+ElumKit is a lean, terminal-inspired component system for modern web interfaces. It is intentionally plain-HTML first and distributed as source you copy into your project, commit, and modify directly. ElumKit pairs best with backend-heavy apps, internal tools, monitoring dashboards, and admin panels that need a dense, data-rich UI.
 
 ## Features
 
