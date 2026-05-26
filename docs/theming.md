@@ -67,6 +67,8 @@ Defined in `packages/core-css/src/tokens.css`:
 | `--elum-container-padding-inline` | Horizontal padding of `.elum-container` (responsive `clamp` by default) |
 | `--elum-container-padding-block` | Vertical padding of `.elum-container` |
 
+Layout tokens are intentionally independent of `--elum-space-*` so the page frame and component density can be retuned separately. Reference a spacing token in your override if you want them to track together.
+
 Override these to set a project-wide page frame without modifying the `.elum-container` rule itself:
 
 ```css

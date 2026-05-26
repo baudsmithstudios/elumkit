@@ -17,6 +17,8 @@
 - `<body>`: `overflow-wrap: break-word` (long-string layout safety)
 - `<html>`: `-webkit-text-size-adjust: 100%` (iOS Safari rotation)
 - `<fieldset>`: `min-width: 0` (flex/grid overflow)
+- Bare `<a>`: accent color, underline, hover shifts to foreground
+- `<img>`, `<picture>`, `<video>`, `<canvas>`: `display: block`, `max-width: 100%`
 
 ### Fixed
 
