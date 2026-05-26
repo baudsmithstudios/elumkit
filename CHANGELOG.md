@@ -20,7 +20,7 @@
 
 ### Fixed
 
-- `dust` theme `color-scheme` missing semicolon was invalidating the entire theme block
+- `.elum-checkbox` / `.elum-radio` reset to `margin: 0` so they align in dense form rows without inheriting UA defaults
 
 ### Breaking changes
 
