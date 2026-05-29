@@ -17,7 +17,7 @@ The component playground is a single static HTML file. Serve the repo from a loc
 npm run playground          # serves on http://localhost:4173
 ```
 
-Then open `http://localhost:4173/examples/playground.html`. Every v0.1 component is rendered together so you can review styles and states visually.
+Then open `http://localhost:4173/examples/playground.html`. Every component is rendered together so you can review styles and states visually.
 
 ## Submitting Changes
 

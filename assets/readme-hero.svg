@@ -17,7 +17,7 @@
   </defs>
   <rect x="25" y="9" width="1230" height="434" rx="10" fill="#050e12"/>
   <path d="M40 24 V246 H1240 V24 H505 M40 24 H109" class="frame"/>
-  <text x="126" y="32" class="mono label">COMPONENT-SYSTEM · V0.1</text>
+  <text x="126" y="32" class="mono label">COMPONENT-SYSTEM · V0.x</text>
   <text x="1120" y="82" class="mono label accent">READY</text>
   <text x="102" y="150" class="mono brand" font-size="74" font-weight="600" letter-spacing="14">elumkit<tspan class="accent">.</tspan></text>
   <text x="102" y="202" class="mono muted" font-size="26" letter-spacing="1">HTML-first web UI primitives with a clean terminal feel.</text>

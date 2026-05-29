@@ -1,3 +1,5 @@
+/* Andy Bell - https://piccalil.li/blog/a-more-modern-css-reset/ */
+
 * {
   box-sizing: border-box;
 }
@@ -8,12 +10,76 @@ body {
   padding: 0;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background: var(--elum-color-bg);
   color: var(--elum-color-fg);
   font-family: var(--elum-font-family);
   font-size: var(--elum-text-md);
   line-height: var(--elum-lh-normal);
+  overflow-wrap: break-word;
+}
+
+button, input, select, textarea, optgroup, option {
+  font: inherit;
+}
+
+fieldset {
+  min-width: 0;
+}
+
+a {
+  color: var(--elum-color-accent);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--elum-color-fg);
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--elum-text-3xl);
+  line-height: var(--elum-lh-tight);
+}
+
+h2 {
+  font-size: var(--elum-text-2xl);
+  line-height: var(--elum-lh-tight);
+}
+
+h3 {
+  font-size: var(--elum-text-xl);
+  line-height: var(--elum-lh-tight);
+}
+
+h4 {
+  font-size: var(--elum-text-lg);
+  line-height: var(--elum-lh-tight);
+}
+
+h5 {
+  font-size: var(--elum-text-md);
+}
+
+h6 {
+  font-size: var(--elum-text-sm);
 }
 
 :focus-visible {
@@ -21,8 +87,20 @@ body {
   outline-offset: 2px;
 }
 
+.elum-container {
+  margin-inline: auto;
+  max-width: var(--elum-container-width);
+  padding-inline: var(--elum-container-padding-inline);
+  padding-block: var(--elum-container-padding-block);
+}
+
 .elum-stack > * + * {
   margin-top: var(--elum-space-3);
+}
+
+img, picture, video, canvas {
+  display: block;
+  max-width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -35,3 +113,4 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+

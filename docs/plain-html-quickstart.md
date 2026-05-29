@@ -1,6 +1,6 @@
 # Plain HTML Quickstart
 
-Use this path when you want v0.1 components in a plain HTML project and want to own the copied source. You can either copy the source code directly or install from npm.
+Use this path when you want components in your project and want to own the copied source. You can either copy the source code directly or install from npm.
 
 ## 1) Install from npm
 
@@ -79,20 +79,22 @@ Start from:
 Example:
 
 ```html
-<article class="elum-card elum-card-labeled elum-stack">
-  <header class="elum-card-header">
-    <h2 class="elum-card-title">System</h2>
-  </header>
-  <p class="elum-card-subtitle">Current status</p>
-  <button class="elum-button" type="button">Run</button>
-</article>
+<main class="elum-container elum-stack">
+  <article class="elum-card elum-card-labeled elum-stack">
+    <header class="elum-card-header">
+      <h2 class="elum-card-title">System</h2>
+    </header>
+    <p class="elum-card-subtitle">Current status</p>
+    <button class="elum-button" type="button">Run</button>
+  </article>
+</main>
 ```
+
+`.elum-container` provides a centered, max-width-bounded page frame. `.elum-stack` adds consistent vertical rhythm between children. See `docs/theming.md` for the layout tokens that drive both.
 
 Copied CSS and markup are application code. Edit them to fit your project.
 
 ## 5) Verify critical states
-
-For v0.1, check these states in your page:
 
 - focus-visible
 - disabled

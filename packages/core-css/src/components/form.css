@@ -116,6 +116,7 @@ fieldset.elum-field > .elum-label {
 .elum-checkbox,
 .elum-radio {
   accent-color: var(--elum-color-accent);
+  margin: 0;
 }
 
 .elum-checkbox:disabled,

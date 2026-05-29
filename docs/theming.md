@@ -1,6 +1,6 @@
-# Theming Guide (v0.1)
+# Theming Guide
 
-v0.1 theming is token-driven through CSS variables.
+Theming is token-driven through CSS variables.
 
 ## Theme root
 
@@ -35,6 +35,7 @@ Defined in `packages/core-css/src/tokens.css`:
 - Color tokens (`--elum-color-*`)
 - Typography tokens (`--elum-text-*`, `--elum-lh-*`, `--elum-font-family`)
 - Spacing tokens (`--elum-space-*`)
+- Layout tokens (`--elum-container-*`)
 - Radius/border tokens (`--elum-radius-*`, `--elum-border-width`)
 - Motion token (`--elum-motion-fast`)
 
@@ -57,6 +58,25 @@ Defined in `packages/core-css/src/tokens.css`:
 `--elum-color-bg` and `--elum-color-surface` are separate tokens; the default themes assign them the same value for a flat, frameless look. You can override `--elum-color-surface` for additional card depth.
 
 `--elum-color-muted` and `--elum-color-border` are distinct: muted is for de-emphasized text, border is for layout structure. `--elum-color-warn` and `--elum-color-error` are separate tokens from `--elum-color-accent`; the default themes assign them the same value, but they can be overridden independently.
+
+## Layout tokens
+
+| Token | Role |
+| --- | --- |
+| `--elum-container-width` | Max width of `.elum-container` page wrappers |
+| `--elum-container-padding-inline` | Horizontal padding of `.elum-container` (responsive `clamp` by default) |
+| `--elum-container-padding-block` | Vertical padding of `.elum-container` |
+
+Layout tokens are intentionally independent of `--elum-space-*` so the page frame and component density can be retuned separately. Reference a spacing token in your override if you want them to track together.
+
+Override these to set a project-wide page frame without modifying the `.elum-container` rule itself:
+
+```css
+:root {
+  --elum-container-width: 64rem;
+  --elum-container-padding-block: var(--elum-space-4);
+}
+```
 
 ## Override example
 

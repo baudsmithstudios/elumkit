@@ -1,6 +1,11 @@
-# Component Usage (v0.1)
+# Component Usage
 
 Use semantic HTML first. Add ARIA only when native semantics are not enough.
+
+## Layout
+
+- **Page container:** `.elum-container` on `<main>` (or any block element) — centers content, applies `--elum-container-width` max width, and pads with `--elum-container-padding-inline` / `--elum-container-padding-block`. Override the tokens to reframe the page.
+- **Vertical rhythm:** `.elum-stack` on a container adds a top margin (`--elum-space-3`) to every child after the first. Compose with `.elum-container` for a complete page skeleton: `<main class="elum-container elum-stack">`.
 
 ## Button
 
@@ -16,6 +21,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Invalid state:** `aria-invalid="true"`
 - **Disabled state:** native `disabled`
 - **Keyboard:** native form element behavior
+- Note: the `<select>` dropdown pop-up on Linux running Chromium is rendered as a native GTK window and follows the system GTK theme regardless of `color-scheme`. On dark themes, the popup will appear light if the system GTK theme is light. This is a platform boundary. Switch to a dark system GTK theme for full consistency.
 
 ## Checkbox / Radio Group
 
@@ -125,10 +131,11 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Meter
 
 - **Wrapper:** `.elum-meter` on a `<div>`
-- **Track:** `.elum-meter-track` on a native `<meter>` with `min`, `max`, and `value` attributes for correct AT announcements
-- **Fill width:** `style="--elum-meter-fill-width: N%"` on the `<meter>` element, matching the `value` as a percentage of the range
-- **Fill tones:** `data-tone="success" | "warn" | "error"` on the `<meter>` element
-- **Label:** `aria-label` on the `<meter>`, or `aria-labelledby` pointing to a visible `.elum-meter-label`
+- **Track:** `.elum-meter-track` on a `<div>` with `role="meter"`, `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` for correct AT announcements
+- **Fill width:** `style="--elum-meter-fill-width: N%"` on the track element, matching the value as a percentage of the range
+- **Fill tones:** `data-tone="success" | "warn" | "error"` on the track element
+- **Label:** `aria-label` on the track element, or `aria-labelledby` pointing to a visible `.elum-meter-label`
+- **Why not `<meter>`:** styling `<meter>` internals requires deprecated non-standard pseudo-elements (`::-webkit-meter-bar` etc.) that MDN recommends against. `<div role="meter">` provides equivalent accessibility with full CSS control.
 
 ## Data List
 

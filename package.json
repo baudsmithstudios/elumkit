@@ -1,7 +1,7 @@
 {
   "name": "@baudsmithstudios/elumkit",
   "description": "HTML-first UI primitives with copyable CSS, semantic patterns, and a clean terminal feel.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publishConfig": {
     "access": "public"
   },

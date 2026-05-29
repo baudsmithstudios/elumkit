@@ -6,12 +6,6 @@
     <title>ElumKit Playground</title>
     <link rel="stylesheet" href="../packages/core-css/src/index.css" />
     <style>
-      main {
-        margin: 0 auto;
-        max-width: 76rem;
-        padding: 1rem clamp(1rem, 3vw, 2rem) 2rem;
-      }
-
       main.elum-stack > * + * {
         margin-top: 1.25rem;
       }
@@ -68,7 +62,7 @@
           "query query query query query query query query form form form form"
           "toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar form form form form"
           "telemetry telemetry telemetry telemetry card card card card navigation navigation navigation navigation"
-          "details details details details rows rows rows rows rows rows rows rows"
+          "details details details details typography typography typography typography rows rows rows rows"
           "states states states states states states states states states states states states";
       }
 
@@ -117,6 +111,10 @@
         grid-area: toolbar;
       }
 
+      .playground-typography-preview {
+        grid-area: typography;
+      }
+
       .state-matrix {
         display: grid;
         gap: 1rem;
@@ -137,7 +135,7 @@
             "toolbar toolbar toolbar toolbar toolbar toolbar form form form form form form"
             "card card card card card card telemetry telemetry telemetry telemetry telemetry telemetry"
             "navigation navigation navigation navigation navigation navigation details details details details details details"
-            "rows rows rows rows rows rows rows rows rows rows rows rows"
+            "typography typography typography typography typography typography rows rows rows rows rows rows"
             "states states states states states states states states states states states states";
         }
 
@@ -169,6 +167,7 @@
             "form form form form form form form form form form form form"
             "toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar"
             "navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation"
+            "typography typography typography typography typography typography typography typography typography typography typography typography"
             "rows rows rows rows rows rows rows rows rows rows rows rows"
             "states states states states states states states states states states states states";
         }
@@ -180,10 +179,10 @@
     </style>
   </head>
   <body>
-    <main class="elum-stack">
+    <main class="elum-container elum-stack">
       <header class="elum-card elum-card-labeled playground-header">
         <div class="elum-card-header" data-inline="true">
-          <div class="elum-card-title">Component system · v0.1</div>
+          <div class="elum-card-title">Component system · V0.<span style="text-transform: none">x</span></div>
           <p class="elum-card-subtitle playground-title-status">
             theme <span id="theme-status">[IRON]</span> components [22]
           </p>
@@ -375,7 +374,7 @@
               <span class="elum-meter-label">Memory</span>
               <span class="elum-meter-value">64%</span>
             </div>
-            <meter class="elum-meter-track" min="0" max="100" value="64" data-tone="warn" aria-label="Memory usage" style="--elum-meter-fill-width: 64%">64%</meter>
+            <div class="elum-meter-track" role="meter" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Memory usage" style="--elum-meter-fill-width: 64%"></div>
           </div>
         </article>
 
@@ -428,6 +427,20 @@
               <dd class="elum-detail-value">42s</dd>
             </div>
           </dl>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-typography-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Typography</h2>
+          </header>
+          <p class="elum-card-subtitle">Token-driven sizes on bare heading elements.</p>
+
+          <h1>h1 · 2rem</h1>
+          <h2>h2 · 1.5rem</h2>
+          <h3>h3 · 1.25rem</h3>
+          <h4>h4 · 1.125rem</h4>
+          <h5>h5 · 1rem</h5>
+          <h6>h6 · 0.875rem</h6>
         </article>
 
         <article class="elum-card elum-card-labeled elum-stack playground-tile playground-toolbar-preview">

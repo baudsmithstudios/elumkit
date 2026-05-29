@@ -4,6 +4,10 @@
   --elum-text-xs: 0.75rem;
   --elum-text-sm: 0.875rem;
   --elum-text-md: 1rem;
+  --elum-text-lg: 1.125rem;
+  --elum-text-xl: 1.25rem;
+  --elum-text-2xl: 1.5rem;
+  --elum-text-3xl: 2rem;
 
   --elum-lh-tight: 1.2;
   --elum-lh-normal: 1.5;
@@ -18,10 +22,15 @@
 
   --elum-border-width: 1px;
   --elum-motion-fast: 120ms;
+
+  --elum-container-width: 76rem;
+  --elum-container-padding-inline: clamp(1rem, 3vw, 2rem);
+  --elum-container-padding-block: 1rem;
 }
 
 :root,
 [data-theme="iron"] {
+  color-scheme: dark;
   --elum-color-bg: #0d1117;
   --elum-color-surface: #0d1117;
   --elum-color-fg: #d4e1ec;
@@ -37,6 +46,7 @@
 }
 
 [data-theme="neon"] {
+  color-scheme: dark;
   --elum-color-bg: #050e12;
   --elum-color-surface: #050e12;
   --elum-color-fg: #d0f0ff;
@@ -52,6 +62,7 @@
 }
 
 [data-theme="dust"] {
+  color-scheme:light;
   --elum-color-bg: #ddd6c4;
   --elum-color-surface: #ddd6c4;
   --elum-color-fg: #0e0e0e;

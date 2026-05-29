@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.2.0] - 2026-05-25
+
+### Added
+
+- `.elum-container` page-frame utility (centered, max-width, responsive padding)
+- Layout tokens: `--elum-container-width`, `--elum-container-padding-inline`, `--elum-container-padding-block`
+- Typography scale tokens: `--elum-text-lg`, `--elum-text-xl`, `--elum-text-2xl`, `--elum-text-3xl`
+- Heading scale on bare `<h1>`–`<h6>` wired to the typography tokens
+- `color-scheme` declarations per theme so native form controls follow the active theme
+
+### Changed
+
+- Bare form controls (`button`, `input`, `select`, `textarea`, `optgroup`, `option`) inherit document font
+- Bare `<p>` margin reset to 0
+- `<body>`: `overflow-wrap: break-word` (long-string layout safety)
+- `<html>`: `-webkit-text-size-adjust: 100%` (iOS Safari rotation)
+- `<fieldset>`: `min-width: 0` (flex/grid overflow)
+- Bare `<a>`: accent color, underline, hover shifts to foreground
+- `<img>`, `<picture>`, `<video>`, `<canvas>`: `display: block`, `max-width: 100%`
+
+### Fixed
+
+- `.elum-checkbox` / `.elum-radio` reset to `margin: 0` so they align in dense form rows without inheriting UA defaults
+
+### Breaking changes
+
+- `<meter>` → `<div role="meter">` with `aria-valuenow`/`min`/`max`. `.elum-meter` class API unchanged; update markup only. See `docs/component-usage.md`.
+
 ## [0.1.0] - 2026-05-23
 
 ### Added
@@ -20,4 +48,5 @@
   theming guide
 - `examples/playground.html` for visual review of all components and states
 
+[0.2.0]: https://github.com/baudsmithstudios/elumkit/releases/tag/v0.2.0
 [0.1.0]: https://github.com/baudsmithstudios/elumkit/releases/tag/v0.1.0
