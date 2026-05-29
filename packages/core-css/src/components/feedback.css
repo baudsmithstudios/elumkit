@@ -68,8 +68,8 @@
   content: "";
   display: inline-block;
   flex: 0 0 auto;
-  height: 0.5rem;
-  width: 0.5rem;
+  height: 0.6rem;
+  width: 0.6rem;
 }
 
 .elum-status-label[data-tone="accent"] {

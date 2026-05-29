@@ -1,6 +1,6 @@
 # Plain HTML Quickstart
 
-Use this path when you want v0.1 components in a plain HTML project and want to own the copied source. You can either copy the source code directly or install from npm.
+Use this path when you want components in your project and want to own the copied source. You can either copy the source code directly or install from npm.
 
 ## 1) Install from npm
 
@@ -95,8 +95,6 @@ Example:
 Copied CSS and markup are application code. Edit them to fit your project.
 
 ## 5) Verify critical states
-
-For v0.1, check these states in your page:
 
 - focus-visible
 - disabled

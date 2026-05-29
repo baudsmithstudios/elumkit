@@ -12,14 +12,14 @@
 
 ## What It Does
 
-ElumKit is a lean, terminal-inspired component system for modern web interfaces. It is intentionally plain-HTML first and distributed as source you copy into your project, commit, and modify directly. ElumKit pairs best with backend-heavy apps, internal tools, monitoring dashboards, and admin panels that need a dense, data-rich UI.
+ElumKit is a lean, terminal-inspired component system for modern web interfaces. It is intentionally plain-HTML first and distributed as source you copy into your project, commit, and modify directly. ElumKit pairs well with backend-heavy apps, internal tools, monitoring dashboards, and admin panels that need a clean, data-rich UI.
 
 ## Features
 
-- **Terminal-inspired by default** — dense, calm, monospace-forward styling without retro CRT effects
+- **Terminal-inspired by default** — dense, calm, monospace-forward styling
 - **HTML-first component contract** — semantic classes backed by CSS custom properties
-- **Owned-source distribution** — copy the CSS primitives and markup patterns into your app
-- **Framework-agnostic baseline** — usable from plain HTML, Eleventy, and server-rendered templates
+- **Owned-source distribution** — copy the CSS primitives and markup patterns straight into your app
+- **Framework-agnostic baseline** — usable from vanilla HTML, Eleventy, and server-rendered templates
 - **No core JavaScript** — components rely on native HTML semantics; examples may use small demo scripts
 - **Responsive interface patterns** — tables, toolbars, query rows, and dense panels adapt to narrow screens
 - **Accessibility baseline** — keyboard-first patterns and WCAG 2.2 AA contrast targets
@@ -28,7 +28,7 @@ ElumKit is a lean, terminal-inspired component system for modern web interfaces.
 
 - **Use native HTML first** — prefer real buttons, labels, fieldsets, tables, and form states before adding ARIA or JavaScript
 - **Keep the CSS contract readable** — public classes and custom properties should be easy to inspect, copy, and override
-- **Favor dense clarity** — terminal influence should improve scannability without novelty effects or decorative noise
+- **Favor dense clarity** — terminal influence should improve scannability without decorative noise
 - **Keep ownership clear** — copied source should stay readable, editable, and easy to audit
 
 ## Install From npm
@@ -104,15 +104,15 @@ Then link the copied CSS, set a theme on the document root, and use the semantic
 
 Open `examples/playground.html` in a browser to see every component rendered together, or copy markup from `packages/core-patterns/snippets/index.html` into your own templates. Once copied, the CSS and markup belong to your application code.
 
-## v0.1 Component Scope
+## Current Component Scope
 
 Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, System Bar, Navigation Tabs, Toolbar, Query Row, Pagination, Empty State, Disclosure, Detail List, Status Label, Metrics, Meter, Data List, Data Table.
 
 ## Browser And Stability Notes
 
-ElumKit targets modern evergreen browsers with support for CSS custom properties, `@import`, `:has()`, and standard form semantics.
+ElumKit targets modern browsers with support for CSS custom properties, `@import`, `:has()`, and standard form semantics.
 
-v0.1 is an early-stage public release. The documented classes, data attributes, tokens, and markup patterns are the current contract, but they may change as the project evolves. Breaking changes are tracked in the changelog.
+This project is still at a very early stage of development. The documented classes, data attributes, tokens, and markup patterns are the current contract, but they may change as the project evolves. Breaking changes are tracked in the changelog.
 
 ## Public Contract
 

@@ -1,4 +1,4 @@
-# Component Usage (v0.1)
+# Component Usage
 
 Use semantic HTML first. Add ARIA only when native semantics are not enough.
 

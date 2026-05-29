@@ -1,6 +1,6 @@
-# Theming Guide (v0.1)
+# Theming Guide
 
-v0.1 theming is token-driven through CSS variables.
+Theming is token-driven through CSS variables.
 
 ## Theme root
 
