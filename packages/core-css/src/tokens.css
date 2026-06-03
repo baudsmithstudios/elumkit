@@ -38,9 +38,9 @@
   --elum-color-border: #4a6275;
   --elum-color-accent: #f08550;
   --elum-color-success: #4ec898;
-  --elum-color-warn: #e05252;
+  --elum-color-warn: #e3a008;
   --elum-color-error: #e05252;
-  --elum-color-info: #4ec898;
+  --elum-color-info: #5aa7ff;
 
   --elum-color-focus: #f08550;
 }
@@ -55,24 +55,24 @@
   --elum-color-accent: #00e5ff;
   --elum-color-success: #00ff87;
   --elum-color-warn: #ffbe0b;
-  --elum-color-error: #ffbe0b;
-  --elum-color-info: #00ff87;
+  --elum-color-error: #ff5d73;
+  --elum-color-info: #b794ff;
 
   --elum-color-focus: #00e5ff;
 }
 
 [data-theme="dust"] {
   color-scheme:light;
-  --elum-color-bg: #ddd6c4;
-  --elum-color-surface: #ddd6c4;
+  --elum-color-bg: #e7e0ce;
+  --elum-color-surface: #e7e0ce;
   --elum-color-fg: #0e0e0e;
   --elum-color-muted: #5f5648;
   --elum-color-border: #3d2f20;
   --elum-color-accent: #a3341b;
-  --elum-color-success: #2e6048;
-  --elum-color-warn: #7a4800;
-  --elum-color-error: #7a4800;
-  --elum-color-info: #2e6048;
+  --elum-color-success: #006b2d;
+  --elum-color-warn: #8a4900;
+  --elum-color-error: #b01030;
+  --elum-color-info: #0058bd;
 
   --elum-color-focus: #a3341b;
 }

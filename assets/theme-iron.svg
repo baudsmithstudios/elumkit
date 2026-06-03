@@ -8,7 +8,7 @@
       .accent { fill: #f08550; }
       .accent-fill { fill: #f08550; }
       .success { fill: #4ec898; }
-      .warn { fill: #e05252; }
+      .warn { fill: #e3a008; }
       .idle { fill: #8a9eac; }
       .frame { fill: none; stroke: #4a6275; stroke-width: 2; }
       .accent-frame { fill: none; stroke: #f08550; stroke-width: 2; }

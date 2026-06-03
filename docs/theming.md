@@ -57,7 +57,7 @@ Defined in `packages/core-css/src/tokens.css`:
 
 `--elum-color-bg` and `--elum-color-surface` are separate tokens; the default themes assign them the same value for a flat, frameless look. You can override `--elum-color-surface` for additional card depth.
 
-`--elum-color-muted` and `--elum-color-border` are distinct: muted is for de-emphasized text, border is for layout structure. `--elum-color-warn` and `--elum-color-error` are separate tokens from `--elum-color-accent`; the default themes assign them the same value, but they can be overridden independently.
+`--elum-color-muted` and `--elum-color-border` are distinct: muted is for de-emphasized text, border is for layout structure. The four status tokens — `--elum-color-success`, `--elum-color-info`, `--elum-color-warn`, and `--elum-color-error` — each carry a distinct hue in every default theme, and can be overridden independently.
 
 ## Layout tokens
 
