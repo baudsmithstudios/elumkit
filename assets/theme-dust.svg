@@ -7,14 +7,14 @@
       .muted { fill: #5f5648; }
       .accent { fill: #a3341b; }
       .accent-fill { fill: #a3341b; }
-      .success { fill: #2e6048; }
-      .warn { fill: #7a4800; }
+      .success { fill: #006b2d; }
+      .warn { fill: #8a4900; }
       .idle { fill: #5f5648; }
       .frame { fill: none; stroke: #3d2f20; stroke-width: 2; }
       .accent-frame { fill: none; stroke: #a3341b; stroke-width: 2; }
     </style>
   </defs>
-  <rect x="25" y="257" width="1230" height="186" rx="10" fill="#ddd6c4"/>
+  <rect x="25" y="257" width="1230" height="186" rx="10" fill="#e7e0ce"/>
 
   <rect x="40" y="272" width="384" height="156" rx="3" class="frame"/>
   <text x="64" y="310" class="mono label">STATUS</text>

@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+- All three default themes now have distinct status colors. Status UIs can now distinguish caution, error, info, and success states without token overrides. 
+- `dust` theme background lightened slightly to improve contrast ratios with the updated color palette. 
+
 ## [0.2.0] - 2026-05-25
 
 ### Added
@@ -48,5 +55,6 @@
   theming guide
 - `examples/playground.html` for visual review of all components and states
 
+[Unreleased]: https://github.com/baudsmithstudios/elumkit/compare/v0.2.0...HEAD
 [0.2.0]: https://github.com/baudsmithstudios/elumkit/releases/tag/v0.2.0
 [0.1.0]: https://github.com/baudsmithstudios/elumkit/releases/tag/v0.1.0
