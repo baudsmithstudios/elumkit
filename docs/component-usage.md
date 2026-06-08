@@ -67,12 +67,21 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Status values may use bracketed status text for terse terminal-style state.
 - Keep system bar copy short enough to wrap cleanly on narrow screens.
 
-## Navigation Tabs
+## Navbar
 
-- **Wrapper:** `.elum-tabs` on a `<nav>`
-- **Tab link:** `.elum-tab` on an `<a>`
-- **Current page:** `aria-current="page"`
-- Use for page or section navigation. Do not use ARIA tab roles unless JavaScript provides the expected tab-panel keyboard behavior.
+- **Wrapper:** `.elum-navbar` on a `<nav>`; sticks to the top of the viewport
+- **Brand:** `.elum-navbar-brand` on the wordmark label
+- **Links:** `.elum-navlinks` containing `.elum-navlink` anchors
+- **Current page:** `aria-current="page"` on the active link
+- Use for top-level page navigation. For switching views on one page, use tabs.
+
+## Tabs
+
+- **Tablist:** `.elum-tabs` with `role="tablist"` and an accessible name
+- **Tab:** `.elum-tab` on a `<button role="tab">` with `aria-selected`, an `id`, and `aria-controls` for its panel
+- **Panel:** `role="tabpanel"` with `aria-labelledby`; hide inactive panels with `hidden`
+- **Roving focus:** active tab `tabindex="0"`, others `tabindex="-1"`
+- Switches between views on one page. Requires JavaScript for panel switching and keyboard support; see `examples/playground.html`. For page navigation, use the navbar.
 
 ## Toolbar
 
