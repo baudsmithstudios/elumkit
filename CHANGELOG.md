@@ -4,7 +4,7 @@
 
 ### Added
 
--Navbar component snippet and classes.
+- Navbar component snippet and classes.
 
 ### Changed
 
