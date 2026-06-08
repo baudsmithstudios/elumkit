@@ -393,19 +393,21 @@
 
         <article class="elum-card elum-card-labeled elum-stack playground-tile playground-navigation-preview">
           <header class="elum-card-header">
-            <h2 class="elum-card-title">Navigation Tabs</h2>
+            <h2 class="elum-card-title">Tabs</h2>
           </header>
-          <p class="elum-card-subtitle">Page links with native current-page state.</p>
+          <p class="elum-card-subtitle">Switch between views on a page</p>
 
-          <nav class="elum-tabs" aria-label="Primary navigation example">
-            <a class="elum-tab" href="#" aria-current="page">Incidents</a>
-            <a class="elum-tab" href="#">Uptime</a>
-          </nav>
+          <div class="elum-tabs" role="tablist" aria-label="Service views">
+            <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents" tabindex="0">Incidents</button>
+            <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime" tabindex="-1">Uptime</button>
+          </div>
 
-          <nav class="elum-tabs" aria-label="Secondary navigation example">
-            <a class="elum-tab" href="#">Incidents</a>
-            <a class="elum-tab" href="#" aria-current="page">Uptime</a>
-          </nav>
+          <div id="panel-incidents" role="tabpanel" aria-labelledby="tab-incidents">
+            Incident content here.
+          </div>
+          <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime" hidden>
+            Uptime content here.
+          </div>
         </article>
 
         <article class="elum-card elum-card-labeled elum-stack playground-tile playground-details-preview">
@@ -556,28 +558,76 @@
     </main>
 
     <script>
+      //Theme behavior
       const root = document.documentElement;
-      const iron = document.getElementById("theme-iron");
-      const dust = document.getElementById("theme-dust");
-      const neon = document.getElementById("theme-neon");
-      const themeStatus = document.getElementById("theme-status");
+      const iron = document.getElementById("theme-iron")
+      const dust = document.getElementById("theme-dust")
+      const neon = document.getElementById("theme-neon")
+      const themeStatus = document.getElementById("theme-status")
 
       function setTheme(theme, label) {
-        root.setAttribute("data-theme", theme);
-        themeStatus.textContent = label;
+        root.setAttribute("data-theme", theme)
+        themeStatus.textContent = label
       }
 
       iron.addEventListener("click", () => {
-        setTheme("iron", "[IRON]");
-      });
+        setTheme("iron", "[IRON]")
+      })
 
       dust.addEventListener("click", () => {
-        setTheme("dust", "[DUST]");
-      });
+        setTheme("dust", "[DUST]")
+      })
 
       neon.addEventListener("click", () => {
-        setTheme("neon", "[NEON]");
-      });
+        setTheme("neon", "[NEON]")
+      })
+
+      //Tab behavior — manual activation with roving tabindex (WAI-ARIA Tabs pattern)
+      document.querySelectorAll('.elum-tabs[role="tablist"]').forEach((tablist) => {
+        const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+
+        const setRoving = (tab) => {
+          tabs.forEach((t) => { t.tabIndex = t === tab ? 0 : -1; })
+        }
+
+        const activate = (tab) => {
+          setRoving(tab)
+          tabs.forEach((t) => {
+            const isActive = t === tab
+            t.setAttribute("aria-selected", String(isActive))
+            document.getElementById(t.getAttribute("aria-controls")).hidden = !isActive
+          })
+        }
+
+        tabs.forEach((tab, index) => {
+          tab.addEventListener("click", () => activate(tab))
+          tab.addEventListener("keydown", (event) => {
+            const last = tabs.length - 1
+            let next;
+            switch (event.key) {
+              case "ArrowRight":
+              case "ArrowDown":
+                next = index === last ? 0 : index + 1
+                break
+              case "ArrowLeft":
+              case "ArrowUp":
+                next = index === 0 ? last : index - 1
+                break
+              case "Home":
+                next = 0
+                break
+              case "End":
+                next = last
+                break
+              default:
+                return
+            }
+            event.preventDefault()
+            setRoving(tabs[next])
+            tabs[next].focus()
+          });
+        });
+      })
     </script>
   </body>
 </html>
