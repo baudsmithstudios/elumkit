@@ -2,10 +2,18 @@
 
 ## [Unreleased]
 
+### Added
+
+- Navbar component snippet and classes.
+
 ### Changed
 
 - All three default themes now have distinct status colors. Status UIs can now distinguish caution, error, info, and success states without token overrides. 
 - `dust` theme background lightened slightly to improve contrast ratios with the updated color palette. 
+
+### Breaking changes
+
+- Tabs are now a formal tabset based on the `<button>`, not `<a>`. Tabs can now be used to display one panel of content at a time. Navigation responsibility belongs to the navbar.
 
 ## [0.2.0] - 2026-05-25
 

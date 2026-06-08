@@ -81,15 +81,18 @@ test("playground and snippets expose toolbar groups semantically", () => {
   }
 });
 
-test("playground and snippets expose navigation tabs semantically", () => {
+test("playground and snippets expose the in-page tabset pattern", () => {
   for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
     const html = readFileSync(file, "utf8");
 
     assert.match(html, classToken("elum-tabs"));
     assert.match(html, classToken("elum-tab"));
-    assert.match(html, /aria-current="page"/);
-    assert.doesNotMatch(html, /role="tablist"/);
-    assert.doesNotMatch(html, /role="tab"/);
+    assert.match(html, /role="tablist"/);
+    assert.match(html, /role="tab"/);
+    assert.match(html, /role="tabpanel"/);
+    assert.match(html, /aria-selected="(?:true|false)"/);
+    assert.match(html, /aria-controls="[^"]+"/);
+    assert.doesNotMatch(html, /class="elum-tab"[^>]*aria-current="page"/);
   }
 });
 

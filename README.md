@@ -106,7 +106,7 @@ Open `examples/playground.html` in a browser to see every component rendered tog
 
 ## Current Component Scope
 
-Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, System Bar, Navigation Tabs, Toolbar, Query Row, Pagination, Empty State, Disclosure, Detail List, Status Label, Metrics, Meter, Data List, Data Table.
+Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, System Bar, Navbar, Tabs, Toolbar, Query Row, Pagination, Empty State, Disclosure, Detail List, Status Label, Metrics, Meter, Data List, Data Table.
 
 ## Browser And Stability Notes
 

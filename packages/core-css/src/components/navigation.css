@@ -1,0 +1,65 @@
+.elum-navbar {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-bottom: var(--elum-border-width) solid var(--elum-color-border);
+  padding: var(--elum-space-3) var(--elum-space-4);
+  margin-bottom: 1.5rem;
+  position: sticky;
+  top: 0;
+  background-color: var(--elum-color-bg);
+  z-index: 999;
+}
+
+.elum-navbar-brand {
+  align-items: center;
+  color: var(--elum-navbar-brand-color, var(--elum-color-accent));
+  display: inline-flex;
+  font-size: var(--elum-navbar-brand-size, var(--elum-text-sm));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  padding: 0 var(--elum-space-2);
+  text-transform: uppercase;
+}
+
+.elum-navlinks {
+  align-items: center;
+  display: flex;
+}
+
+.elum-navlink {
+  display: inline-flex;
+  align-items: center;
+  color: var(--elum-navlink-color, var(--elum-color-accent));
+  text-decoration: none;
+  font-size: var(--elum-navlink-size, var(--elum-text-sm));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  text-transform: uppercase;
+}
+
+.elum-navlink:not(:last-child)::after {
+  display: inline;
+  color: var(--elum-color-muted);
+  content: "|";
+  margin: 0 var(--elum-space-1);
+  font-weight: 500;
+  line-height: 0;
+}
+
+.elum-navlink:hover {
+  color: var(--elum-color-fg);
+}
+
+.elum-navlink:focus-visible {
+  outline: var(--elum-color-focus) solid var(--elum-border-width);
+  outline-offset: calc(var(--elum-border-width) * 2);
+}
+
+.elum-navlink[aria-current="page"] {
+  color: var(--elum-color-fg);
+}
