@@ -2,7 +2,6 @@
   align-items: center;
   justify-content: space-between;
   display: flex;
-  gap: 0;
   overflow-x: auto;
   overflow-y: hidden;
   border-bottom: var(--elum-border-width) solid var(--elum-color-border);
@@ -14,18 +13,29 @@
   z-index: 999;
 }
 
+.elum-navbar-brand {
+  align-items: center;
+  color: var(--elum-navbar-brand-color, var(--elum-color-accent));
+  display: inline-flex;
+  font-size: var(--elum-navbar-brand-size, var(--elum-text-sm));
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  padding: 0 var(--elum-space-2);
+  text-transform: uppercase;
+}
+
 .elum-navlinks {
   align-items: center;
   display: flex;
-  gap: 0;
 }
 
 .elum-navlink {
   display: inline-flex;
   align-items: center;
-  color: var(--elum-card-title-color, var(--elum-color-accent));
+  color: var(--elum-navlink-color, var(--elum-color-accent));
   text-decoration: none;
-  font-size: var(--elum-card-title-size, var(--elum-text-sm));
+  font-size: var(--elum-navlink-size, var(--elum-text-sm));
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: var(--elum-lh-tight);

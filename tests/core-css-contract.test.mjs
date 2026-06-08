@@ -14,6 +14,7 @@ const DATA_CSS = readFileSync("packages/core-css/src/components/data.css", "utf8
 const TABS_CSS = readFileSync("packages/core-css/src/components/tabs.css", "utf8");
 const TOOLBAR_CSS = readFileSync("packages/core-css/src/components/toolbar.css", "utf8");
 const QUERY_CSS = readFileSync("packages/core-css/src/components/query.css", "utf8");
+const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const INDEX_CSS_PATH = "packages/core-css/src/index.css";
 const PUBLIC_CSS = [
@@ -28,6 +29,7 @@ const PUBLIC_CSS = [
   TABS_CSS,
   TOOLBAR_CSS,
   QUERY_CSS,
+  NAVIGATION_CSS,
 ].join("\n");
 
 const THEMES = ["dust", "iron", "neon"];
@@ -72,7 +74,7 @@ function contrastRatio(firstColor, secondColor) {
 }
 
 test("core CSS entrypoint imports the public bundles", () => {
-  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query"]) {
+  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation"]) {
     assert.match(INDEX_CSS, new RegExp(`@import ".+${bundle}\\.css";`));
   }
 });
@@ -124,6 +126,10 @@ test("component CSS exposes current public class surfaces", () => {
     "elum-badge",
     "elum-status-label",
     "elum-system-bar",
+    "elum-navbar",
+    "elum-navbar-brand",
+    "elum-navlinks",
+    "elum-navlink",
     "elum-tabs",
     "elum-tab",
     "elum-toolbar",
@@ -209,5 +215,16 @@ test("table and row APIs expose responsive state hooks", () => {
 test("tabs scroll horizontally and show focus", () => {
   assert.match(TABS_CSS, /\.elum-tabs\s*{[^}]*overflow-x:\s*auto;/s);
   assert.match(TABS_CSS, /\.elum-tab:focus-visible\s*{[^}]*outline:/s);
-  assert.doesNotMatch(TABS_CSS, /\.elum-tab\[aria-current="page"\]\s*{[^}]*box-shadow:/s);
+  assert.doesNotMatch(TABS_CSS, /\.elum-tab\[aria-selected="true"\]\s*{[^}]*box-shadow:/s);
+});
+
+test("tab control resets native button styling", () => {
+  assert.match(TABS_CSS, /\.elum-tab\s*{[^}]*appearance:\s*none;/s);
+  assert.match(TABS_CSS, /\.elum-tab\s*{[^}]*background:\s*transparent;/s);
+});
+
+test("navbar sticks to the top and navlinks show focus", () => {
+  assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*position:\s*sticky;/s);
+  assert.match(NAVIGATION_CSS, /\.elum-navlink:focus-visible\s*{[^}]*outline:/s);
+  assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]/);
 });
