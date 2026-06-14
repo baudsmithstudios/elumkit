@@ -1,0 +1,26 @@
+.elum-footer {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-top: var(--elum-border-width) solid var(--elum-color-border);
+  padding: var(--elum-space-3) var(--elum-space-4);
+  margin-top: 1rem;
+  background-color: var(--elum-color-bg);
+}
+
+.elum-footer-brand {
+  align-items: center;
+  color: var(--elum-color-accent);
+  display: inline-flex;
+  font-size: var(--elum-text-sm);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  padding: 0 var(--elum-space-1);
+  text-transform: uppercase;
+}
+
+
+
