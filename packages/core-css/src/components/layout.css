@@ -1,12 +1,18 @@
+.elum-footer-rule {
+  border: none;
+  border-top: var(--elum-border-width) solid var(--elum-color-border);
+  margin-top: 1.5rem;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
 .elum-footer {
   align-items: center;
   justify-content: space-between;
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
-  border-top: var(--elum-border-width) solid var(--elum-color-border);
-  padding: var(--elum-space-3) var(--elum-space-4);
-  margin-top: 1rem;
+  padding: var(--elum-space-4) var(--elum-space-2);
   background-color: var(--elum-color-bg);
 }
 
@@ -22,5 +28,29 @@
   text-transform: uppercase;
 }
 
+.elum-footer-links {
+  align-items: center;
+  display: flex;
+}
 
+.elum-footer-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--elum-color-accent);
+  text-decoration: none;
+  font-size: var(--elum-text-sm);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  text-transform: uppercase;
+}
+
+.elum-footer-link:not(:last-child)::after {
+  display: inline;
+  color: var(--elum-color-muted);
+  content: "|";
+  margin: 0 var(--elum-space-1);
+  font-weight: 500;
+  line-height: 0;
+}
 
