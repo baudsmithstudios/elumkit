@@ -75,6 +75,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Current page:** `aria-current="page"` on the active link
 - Use for top-level page navigation. For switching views on one page, use tabs.
 
+## Footer
+
+- **Wrapper:** `.elum-footer` on a `<footer>`
+- **Brand:** `.elum-footer-brand`; **links:** `.elum-footer-links` wrapping `.elum-footer-link` anchors
+- Shares the `--elum-container-*` frame tokens, so it aligns with the navbar and `.elum-container`.
+
 ## Tabs
 
 - **Tablist:** `.elum-tabs` with `role="tablist"` and an accessible name

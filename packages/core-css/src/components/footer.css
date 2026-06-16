@@ -1,0 +1,55 @@
+.elum-footer {
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  background-color: var(--elum-color-bg);
+  margin-top: 1.5rem;
+  max-width: var(--elum-container-width);
+  margin-inline: auto;
+  padding: var(--elum-space-4) calc(var(--elum-container-padding-inline) + var(--elum-space-4));
+  position: relative;
+}
+
+.elum-footer::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--elum-container-padding-inline);
+  top: 0;
+  border-top: var(--elum-border-width) solid var(--elum-color-border);
+}
+.elum-footer-brand,
+.elum-footer-link {
+  align-items: center;
+  display: inline-flex;
+  font-size: var(--elum-text-sm);
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  text-transform: uppercase;
+}
+
+.elum-footer-brand {
+  color: var(--elum-color-muted);
+  font-weight: 500;
+  padding: 0;
+}
+
+.elum-footer-links {
+  align-items: center;
+  display: flex;
+}
+
+.elum-footer-link {
+  color: var(--elum-color-accent);
+  text-decoration: none;
+  font-weight: 300;
+}
+
+.elum-footer-link:not(:last-child)::after {
+  display: inline;
+  color: var(--elum-color-muted);
+  content: "|";
+  margin: 0 var(--elum-space-1);
+  font-weight: 500;
+  line-height: 0;
+}
+

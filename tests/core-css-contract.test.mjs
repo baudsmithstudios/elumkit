@@ -15,6 +15,7 @@ const TABS_CSS = readFileSync("packages/core-css/src/components/tabs.css", "utf8
 const TOOLBAR_CSS = readFileSync("packages/core-css/src/components/toolbar.css", "utf8");
 const QUERY_CSS = readFileSync("packages/core-css/src/components/query.css", "utf8");
 const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
+const FOOTER_CSS = readFileSync("packages/core-css/src/components/footer.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const INDEX_CSS_PATH = "packages/core-css/src/index.css";
 const PUBLIC_CSS = [
@@ -30,6 +31,7 @@ const PUBLIC_CSS = [
   TOOLBAR_CSS,
   QUERY_CSS,
   NAVIGATION_CSS,
+  FOOTER_CSS,
 ].join("\n");
 
 const THEMES = ["dust", "iron", "neon"];
@@ -130,6 +132,10 @@ test("component CSS exposes current public class surfaces", () => {
     "elum-navbar-brand",
     "elum-navlinks",
     "elum-navlink",
+    "elum-footer",
+    "elum-footer-brand",
+    "elum-footer-links",
+    "elum-footer-link",
     "elum-tabs",
     "elum-tab",
     "elum-toolbar",

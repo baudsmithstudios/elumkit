@@ -5,9 +5,12 @@
 ### Added
 
 - Navbar component snippet and classes.
+- Footer component snippet and classes.
 
 ### Changed
 
+- Default page width (`--elum-container-width`) widened to 90rem (1440px).
+- Navbar and footer now share the same `--elum-container-*` token. 
 - All three default themes now have distinct status colors. Status UIs can now distinguish caution, error, info, and success states without token overrides. 
 - `dust` theme background lightened slightly to improve contrast ratios with the updated color palette. 
 
