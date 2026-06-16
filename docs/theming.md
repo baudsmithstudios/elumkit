@@ -63,8 +63,8 @@ Defined in `packages/core-css/src/tokens.css`:
 
 | Token | Role |
 | --- | --- |
-| `--elum-container-width` | Max width of `.elum-container` page wrappers |
-| `--elum-container-padding-inline` | Horizontal padding of `.elum-container` (responsive `clamp` by default) |
+| `--elum-container-width` | Max width of the page frame (`.elum-container`, navbar, footer) |
+| `--elum-container-padding-inline` | Horizontal padding of the page frame (`.elum-container`, navbar, footer); responsive `clamp` by default |
 | `--elum-container-padding-block` | Vertical padding of `.elum-container` |
 
 Layout tokens are intentionally independent of `--elum-space-*` so the page frame and component density can be retuned separately. Reference a spacing token in your override if you want them to track together.
