@@ -27,7 +27,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - **Wrapper:** `.elum-field-float` around the control and its `<label for="...">`
 - **Markup order:** control (`.elum-input` or `.elum-textarea`) before the `<label>`, with `placeholder=" "` on the control so the label floats on focus or content
-- The float is CSS-only over a real `<label>` — no JavaScript, no ARIA. For a label stacked above the control, use `.elum-field`.
+- The float is CSS-only over a real `<label>` (no JS, no ARIA). For a label stacked above the control, use `.elum-field`.
 
 ## Checkbox / Radio Group
 
