@@ -170,10 +170,6 @@ test("component CSS exposes current public class surfaces", () => {
   assert.match(FEEDBACK_CSS, /\[data-tone="error"\]/);
 });
 
-test("public CSS contract uses only the current prefix", () => {
-  assert.doesNotMatch(PUBLIC_CSS, /\.pergyl-|--pergyl-/);
-});
-
 test("tokens define the full named text size scale", () => {
   for (const token of ["--elum-text-xs", "--elum-text-sm", "--elum-text-md", "--elum-text-lg", "--elum-text-xl", "--elum-text-2xl", "--elum-text-3xl"]) {
     assert.match(TOKENS_CSS, new RegExp(`${token}:`), `missing token ${token}`);

@@ -136,7 +136,7 @@ fieldset.elum-field > .elum-label {
   inset-inline-start: var(--elum-space-3);
   margin: 0;
   pointer-events: none;
-  postion: absolute;
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
   transition: top var(--elum-motion-fast), transform var(--elum-motion-fast), 
