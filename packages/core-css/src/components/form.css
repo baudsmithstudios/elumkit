@@ -116,6 +116,8 @@ fieldset.elum-field > .elum-label {
 .elum-checkbox,
 .elum-radio {
   accent-color: var(--elum-color-accent);
+  block-size: 1rem;
+  inline-size: 1rem;
   margin: 0;
 }
 
@@ -123,4 +125,37 @@ fieldset.elum-field > .elum-label {
 .elum-radio:disabled {
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+.elum-field-float {
+  position: relative;
+}
+
+.elum-field-float > .elum-label {
+  color: var(--elum-color-muted);
+  inset-inline-start: var(--elum-space-3);
+  margin: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: top var(--elum-motion-fast), transform var(--elum-motion-fast), 
+    font-size var(--elum-motion-fast), color var(--elum-motion-fast);
+}
+
+.elum-field-float > .elum-textarea + .elum-label {
+  top: var(--elum-space-3);
+  transform: none;
+}
+
+.elum-field-float > .elum-input:focus + .elum-label,
+.elum-field-float > .elum-input:not(:placeholder-shown) + .elum-label,
+.elum-field-float > .elum-textarea:focus + .elum-label,
+.elum-field-float > .elum-textarea:not(:placeholder-shown) + .elum-label {
+  background: var(--elum-color-bg);
+  color: var(--elum-color-accent);
+  font-size: var(--elum-text-xs);
+  padding-inline: var(--elum-space-1);
+  top: 0;
+  transform: translateY(-50%);
 }

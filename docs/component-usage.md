@@ -23,6 +23,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Keyboard:** native form element behavior
 - Note: the `<select>` dropdown pop-up on Linux running Chromium is rendered as a native GTK window and follows the system GTK theme regardless of `color-scheme`. On dark themes, the popup will appear light if the system GTK theme is light. This is a platform boundary. Switch to a dark system GTK theme for full consistency.
 
+## Floating Label Field
+
+- **Wrapper:** `.elum-field-float` around the control and its `<label for="...">`
+- **Markup order:** control (`.elum-input` or `.elum-textarea`) before the `<label>`, with `placeholder=" "` on the control so the label floats on focus or content
+- The float is CSS-only over a real `<label>` (no JS, no ARIA). For a label stacked above the control, use `.elum-field`.
+
 ## Checkbox / Radio Group
 
 - **Wrapper:** `.elum-choice` label for larger click targets

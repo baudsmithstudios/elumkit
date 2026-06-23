@@ -48,7 +48,9 @@ public/assets/elumkit/
     card.css
     data.css
     feedback.css
+    footer.css
     form.css
+    navigation.css
     query.css
     tabs.css
     telemetry.css

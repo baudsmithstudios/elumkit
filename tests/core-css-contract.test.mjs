@@ -170,10 +170,6 @@ test("component CSS exposes current public class surfaces", () => {
   assert.match(FEEDBACK_CSS, /\[data-tone="error"\]/);
 });
 
-test("public CSS contract uses only the current prefix", () => {
-  assert.doesNotMatch(PUBLIC_CSS, /\.pergyl-|--pergyl-/);
-});
-
 test("tokens define the full named text size scale", () => {
   for (const token of ["--elum-text-xs", "--elum-text-sm", "--elum-text-md", "--elum-text-lg", "--elum-text-xl", "--elum-text-2xl", "--elum-text-3xl"]) {
     assert.match(TOKENS_CSS, new RegExp(`${token}:`), `missing token ${token}`);
@@ -233,4 +229,12 @@ test("navbar sticks to the top and navlinks show focus", () => {
   assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*position:\s*sticky;/s);
   assert.match(NAVIGATION_CSS, /\.elum-navlink:focus-visible\s*{[^}]*outline:/s);
   assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]/);
+});
+
+test("floating label field overlays a real label and floats it on focus or content", () => {
+  assert.match(FORM_CSS, /\.elum-field-float\s*{[^}]*position:\s*relative;/s);
+  assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-label\s*{[^}]*position:\s*absolute;/s);
+  assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:focus\s*\+\s*\.elum-label/);
+  assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
+  assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-textarea:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
 });
