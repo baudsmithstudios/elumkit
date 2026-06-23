@@ -234,3 +234,11 @@ test("navbar sticks to the top and navlinks show focus", () => {
   assert.match(NAVIGATION_CSS, /\.elum-navlink:focus-visible\s*{[^}]*outline:/s);
   assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]/);
 });
+
+test("floating label field overlays a real label and floats it on focus or content", () => {
+  assert.match(FORM_CSS, /\.elum-field-float\s*{[^}]*position:\s*relative;/s);
+  assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-label\s*{[^}]*position:\s*absolute;/s);
+  assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:focus\s*\+\s*\.elum-label/);
+  assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
+  assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-textarea:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
+});
