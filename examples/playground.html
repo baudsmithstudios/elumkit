@@ -53,71 +53,18 @@
       }
 
       .playground-board {
-        align-items: stretch;
-        display: grid;
-        gap: 1rem;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        grid-template-areas:
-          "table table table table table table table table form form form form"
-          "query query query query query query query query form form form form"
-          "toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar form form form form"
-          "telemetry telemetry telemetry telemetry card card card card navigation navigation navigation navigation"
-          "details details details details typography typography typography typography rows rows rows rows"
-          "grid grid grid grid grid grid grid grid grid grid grid grid"
-          "states states states states states states states states states states states states";
+        --elum-grid-min: 24rem;
+      }
+
+      .playground-table-preview,
+      .playground-grid-preview,
+      .playground-states-preview {
+        grid-column: 1 / -1;
       }
 
       .playground-tile {
         height: 100%;
         min-width: 0;
-      }
-
-      .playground-card-preview {
-        grid-area: card;
-      }
-
-      .playground-grid-preview {
-        grid-area: grid;
-      }
-
-      .playground-navigation-preview {
-        grid-area: navigation;
-      }
-
-      .playground-telemetry-preview {
-        grid-area: telemetry;
-      }
-
-      .playground-details-preview {
-        grid-area: details;
-      }
-
-      .playground-query-preview {
-        grid-area: query;
-      }
-
-      .playground-form-preview {
-        grid-area: form;
-      }
-
-      .playground-rows-preview {
-        grid-area: rows;
-      }
-
-      .playground-table-preview {
-        grid-area: table;
-      }
-
-      .playground-states-preview {
-        grid-area: states;
-      }
-
-      .playground-toolbar-preview {
-        grid-area: toolbar;
-      }
-
-      .playground-typography-preview {
-        grid-area: typography;
       }
 
       .state-matrix {
@@ -133,18 +80,6 @@
       }
 
       @media (max-width: 64rem) {
-        .playground-board {
-          grid-template-areas:
-            "table table table table table table table table table table table table"
-            "query query query query query query form form form form form form"
-            "toolbar toolbar toolbar toolbar toolbar toolbar form form form form form form"
-            "card card card card card card telemetry telemetry telemetry telemetry telemetry telemetry"
-            "navigation navigation navigation navigation navigation navigation details details details details details details"
-            "typography typography typography typography typography typography rows rows rows rows rows rows"
-            "grid grid grid grid grid grid grid grid grid grid grid grid"
-            "states states states states states states states states states states states states";
-        }
-
         .state-matrix {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
@@ -161,22 +96,6 @@
 
         .theme-controls {
           justify-content: flex-start;
-        }
-
-        .playground-board {
-          grid-template-areas:
-            "table table table table table table table table table table table table"
-            "query query query query query query query query query query query query"
-            "card card card card card card card card card card card card"
-            "telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry telemetry"
-            "details details details details details details details details details details details details"
-            "form form form form form form form form form form form form"
-            "toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar"
-            "navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation"
-            "typography typography typography typography typography typography typography typography typography typography typography typography"
-            "rows rows rows rows rows rows rows rows rows rows rows rows"
-            "grid grid grid grid grid grid grid grid grid grid grid grid"
-            "states states states states states states states states states states states states";
         }
 
         .state-matrix {
@@ -218,7 +137,7 @@
         </div>
       </header>
 
-      <section class="playground-board" aria-label="Component previews">
+      <section class="playground-board elum-grid" aria-label="Component previews">
         <section class="elum-card elum-card-labeled elum-stack playground-tile playground-table-preview" aria-label="Data table">
           <header class="elum-card-header">
             <h2 class="elum-card-title">Data Table</h2>
@@ -365,27 +284,6 @@
           <aside class="elum-alert" data-tone="warn" role="status" aria-live="polite">
             Disk usage is nearing the warning threshold.
           </aside>
-        </article>
-
-        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-grid-preview">
-          <header class="elum-card-header">
-            <h2 class="elum-card-title">Grid</h2>
-          </header>
-          <p class="elum-card-subtitle">Auto-fitting columns that wrap without media queries.</p>
-          <div class="elum-grid">
-            <article class="elum-card">
-              <p class="elum-card-subtitle">node-01</p>
-              <p>Load <span class="elum-status-label" data-tone="success">ready</span></p>
-            </article>
-            <article class="elum-card">
-              <p class="elum-card-subtitle">node-02</p>
-              <p>Load <span class="elum-status-label" data-tone="warn">busy</span></p>
-            </article>
-            <article class="elum-card">
-              <p class="elum-card-subtitle">node-03</p>
-              <p>Load <span class="elum-status-label" data-tone="error">down</span></p>
-            </article>
-          </div>
         </article>
 
         <article class="elum-card elum-card-labeled elum-stack playground-tile playground-telemetry-preview">
@@ -535,6 +433,27 @@
               </span>
               <span class="elum-row-value">1.8K</span>
             </a>
+          </div>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-grid-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Grid</h2>
+          </header>
+          <p class="elum-card-subtitle">Auto-fitting columns that wrap without media queries.</p>
+          <div class="elum-grid">
+            <article class="elum-card">
+              <p class="elum-card-subtitle">node-01</p>
+              <p>Load <span class="elum-status-label" data-tone="success">ready</span></p>
+            </article>
+            <article class="elum-card">
+              <p class="elum-card-subtitle">node-02</p>
+              <p>Load <span class="elum-status-label" data-tone="warn">busy</span></p>
+            </article>
+            <article class="elum-card">
+              <p class="elum-card-subtitle">node-03</p>
+              <p>Load <span class="elum-status-label" data-tone="error">down</span></p>
+            </article>
           </div>
         </article>
 
