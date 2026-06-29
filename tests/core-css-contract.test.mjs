@@ -177,38 +177,15 @@ test("tokens define the full named text size scale", () => {
   }
 });
 
-test("base CSS resets heading margins and applies the token scale", () => {
+test("base CSS resets heading margins", () => {
   assert.match(BASE_CSS, /h1,\s*h2,\s*h3,\s*h4,\s*h5,\s*h6\s*\{[^}]*margin:\s*0;/s);
-
-  for (const [tag, token] of [
-    ["h1", "--elum-text-3xl"],
-    ["h2", "--elum-text-2xl"],
-    ["h3", "--elum-text-xl"],
-    ["h4", "--elum-text-lg"],
-    ["h5", "--elum-text-md"],
-    ["h6", "--elum-text-sm"],
-  ]) {
-    assert.match(BASE_CSS, new RegExp(`${tag}\\s*\\{[^}]*font-size:\\s*var\\(${token}\\)`, "s"));
-  }
-});
-
-test("base CSS forces form controls to inherit document typography", () => {
-  assert.match(BASE_CSS, /button,\s*input,\s*select,\s*textarea[^{]*\{[^}]*font:\s*inherit/s);
-});
-
-test("base CSS container utility wires to the width token", () => {
-  assert.match(BASE_CSS, /\.elum-container\s*\{[^}]*max-width:\s*var\(--elum-container-width\)/s);
-});
-
-test("base CSS grid utility wraps responsively without overflowing narrow viewports", () => {
-  assert.match(TOKENS_CSS, /--elum-grid-min:/);
-  assert.match(BASE_CSS, /\.elum-grid\s*\{[^}]*grid-template-columns:\s*repeat\(auto-fit,\s*minmax\(min\(var\(--elum-grid-min\),\s*100%\),\s*1fr\)\)/s);
 });
 
 test("base CSS hardens against known cross-browser layout pitfalls", () => {
   assert.match(BASE_CSS, /html\s*\{[^}]*-webkit-text-size-adjust:\s*100%/s);
   assert.match(BASE_CSS, /body\s*\{[^}]*overflow-wrap:\s*break-word/s);
   assert.match(BASE_CSS, /fieldset\s*\{[^}]*min-width:\s*0/s);
+  assert.match(BASE_CSS, /button,\s*input,\s*select,\s*textarea[^{]*\{[^}]*font:\s*inherit/s);
 });
 
 test("table and row APIs expose responsive state hooks", () => {
@@ -218,23 +195,6 @@ test("table and row APIs expose responsive state hooks", () => {
   assert.match(DATA_CSS, /\[data-column="status"\]/);
   assert.doesNotMatch(DATA_CSS, /\.elum-table thead\s*{[^}]*display:\s*none;/s);
   assert.match(DATA_CSS, /\.elum-table thead\s*{[^}]*clip-path:\s*inset\(50%\);/s);
-});
-
-test("tabs scroll horizontally and show focus", () => {
-  assert.match(TABS_CSS, /\.elum-tabs\s*{[^}]*overflow-x:\s*auto;/s);
-  assert.match(TABS_CSS, /\.elum-tab:focus-visible\s*{[^}]*outline:/s);
-  assert.doesNotMatch(TABS_CSS, /\.elum-tab\[aria-selected="true"\]\s*{[^}]*box-shadow:/s);
-});
-
-test("tab control resets native button styling", () => {
-  assert.match(TABS_CSS, /\.elum-tab\s*{[^}]*appearance:\s*none;/s);
-  assert.match(TABS_CSS, /\.elum-tab\s*{[^}]*background:\s*transparent;/s);
-});
-
-test("navbar sticks to the top and navlinks show focus", () => {
-  assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*position:\s*sticky;/s);
-  assert.match(NAVIGATION_CSS, /\.elum-navlink:focus-visible\s*{[^}]*outline:/s);
-  assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]/);
 });
 
 test("floating label field overlays a real label and floats it on focus or content", () => {

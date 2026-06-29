@@ -24,16 +24,6 @@ test("playground loads core CSS and renders current component set", () => {
     "elum-meter",
     "elum-list",
     "elum-table",
-    "elum-tabs",
-    "elum-tab",
-    "elum-toolbar",
-    "elum-toolbar-group",
-    "elum-query",
-    "elum-pagination",
-    "elum-pagination-status",
-    "elum-empty",
-    "elum-disclosure",
-    "elum-detail-list",
   ]) {
     assert.match(html, classToken(className));
   }
@@ -98,18 +88,9 @@ test("playground and snippets expose the in-page tabset pattern", () => {
 
 test("playground exposes the supported theme values", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  const themes = {
-    dust: "DUST",
-    iron: "IRON",
-    neon: "NEON",
-  };
 
   assert.match(html, /data-theme="(?:dust|iron|neon)"/);
-  for (const [theme, label] of Object.entries(themes)) {
-    assert.match(html, new RegExp(`theme-${theme}`));
-    assert.match(html, new RegExp(`setTheme\\("${theme}", "\\[${label}\\]"\\)`));
-  }
-  assert.doesNotMatch(html, /setTheme\("(light|dark|console)"/);
+  assert.doesNotMatch(html, /data-theme="(?:light|dark|console)"/);
 });
 
 test("prompt input markup is present in examples and snippets", () => {

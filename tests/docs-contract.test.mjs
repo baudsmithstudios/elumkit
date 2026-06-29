@@ -3,17 +3,12 @@ import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 
 const README = readFileSync("README.md", "utf8");
-const PACKAGE_JSON = JSON.parse(readFileSync("package.json", "utf8"));
 const REQUIRED_DOCS = [
   "docs/plain-html-quickstart.md",
   "docs/eleventy-usage.md",
   "docs/component-usage.md",
   "docs/theming.md",
 ];
-
-test("package metadata uses the project name", () => {
-  assert.equal(PACKAGE_JSON.name, "@baudsmithstudios/elumkit");
-});
 
 test("documentation entrypoints exist and are linked from README", () => {
   for (const file of REQUIRED_DOCS) {

@@ -7,6 +7,7 @@
 - Navbar component snippet and classes.
 - Footer component snippet and classes.
 - Floating label field snippet and classes (`.elum-field-float`), for input and textarea.
+- `elum-grid` primitive with tunable `--elum-grid-min` token. 
 
 ### Changed
 
