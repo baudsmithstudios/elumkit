@@ -26,6 +26,8 @@
   --elum-container-width: 90rem;
   --elum-container-padding-inline: clamp(1rem, 3vw, 2rem);
   --elum-container-padding-block: 1rem;
+
+  --elum-grid-min: 16rem;
 }
 
 :root,
