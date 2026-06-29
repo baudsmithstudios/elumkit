@@ -6,6 +6,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - **Page container:** `.elum-container` on `<main>` (or any block element) — centers content, applies `--elum-container-width` max width, and pads with `--elum-container-padding-inline` / `--elum-container-padding-block`. Override the tokens to reframe the page.
 - **Vertical rhythm:** `.elum-stack` on a container adds a top margin (`--elum-space-3`) to every child after the first. Compose with `.elum-container` for a complete page skeleton: `<main class="elum-container elum-stack">`.
+- **Responsive Columns:** `.elum-grid` lays child items as auto-fitting columns that wrap without the need for media queries. Each column is at least `--elum-grid-min` (16rem default) wide. Children components will grow to fill the row. Rows will collapse to a single column on extra small screens. The grid element has no knowledge of what child components are being composed. 
 
 ## Button
 

@@ -63,6 +63,7 @@
           "toolbar toolbar toolbar toolbar toolbar toolbar toolbar toolbar form form form form"
           "telemetry telemetry telemetry telemetry card card card card navigation navigation navigation navigation"
           "details details details details typography typography typography typography rows rows rows rows"
+          "grid grid grid grid grid grid grid grid grid grid grid grid"
           "states states states states states states states states states states states states";
       }
 
@@ -73,6 +74,10 @@
 
       .playground-card-preview {
         grid-area: card;
+      }
+
+      .playground-grid-preview {
+        grid-area: grid;
       }
 
       .playground-navigation-preview {
@@ -136,6 +141,7 @@
             "card card card card card card telemetry telemetry telemetry telemetry telemetry telemetry"
             "navigation navigation navigation navigation navigation navigation details details details details details details"
             "typography typography typography typography typography typography rows rows rows rows rows rows"
+            "grid grid grid grid grid grid grid grid grid grid grid grid"
             "states states states states states states states states states states states states";
         }
 
@@ -169,6 +175,7 @@
             "navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation navigation"
             "typography typography typography typography typography typography typography typography typography typography typography typography"
             "rows rows rows rows rows rows rows rows rows rows rows rows"
+            "grid grid grid grid grid grid grid grid grid grid grid grid"
             "states states states states states states states states states states states states";
         }
 
@@ -358,6 +365,27 @@
           <aside class="elum-alert" data-tone="warn" role="status" aria-live="polite">
             Disk usage is nearing the warning threshold.
           </aside>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-grid-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Grid</h2>
+          </header>
+          <p class="elum-card-subtitle">Auto-fitting columns that wrap without media queries.</p>
+          <div class="elum-grid">
+            <article class="elum-card">
+              <p class="elum-card-subtitle">node-01</p>
+              <p>Load <span class="elum-status-label" data-tone="success">ready</span></p>
+            </article>
+            <article class="elum-card">
+              <p class="elum-card-subtitle">node-02</p>
+              <p>Load <span class="elum-status-label" data-tone="warn">busy</span></p>
+            </article>
+            <article class="elum-card">
+              <p class="elum-card-subtitle">node-03</p>
+              <p>Load <span class="elum-status-label" data-tone="error">down</span></p>
+            </article>
+          </div>
         </article>
 
         <article class="elum-card elum-card-labeled elum-stack playground-tile playground-telemetry-preview">

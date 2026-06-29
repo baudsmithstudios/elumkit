@@ -117,6 +117,7 @@ test("component CSS exposes current public class surfaces", () => {
   for (const className of [
     "elum-stack",
     "elum-container",
+    "elum-grid",
     "elum-button",
     "elum-card",
     "elum-card-labeled",
@@ -197,6 +198,11 @@ test("base CSS forces form controls to inherit document typography", () => {
 
 test("base CSS container utility wires to the width token", () => {
   assert.match(BASE_CSS, /\.elum-container\s*\{[^}]*max-width:\s*var\(--elum-container-width\)/s);
+});
+
+test("base CSS grid utility wraps responsively without overflowing narrow viewports", () => {
+  assert.match(TOKENS_CSS, /--elum-grid-min:/);
+  assert.match(BASE_CSS, /\.elum-grid\s*\{[^}]*grid-template-columns:\s*repeat\(auto-fit,\s*minmax\(min\(var\(--elum-grid-min\),\s*100%\),\s*1fr\)\)/s);
 });
 
 test("base CSS hardens against known cross-browser layout pitfalls", () => {
