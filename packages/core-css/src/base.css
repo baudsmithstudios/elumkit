@@ -98,6 +98,12 @@ h6 {
   margin-top: var(--elum-space-3);
 }
 
+.elum-grid {
+  display: grid;
+  gap: var(--elum-space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(var(--elum-grid-min), 100%), 1fr));
+}
+
 img, picture, video, canvas {
   display: block;
   max-width: 100%;
