@@ -58,6 +58,7 @@
 
       .playground-table-preview,
       .playground-grid-preview,
+      .playground-code-preview,
       .playground-states-preview {
         grid-column: 1 / -1;
       }
@@ -403,6 +404,26 @@
               <span class="elum-toolbar-value">10:42</span>
             </div>
           </div>
+        </article>
+
+        <article class="elum-card elum-card-labeled elum-stack playground-tile playground-code-preview">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Code</h2>
+          </header>
+          <p class="elum-card-subtitle">Inline runs and multi-line blocks with an optional language tag.</p>
+
+          <p>
+            Install with
+            <code class="elum-code">npm install elumkit</code>
+            or copy the source.
+          </p>
+
+          <pre class="elum-pre"><code>npm install elumkit
+npm run playground</code></pre>
+
+          <pre class="elum-pre" data-language="html"><code>&lt;pre class="elum-pre" data-language="bash"&gt;
+  &lt;code&gt;echo hello&lt;/code&gt;
+&lt;/pre&gt;</code></pre>
         </article>
 
         <article class="elum-card elum-card-labeled elum-stack playground-tile">
