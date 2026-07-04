@@ -1,0 +1,32 @@
+.elum-separator {
+  border: 0;
+  border-top: var(--elum-border-width) solid var(--elum-color-border);
+  margin: 0;
+}
+
+.elum-separator[data-orientation="vertical"] {
+  align-self: stretch;
+  border-top: 0;
+  border-inline-start: var(--elum-border-width) solid var(--elum-color-border);
+  min-height: 1em;
+  width: 0;
+}
+
+.elum-separator-labeled {
+  align-items: center;
+  color: var(--elum-color-accent);
+  display: flex;
+  font-size: var(--elum-text-sm);
+  font-weight: 700;
+  gap: var(--elum-space-2);
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.elum-separator-labeled::after {
+  border-top: var(--elum-border-width) solid var(--elum-color-border);
+  content: "";
+  flex: 1;
+}

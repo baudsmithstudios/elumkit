@@ -8,6 +8,7 @@
 - Footer component snippet and classes.
 - Floating label field snippet and classes (`.elum-field-float`), for input and textarea.
 - `elum-grid` primitive with tunable `--elum-grid-min` token. 
+- Separator component: `.elum-separator` (horizontal rule, `data-orientation="vertical"` for inline dividers) and `.elum-separator-labeled` for labeled section dividers.
 
 ### Changed
 
