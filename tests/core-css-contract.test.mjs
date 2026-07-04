@@ -16,6 +16,7 @@ const TOOLBAR_CSS = readFileSync("packages/core-css/src/components/toolbar.css",
 const QUERY_CSS = readFileSync("packages/core-css/src/components/query.css", "utf8");
 const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
 const FOOTER_CSS = readFileSync("packages/core-css/src/components/footer.css", "utf8");
+const SEPARATOR_CSS = readFileSync("packages/core-css/src/components/separator.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const INDEX_CSS_PATH = "packages/core-css/src/index.css";
 const PUBLIC_CSS = [
@@ -32,6 +33,7 @@ const PUBLIC_CSS = [
   QUERY_CSS,
   NAVIGATION_CSS,
   FOOTER_CSS,
+  SEPARATOR_CSS,
 ].join("\n");
 
 const THEMES = ["dust", "iron", "neon"];
@@ -76,7 +78,7 @@ function contrastRatio(firstColor, secondColor) {
 }
 
 test("core CSS entrypoint imports the public bundles", () => {
-  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation"]) {
+  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation", "separator"]) {
     assert.match(INDEX_CSS, new RegExp(`@import ".+${bundle}\\.css";`));
   }
 });
@@ -159,6 +161,8 @@ test("component CSS exposes current public class surfaces", () => {
     "elum-meter",
     "elum-list",
     "elum-table",
+    "elum-separator",
+    "elum-separator-labeled",
   ]) {
     assert.match(PUBLIC_CSS, new RegExp(`\\.${className}\\b`));
   }
@@ -203,4 +207,9 @@ test("floating label field overlays a real label and floats it on focus or conte
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:focus\s*\+\s*\.elum-label/);
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-textarea:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
+});
+
+test("separator turns vertical via orientation hook and fills its labeled rule with a flex pseudo-element", () => {
+  assert.match(SEPARATOR_CSS, /\.elum-separator\[data-orientation="vertical"\]\s*{[^}]*border-inline-start:/s);
+  assert.match(SEPARATOR_CSS, /\.elum-separator-labeled::after\s*{[^}]*flex:\s*1;/s);
 });

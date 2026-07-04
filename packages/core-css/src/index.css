@@ -6,6 +6,7 @@
 @import "./components/feedback.css";
 @import "./components/telemetry.css";
 @import "./components/data.css";
+@import "./components/separator.css";
 @import "./components/tabs.css";
 @import "./components/toolbar.css";
 @import "./components/query.css";

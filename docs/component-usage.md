@@ -173,3 +173,9 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Responsive narrow rows:** `data-label` on each cell
 - **Numeric columns:** `data-numeric="true"` and `data-align="end"`
 - **Status column:** `data-column="status"` on header and cells to keep status output aligned
+
+## Separator
+
+- **Horizontal rule:** `.elum-separator` on `<hr>`
+- **Vertical rule:** add `data-orientation="vertical"` for an inline divider in a flex row
+- **Labeled divider:** `.elum-separator-labeled` on a heading (`<h2>`/`<h3>`) — label plus a rule filling the rest. Choose the heading level for the outline; the class only styles.

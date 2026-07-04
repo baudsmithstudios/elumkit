@@ -41,6 +41,7 @@ test("component docs cover the public component set", () => {
     "Meter",
     "Data List",
     "Data Table",
+    "Separator",
   ]) {
     assert.match(componentUsage, new RegExp(`## ${heading}`));
   }
