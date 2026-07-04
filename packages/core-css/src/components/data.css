@@ -2,7 +2,6 @@
   background: transparent;
   border: var(--elum-border-width) solid var(--elum-color-border);
   border-radius: var(--elum-radius-sm);
-  display: grid;
 }
 
 .elum-row {
