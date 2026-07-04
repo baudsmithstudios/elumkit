@@ -179,3 +179,9 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Horizontal rule:** `.elum-separator` on `<hr>`
 - **Vertical rule:** add `data-orientation="vertical"` for an inline divider in a flex row
 - **Labeled divider:** `.elum-separator-labeled` on a heading (`<h2>`/`<h3>`) — label plus a rule filling the rest. Choose the heading level for the outline; the class only styles.
+
+## Feed
+
+- **Container:** `.elum-feed` on a `<ul>`
+- **Row:** `.elum-feed-item` on a `<li>`, `data-tone="success" | "warn" | "error"` for the left accent (defaults to info)
+- **Trailing meta:** `.elum-feed-meta` for a right-pinned timestamp; rest of the row is freeform

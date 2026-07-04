@@ -17,6 +17,7 @@ const QUERY_CSS = readFileSync("packages/core-css/src/components/query.css", "ut
 const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
 const FOOTER_CSS = readFileSync("packages/core-css/src/components/footer.css", "utf8");
 const SEPARATOR_CSS = readFileSync("packages/core-css/src/components/separator.css", "utf8");
+const FEED_CSS = readFileSync("packages/core-css/src/components/feed.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const INDEX_CSS_PATH = "packages/core-css/src/index.css";
 const PUBLIC_CSS = [
@@ -34,6 +35,7 @@ const PUBLIC_CSS = [
   NAVIGATION_CSS,
   FOOTER_CSS,
   SEPARATOR_CSS,
+  FEED_CSS,
 ].join("\n");
 
 const THEMES = ["dust", "iron", "neon"];
@@ -78,7 +80,7 @@ function contrastRatio(firstColor, secondColor) {
 }
 
 test("core CSS entrypoint imports the public bundles", () => {
-  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation", "separator"]) {
+  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation", "separator", "feed"]) {
     assert.match(INDEX_CSS, new RegExp(`@import ".+${bundle}\\.css";`));
   }
 });
@@ -163,6 +165,9 @@ test("component CSS exposes current public class surfaces", () => {
     "elum-table",
     "elum-separator",
     "elum-separator-labeled",
+    "elum-feed",
+    "elum-feed-item",
+    "elum-feed-meta",
   ]) {
     assert.match(PUBLIC_CSS, new RegExp(`\\.${className}\\b`));
   }
@@ -212,4 +217,10 @@ test("floating label field overlays a real label and floats it on focus or conte
 test("separator turns vertical via orientation hook and fills its labeled rule with a flex pseudo-element", () => {
   assert.match(SEPARATOR_CSS, /\.elum-separator\[data-orientation="vertical"\]\s*{[^}]*border-inline-start:/s);
   assert.match(SEPARATOR_CSS, /\.elum-separator-labeled::after\s*{[^}]*flex:\s*1;/s);
+});
+
+test("feed rows carry a tone-coded accent bar and pin their meta to the trailing edge", () => {
+  assert.match(FEED_CSS, /\.elum-feed-item\s*{[^}]*box-shadow:\s*inset[^}]*var\(--elum-feed-tone,\s*var\(--elum-color-info\)\)/s);
+  assert.match(FEED_CSS, /\.elum-feed-item\[data-tone="error"\]\s*{[^}]*--elum-feed-tone:\s*var\(--elum-color-error\)/s);
+  assert.match(FEED_CSS, /\.elum-feed-meta\s*{[^}]*margin-inline-start:\s*auto/s);
 });
