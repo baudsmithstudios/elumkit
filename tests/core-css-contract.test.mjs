@@ -18,6 +18,7 @@ const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation
 const FOOTER_CSS = readFileSync("packages/core-css/src/components/footer.css", "utf8");
 const SEPARATOR_CSS = readFileSync("packages/core-css/src/components/separator.css", "utf8");
 const FEED_CSS = readFileSync("packages/core-css/src/components/feed.css", "utf8");
+const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const INDEX_CSS_PATH = "packages/core-css/src/index.css";
 const PUBLIC_CSS = [
@@ -36,6 +37,7 @@ const PUBLIC_CSS = [
   FOOTER_CSS,
   SEPARATOR_CSS,
   FEED_CSS,
+  OUTPUT_CSS,
 ].join("\n");
 
 const THEMES = ["dust", "iron", "neon"];
@@ -80,7 +82,7 @@ function contrastRatio(firstColor, secondColor) {
 }
 
 test("core CSS entrypoint imports the public bundles", () => {
-  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation", "separator", "feed"]) {
+  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation", "separator", "feed", "output"]) {
     assert.match(INDEX_CSS, new RegExp(`@import ".+${bundle}\\.css";`));
   }
 });
@@ -168,6 +170,10 @@ test("component CSS exposes current public class surfaces", () => {
     "elum-feed",
     "elum-feed-item",
     "elum-feed-meta",
+    "elum-output",
+    "elum-output-meta",
+    "elum-output-body",
+    "elum-output-copy",
   ]) {
     assert.match(PUBLIC_CSS, new RegExp(`\\.${className}\\b`));
   }
@@ -223,4 +229,8 @@ test("feed rows carry a tone-coded accent bar and pin their meta to the trailing
   assert.match(FEED_CSS, /\.elum-feed-item\s*{[^}]*box-shadow:\s*inset[^}]*var\(--elum-feed-tone,\s*var\(--elum-color-info\)\)/s);
   assert.match(FEED_CSS, /\.elum-feed-item\[data-tone="error"\]\s*{[^}]*--elum-feed-tone:\s*var\(--elum-color-error\)/s);
   assert.match(FEED_CSS, /\.elum-feed-meta\s*{[^}]*margin-inline-start:\s*auto/s);
+});
+
+test("output body wraps preformatted text so raw dumps don't force horizontal scroll", () => {
+  assert.match(OUTPUT_CSS, /\.elum-output-body\s*{[^}]*white-space:\s*pre-wrap;/s);
 });
