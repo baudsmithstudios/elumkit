@@ -74,11 +74,14 @@ public/assets/elumkit/
     button.css
     card.css
     data.css
+    feed.css
     feedback.css
     footer.css
     form.css
     navigation.css
+    output.css
     query.css
+    separator.css
     tabs.css
     telemetry.css
     toolbar.css

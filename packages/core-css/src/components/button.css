@@ -12,7 +12,9 @@
   gap: var(--elum-space-2);
   letter-spacing: 0.08em;
   line-height: var(--elum-lh-tight);
-  padding: var(--elum-space-2) var(--elum-space-3);
+  /* shift uppercase labels to optical center; 0.078em suits JetBrains Mono metrics, retune per font */
+  padding-block: calc(var(--elum-space-2) + var(--elum-button-baseline-shift, 0.078em)) calc(var(--elum-space-2) - var(--elum-button-baseline-shift, 0.078em));
+  padding-inline: var(--elum-space-3);
   text-decoration: none;
   text-transform: uppercase;
   transition: border-color var(--elum-motion-fast) ease, background-color var(--elum-motion-fast) ease, color var(--elum-motion-fast) ease;

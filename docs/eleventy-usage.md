@@ -1,6 +1,6 @@
 # Eleventy Usage
 
-[Eleventy](https://www.11ty.dev/) is a fantastic, light-weight static HTML generator. Use this guide to consume ELumKit components in Eleventy without a frontend framework. ElumKit source is copied into your project so you can commit and modify it directly.
+[Eleventy](https://www.11ty.dev/) is a fantastic, light-weight static HTML generator. Use this guide to consume ElumKit components in Eleventy without a frontend framework. ElumKit source is copied into your project so you can commit and modify it directly.
 
 ## 1) Copy the core CSS into your assets
 
