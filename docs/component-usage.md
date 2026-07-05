@@ -190,6 +190,6 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - **Container:** `.elum-output` on a native `<figure>` element.
 - **Scope line:** `.elum-output-meta` on a `<figcaption>` element. Command/scope text with the copy control on the trailing edge.
-- **Copy control:** `.elum-output-copy` on a native `<button`. This is just styling, the clipboard wiring is done by the end user. 
+- **Copy control:** `.elum-output-copy` on a native `<button>`. The class styles the button; clipboard wiring belongs to the app.
 - **Body:** `.elum-output-body` on a `<pre>`. Preserves whitespace and wraps long lines instead of adding a horizontal scroll.  
 

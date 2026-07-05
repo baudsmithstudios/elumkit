@@ -21,7 +21,6 @@
   cursor: pointer;
   display: inline-flex;
   padding: var(--elum-space-1) var(--elum-space-2);
-  text-decoration: none;
 }
 
 .elum-tab:hover {

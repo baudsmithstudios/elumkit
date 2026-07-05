@@ -112,7 +112,6 @@
 .elum-detail-list {
   border: var(--elum-border-width) solid var(--elum-color-border);
   border-radius: var(--elum-radius-sm);
-  display: grid;
 }
 
 :where(.elum-detail-list) {

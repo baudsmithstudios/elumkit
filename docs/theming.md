@@ -124,6 +124,15 @@ Supported card properties:
 - `--elum-card-subtitle-color`
 - `--elum-card-subtitle-size`
 
+## Navbar custom properties
+
+Same protocol as card properties. Supported:
+
+- `--elum-navbar-brand-color`
+- `--elum-navbar-brand-size`
+- `--elum-navlink-color`
+- `--elum-navlink-size`
+
 ## Component behavior notes
 
 - Button primary variant uses `--elum-color-accent`.
