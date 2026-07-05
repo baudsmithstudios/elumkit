@@ -10,6 +10,7 @@
 - `elum-grid` primitive with tunable `--elum-grid-min` token. 
 - Separator component: `.elum-separator` (horizontal rule, `data-orientation="vertical"` for inline dividers) and `.elum-separator-labeled` for labeled section dividers.
 - Feed component: `.elum-feed` list of tone-coded `.elum-feed-item` rows (`data-tone`) with a right-pinned `.elum-feed-meta`.
+- Output component: `.elum-output` block that wraps preformatted command and log output, with a scope line and copy control.
 
 ### Changed
 

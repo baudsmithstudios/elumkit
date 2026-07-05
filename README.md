@@ -74,11 +74,14 @@ public/assets/elumkit/
     button.css
     card.css
     data.css
+    feed.css
     feedback.css
     footer.css
     form.css
     navigation.css
+    output.css
     query.css
+    separator.css
     tabs.css
     telemetry.css
     toolbar.css
@@ -108,7 +111,7 @@ Open `examples/playground.html` in a browser to see every component rendered tog
 
 ## Current Component Scope
 
-Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, System Bar, Navbar, Footer, Tabs, Toolbar, Query Row, Pagination, Empty State, Disclosure, Detail List, Status Label, Metrics, Meter, Data List, Data Table, Separator, Feed.
+Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, System Bar, Navbar, Footer, Tabs, Toolbar, Query Row, Pagination, Empty State, Disclosure, Detail List, Status Label, Metrics, Meter, Data List, Data Table, Separator, Feed, Output.
 
 ## Browser And Stability Notes
 

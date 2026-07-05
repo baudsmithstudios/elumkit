@@ -183,5 +183,13 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Feed
 
 - **Container:** `.elum-feed` on a `<ul>`
-- **Row:** `.elum-feed-item` on a `<li>`, `data-tone="success" | "warn" | "error"` for the left accent (defaults to info)
-- **Trailing meta:** `.elum-feed-meta` for a right-pinned timestamp; rest of the row is freeform
+- **Row:** `.elum-feed-item` on a `<li>`, `data-tone="success" | "warn" | "error"` for the left accent (defaults to info).
+- **Trailing meta:** `.elum-feed-meta` for a right-pinned timestamp. The rest of the row is freeform.
+
+## Output
+
+- **Container:** `.elum-output` on a native `<figure>` element.
+- **Scope line:** `.elum-output-meta` on a `<figcaption>` element. Command/scope text with the copy control on the trailing edge.
+- **Copy control:** `.elum-output-copy` on a native `<button>`. The class styles the button; clipboard wiring belongs to the app.
+- **Body:** `.elum-output-body` on a `<pre>`. Preserves whitespace and wraps long lines instead of adding a horizontal scroll.  
+
