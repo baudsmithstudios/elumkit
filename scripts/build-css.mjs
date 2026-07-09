@@ -9,9 +9,7 @@ const BUNDLE = "packages/core-css/dist/elumkit.css";
 // Flattens the index.css @import chain into one file for consumers with no CSS
 // build step (single-binary embeds, plain server-rendered apps).
 export function buildCss() {
-  const entry = readFileSync(ENTRY, "utf8");
-
-  return entry.replace(/@import\s+"([^"]+)";/g, (_, importPath) =>
+  return readFileSync(ENTRY, "utf8").replace(/@import\s+"([^"]+)";/g, (_, importPath) =>
     readFileSync(join(SOURCE_DIR, importPath), "utf8").trimEnd());
 }
 

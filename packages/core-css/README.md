@@ -39,7 +39,7 @@ Supported default values are `dust`, `iron`, and `neon`. See [`docs/theming.md`]
 
 ## Single-file bundle
 
-`dist/elumkit.css` is the `src/index.css` import chain flattened into one file with no `@import`s. Use it when you have no CSS build step (single-binary embeds, server-rendered apps). With a bundler, point at `src/index.css` instead.
+`dist/elumkit.css` is the `src/index.css` import chain flattened into one file with no `@import`s. Use it when you have no CSS build step (single-binary embeds, server-rendered apps). If you have a bundler (Vite, Eleventy, etc.), point at `src/index.css` instead.
 
 It is not tracked in git; build it from source:
 
