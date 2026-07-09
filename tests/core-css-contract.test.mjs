@@ -3,6 +3,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 
+import { buildCss } from "../scripts/build-css.mjs";
+
 const TOKENS_CSS = readFileSync("packages/core-css/src/tokens.css", "utf8");
 const BASE_CSS = readFileSync("packages/core-css/src/base.css", "utf8");
 const BUTTON_CSS = readFileSync("packages/core-css/src/components/button.css", "utf8");
@@ -233,4 +235,11 @@ test("feed rows carry a tone-coded accent bar and pin their meta to the trailing
 
 test("output body wraps preformatted text so raw dumps don't force horizontal scroll", () => {
   assert.match(OUTPUT_CSS, /\.elum-output-body\s*{[^}]*white-space:\s*pre-wrap;/s);
+});
+
+test("CSS bundle inlines the whole import chain into one standalone file", () => {
+  const bundle = buildCss();
+
+  assert.doesNotMatch(bundle, /@import/, "bundle must inline all imports so it stands alone");
+  assert.match(bundle, /\.elum-footer\b/, "bundle must inline the chain through the last import");
 });
