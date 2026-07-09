@@ -36,3 +36,30 @@ Theme switching is controlled with a `data-theme` attribute on `html` or `body`:
 ```
 
 Supported default values are `dust`, `iron`, and `neon`. See [`docs/theming.md`](../../docs/theming.md).
+
+## Single-file bundle
+
+`dist/elumkit.css` is the `src/index.css` import chain flattened into one file with no `@import`s. Use it when you have no CSS build step (single-binary embeds, server-rendered apps). With a bundler, point at `src/index.css` instead.
+
+Regenerate it after editing any source CSS:
+
+```sh
+npm run build:css
+```
+
+Embed the single file:
+
+```go
+//go:embed elumkit.css
+var elumkitCSS string
+```
+
+```rust
+const ELUMKIT_CSS: &str = include_str!("elumkit.css");
+```
+
+```zig
+const elumkit_css = @embedFile("elumkit.css");
+```
+
+Rails: copy `elumkit.css` into `app/assets/stylesheets/` and link it with `stylesheet_link_tag "elumkit"`.

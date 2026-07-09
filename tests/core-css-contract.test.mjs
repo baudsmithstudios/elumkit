@@ -3,6 +3,8 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 
+import { buildCss } from "../scripts/build-css.mjs";
+
 const TOKENS_CSS = readFileSync("packages/core-css/src/tokens.css", "utf8");
 const BASE_CSS = readFileSync("packages/core-css/src/base.css", "utf8");
 const BUTTON_CSS = readFileSync("packages/core-css/src/components/button.css", "utf8");
@@ -21,6 +23,7 @@ const FEED_CSS = readFileSync("packages/core-css/src/components/feed.css", "utf8
 const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const INDEX_CSS_PATH = "packages/core-css/src/index.css";
+const BUNDLE_PATH = "packages/core-css/dist/elumkit.css";
 const PUBLIC_CSS = [
   TOKENS_CSS,
   BASE_CSS,
@@ -233,4 +236,11 @@ test("feed rows carry a tone-coded accent bar and pin their meta to the trailing
 
 test("output body wraps preformatted text so raw dumps don't force horizontal scroll", () => {
   assert.match(OUTPUT_CSS, /\.elum-output-body\s*{[^}]*white-space:\s*pre-wrap;/s);
+});
+
+test("bundled CSS inlines every import and stays in sync with source", () => {
+  const bundle = readFileSync(BUNDLE_PATH, "utf8");
+
+  assert.doesNotMatch(bundle, /@import/, "bundle must inline all imports so it stands alone");
+  assert.equal(bundle, buildCss(), "dist/elumkit.css is stale; run `npm run build:css`");
 });

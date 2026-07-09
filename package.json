@@ -13,6 +13,7 @@
   "files": [
     "packages/core-css/README.md",
     "packages/core-css/src",
+    "packages/core-css/dist",
     "packages/core-patterns/README.md",
     "packages/core-patterns/snippets",
     "packages/core-js/README.md",
@@ -33,6 +34,7 @@
   },
   "scripts": {
     "test": "node --test",
+    "build:css": "node scripts/build-css.mjs",
     "playground": "python3 -m http.server 4173"
   }
 }
