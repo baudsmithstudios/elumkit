@@ -23,7 +23,6 @@ const FEED_CSS = readFileSync("packages/core-css/src/components/feed.css", "utf8
 const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const INDEX_CSS_PATH = "packages/core-css/src/index.css";
-const BUNDLE_PATH = "packages/core-css/dist/elumkit.css";
 const PUBLIC_CSS = [
   TOKENS_CSS,
   BASE_CSS,
@@ -238,9 +237,9 @@ test("output body wraps preformatted text so raw dumps don't force horizontal sc
   assert.match(OUTPUT_CSS, /\.elum-output-body\s*{[^}]*white-space:\s*pre-wrap;/s);
 });
 
-test("bundled CSS inlines every import and stays in sync with source", () => {
-  const bundle = readFileSync(BUNDLE_PATH, "utf8");
+test("CSS bundle inlines the whole import chain into one standalone file", () => {
+  const bundle = buildCss();
 
   assert.doesNotMatch(bundle, /@import/, "bundle must inline all imports so it stands alone");
-  assert.equal(bundle, buildCss(), "dist/elumkit.css is stale; run `npm run build:css`");
+  assert.match(bundle, /\.elum-footer\b/, "bundle must inline the chain through the last import");
 });

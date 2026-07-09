@@ -35,6 +35,7 @@
   "scripts": {
     "test": "node --test",
     "build:css": "node scripts/build-css.mjs",
+    "prepack": "npm run build:css",
     "playground": "python3 -m http.server 4173"
   }
 }

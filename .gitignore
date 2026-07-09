@@ -1,5 +1,6 @@
 DEV_NOTES/
 node_modules/
+packages/core-css/dist/
 *.tgz
 .env
 .env.*

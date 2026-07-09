@@ -41,7 +41,7 @@ Supported default values are `dust`, `iron`, and `neon`. See [`docs/theming.md`]
 
 `dist/elumkit.css` is the `src/index.css` import chain flattened into one file with no `@import`s. Use it when you have no CSS build step (single-binary embeds, server-rendered apps). With a bundler, point at `src/index.css` instead.
 
-Regenerate it after editing any source CSS:
+It is not tracked in git; build it from source:
 
 ```sh
 npm run build:css
