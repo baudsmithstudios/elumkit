@@ -29,6 +29,8 @@
   color: var(--elum-color-muted);
   cursor: pointer;
   background: transparent;
+  padding: var(--elum-space-1) var(--elum-space-2);
+  margin: calc(-1 * var(--elum-space-1)) calc(-1 * var(--elum-space-2));
 }
 
 .elum-output-copy:hover {
