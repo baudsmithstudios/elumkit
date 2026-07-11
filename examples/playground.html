@@ -429,29 +429,35 @@
           </header>
           <p class="elum-card-subtitle">Selectable-looking rows with aligned values.</p>
 
-          <div class="elum-list" role="list" aria-label="Service rows">
-            <a class="elum-row" href="#" role="listitem" data-selected="true" aria-current="true">
-              <span class="elum-row-main">
-                <span class="elum-row-title">api-gateway</span>
-                <span class="elum-row-meta">edge cluster :: [HEALTHY]</span>
-              </span>
-              <span class="elum-row-value">99.9%</span>
-            </a>
-            <a class="elum-row" href="#" role="listitem">
-              <span class="elum-row-main">
-                <span class="elum-row-title">worker-queue</span>
-                <span class="elum-row-meta">background jobs :: [DELAYED]</span>
-              </span>
-              <span class="elum-row-value">42ms</span>
-            </a>
-            <a class="elum-row" href="#" role="listitem">
-              <span class="elum-row-main">
-                <span class="elum-row-title">cache-node</span>
-                <span class="elum-row-meta">primary region :: [WARM]</span>
-              </span>
-              <span class="elum-row-value">1.8K</span>
-            </a>
-          </div>
+          <ul class="elum-list" aria-label="Service rows">
+            <li>
+              <a class="elum-row" href="#" data-selected="true" aria-current="true">
+                <span class="elum-row-main">
+                  <span class="elum-row-title">api-gateway</span>
+                  <span class="elum-row-meta">edge cluster :: [HEALTHY]</span>
+                </span>
+                <span class="elum-row-value">99.9%</span>
+              </a>
+            </li>
+            <li>
+              <a class="elum-row" href="#">
+                <span class="elum-row-main">
+                  <span class="elum-row-title">worker-queue</span>
+                  <span class="elum-row-meta">background jobs :: [DELAYED]</span>
+                </span>
+                <span class="elum-row-value">42ms</span>
+              </a>
+            </li>
+            <li>
+              <a class="elum-row" href="#">
+                <span class="elum-row-main">
+                  <span class="elum-row-title">cache-node</span>
+                  <span class="elum-row-meta">primary region :: [WARM]</span>
+                </span>
+                <span class="elum-row-value">1.8K</span>
+              </a>
+            </li>
+          </ul>
         </article>
 
         <article class="elum-card elum-card-labeled elum-stack playground-tile playground-grid-preview">

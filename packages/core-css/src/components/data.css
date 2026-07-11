@@ -2,6 +2,13 @@
   background: transparent;
   border: var(--elum-border-width) solid var(--elum-color-border);
   border-radius: var(--elum-radius-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.elum-list > li + li {
+  border-top: var(--elum-border-width) solid var(--elum-color-border);
 }
 
 .elum-row {
@@ -12,10 +19,6 @@
   grid-template-columns: minmax(0, 1fr) auto;
   padding: var(--elum-space-1) var(--elum-space-2);
   text-decoration: none;
-}
-
-.elum-row + .elum-row {
-  border-top: var(--elum-border-width) solid var(--elum-color-border);
 }
 
 .elum-row:focus-visible,

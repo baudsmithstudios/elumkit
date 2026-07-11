@@ -163,8 +163,8 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Data List
 
-- **List:** `.elum-list`
-- **Row:** `.elum-row`
+- **List:** `.elum-list` on a `<ul>`
+- **Row:** `.elum-row` on any element inside each `<li>` — `<a>`, `<div>`, `<p>`
 - Use `.elum-row-title`, `.elum-row-meta`, and `.elum-row-value` for compact aligned content.
 - **Selected state:** `data-selected="true"` for the visual hook, plus the appropriate semantic state for the context. For a current link, use `aria-current="true"`.
 
