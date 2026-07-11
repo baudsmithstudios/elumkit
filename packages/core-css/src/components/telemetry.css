@@ -94,7 +94,6 @@
 
 .elum-metrics[data-layout="tiles"] .elum-metric-value {
   font-size: var(--elum-text-2xl);
-  justify-self: start;
 }
 
 .elum-meter {
