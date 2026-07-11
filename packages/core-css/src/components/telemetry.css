@@ -76,6 +76,27 @@
   font-size: var(--elum-text-xs);
 }
 
+.elum-metrics[data-layout="tiles"] {
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+}
+
+.elum-metrics[data-layout="tiles"] > .elum-metric {
+  align-items: baseline;
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-radius: var(--elum-radius-sm);
+  grid-template-columns: auto 1fr;
+  padding: var(--elum-space-2) var(--elum-space-3);
+}
+
+.elum-metrics[data-layout="tiles"] .elum-metric-label {
+  grid-column: 1 / -1;
+}
+
+.elum-metrics[data-layout="tiles"] .elum-metric-value {
+  font-size: var(--elum-text-2xl);
+  justify-self: start;
+}
+
 .elum-meter {
   display: grid;
   gap: var(--elum-space-1);

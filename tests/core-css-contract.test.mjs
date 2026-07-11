@@ -227,6 +227,10 @@ test("separator turns vertical via orientation hook and fills its labeled rule w
   assert.match(SEPARATOR_CSS, /\.elum-separator-labeled::after\s*{[^}]*flex:\s*1;/s);
 });
 
+test("metrics tile layout lays metrics out as a wrapping row", () => {
+  assert.match(TELEMETRY_CSS, /\.elum-metrics\[data-layout="tiles"\]\s*{[^}]*grid-template-columns:\s*repeat\(auto-fit,/s);
+});
+
 test("feed rows carry a tone-coded accent bar and pin their meta to the trailing edge", () => {
   assert.match(FEED_CSS, /\.elum-feed-item\s*{[^}]*box-shadow:\s*inset[^}]*var\(--elum-feed-tone,\s*var\(--elum-color-info\)\)/s);
   assert.match(FEED_CSS, /\.elum-feed-item\[data-tone="error"\]\s*{[^}]*--elum-feed-tone:\s*var\(--elum-color-error\)/s);

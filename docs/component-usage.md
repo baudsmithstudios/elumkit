@@ -149,6 +149,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **List:** `.elum-metrics`
 - **Row:** `.elum-metric`
 - Use `.elum-metric-label`, `.elum-metric-value`, and `.elum-metric-unit` for aligned telemetry.
+- **Tile row:** `data-layout="tiles"` on the list, same child markup.
 
 ## Meter
 
