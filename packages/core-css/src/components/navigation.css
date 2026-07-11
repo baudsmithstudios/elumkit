@@ -54,7 +54,7 @@
 .elum-navlink:not(:last-child)::after {
   display: inline;
   color: var(--elum-color-muted);
-  content: "|";
+  content: "|" / "";
   margin: 0 var(--elum-space-1);
   font-weight: 500;
   line-height: 0;

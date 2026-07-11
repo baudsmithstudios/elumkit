@@ -173,6 +173,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Wrapper:** `.elum-table-wrap`
 - **Table:** `.elum-table`
 - **Responsive narrow rows:** `data-label` on each cell
+- On narrow screens the table linearizes. The `data-label` text replaces table semantics.
 - **Numeric columns:** `data-numeric="true"` and `data-align="end"`
 - **Status column:** `data-column="status"` on header and cells to keep status output aligned
 
