@@ -76,6 +76,18 @@
   font-size: var(--elum-text-xs);
 }
 
+.elum-metric[data-tone="success"] .elum-metric-value {
+  color: var(--elum-color-success);
+}
+
+.elum-metric[data-tone="warn"] .elum-metric-value {
+  color: var(--elum-color-warn);
+}
+
+.elum-metric[data-tone="error"] .elum-metric-value {
+  color: var(--elum-color-error);
+}
+
 .elum-metrics[data-layout="tiles"] {
   grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
 }
