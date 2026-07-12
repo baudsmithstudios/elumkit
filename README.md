@@ -137,7 +137,6 @@ This project is still at a very early stage of development. The documented class
 ## Project
 
 - [Changelog](CHANGELOG.md)
-- [Contributing](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
 - [License](LICENSE)
 
