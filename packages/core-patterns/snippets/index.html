@@ -211,13 +211,15 @@
     </div>
   </dl>
 
+  <!-- Tabs need additional JS. Copy packages/core-js/src/tabs.js and load it
+       with <script src="/assets/elumkit/tabs.js" defer></script>. Without it, all panels stay visible. -->
   <div class="elum-tabs" role="tablist" aria-label="Service views">
-    <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents" tabindex="0">Incidents</button>
-    <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime" tabindex="-1">Uptime</button>
+    <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents">Incidents</button>
+    <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime">Uptime</button>
   </div>
 
   <div id="panel-incidents" role="tabpanel" aria-labelledby="tab-incidents">Incident content here.</div>
-  <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime" hidden>Uptime content here.</div>
+  <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime">Uptime content here.</div>
 
   <div class="elum-toolbar" role="group" aria-label="Page actions">
     <div class="elum-toolbar-group">

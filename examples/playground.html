@@ -344,14 +344,14 @@
           <p class="elum-card-subtitle">Switch between views on a page</p>
 
           <div class="elum-tabs" role="tablist" aria-label="Service views">
-            <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents" tabindex="0">Incidents</button>
-            <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime" tabindex="-1">Uptime</button>
+            <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents">Incidents</button>
+            <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime">Uptime</button>
           </div>
 
           <div id="panel-incidents" role="tabpanel" aria-labelledby="tab-incidents">
             Incident content here.
           </div>
-          <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime" hidden>
+          <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime">
             Uptime content here.
           </div>
         </article>
@@ -616,53 +616,7 @@ done in 4.20s</pre>
       neon.addEventListener("click", () => {
         setTheme("neon", "[NEON]")
       })
-
-      //Tab behavior — manual activation with roving tabindex (WAI-ARIA Tabs pattern)
-      document.querySelectorAll('.elum-tabs[role="tablist"]').forEach((tablist) => {
-        const tabs = [...tablist.querySelectorAll('[role="tab"]')];
-
-        const setRoving = (tab) => {
-          tabs.forEach((t) => { t.tabIndex = t === tab ? 0 : -1; })
-        }
-
-        const activate = (tab) => {
-          setRoving(tab)
-          tabs.forEach((t) => {
-            const isActive = t === tab
-            t.setAttribute("aria-selected", String(isActive))
-            document.getElementById(t.getAttribute("aria-controls")).hidden = !isActive
-          })
-        }
-
-        tabs.forEach((tab, index) => {
-          tab.addEventListener("click", () => activate(tab))
-          tab.addEventListener("keydown", (event) => {
-            const last = tabs.length - 1
-            let next;
-            switch (event.key) {
-              case "ArrowRight":
-              case "ArrowDown":
-                next = index === last ? 0 : index + 1
-                break
-              case "ArrowLeft":
-              case "ArrowUp":
-                next = index === 0 ? last : index - 1
-                break
-              case "Home":
-                next = 0
-                break
-              case "End":
-                next = last
-                break
-              default:
-                return
-            }
-            event.preventDefault()
-            setRoving(tabs[next])
-            tabs[next].focus()
-          });
-        });
-      })
     </script>
+    <script src="../packages/core-js/src/tabs.js" defer></script>
   </body>
 </html>

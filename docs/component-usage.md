@@ -91,10 +91,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Tabs
 
 - **Tablist:** `.elum-tabs` with `role="tablist"` and an accessible name
-- **Tab:** `.elum-tab` on a `<button role="tab">` with `aria-selected`, an `id`, and `aria-controls` for its panel
-- **Panel:** `role="tabpanel"` with `aria-labelledby`; hide inactive panels with `hidden`
-- **Roving focus:** active tab `tabindex="0"`, others `tabindex="-1"`
-- Switches between views on one page. Requires JavaScript for panel switching and keyboard support; see `examples/playground.html`. For page navigation, use the navbar.
+- **Tab:** `.elum-tab` on a `<button role="tab">` with `aria-selected`, an `id`, and `aria-controls`
+- **Panel:** `role="tabpanel"` with `aria-labelledby`
+- **Initial selection:** mark the starting tab `aria-selected="true"`
+- **Behavior:** load `packages/core-js/src/tabs.js` (`<script defer>`) for roving focus, arrow/Home/End keys, and manual activation (Enter/Space or click)
+- **Without the script:** all panels stay visible and every tab is focusable — no content hidden
+- One-page view switching. For page navigation, use the navbar.
 
 ## Toolbar
 

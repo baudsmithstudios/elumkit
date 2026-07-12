@@ -50,9 +50,7 @@
     })
   }
 
-
-
-  function init() {
+  const init = () => {
     document.querySelectorAll('.elum-tabs[role="tablist"]').forEach(initTabs)
   }
 
