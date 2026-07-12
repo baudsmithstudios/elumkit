@@ -68,7 +68,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## System Bar
 
-- **Class:** `.elum-system-bar`
+- **Class:** `.elum-system-bar` on a `<section>` with an `aria-label`
 - **Brand label:** `.elum-system-bar-brand` for the primary label
 - **Compact key/value items:** group with `.elum-system-bar-group`
 - Status values may use bracketed status text for terse terminal-style state.

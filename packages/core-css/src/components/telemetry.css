@@ -171,3 +171,16 @@
     transparent var(--elum-meter-fill-width, 0%)
   );
 }
+
+@media (forced-colors: active) {
+  .elum-meter-track,
+  .elum-meter-track[data-tone] {
+    forced-color-adjust: none;
+    background-image: linear-gradient(
+      to right,
+      CanvasText var(--elum-meter-fill-width, 0%),
+      Canvas var(--elum-meter-fill-width, 0%)
+    );
+    border-color: CanvasText;
+  }
+}

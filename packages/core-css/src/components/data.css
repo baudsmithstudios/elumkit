@@ -27,6 +27,13 @@
   color: var(--elum-color-fg);
 }
 
+@media (forced-colors: active) {
+  .elum-row:focus-visible,
+  .elum-row[data-selected="true"] {
+    border-inline-start: 3px solid CanvasText;
+  }
+}
+
 .elum-row-main {
   min-width: 0;
 }
