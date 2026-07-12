@@ -123,7 +123,7 @@
             theme <span id="theme-status">[IRON]</span> components [27]
           </p>
       </div>
-        <div class="theme-controls" aria-label="Theme controls">
+        <div class="theme-controls" role="group" aria-label="Theme controls">
           <button class="elum-button" id="theme-iron" type="button">Iron</button>
           <button class="elum-button" id="theme-neon" type="button">Neon</button>
           <button class="elum-button" id="theme-dust" type="button">Dust</button>
@@ -272,7 +272,7 @@
             <button class="elum-button" type="button">Secondary</button>
             <button class="elum-button" data-variant="primary" type="button">Primary</button>
           </div>
-          <nav class="elum-system-bar" aria-label="Example system bar">
+          <section class="elum-system-bar" aria-label="Example system bar">
             <strong class="elum-system-bar-brand">ElumKit</strong>
             <span class="elum-system-bar-group">
               <span class="elum-system-bar-item">
@@ -280,7 +280,7 @@
                 <span class="elum-system-bar-value">[READY]</span>
               </span>
             </span>
-          </nav>
+          </section>
           <aside class="elum-alert" data-tone="warn" role="status" aria-live="polite">
             Disk usage is nearing the warning threshold.
           </aside>
@@ -344,14 +344,14 @@
           <p class="elum-card-subtitle">Switch between views on a page</p>
 
           <div class="elum-tabs" role="tablist" aria-label="Service views">
-            <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents" tabindex="0">Incidents</button>
-            <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime" tabindex="-1">Uptime</button>
+            <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents">Incidents</button>
+            <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime">Uptime</button>
           </div>
 
           <div id="panel-incidents" role="tabpanel" aria-labelledby="tab-incidents">
             Incident content here.
           </div>
-          <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime" hidden>
+          <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime">
             Uptime content here.
           </div>
         </article>
@@ -429,29 +429,35 @@
           </header>
           <p class="elum-card-subtitle">Selectable-looking rows with aligned values.</p>
 
-          <div class="elum-list" role="list" aria-label="Service rows">
-            <a class="elum-row" href="#" role="listitem" data-selected="true" aria-current="true">
-              <span class="elum-row-main">
-                <span class="elum-row-title">api-gateway</span>
-                <span class="elum-row-meta">edge cluster :: [HEALTHY]</span>
-              </span>
-              <span class="elum-row-value">99.9%</span>
-            </a>
-            <a class="elum-row" href="#" role="listitem">
-              <span class="elum-row-main">
-                <span class="elum-row-title">worker-queue</span>
-                <span class="elum-row-meta">background jobs :: [DELAYED]</span>
-              </span>
-              <span class="elum-row-value">42ms</span>
-            </a>
-            <a class="elum-row" href="#" role="listitem">
-              <span class="elum-row-main">
-                <span class="elum-row-title">cache-node</span>
-                <span class="elum-row-meta">primary region :: [WARM]</span>
-              </span>
-              <span class="elum-row-value">1.8K</span>
-            </a>
-          </div>
+          <ul class="elum-list" role="list" aria-label="Service rows">
+            <li>
+              <a class="elum-row" href="#" data-selected="true" aria-current="true">
+                <span class="elum-row-main">
+                  <span class="elum-row-title">api-gateway</span>
+                  <span class="elum-row-meta">edge cluster :: [HEALTHY]</span>
+                </span>
+                <span class="elum-row-value">99.9%</span>
+              </a>
+            </li>
+            <li>
+              <a class="elum-row" href="#">
+                <span class="elum-row-main">
+                  <span class="elum-row-title">worker-queue</span>
+                  <span class="elum-row-meta">background jobs :: [DELAYED]</span>
+                </span>
+                <span class="elum-row-value">42ms</span>
+              </a>
+            </li>
+            <li>
+              <a class="elum-row" href="#">
+                <span class="elum-row-main">
+                  <span class="elum-row-title">cache-node</span>
+                  <span class="elum-row-meta">primary region :: [WARM]</span>
+                </span>
+                <span class="elum-row-value">1.8K</span>
+              </a>
+            </li>
+          </ul>
         </article>
 
         <article class="elum-card elum-card-labeled elum-stack playground-tile playground-grid-preview">
@@ -610,53 +616,7 @@ done in 4.20s</pre>
       neon.addEventListener("click", () => {
         setTheme("neon", "[NEON]")
       })
-
-      //Tab behavior — manual activation with roving tabindex (WAI-ARIA Tabs pattern)
-      document.querySelectorAll('.elum-tabs[role="tablist"]').forEach((tablist) => {
-        const tabs = [...tablist.querySelectorAll('[role="tab"]')];
-
-        const setRoving = (tab) => {
-          tabs.forEach((t) => { t.tabIndex = t === tab ? 0 : -1; })
-        }
-
-        const activate = (tab) => {
-          setRoving(tab)
-          tabs.forEach((t) => {
-            const isActive = t === tab
-            t.setAttribute("aria-selected", String(isActive))
-            document.getElementById(t.getAttribute("aria-controls")).hidden = !isActive
-          })
-        }
-
-        tabs.forEach((tab, index) => {
-          tab.addEventListener("click", () => activate(tab))
-          tab.addEventListener("keydown", (event) => {
-            const last = tabs.length - 1
-            let next;
-            switch (event.key) {
-              case "ArrowRight":
-              case "ArrowDown":
-                next = index === last ? 0 : index + 1
-                break
-              case "ArrowLeft":
-              case "ArrowUp":
-                next = index === 0 ? last : index - 1
-                break
-              case "Home":
-                next = 0
-                break
-              case "End":
-                next = last
-                break
-              default:
-                return
-            }
-            event.preventDefault()
-            setRoving(tabs[next])
-            tabs[next].focus()
-          });
-        });
-      })
     </script>
+    <script src="../packages/core-js/src/tabs.js" defer></script>
   </body>
 </html>

@@ -68,7 +68,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## System Bar
 
-- **Class:** `.elum-system-bar`
+- **Class:** `.elum-system-bar` on a `<section>` with an `aria-label`
 - **Brand label:** `.elum-system-bar-brand` for the primary label
 - **Compact key/value items:** group with `.elum-system-bar-group`
 - Status values may use bracketed status text for terse terminal-style state.
@@ -91,10 +91,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Tabs
 
 - **Tablist:** `.elum-tabs` with `role="tablist"` and an accessible name
-- **Tab:** `.elum-tab` on a `<button role="tab">` with `aria-selected`, an `id`, and `aria-controls` for its panel
-- **Panel:** `role="tabpanel"` with `aria-labelledby`; hide inactive panels with `hidden`
-- **Roving focus:** active tab `tabindex="0"`, others `tabindex="-1"`
-- Switches between views on one page. Requires JavaScript for panel switching and keyboard support; see `examples/playground.html`. For page navigation, use the navbar.
+- **Tab:** `.elum-tab` on a `<button role="tab">` with `aria-selected`, an `id`, and `aria-controls`
+- **Panel:** `role="tabpanel"` with `aria-labelledby`
+- **Initial selection:** mark the starting tab `aria-selected="true"`
+- **Behavior:** load `packages/core-js/src/tabs.js` (`<script defer>`) for roving focus, arrow/Home/End keys, and manual activation (Enter/Space or click)
+- **Without the script:** all panels stay visible and every tab is focusable — no content hidden
+- One-page view switching. For page navigation, use the navbar.
 
 ## Toolbar
 
@@ -163,8 +165,8 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Data List
 
-- **List:** `.elum-list`
-- **Row:** `.elum-row`
+- **List:** `.elum-list` on a `<ul>`
+- **Row:** `.elum-row` on any element inside each `<li>` — `<a>`, `<div>`, `<p>`
 - Use `.elum-row-title`, `.elum-row-meta`, and `.elum-row-value` for compact aligned content.
 - **Selected state:** `data-selected="true"` for the visual hook, plus the appropriate semantic state for the context. For a current link, use `aria-current="true"`.
 
@@ -173,6 +175,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Wrapper:** `.elum-table-wrap`
 - **Table:** `.elum-table`
 - **Responsive narrow rows:** `data-label` on each cell
+- On narrow screens the table linearizes. The `data-label` text replaces table semantics.
 - **Numeric columns:** `data-numeric="true"` and `data-align="end"`
 - **Status column:** `data-column="status"` on header and cells to keep status output aligned
 

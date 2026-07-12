@@ -37,6 +37,7 @@
 .elum-navlinks {
   align-items: center;
   display: flex;
+  gap: var(--elum-space-4);
 }
 
 .elum-navlink {
@@ -48,16 +49,18 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: var(--elum-lh-tight);
+  position: relative;
   text-transform: uppercase;
 }
 
-.elum-navlink:not(:last-child)::after {
-  display: inline;
-  color: var(--elum-color-muted);
-  content: "|";
-  margin: 0 var(--elum-space-1);
-  font-weight: 500;
-  line-height: 0;
+.elum-navlink[aria-current="page"]::before {
+  color: currentColor;
+  content: ">";
+  font-weight: 700;
+  inset-inline-start: calc(-1 * var(--elum-space-3) - 0.125rem);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .elum-navlink:hover {

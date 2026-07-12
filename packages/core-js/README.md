@@ -1,3 +1,13 @@
 # core-js
 
-Reserved for optional progressive-enhancement scripts. ElumKit core components ship no JavaScript; they rely on native HTML semantics. Examples may include small scripts for demo-only behavior.
+Optional progressive-enhancement scripts. Copy the source and own it, like the CSS.
+
+## tabs.js
+
+Enhances `.elum-tabs[role="tablist"]` into an accessible tabset: roving focus, arrow/Home/End keys, manual activation. Auto-inits every tablist.
+
+```html
+<script src="/assets/elumkit/tabs.js" defer></script>
+```
+
+Without it, all panels stay visible.
