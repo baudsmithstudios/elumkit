@@ -36,20 +36,12 @@
 .elum-footer-links {
   align-items: center;
   display: flex;
+  gap: var(--elum-space-4);
 }
 
 .elum-footer-link {
   color: var(--elum-color-accent);
   text-decoration: none;
   font-weight: 300;
-}
-
-.elum-footer-link:not(:last-child)::after {
-  display: inline;
-  color: var(--elum-color-muted);
-  content: "|" / "";
-  margin: 0 var(--elum-space-1);
-  font-weight: 500;
-  line-height: 0;
 }
 
