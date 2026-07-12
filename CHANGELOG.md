@@ -14,6 +14,8 @@
 - Single-file bundle `dist/elumkit.css` (flattened `src/index.css` with no `@import`s) for consumers with no CSS build step, such as single-binary embeds. Build with `npm run build:css`.
 - Metrics tile row: `data-layout="tiles"` on `.elum-metrics` lays metrics out as bordered KPI tiles in a wrapping row.
 - Metric value tones: `data-tone="success" | "warn" | "error"` on `.elum-metric` colors the value, in both list and tile layouts.
+- `core-js/tabs.js`: optional script that drives the tabset (roving focus, arrow/Home/End keys, manual activation). Without it, all panels stay visible.
+- Forced-colors (Windows High Contrast Mode) fallbacks for row selection/focus and the meter fill.
 
 ### Changed
 
@@ -21,10 +23,15 @@
 - Navbar and footer now share the same `--elum-container-*` token. 
 - All three default themes now have distinct status colors. Status UIs can now distinguish caution, error, info, and success states without token overrides. 
 - `dust` theme background lightened slightly to improve contrast ratios with the updated color palette. 
+- Navbar and footer link separators now use layout `gap`; the current navbar link is marked with a `>` indicator.
+- Copy control hit target enlarged without layout shift; prompt field gains a focus outline.
+- `--elum-color-border` adjusted for contrast.
 
 ### Breaking changes
 
 - Tabs are now a formal tabset based on the `<button>`, not `<a>`. Tabs can now be used to display one panel of content at a time. Navigation responsibility belongs to the navbar.
+- Data List markup is now `<ul>`/`<li>` with the row element inside each `<li>`, replacing `<div role="list">` with `role="listitem"` rows.
+- System Bar is now a `<section>` with an `aria-label`, not a `<nav>`.
 
 ## [0.2.0] - 2026-05-25
 
