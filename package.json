@@ -1,7 +1,7 @@
 {
   "name": "@baudsmithstudios/elumkit",
   "description": "HTML-first UI primitives with copyable CSS, semantic patterns, and a clean terminal feel.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publishConfig": {
     "access": "public"
   },
@@ -17,6 +17,7 @@
     "packages/core-patterns/README.md",
     "packages/core-patterns/snippets",
     "packages/core-js/README.md",
+    "packages/core-js/src",
     "docs/plain-html-quickstart.md",
     "docs/eleventy-usage.md",
     "docs/component-usage.md",
