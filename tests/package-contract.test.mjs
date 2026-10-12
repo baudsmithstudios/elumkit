@@ -13,7 +13,7 @@ function jsModules(dir) {
 }
 
 function packedFiles() {
-  const output = execFileSync("npm", ["pack", "--dry-run", "--json"], { encoding: "utf8" });
+  const output = execFileSync("npm", ["pack", "--dry-run", "--json"], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
   return new Set(JSON.parse(output)[0].files.map((file) => file.path));
 }
 
