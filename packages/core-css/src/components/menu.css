@@ -6,8 +6,6 @@
   padding: var(--elum-space-1);
 }
 
-/* without anchor positioning the browser centers the popover in the viewport, which stays usable */
-/* tight padding and line-height keep the larger glyph from heightening its row and bring the menu close */
 .elum-menu-trigger {
   font-size: var(--elum-text-lg);
   line-height: 1;

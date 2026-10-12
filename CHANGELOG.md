@@ -5,7 +5,7 @@
 ### Added
 
 - Dialog component: `.elum-dialog` on a native `<dialog>`,
-- Action Menu component: `.elum-menu` on a native popover opened by a `popovertarget` button, anchored below its trigger with CSS anchor positioning and no JavaScript.
+- Action Menu component: `.elum-menu` on a native popover opened by a `popovertarget` button.
 
 ## [0.3.1] - 2026-07-12
 

@@ -117,7 +117,7 @@ Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, Syst
 
 ## Browser And Stability Notes
 
-ElumKit targets modern browsers with support for CSS custom properties, `@import`, `:has()`, and standard form semantics. Dialog also relies on invoker commands (`command` / `commandfor` on buttons). Action Menu uses the Popover API and CSS anchor positioning; without anchor positioning the menu opens centered in the viewport.
+ElumKit targets modern browsers with support for CSS custom properties, `@import`, `:has()`, and standard form semantics. Dialog also relies on invoker commands (`command` / `commandfor` on buttons). Action Menu uses the Popover API and CSS anchor positioning.
 
 This project is still at a very early stage of development. The documented classes, data attributes, tokens, and markup patterns are the current contract, but they may change as the project evolves. Breaking changes are tracked in the changelog.
 
