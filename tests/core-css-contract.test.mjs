@@ -21,6 +21,7 @@ const FOOTER_CSS = readFileSync("packages/core-css/src/components/footer.css", "
 const SEPARATOR_CSS = readFileSync("packages/core-css/src/components/separator.css", "utf8");
 const FEED_CSS = readFileSync("packages/core-css/src/components/feed.css", "utf8");
 const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "utf8");
+const DIALOG_CSS = readFileSync("packages/core-css/src/components/dialog.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const INDEX_CSS_PATH = "packages/core-css/src/index.css";
 const PUBLIC_CSS = [
@@ -40,6 +41,7 @@ const PUBLIC_CSS = [
   SEPARATOR_CSS,
   FEED_CSS,
   OUTPUT_CSS,
+  DIALOG_CSS,
 ].join("\n");
 
 const THEMES = ["dust", "iron", "neon"];
@@ -84,7 +86,7 @@ function contrastRatio(firstColor, secondColor) {
 }
 
 test("core CSS entrypoint imports the public bundles", () => {
-  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation", "separator", "feed", "output"]) {
+  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation", "separator", "feed", "output", "dialog"]) {
     assert.match(INDEX_CSS, new RegExp(`@import ".+${bundle}\\.css";`));
   }
 });
@@ -176,6 +178,9 @@ test("component CSS exposes current public class surfaces", () => {
     "elum-output-meta",
     "elum-output-body",
     "elum-output-copy",
+    "elum-dialog",
+    "elum-dialog-title",
+    "elum-dialog-actions",
   ]) {
     assert.match(PUBLIC_CSS, new RegExp(`\\.${className}\\b`));
   }
@@ -239,6 +244,18 @@ test("feed rows carry a tone-coded accent bar and pin their meta to the trailing
 
 test("output body wraps preformatted text so raw dumps don't force horizontal scroll", () => {
   assert.match(OUTPUT_CSS, /\.elum-output-body\s*{[^}]*white-space:\s*pre-wrap;/s);
+});
+
+test("dialog dims the page behind it and docks to the inline-end edge as an inset side panel", () => {
+  assert.match(DIALOG_CSS, /\.elum-dialog::backdrop\s*{[^}]*background:/s);
+  assert.match(DIALOG_CSS, /\.elum-dialog\[data-placement="end"\]\s*{[^}]*margin:\s*var\(--elum-space-2\);/s);
+  assert.match(DIALOG_CSS, /\.elum-dialog\[data-placement="end"\]\s*{[^}]*margin-inline-start:\s*auto;/s);
+  assert.match(DIALOG_CSS, /\.elum-dialog\[data-placement="end"\]\s*{[^}]*height:\s*calc\(100% - 2 \* var\(--elum-space-2\)\);/s);
+  assert.match(DIALOG_CSS, /\.elum-dialog\[data-placement="end"\]\s*{[^}]*max-height:\s*none;/s);
+});
+
+test("open dialog keeps its centering margin when placed inside a layout that spaces children", () => {
+  assert.match(DIALOG_CSS, /\.elum-dialog:modal\s*{[^}]*margin:\s*auto;/s);
 });
 
 test("CSS bundle inlines the whole import chain into one standalone file", () => {

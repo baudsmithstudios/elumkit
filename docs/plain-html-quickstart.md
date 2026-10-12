@@ -47,6 +47,7 @@ public/assets/elumkit/
     button.css
     card.css
     data.css
+    dialog.css
     feed.css
     feedback.css
     footer.css

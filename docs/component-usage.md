@@ -198,3 +198,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Copy control:** `.elum-output-copy` on a native `<button>`. The class styles the button; clipboard wiring belongs to the app.
 - **Body:** `.elum-output-body` on a `<pre>`. Preserves whitespace and wraps long lines instead of adding a horizontal scroll.  
 
+## Dialog
+
+- **Container:** `.elum-dialog` on a native `<dialog>` with an `id` and `aria-labelledby` pointing to its title
+- **Title:** `.elum-dialog-title` on a heading inside the dialog
+- **Actions:** `.elum-dialog-actions` on the button row, end-aligned. Use a `<form>` when the confirm button submits to the server.
+- **Open:** `<button command="show-modal" commandfor="dialog-id">`. **Close:** `<button command="close" commandfor="dialog-id">`. Escape also closes it.
+- **Side panel:** `data-placement="end"` docks the dialog full height against the inline-end edge, inset from the viewport by `--elum-space-2`
+- **Focus:** opening moves focus to the first focusable control inside the dialog. In a destructive confirm, put Cancel first so it receives focus.
+- No JavaScript. Invoker commands have been Baseline since December 2025; in older browsers the open button does nothing.

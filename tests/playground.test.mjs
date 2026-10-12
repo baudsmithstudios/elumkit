@@ -141,3 +141,21 @@ test("selected row examples expose semantic state", () => {
     }
   }
 });
+
+test("playground and snippets open dialogs declaratively with named, closable modals", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const html = readFileSync(file, "utf8");
+    const dialogs = html.match(/<dialog\b[^>]*>/g) ?? [];
+
+    assert.ok(dialogs.some((dialog) => /data-placement="end"/.test(dialog)), `expected a side panel dialog in ${file}`);
+    for (const dialog of dialogs) {
+      const id = dialog.match(/\bid="([^"]+)"/)?.[1];
+      const titleId = dialog.match(/\baria-labelledby="([^"]+)"/)?.[1];
+
+      assert.match(dialog, classToken("elum-dialog"));
+      assert.match(html, new RegExp(`<button\\b[^>]*commandfor="${id}"[^>]*command="show-modal"`), `no opener for #${id} in ${file}`);
+      assert.match(html, new RegExp(`<button\\b[^>]*commandfor="${id}"[^>]*command="close"`), `no close button for #${id} in ${file}`);
+      assert.match(html, new RegExp(`class="elum-dialog-title"[^>]*id="${titleId}"`), `#${id} is not named by its title in ${file}`);
+    }
+  }
+});
