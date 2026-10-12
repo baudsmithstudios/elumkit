@@ -178,7 +178,6 @@ test("action menu anchors below its trigger and flips on either axis when there'
   const anchored = MENU_CSS.match(/@supports \(position-area:[^)]*\)\s*{\s*\.elum-menu\s*{([^}]*)}/s)?.[1];
 
   assert.ok(anchored, "anchoring must sit inside @supports so other browsers keep the centered popover");
-  assert.match(anchored, /position-anchor:\s*auto;/);
   assert.match(anchored, /position-area:\s*block-end/);
   assert.match(anchored, /position-try-fallbacks:\s*flip-block,\s*flip-inline,\s*flip-block flip-inline;/, "menu must flip on both axes so start-aligned narrow-screen triggers keep it in view");
 });

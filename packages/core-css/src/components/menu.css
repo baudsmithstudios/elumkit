@@ -15,7 +15,6 @@
 @supports (position-area: block-end) {
   .elum-menu {
     margin: var(--elum-space-1) 0 0;
-    position-anchor: auto;
     position-area: block-end span-inline-start;
     position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
   }
@@ -28,7 +27,6 @@
   color: inherit;
   cursor: pointer;
   display: block;
-  font-family: inherit;
   font-size: var(--elum-text-sm);
   line-height: var(--elum-lh-normal);
   padding: var(--elum-space-1) var(--elum-space-2);
