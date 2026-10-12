@@ -10,7 +10,7 @@
 .elum-select {
   background: transparent;
   border: var(--elum-border-width) solid var(--elum-color-border);
-  border-radius: var(--elum-radius-sm);
+  border-radius: var(--elum-radius-md);
   caret-color: var(--elum-color-accent);
   color: var(--elum-color-fg);
   font-family: inherit;
@@ -30,7 +30,7 @@
 .elum-prompt-field {
   align-items: center;
   border: var(--elum-border-width) solid var(--elum-color-border);
-  border-radius: var(--elum-radius-sm);
+  border-radius: var(--elum-radius-md);
   display: flex;
   min-height: 2.5rem;
   padding: 0 var(--elum-space-3);
@@ -89,7 +89,7 @@
 fieldset.elum-field {
   background: transparent;
   border: var(--elum-border-width) solid var(--elum-color-border);
-  border-radius: var(--elum-radius-sm);
+  border-radius: var(--elum-radius-md);
   margin: 0;
   padding: var(--elum-space-3);
 }

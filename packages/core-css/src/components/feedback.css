@@ -2,7 +2,7 @@
   background: var(--elum-color-surface);
   border: var(--elum-border-width) solid var(--elum-color-border);
   border-left: 3px solid var(--elum-color-info);
-  border-radius: var(--elum-radius-sm);
+  border-radius: var(--elum-radius-md);
   color: var(--elum-color-fg);
   padding: var(--elum-space-3);
 }

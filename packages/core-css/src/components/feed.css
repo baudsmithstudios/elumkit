@@ -1,7 +1,7 @@
 .elum-feed {
   background: transparent;
   border: var(--elum-border-width) solid var(--elum-color-border);
-  border-radius: var(--elum-radius-sm);
+  border-radius: var(--elum-radius-md);
   list-style: none;
   margin: 0;
   padding: 0;
