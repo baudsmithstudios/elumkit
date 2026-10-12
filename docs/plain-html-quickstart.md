@@ -52,6 +52,7 @@ public/assets/elumkit/
     feedback.css
     footer.css
     form.css
+    menu.css
     navigation.css
     output.css
     query.css

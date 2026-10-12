@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { dirname, join } from "node:path";
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { test } from "node:test";
 
 import { buildCss } from "../scripts/build-css.mjs";
@@ -18,8 +18,8 @@ const SEPARATOR_CSS = readFileSync("packages/core-css/src/components/separator.c
 const FEED_CSS = readFileSync("packages/core-css/src/components/feed.css", "utf8");
 const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "utf8");
 const DIALOG_CSS = readFileSync("packages/core-css/src/components/dialog.css", "utf8");
+const MENU_CSS = readFileSync("packages/core-css/src/components/menu.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
-const INDEX_CSS_PATH = "packages/core-css/src/index.css";
 const PUBLIC_CSS = [
   BASE_CSS,
   ...COMPONENT_FILES.map((file) => readFileSync(join(COMPONENTS_DIR, file), "utf8")),
@@ -72,15 +72,6 @@ test("core CSS entrypoint imports tokens, base, and every component file", () =>
   }
 });
 
-test("core CSS entrypoint imports resolve locally", () => {
-  const imports = [...INDEX_CSS.matchAll(/@import\s+"([^"]+)";/g)].map((match) => match[1]);
-
-  assert.ok(imports.length > 0, "expected index.css to import local CSS files");
-  for (const importPath of imports) {
-    assert.equal(existsSync(join(dirname(INDEX_CSS_PATH), importPath)), true, `missing CSS import: ${importPath}`);
-  }
-});
-
 test("themes expose required accessible semantic tokens", () => {
   for (const theme of THEMES) {
     const tokens = themeTokens(theme);
@@ -96,7 +87,7 @@ test("themes expose required accessible semantic tokens", () => {
 });
 
 test("core CSS exposes accessible focus and motion behavior", () => {
-  assert.match(BASE_CSS, /:focus-visible/);
+  assert.match(BASE_CSS, /:focus-visible\s*{[^}]*outline:\s*2px solid/s);
   assert.match(BASE_CSS, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(FORM_CSS, /\.elum-prompt-field > \.elum-input:focus-visible\s*{[^}]*outline:\s*0;/s);
   assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s, "prompt field must draw the focus ring its input suppresses");
@@ -116,6 +107,15 @@ test("form and feedback CSS honor the documented state hooks", () => {
   assert.match(FEEDBACK_CSS, /\[data-tone="success"\]/);
   assert.match(FEEDBACK_CSS, /\[data-tone="warn"\]/);
   assert.match(FEEDBACK_CSS, /\[data-tone="error"\]/);
+});
+
+test("component CSS uses only defined tokens or supplies a fallback", () => {
+  const defined = new Set([...`${TOKENS_CSS}\n${PUBLIC_CSS}`.matchAll(/(--elum-[\w-]+)\s*:/g)].map((match) => match[1]));
+  const undefinedTokens = [...PUBLIC_CSS.matchAll(/var\((--elum-[\w-]+)\)/g)]
+    .map((match) => match[1])
+    .filter((token) => !defined.has(token));
+
+  assert.deepEqual([...new Set(undefinedTokens)], [], "a var() without a fallback must reference a defined token");
 });
 
 test("tokens define the full named text size scale", () => {
@@ -172,6 +172,14 @@ test("dialog dims the page behind it and docks to the inline-end edge as a side 
 
 test("open dialog keeps its centering margin when placed inside a layout that spaces children", () => {
   assert.match(DIALOG_CSS, /\.elum-dialog:modal\s*{[^}]*margin:\s*auto;/s);
+});
+
+test("action menu anchors below its trigger and flips on either axis when there's no room, only where anchoring is supported", () => {
+  const anchored = MENU_CSS.match(/@supports \(position-area:[^)]*\)\s*{\s*\.elum-menu\s*{([^}]*)}/s)?.[1];
+
+  assert.ok(anchored, "anchoring must sit inside @supports so other browsers keep the centered popover");
+  assert.match(anchored, /position-area:\s*block-end/);
+  assert.match(anchored, /position-try-fallbacks:\s*flip-block,\s*flip-inline,\s*flip-block flip-inline;/, "menu must flip on both axes so start-aligned narrow-screen triggers keep it in view");
 });
 
 test("CSS bundle inlines the whole import chain into one standalone file", () => {

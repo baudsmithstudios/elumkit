@@ -201,6 +201,16 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Copy control:** `.elum-output-copy` on a native `<button>`. The class styles the button; clipboard wiring belongs to the app.
 - **Body:** `.elum-output-body` on a `<pre>`. Preserves whitespace and wraps long lines instead of adding a horizontal scroll.  
 
+## Action Menu
+
+- **Trigger:** a native `<button>` with `popovertarget="menu-id"` and an `aria-label` naming the row, such as `aria-label="Actions for api-gateway"`. In table rows, use a tertiary `.elum-button` with `.elum-menu-trigger`, which enlarges the `⋯` glyph.
+- **Menu:** `.elum-menu` on an element with an `id` and the `popover` attribute
+- **Items:** `.elum-menu-item` on each `<a>` or `<button>` inside the menu. Use a `<form>` around a button that submits to the server.
+- **Placement:** the menu opens below its trigger, aligned to the trigger's end edge, and flips above or to the other side when there's no room. Browsers without CSS anchor positioning open it centered in the viewport.
+- **Keyboard:** Tab moves from the trigger into the items. Escape or a click outside closes the menu.
+- Don't add `role="menu"`. It promises arrow-key navigation that the native popover doesn't provide.
+- No JavaScript.
+
 ## Dialog
 
 - **Container:** `.elum-dialog` on a native `<dialog>` with an `id` and `aria-labelledby` pointing to its title
