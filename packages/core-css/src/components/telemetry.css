@@ -2,7 +2,7 @@
   align-items: center;
   background: transparent;
   border: var(--elum-border-width) solid var(--elum-color-border);
-  border-radius: var(--elum-radius-sm);
+  border-radius: var(--elum-radius-md);
   display: flex;
   flex-wrap: wrap;
   gap: var(--elum-space-2) var(--elum-space-4);
@@ -95,7 +95,7 @@
 .elum-metrics[data-layout="tiles"] > .elum-metric {
   align-items: baseline;
   border: var(--elum-border-width) solid var(--elum-color-border);
-  border-radius: var(--elum-radius-sm);
+  border-radius: var(--elum-radius-md);
   grid-template-columns: auto 1fr;
   padding: var(--elum-space-2) var(--elum-space-3);
 }

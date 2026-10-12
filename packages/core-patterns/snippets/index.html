@@ -52,6 +52,11 @@
       Send notifications
     </label>
 
+    <label class="elum-choice" for="auto-restart">
+      <input class="elum-switch" id="auto-restart" name="auto-restart" type="checkbox" role="switch" checked />
+      Auto-restart
+    </label>
+
     <fieldset class="elum-field">
       <legend class="elum-label">Mode</legend>
       <label class="elum-choice" for="mode-monitor">
@@ -242,6 +247,20 @@
     <div class="elum-toolbar-group">
       <button class="elum-button" type="button">Refresh</button>
       <button class="elum-button" type="button">Export</button>
+      <fieldset class="elum-segmented" aria-label="Time range">
+        <label class="elum-segmented-option" for="range-1h">
+          <input id="range-1h" name="range" type="radio" value="1h" checked />
+          1h
+        </label>
+        <label class="elum-segmented-option" for="range-24h">
+          <input id="range-24h" name="range" type="radio" value="24h" />
+          24h
+        </label>
+        <label class="elum-segmented-option" for="range-7d">
+          <input id="range-7d" name="range" type="radio" value="7d" />
+          7d
+        </label>
+      </fieldset>
     </div>
     <div class="elum-toolbar-group" data-align="end">
       <span class="elum-toolbar-label">freshness</span>

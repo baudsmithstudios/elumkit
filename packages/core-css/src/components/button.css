@@ -2,7 +2,7 @@
   appearance: none;
   background: transparent;
   border: var(--elum-border-width) solid var(--elum-color-accent);
-  border-radius: var(--elum-radius-sm);
+  border-radius: var(--elum-radius-md);
   color: var(--elum-color-accent);
   cursor: pointer;
   align-items: center;
