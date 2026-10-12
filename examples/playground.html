@@ -535,6 +535,40 @@ done in 4.20s</pre>
           </figure>
         </article>
 
+        <article class="elum-card elum-card-labeled elum-stack playground-tile">
+          <header class="elum-card-header">
+            <h2 class="elum-card-title">Dialog</h2>
+          </header>
+          <p class="elum-card-subtitle">Native modal for confirmations and side panels.</p>
+          <button class="elum-button" type="button" commandfor="confirm-restart" command="show-modal">Restart node</button>
+          <dialog class="elum-dialog" id="confirm-restart" aria-labelledby="confirm-restart-title">
+            <h2 class="elum-dialog-title" id="confirm-restart-title">Restart node-03?</h2>
+            <p>Active jobs on node-03 will be requeued.</p>
+            <div class="elum-dialog-actions">
+              <button class="elum-button" type="button" commandfor="confirm-restart" command="close">Cancel</button>
+              <button class="elum-button" type="button" commandfor="confirm-restart" command="close" data-variant="primary">Restart</button>
+            </div>
+          </dialog>
+
+          <button class="elum-button" type="button" commandfor="node-details" command="show-modal">Node details</button>
+          <dialog class="elum-dialog" id="node-details" data-placement="end" aria-labelledby="node-details-title">
+            <h2 class="elum-dialog-title" id="node-details-title">node-03</h2>
+            <dl class="elum-detail-list">
+              <div class="elum-detail">
+                <dt class="elum-detail-term">Status</dt>
+                <dd class="elum-detail-value"><span class="elum-status-label" data-tone="warn">degraded</span></dd>
+              </div>
+              <div class="elum-detail">
+                <dt class="elum-detail-term">Region</dt>
+                <dd class="elum-detail-value">us-west-2</dd>
+              </div>
+            </dl>
+            <div class="elum-dialog-actions">
+              <button class="elum-button" type="button" commandfor="node-details" command="close">Close</button>
+            </div>
+          </dialog>
+        </article>
+
         <section class="elum-card elum-card-labeled elum-stack playground-tile playground-states-preview" aria-label="State matrix">
           <header class="elum-card-header">
             <h2 class="elum-card-title">State Matrix</h2>

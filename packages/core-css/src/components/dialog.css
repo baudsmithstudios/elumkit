@@ -1,0 +1,41 @@
+.elum-dialog {
+  background: var(--elum-color-bg);
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-radius: var(--elum-radius-md);
+  color: var(--elum-color-fg);
+  padding: var(--elum-space-3);
+  width: 32rem;
+}
+
+.elum-dialog:modal {
+  margin: auto;
+}
+
+.elum-dialog::backdrop {
+  background: color-mix(in srgb, var(--elum-color-bg) 80%, transparent);
+}
+
+.elum-dialog-title {
+  color: var(--elum-color-accent);
+  font-size: var(--elum-text-sm);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: var(--elum-lh-tight);
+  margin: 0 0 var(--elum-space-3);
+  text-transform: uppercase;
+}
+
+.elum-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--elum-space-2);
+  justify-content: flex-end;
+  margin-top: var(--elum-space-3);
+}
+
+.elum-dialog[data-placement="end"] {
+  height: calc(100% - 2 * var(--elum-space-2));
+  margin: var(--elum-space-2);
+  margin-inline-start: auto;
+  max-height: none;
+}

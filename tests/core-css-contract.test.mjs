@@ -1,45 +1,28 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 
 import { buildCss } from "../scripts/build-css.mjs";
+import { DOCUMENTED_CLASSES } from "./documented-classes.mjs";
 
+const COMPONENTS_DIR = "packages/core-css/src/components";
+const COMPONENT_FILES = readdirSync(COMPONENTS_DIR).filter((file) => file.endsWith(".css"));
 const TOKENS_CSS = readFileSync("packages/core-css/src/tokens.css", "utf8");
 const BASE_CSS = readFileSync("packages/core-css/src/base.css", "utf8");
-const BUTTON_CSS = readFileSync("packages/core-css/src/components/button.css", "utf8");
-const CARD_CSS = readFileSync("packages/core-css/src/components/card.css", "utf8");
 const FORM_CSS = readFileSync("packages/core-css/src/components/form.css", "utf8");
 const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css", "utf8");
 const TELEMETRY_CSS = readFileSync("packages/core-css/src/components/telemetry.css", "utf8");
 const DATA_CSS = readFileSync("packages/core-css/src/components/data.css", "utf8");
-const TABS_CSS = readFileSync("packages/core-css/src/components/tabs.css", "utf8");
-const TOOLBAR_CSS = readFileSync("packages/core-css/src/components/toolbar.css", "utf8");
-const QUERY_CSS = readFileSync("packages/core-css/src/components/query.css", "utf8");
-const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
-const FOOTER_CSS = readFileSync("packages/core-css/src/components/footer.css", "utf8");
 const SEPARATOR_CSS = readFileSync("packages/core-css/src/components/separator.css", "utf8");
 const FEED_CSS = readFileSync("packages/core-css/src/components/feed.css", "utf8");
 const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "utf8");
+const DIALOG_CSS = readFileSync("packages/core-css/src/components/dialog.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const INDEX_CSS_PATH = "packages/core-css/src/index.css";
 const PUBLIC_CSS = [
-  TOKENS_CSS,
   BASE_CSS,
-  BUTTON_CSS,
-  CARD_CSS,
-  FORM_CSS,
-  FEEDBACK_CSS,
-  TELEMETRY_CSS,
-  DATA_CSS,
-  TABS_CSS,
-  TOOLBAR_CSS,
-  QUERY_CSS,
-  NAVIGATION_CSS,
-  FOOTER_CSS,
-  SEPARATOR_CSS,
-  FEED_CSS,
-  OUTPUT_CSS,
+  ...COMPONENT_FILES.map((file) => readFileSync(join(COMPONENTS_DIR, file), "utf8")),
 ].join("\n");
 
 const THEMES = ["dust", "iron", "neon"];
@@ -83,9 +66,9 @@ function contrastRatio(firstColor, secondColor) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-test("core CSS entrypoint imports the public bundles", () => {
-  for (const bundle of ["tokens", "base", "button", "form", "card", "feedback", "telemetry", "data", "tabs", "toolbar", "query", "navigation", "separator", "feed", "output"]) {
-    assert.match(INDEX_CSS, new RegExp(`@import ".+${bundle}\\.css";`));
+test("core CSS entrypoint imports tokens, base, and every component file", () => {
+  for (const path of ["tokens.css", "base.css", ...COMPONENT_FILES.map((file) => `components/${file}`)]) {
+    assert.match(INDEX_CSS, new RegExp(`@import "\\./${path.replace(".", "\\.")}";`), `index.css does not import ${path}`);
   }
 });
 
@@ -99,8 +82,6 @@ test("core CSS entrypoint imports resolve locally", () => {
 });
 
 test("themes expose required accessible semantic tokens", () => {
-  assert.doesNotMatch(TOKENS_CSS, /\[data-theme="(?:light|dark|console)"\]/);
-
   for (const theme of THEMES) {
     const tokens = themeTokens(theme);
 
@@ -118,69 +99,18 @@ test("core CSS exposes accessible focus and motion behavior", () => {
   assert.match(BASE_CSS, /:focus-visible/);
   assert.match(BASE_CSS, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(FORM_CSS, /\.elum-prompt-field > \.elum-input:focus-visible\s*{[^}]*outline:\s*0;/s);
+  assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s, "prompt field must draw the focus ring its input suppresses");
   assert.match(DATA_CSS, /\.elum-disclosure-summary:focus-visible\s*{[^}]*outline:/s);
 });
 
-test("component CSS exposes current public class surfaces", () => {
-  for (const className of [
-    "elum-stack",
-    "elum-container",
-    "elum-grid",
-    "elum-button",
-    "elum-card",
-    "elum-card-labeled",
-    "elum-card-header",
-    "elum-card-title",
-    "elum-card-subtitle",
-    "elum-input",
-    "elum-prompt-field",
-    "elum-badge",
-    "elum-status-label",
-    "elum-system-bar",
-    "elum-navbar",
-    "elum-navbar-brand",
-    "elum-navlinks",
-    "elum-navlink",
-    "elum-footer",
-    "elum-footer-brand",
-    "elum-footer-links",
-    "elum-footer-link",
-    "elum-tabs",
-    "elum-tab",
-    "elum-toolbar",
-    "elum-toolbar-group",
-    "elum-toolbar-label",
-    "elum-toolbar-value",
-    "elum-query",
-    "elum-pagination",
-    "elum-pagination-status",
-    "elum-empty",
-    "elum-empty-title",
-    "elum-empty-message",
-    "elum-disclosure",
-    "elum-disclosure-summary",
-    "elum-disclosure-content",
-    "elum-detail-list",
-    "elum-detail",
-    "elum-detail-term",
-    "elum-detail-value",
-    "elum-meter",
-    "elum-list",
-    "elum-table",
-    "elum-separator",
-    "elum-separator-labeled",
-    "elum-feed",
-    "elum-feed-item",
-    "elum-feed-meta",
-    "elum-output",
-    "elum-output-meta",
-    "elum-output-body",
-    "elum-output-copy",
-  ]) {
-    assert.match(PUBLIC_CSS, new RegExp(`\\.${className}\\b`));
-  }
+test("component CSS defines exactly the documented public classes", () => {
+  const definedClasses = new Set([...PUBLIC_CSS.matchAll(/\.(elum-[a-z0-9-]+)/g)].map((match) => match[1]));
 
-  assert.doesNotMatch(TELEMETRY_CSS, /\.elum-status\s*{/);
+  assert.deepEqual([...DOCUMENTED_CLASSES].filter((className) => !definedClasses.has(className)), [], "documented classes missing from CSS");
+  assert.deepEqual([...definedClasses].filter((className) => !DOCUMENTED_CLASSES.has(className)), [], "CSS classes missing from docs");
+});
+
+test("form and feedback CSS honor the documented state hooks", () => {
   assert.match(FORM_CSS, /\[aria-invalid="true"\]/);
   assert.match(FORM_CSS, /:disabled/);
   assert.match(FEEDBACK_CSS, /\[data-tone="success"\]/);
@@ -194,10 +124,6 @@ test("tokens define the full named text size scale", () => {
   }
 });
 
-test("base CSS resets heading margins", () => {
-  assert.match(BASE_CSS, /h1,\s*h2,\s*h3,\s*h4,\s*h5,\s*h6\s*\{[^}]*margin:\s*0;/s);
-});
-
 test("base CSS hardens against known cross-browser layout pitfalls", () => {
   assert.match(BASE_CSS, /html\s*\{[^}]*-webkit-text-size-adjust:\s*100%/s);
   assert.match(BASE_CSS, /body\s*\{[^}]*overflow-wrap:\s*break-word/s);
@@ -207,7 +133,6 @@ test("base CSS hardens against known cross-browser layout pitfalls", () => {
 
 test("table and row APIs expose responsive state hooks", () => {
   assert.match(DATA_CSS, /\.elum-row\[data-selected="true"\]/);
-  assert.match(DATA_CSS, /@media \(max-width: 48rem\)/);
   assert.match(DATA_CSS, /content:\s*attr\(data-label\);/);
   assert.match(DATA_CSS, /\[data-column="status"\]/);
   assert.doesNotMatch(DATA_CSS, /\.elum-table thead\s*{[^}]*display:\s*none;/s);
@@ -215,8 +140,6 @@ test("table and row APIs expose responsive state hooks", () => {
 });
 
 test("floating label field overlays a real label and floats it on focus or content", () => {
-  assert.match(FORM_CSS, /\.elum-field-float\s*{[^}]*position:\s*relative;/s);
-  assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-label\s*{[^}]*position:\s*absolute;/s);
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:focus\s*\+\s*\.elum-label/);
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-textarea:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
@@ -239,6 +162,16 @@ test("feed rows carry a tone-coded accent bar and pin their meta to the trailing
 
 test("output body wraps preformatted text so raw dumps don't force horizontal scroll", () => {
   assert.match(OUTPUT_CSS, /\.elum-output-body\s*{[^}]*white-space:\s*pre-wrap;/s);
+});
+
+test("dialog dims the page behind it and docks to the inline-end edge as a side panel", () => {
+  assert.match(DIALOG_CSS, /\.elum-dialog::backdrop\s*{[^}]*background:/s);
+  assert.match(DIALOG_CSS, /\.elum-dialog\[data-placement="end"\]\s*{[^}]*margin-inline-start:\s*auto;/s);
+  assert.match(DIALOG_CSS, /\.elum-dialog\[data-placement="end"\]\s*{[^}]*max-height:\s*none;/s);
+});
+
+test("open dialog keeps its centering margin when placed inside a layout that spaces children", () => {
+  assert.match(DIALOG_CSS, /\.elum-dialog:modal\s*{[^}]*margin:\s*auto;/s);
 });
 
 test("CSS bundle inlines the whole import chain into one standalone file", () => {

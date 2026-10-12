@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Dialog component: `.elum-dialog` on a native `<dialog>`,
+
 ## [0.3.1] - 2026-07-12
 
 ### Fixed

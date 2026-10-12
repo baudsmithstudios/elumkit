@@ -17,7 +17,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Input / Textarea / Select
 
-- **Wrapper:** `.elum-field` around the control, with a connected `<label for="...">`
+- **Wrapper:** `.elum-field` around the control, with a connected `<label class="elum-label" for="...">`
 - **Prompt input:** wrap `.elum-input` in `.elum-prompt-field` and place `.elum-input-prompt` before it for a persistent prompt such as `>`
 - **Invalid state:** `aria-invalid="true"`
 - **Disabled state:** native `disabled`
@@ -33,6 +33,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Checkbox / Radio Group
 
 - **Wrapper:** `.elum-choice` label for larger click targets
+- **Controls:** `.elum-checkbox` on `<input type="checkbox">`, `.elum-radio` on `<input type="radio">`
 - **Radio groups:** wrap in `<fieldset>` with `<legend>`
 - **Disabled:** native `disabled` on the input; optional `data-disabled="true"` on `.elum-choice` for the visual hint
 
@@ -70,7 +71,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - **Class:** `.elum-system-bar` on a `<section>` with an `aria-label`
 - **Brand label:** `.elum-system-bar-brand` for the primary label
-- **Compact key/value items:** group with `.elum-system-bar-group`
+- **Compact key/value items:** group with `.elum-system-bar-group`; each `.elum-system-bar-item` holds a `.elum-system-bar-key` and `.elum-system-bar-value`
 - Status values may use bracketed status text for terse terminal-style state.
 - Keep system bar copy short enough to wrap cleanly on narrow screens.
 
@@ -160,6 +161,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Track:** `.elum-meter-track` on a `<div>` with `role="meter"`, `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` for correct AT announcements
 - **Fill width:** `style="--elum-meter-fill-width: N%"` on the track element, matching the value as a percentage of the range
 - **Fill tones:** `data-tone="success" | "warn" | "error"` on the track element
+- **Header:** optional `.elum-meter-header` above the track, holding `.elum-meter-label` and a readout in `.elum-meter-value`
 - **Label:** `aria-label` on the track element, or `aria-labelledby` pointing to a visible `.elum-meter-label`
 - **Why not `<meter>`:** styling `<meter>` internals requires deprecated non-standard pseudo-elements (`::-webkit-meter-bar` etc.) that MDN recommends against. `<div role="meter">` provides equivalent accessibility with full CSS control.
 
@@ -168,6 +170,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **List:** `.elum-list` on a `<ul>`
 - **Row:** `.elum-row` on any element inside each `<li>` — `<a>`, `<div>`, `<p>`
 - Use `.elum-row-title`, `.elum-row-meta`, and `.elum-row-value` for compact aligned content.
+- **Stacked title and meta:** wrap them in `.elum-row-main` so long titles truncate instead of pushing `.elum-row-value` off the row.
 - **Selected state:** `data-selected="true"` for the visual hook, plus the appropriate semantic state for the context. For a current link, use `aria-current="true"`.
 
 ## Data Table
@@ -198,3 +201,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Copy control:** `.elum-output-copy` on a native `<button>`. The class styles the button; clipboard wiring belongs to the app.
 - **Body:** `.elum-output-body` on a `<pre>`. Preserves whitespace and wraps long lines instead of adding a horizontal scroll.  
 
+## Dialog
+
+- **Container:** `.elum-dialog` on a native `<dialog>` with an `id` and `aria-labelledby` pointing to its title
+- **Title:** `.elum-dialog-title` on a heading inside the dialog
+- **Actions:** `.elum-dialog-actions` on the button row, end-aligned. Use a `<form>` when the confirm button submits to the server.
+- **Open:** `<button command="show-modal" commandfor="dialog-id">`. **Close:** `<button command="close" commandfor="dialog-id">`. Escape also closes it.
+- **Side panel:** `data-placement="end"` docks the dialog full height against the inline-end edge.
+- **Focus:** opening moves focus to the first focusable control inside the dialog. In a destructive confirm, put Cancel first so it receives focus.
+- No JavaScript.

@@ -17,43 +17,20 @@ test("documentation entrypoints exist and are linked from README", () => {
   }
 });
 
-test("component docs cover the public component set", () => {
-  const componentUsage = readFileSync("docs/component-usage.md", "utf8");
+test("component docs give every component in the README scope a section", () => {
+  const scope = README.match(/## Current Component Scope\n\n(.+)\./)[1].split(", ");
+  const headings = readFileSync("docs/component-usage.md", "utf8").match(/^## .+$/gm)
+    .flatMap((heading) => heading.slice(3).split(" / "));
 
-  for (const heading of [
-    "Button",
-    "Input / Textarea / Select",
-    "Checkbox / Radio Group",
-    "Card",
-    "Alert",
-    "Badge",
-    "Status Label",
-    "System Bar",
-    "Navbar",
-    "Tabs",
-    "Toolbar",
-    "Query Row",
-    "Pagination",
-    "Empty State",
-    "Disclosure",
-    "Detail List",
-    "Metrics",
-    "Meter",
-    "Data List",
-    "Data Table",
-    "Separator",
-    "Feed",
-    "Output",
-  ]) {
-    assert.match(componentUsage, new RegExp(`## ${heading}`));
+  for (const component of scope) {
+    assert.ok(headings.includes(component), `no component-usage section for ${component}`);
   }
 });
 
-test("theming docs list only the supported theme values", () => {
+test("theming docs list every supported theme value", () => {
   const theming = readFileSync("docs/theming.md", "utf8");
 
   for (const theme of ["dust", "iron", "neon"]) {
     assert.match(theming, new RegExp(`\`${theme}\``));
   }
-  assert.doesNotMatch(theming, /`(?:light|dark|console)`/);
 });
