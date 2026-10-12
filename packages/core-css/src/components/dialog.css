@@ -7,12 +7,10 @@
   width: 32rem;
 }
 
-/* outranks layout margins such as .elum-stack, which would otherwise pin the modal to the top */
 .elum-dialog:modal {
   margin: auto;
 }
 
-/* tint with the theme background so the page stays legible but recedes */
 .elum-dialog::backdrop {
   background: color-mix(in srgb, var(--elum-color-bg) 80%, transparent);
 }

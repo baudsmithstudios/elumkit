@@ -4,7 +4,7 @@
 
 ### Added
 
-- Dialog component: `.elum-dialog` on a native `<dialog>`, opened and closed with `command` / `commandfor` buttons and no JavaScript. `data-placement="end"` docks it as a full-height side panel.
+- Dialog component: `.elum-dialog` on a native `<dialog>`,
 
 ## [0.3.1] - 2026-07-12
 
