@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { test } from "node:test";
 
 import { DOCUMENTED_CLASSES } from "./documented-classes.mjs";
@@ -12,7 +12,6 @@ function classToken(className) {
 }
 
 test("playground loads the core CSS source and demonstrates every documented class", () => {
-  assert.equal(existsSync(PLAYGROUND_PATH), true, "expected examples/playground.html to exist");
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
 
   assert.match(html, /href="\.\.\/packages\/core-css\/src\/index\.css"/);
@@ -103,5 +102,22 @@ test("playground and snippets open dialogs declaratively with named, closable mo
       assert.match(html, new RegExp(`<button\\b[^>]*commandfor="${id}"[^>]*command="close"`), `no close button for #${id} in ${file}`);
       assert.match(html, new RegExp(`class="elum-dialog-title"[^>]*id="${titleId}"`), `#${id} is not named by its title in ${file}`);
     }
+  }
+});
+
+test("playground and snippets open action menus from a labelled popover trigger, without menu roles", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const html = readFileSync(file, "utf8");
+    const menus = html.match(new RegExp(`<div\\b[^>]*${classToken("elum-menu").source}[^>]*>`, "g")) ?? [];
+
+    assert.ok(menus.length > 0, `expected an action menu in ${file}`);
+    for (const menu of menus) {
+      const id = menu.match(/\bid="([^"]+)"/)?.[1];
+
+      assert.match(menu, /\bpopover\b/);
+      assert.match(html, new RegExp(`<button\\b[^>]*popovertarget="${id}"[^>]*aria-label="[^"]+"`), `no labelled trigger for #${id} in ${file}`);
+    }
+    // role="menu" promises arrow-key navigation that native popovers don't provide
+    assert.doesNotMatch(html, /role="menu(item)?"/);
   }
 });

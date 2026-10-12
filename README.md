@@ -79,6 +79,7 @@ public/assets/elumkit/
     feedback.css
     footer.css
     form.css
+    menu.css
     navigation.css
     output.css
     query.css
@@ -112,11 +113,11 @@ Open `examples/playground.html` in a browser to see every component rendered tog
 
 ## Current Component Scope
 
-Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, System Bar, Navbar, Footer, Tabs, Toolbar, Query Row, Pagination, Empty State, Disclosure, Detail List, Status Label, Metrics, Meter, Data List, Data Table, Separator, Feed, Output, Dialog.
+Button, Input, Textarea, Checkbox, Radio Group, Select, Card, Alert, Badge, System Bar, Navbar, Footer, Tabs, Toolbar, Query Row, Pagination, Empty State, Disclosure, Detail List, Status Label, Metrics, Meter, Data List, Data Table, Separator, Feed, Output, Dialog, Action Menu.
 
 ## Browser And Stability Notes
 
-ElumKit targets modern browsers with support for CSS custom properties, `@import`, `:has()`, and standard form semantics. Dialog also relies on invoker commands (`command` / `commandfor` on buttons).
+ElumKit targets modern browsers with support for CSS custom properties, `@import`, `:has()`, and standard form semantics. Dialog also relies on invoker commands (`command` / `commandfor` on buttons). Action Menu uses the Popover API and CSS anchor positioning; without anchor positioning the menu opens centered in the viewport.
 
 This project is still at a very early stage of development. The documented classes, data attributes, tokens, and markup patterns are the current contract, but they may change as the project evolves. Breaking changes are tracked in the changelog.
 

@@ -1,0 +1,45 @@
+.elum-menu {
+  background: var(--elum-color-bg);
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-radius: var(--elum-radius-md);
+  color: var(--elum-color-fg);
+  padding: var(--elum-space-1);
+}
+
+/* without anchor positioning the browser centers the popover in the viewport, which stays usable */
+/* tight padding and line-height keep the larger glyph from heightening its row and bring the menu close */
+.elum-menu-trigger {
+  font-size: var(--elum-text-lg);
+  line-height: 1;
+  padding-block: var(--elum-space-1);
+}
+
+@supports (position-area: block-end) {
+  .elum-menu {
+    margin: var(--elum-space-1) 0 0;
+    position-anchor: auto;
+    position-area: block-end span-inline-start;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+  }
+}
+
+.elum-menu-item {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: block;
+  font-family: inherit;
+  font-size: var(--elum-text-sm);
+  line-height: var(--elum-lh-normal);
+  padding: var(--elum-space-1) var(--elum-space-2);
+  text-align: start;
+  text-decoration: none;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.elum-menu-item:hover {
+  color: var(--elum-color-accent);
+}
