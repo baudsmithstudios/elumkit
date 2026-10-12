@@ -67,6 +67,10 @@
         min-width: 0;
       }
 
+      .playground-toolbar-row {
+        flex-basis: 100%;
+      }
+
       .state-matrix {
         display: grid;
         gap: 1rem;
@@ -442,13 +446,29 @@
 
           <div class="elum-toolbar" role="group" aria-label="Page actions">
             <div class="elum-toolbar-group">
-              <button class="elum-button" type="button">Refresh</button>
-              <button class="elum-button" type="button">Export</button>
-            </div>
-            <div class="elum-toolbar-group" data-align="end">
               <span class="elum-status-label" data-tone="success">ready</span>
               <span class="elum-toolbar-label">freshness</span>
               <span class="elum-toolbar-value">10:42</span>
+            </div>
+            <div class="elum-toolbar-group" data-align="end">
+              <fieldset class="elum-segmented" aria-label="Time range">
+                <label class="elum-segmented-option" for="playground-range-1h">
+                  <input id="playground-range-1h" name="playground-range" type="radio" value="1h" checked />
+                  1h
+                </label>
+                <label class="elum-segmented-option" for="playground-range-24h">
+                  <input id="playground-range-24h" name="playground-range" type="radio" value="24h" />
+                  24h
+                </label>
+                <label class="elum-segmented-option" for="playground-range-7d">
+                  <input id="playground-range-7d" name="playground-range" type="radio" value="7d" />
+                  7d
+                </label>
+              </fieldset>
+            </div>
+            <div class="elum-toolbar-group playground-toolbar-row">
+              <button class="elum-button" type="button">Refresh</button>
+              <button class="elum-button" type="button">Export</button>
             </div>
           </div>
         </article>

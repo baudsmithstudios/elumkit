@@ -197,6 +197,27 @@ test("switch keeps its knob visible in forced colors, which otherwise strip the 
   assert.match(forced, /linear-gradient\(CanvasText, CanvasText\)/);
 });
 
+test("segmented option hides its radio without taking it out of the tab order or arrow-key navigation", () => {
+  const radio = FORM_CSS.match(/\.elum-segmented-option > input\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(radio, /clip-path:\s*inset\(50%\)/);
+  assert.match(radio, /position:\s*absolute/);
+  assert.doesNotMatch(radio, /display:\s*none|visibility:\s*hidden/);
+});
+
+test("segmented option shows focus and selection on its label, since the radio itself is hidden", () => {
+  assert.match(FORM_CSS, /\.elum-segmented-option:has\(:focus-visible\)\s*{[^}]*outline:\s*2px solid/s);
+  assert.match(FORM_CSS, /\.elum-segmented-option:has\(:checked\)\s*{[^}]*background:/s);
+});
+
+test("segmented control marks the checked option with system colors in forced colors, which otherwise strip its fill", () => {
+  const forced = FORM_CSS.match(/@media \(forced-colors: active\)\s*{\s*\.elum-segmented-option:has\(:checked\)\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(forced, /background:\s*Highlight/);
+  assert.match(forced, /border-color:\s*Highlight/);
+  assert.match(forced, /color:\s*HighlightText/);
+});
+
 test("CSS bundle inlines the whole import chain into one standalone file", () => {
   const bundle = buildCss();
 

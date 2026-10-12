@@ -128,7 +128,7 @@ fieldset.elum-field > .elum-label {
   background: linear-gradient(var(--elum-color-muted), var(--elum-color-muted)) no-repeat left 0.125rem center / 0.625rem 0.625rem;
   block-size: 1rem;
   border: var(--elum-border-width) solid var(--elum-color-border);
-  border-radius: var(--elum-radius-sm);
+  border-radius: var(--elum-radius-md);
   cursor: pointer;
   flex: none;
   inline-size: 2rem;
@@ -151,9 +151,76 @@ fieldset.elum-field > .elum-label {
   }
 }
 
+.elum-segmented {
+  border: 0;
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+}
+
+.elum-segmented-option {
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  color: var(--elum-color-muted);
+  cursor: pointer;
+  font-size: var(--elum-text-sm);
+  line-height: var(--elum-lh-tight);
+  padding: var(--elum-space-2) var(--elum-space-3);
+  position: relative;
+}
+
+.elum-segmented-option + .elum-segmented-option {
+  border-inline-start: 0;
+}
+
+.elum-segmented-option:first-of-type {
+  border-end-start-radius: var(--elum-radius-md);
+  border-start-start-radius: var(--elum-radius-md);
+}
+
+.elum-segmented-option:last-of-type {
+  border-end-end-radius: var(--elum-radius-md);
+  border-start-end-radius: var(--elum-radius-md);
+}
+
+.elum-segmented-option > input {
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.elum-segmented-option:hover {
+  color: var(--elum-color-fg);
+}
+
+.elum-segmented-option:has(:checked) {
+  background: var(--elum-color-accent);
+  border-color: var(--elum-color-accent);
+  color: var(--elum-color-bg);
+}
+
+.elum-segmented-option:has(:focus-visible) {
+  outline: 2px solid var(--elum-color-focus);
+  outline-offset: 2px;
+  z-index: 1;
+}
+
+@media (forced-colors: active) {
+  .elum-segmented-option:has(:checked) {
+    background: Highlight;
+    border-color: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none;
+  }
+}
+
 .elum-checkbox:disabled,
 .elum-radio:disabled,
-.elum-switch:disabled {
+.elum-switch:disabled,
+.elum-segmented-option:has(:disabled) {
   cursor: not-allowed;
   opacity: 0.7;
 }

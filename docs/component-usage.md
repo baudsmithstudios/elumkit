@@ -43,6 +43,14 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **State:** native `checked`; screen readers announce on/off, and the knob moves as well as changing color
 - **Disabled:** same as Checkbox
 
+## Segmented Control
+
+- **Group:** `.elum-segmented` on a `<fieldset>`, named by `aria-label` or a `<legend class="elum-label">`
+- **Options:** `.elum-segmented-option` labels, each wrapping an `<input type="radio">`; all radios share one `name`
+- **State:** native `checked`; the radio is visually hidden but stays focusable, so Tab enters the group and arrow keys move the selection
+- **Disabled:** native `disabled` on the radio
+- Use for small exclusive choices such as a time range. What the selection does stays in application code.
+
 ## Card
 
 - **Plain card:** `<article class="elum-card">`

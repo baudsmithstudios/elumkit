@@ -133,3 +133,19 @@ test("playground and snippets build switches on native checkboxes exposed with t
     }
   }
 });
+
+test("playground and snippets build segmented controls as named fieldsets of radios sharing one name", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const groups = readFileSync(file, "utf8").match(new RegExp(`<fieldset\\b[^>]*${classToken("elum-segmented").source}[^>]*>.*?</fieldset>`, "gs")) ?? [];
+
+    assert.ok(groups.length > 0, `expected a segmented control in ${file}`);
+    for (const group of groups) {
+      const radios = group.match(/<input\b[^>]*>/g) ?? [];
+      const names = new Set(radios.map((radio) => radio.match(/\bname="([^"]+)"/)?.[1]));
+
+      assert.ok(radios.every((radio) => /type="radio"/.test(radio)), `segmented options must be radios in ${file}`);
+      assert.match(group, /^<fieldset\b[^>]*aria-label="[^"]+"|<legend\b/, `segmented control has no name in ${file}`);
+      assert.equal(names.size, 1, `segmented radios must share one name in ${file}`);
+    }
+  }
+});
