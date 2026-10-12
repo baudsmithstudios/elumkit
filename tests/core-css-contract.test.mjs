@@ -182,6 +182,21 @@ test("action menu anchors below its trigger and flips on either axis when there'
   assert.match(anchored, /position-try-fallbacks:\s*flip-block,\s*flip-inline,\s*flip-block flip-inline;/, "menu must flip on both axes so start-aligned narrow-screen triggers keep it in view");
 });
 
+test("switch replaces the native checkbox look and moves its knob when checked, so state isn't color-only", () => {
+  const unchecked = FORM_CSS.match(/\.elum-switch\s*{([^}]*)}/s)?.[1] ?? "";
+  const checked = FORM_CSS.match(/\.elum-switch:checked\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(unchecked, /appearance:\s*none/);
+  assert.match(checked, /background-position:/);
+});
+
+test("switch keeps its knob visible in forced colors, which otherwise strip the drawn knob and leave on and off identical", () => {
+  const forced = FORM_CSS.match(/@media \(forced-colors: active\)\s*{\s*\.elum-switch,\s*\.elum-switch:checked\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(forced, /forced-color-adjust:\s*none/);
+  assert.match(forced, /linear-gradient\(CanvasText, CanvasText\)/);
+});
+
 test("CSS bundle inlines the whole import chain into one standalone file", () => {
   const bundle = buildCss();
 

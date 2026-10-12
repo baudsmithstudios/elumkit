@@ -121,3 +121,15 @@ test("playground and snippets open action menus from a labelled popover trigger,
     assert.doesNotMatch(html, /role="menu(item)?"/);
   }
 });
+
+test("playground and snippets build switches on native checkboxes exposed with the switch role", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const switches = readFileSync(file, "utf8").match(new RegExp(`<input\\b[^>]*${classToken("elum-switch").source}[^>]*>`, "g")) ?? [];
+
+    assert.ok(switches.length > 0, `expected a switch in ${file}`);
+    for (const control of switches) {
+      assert.match(control, /type="checkbox"/);
+      assert.match(control, /role="switch"/);
+    }
+  }
+});

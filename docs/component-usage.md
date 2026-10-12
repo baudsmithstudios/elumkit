@@ -37,6 +37,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Radio groups:** wrap in `<fieldset>` with `<legend>`
 - **Disabled:** native `disabled` on the input; optional `data-disabled="true"` on `.elum-choice` for the visual hint
 
+## Switch
+
+- **Control:** `.elum-switch` on `<input type="checkbox" role="switch">`, wrapped in a `.elum-choice` label
+- **State:** native `checked`; screen readers announce on/off, and the knob moves as well as changing color
+- **Disabled:** same as Checkbox
+
 ## Card
 
 - **Plain card:** `<article class="elum-card">`

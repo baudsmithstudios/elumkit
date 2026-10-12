@@ -123,8 +123,37 @@ fieldset.elum-field > .elum-label {
   margin: 0;
 }
 
+.elum-switch {
+  appearance: none;
+  background: linear-gradient(var(--elum-color-muted), var(--elum-color-muted)) no-repeat left 0.125rem center / 0.625rem 0.625rem;
+  block-size: 1rem;
+  border: var(--elum-border-width) solid var(--elum-color-border);
+  border-radius: var(--elum-radius-sm);
+  cursor: pointer;
+  flex: none;
+  inline-size: 2rem;
+  margin: 0;
+  transition: background-position var(--elum-motion-fast);
+}
+
+.elum-switch:checked {
+  background-image: linear-gradient(var(--elum-color-accent), var(--elum-color-accent));
+  background-position: right 0.125rem center;
+  border-color: var(--elum-color-accent);
+}
+
+@media (forced-colors: active) {
+  .elum-switch,
+  .elum-switch:checked {
+    forced-color-adjust: none;
+    background-image: linear-gradient(CanvasText, CanvasText);
+    border-color: CanvasText;
+  }
+}
+
 .elum-checkbox:disabled,
-.elum-radio:disabled {
+.elum-radio:disabled,
+.elum-switch:disabled {
   cursor: not-allowed;
   opacity: 0.7;
 }
