@@ -19,6 +19,7 @@ const FEED_CSS = readFileSync("packages/core-css/src/components/feed.css", "utf8
 const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "utf8");
 const DIALOG_CSS = readFileSync("packages/core-css/src/components/dialog.css", "utf8");
 const MENU_CSS = readFileSync("packages/core-css/src/components/menu.css", "utf8");
+const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const PUBLIC_CSS = [
   BASE_CSS,
@@ -216,6 +217,10 @@ test("segmented control marks the checked option with system colors in forced co
   assert.match(forced, /background:\s*Highlight/);
   assert.match(forced, /border-color:\s*Highlight/);
   assert.match(forced, /color:\s*HighlightText/);
+});
+
+test("breadcrumb draws chevrons between items with empty alt text so screen readers skip them", () => {
+  assert.match(NAVIGATION_CSS, /\.elum-breadcrumb li \+ li::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
 });
 
 test("CSS bundle inlines the whole import chain into one standalone file", () => {

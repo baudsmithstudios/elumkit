@@ -8,6 +8,7 @@
 - Action Menu component: `.elum-menu` on a native popover opened by a `popovertarget` button.
 - Switch component: `.elum-switch` on a native checkbox with `role="switch"`.
 - Segmented Control component: `.elum-segmented` fieldset of radios styled as joined options.
+- Breadcrumb component: `.elum-breadcrumb` on a `<nav>` wrapping an ordered list of links.
 
 ## [0.3.1] - 2026-07-12
 

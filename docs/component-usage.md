@@ -96,6 +96,13 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Current page:** `aria-current="page"` on the active link
 - Use for top-level page navigation. For switching views on one page, use tabs.
 
+## Breadcrumb
+
+- **Wrapper:** `.elum-breadcrumb` on a `<nav aria-label="Breadcrumb">` wrapping an `<ol>` with one `<li>` per level
+- **Current page:** `aria-current="page"` on the last item's link
+- **Separators:** CSS draws a `›` between items and hides it from screen readers, so don't type separators into the markup
+- Long trails wrap onto further lines on narrow screens.
+
 ## Footer
 
 - **Wrapper:** `.elum-footer` on a `<footer>`
