@@ -9,6 +9,11 @@
 - Switch component: `.elum-switch` on a native checkbox with `role="switch"`.
 - Segmented Control component: `.elum-segmented` fieldset of radios styled as joined options.
 - Breadcrumb component: `.elum-breadcrumb` on a `<nav>` wrapping an ordered list of links.
+- Base styles for `<kbd>` (bracketed keys) and inline `<code>` (accent, backticked).
+
+### Fixed
+
+- `<code>`, `<kbd>`, and `<pre>` use the theme font instead of the browser's generic monospace.
 
 ## [0.3.1] - 2026-07-12
 
