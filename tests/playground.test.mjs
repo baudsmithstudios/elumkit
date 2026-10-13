@@ -149,3 +149,19 @@ test("playground and snippets build segmented controls as named fieldsets of rad
     }
   }
 });
+
+test("playground and snippets mark breadcrumbs as a named ordered list ending at the current page", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const trails = readFileSync(file, "utf8").match(new RegExp(`<nav\\b[^>]*${classToken("elum-breadcrumb").source}[^>]*>.*?</nav>`, "gs")) ?? [];
+
+    assert.ok(trails.length > 0, `expected a breadcrumb in ${file}`);
+    for (const trail of trails) {
+      const items = trail.match(/<li\b.*?<\/li>/gs) ?? [];
+
+      assert.match(trail, /^<nav\b[^>]*aria-label="Breadcrumb"/);
+      assert.match(trail, /<ol\b/);
+      assert.match(items.at(-1), /aria-current="page"/, `last breadcrumb item must be the current page in ${file}`);
+      assert.equal(trail.match(/aria-current=/g).length, 1, `breadcrumb has more than one current item in ${file}`);
+    }
+  }
+});

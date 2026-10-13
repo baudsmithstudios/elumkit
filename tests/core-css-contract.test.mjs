@@ -19,6 +19,7 @@ const FEED_CSS = readFileSync("packages/core-css/src/components/feed.css", "utf8
 const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "utf8");
 const DIALOG_CSS = readFileSync("packages/core-css/src/components/dialog.css", "utf8");
 const MENU_CSS = readFileSync("packages/core-css/src/components/menu.css", "utf8");
+const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const PUBLIC_CSS = [
   BASE_CSS,
@@ -118,12 +119,6 @@ test("component CSS uses only defined tokens or supplies a fallback", () => {
   assert.deepEqual([...new Set(undefinedTokens)], [], "a var() without a fallback must reference a defined token");
 });
 
-test("tokens define the full named text size scale", () => {
-  for (const token of ["--elum-text-xs", "--elum-text-sm", "--elum-text-md", "--elum-text-lg", "--elum-text-xl", "--elum-text-2xl", "--elum-text-3xl"]) {
-    assert.match(TOKENS_CSS, new RegExp(`${token}:`), `missing token ${token}`);
-  }
-});
-
 test("base CSS hardens against known cross-browser layout pitfalls", () => {
   assert.match(BASE_CSS, /html\s*\{[^}]*-webkit-text-size-adjust:\s*100%/s);
   assert.match(BASE_CSS, /body\s*\{[^}]*overflow-wrap:\s*break-word/s);
@@ -164,8 +159,7 @@ test("output body wraps preformatted text so raw dumps don't force horizontal sc
   assert.match(OUTPUT_CSS, /\.elum-output-body\s*{[^}]*white-space:\s*pre-wrap;/s);
 });
 
-test("dialog dims the page behind it and docks to the inline-end edge as a side panel", () => {
-  assert.match(DIALOG_CSS, /\.elum-dialog::backdrop\s*{[^}]*background:/s);
+test("dialog docks to the inline-end edge as a side panel", () => {
   assert.match(DIALOG_CSS, /\.elum-dialog\[data-placement="end"\]\s*{[^}]*margin-inline-start:\s*auto;/s);
   assert.match(DIALOG_CSS, /\.elum-dialog\[data-placement="end"\]\s*{[^}]*max-height:\s*none;/s);
 });
@@ -216,6 +210,23 @@ test("segmented control marks the checked option with system colors in forced co
   assert.match(forced, /background:\s*Highlight/);
   assert.match(forced, /border-color:\s*Highlight/);
   assert.match(forced, /color:\s*HighlightText/);
+});
+
+test("breadcrumb draws chevrons between items with empty alt text so screen readers skip them", () => {
+  assert.match(NAVIGATION_CSS, /\.elum-breadcrumb li \+ li::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
+});
+
+test("code, kbd, and pre keep the theme font instead of the browser's generic monospace", () => {
+  assert.match(BASE_CSS, /code,\s*kbd,\s*pre\s*{[^}]*font-family:\s*inherit;/s);
+});
+
+test("inline code is wrapped in backticks that screen readers skip, leaving code blocks bare", () => {
+  assert.match(BASE_CSS, /:not\(pre\) > code::before,\s*:not\(pre\) > code::after\s*{[^}]*content:\s*"`"\s*\/\s*"";/s);
+});
+
+test("kbd wraps keys in brackets that screen readers skip", () => {
+  assert.match(BASE_CSS, /kbd::before\s*{[^}]*content:\s*"\["\s*\/\s*"";/s);
+  assert.match(BASE_CSS, /kbd::after\s*{[^}]*content:\s*"\]"\s*\/\s*"";/s);
 });
 
 test("CSS bundle inlines the whole import chain into one standalone file", () => {

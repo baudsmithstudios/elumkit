@@ -8,6 +8,13 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Vertical rhythm:** `.elum-stack` on a container adds a top margin (`--elum-space-3`) to every child after the first. Compose with `.elum-container` for a complete page skeleton: `<main class="elum-container elum-stack">`.
 - **Responsive Columns:** `.elum-grid` lays child items as auto-fitting columns that wrap without the need for media queries. Each column is at least `--elum-grid-min` (16rem default) wide. Children components will grow to fill the row. Rows will collapse to a single column on extra small screens. The grid element has no knowledge of what child components are being composed. 
 
+## Kbd / Code
+
+- **Keys:** a native `<kbd>` per key, e.g. `<kbd>Ctrl</kbd> + <kbd>K</kbd>`. CSS draws the brackets, so it renders as `[Ctrl] + [K]`.
+- **Inline code:** a native `<code>`. It renders in the accent color between CSS-drawn backticks. The backticks keep code distinct from links, which also use the accent color.
+- **Code blocks:** `<code>` inside a `<pre>` gets no color or backticks.
+- The drawn brackets and backticks are hidden from screen readers, so don't type them into the markup.
+
 ## Button
 
 - **Class:** `.elum-button` on a native `<button>`
@@ -95,6 +102,13 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Links:** `.elum-navlinks` containing `.elum-navlink` anchors
 - **Current page:** `aria-current="page"` on the active link
 - Use for top-level page navigation. For switching views on one page, use tabs.
+
+## Breadcrumb
+
+- **Wrapper:** `.elum-breadcrumb` on a `<nav aria-label="Breadcrumb">` wrapping an `<ol>` with one `<li>` per level
+- **Current page:** `aria-current="page"` on the last item's link
+- **Separators:** CSS draws a `›` between items and hides it from screen readers, so don't type separators into the markup
+- Long trails wrap onto further lines on narrow screens.
 
 ## Footer
 

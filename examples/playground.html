@@ -394,7 +394,15 @@
           <header class="elum-card-header">
             <h2 class="elum-card-title">Detail States</h2>
           </header>
-          <p class="elum-card-subtitle">Empty, expandable, and definition-list content.</p>
+          <p class="elum-card-subtitle">Breadcrumb, empty, expandable, and definition-list content.</p>
+
+          <nav class="elum-breadcrumb" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="#">pipelines</a></li>
+              <li><a href="#">deploy-api</a></li>
+              <li><a href="#" aria-current="page">run-1842</a></li>
+            </ol>
+          </nav>
 
           <div class="elum-empty">
             <div class="elum-empty-title">No failures</div>
@@ -428,7 +436,7 @@
           <header class="elum-card-header">
             <h2 class="elum-card-title">Typography</h2>
           </header>
-          <p class="elum-card-subtitle">Token-driven sizes on bare heading elements.</p>
+          <p class="elum-card-subtitle">Token-driven sizes on bare heading, kbd, and code elements.</p>
 
           <h1>h1 · 2rem</h1>
           <h2>h2 · 1.5rem</h2>
@@ -436,6 +444,7 @@
           <h4>h4 · 1.125rem</h4>
           <h5>h5 · 1rem</h5>
           <h6>h6 · 0.875rem</h6>
+          <p>Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search, or set <code>retries</code> in <code>config.yaml</code>.</p>
         </article>
 
         <article class="elum-card elum-card-labeled elum-stack playground-tile">
