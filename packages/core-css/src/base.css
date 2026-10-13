@@ -82,7 +82,6 @@ h6 {
   font-size: var(--elum-text-sm);
 }
 
-/* browsers set these to generic monospace, which drops the theme font and shrinks the text */
 code,
 kbd,
 pre {
@@ -93,7 +92,6 @@ pre {
   color: var(--elum-color-accent);
 }
 
-/* every element is monospace, so backticks mark code apart from links, which share the accent color */
 :not(pre) > code::before,
 :not(pre) > code::after {
   content: "`" / "";
