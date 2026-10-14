@@ -88,8 +88,11 @@ test("themes expose required accessible semantic tokens", () => {
 });
 
 test("core CSS exposes accessible focus and motion behavior", () => {
+  const reducedMotion = BASE_CSS.match(/@media \(prefers-reduced-motion: reduce\)\s*{([^}]*)}/s)?.[1];
+
   assert.match(BASE_CSS, /:focus-visible\s*{[^}]*outline:\s*2px solid/s);
-  assert.match(BASE_CSS, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(reducedMotion, /animation-duration:\s*0\.01ms !important;/);
+  assert.match(reducedMotion, /transition-duration:\s*0\.01ms !important;/);
   assert.match(FORM_CSS, /\.elum-prompt-field > \.elum-input:focus-visible\s*{[^}]*outline:\s*0;/s);
   assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s, "prompt field must draw the focus ring its input suppresses");
   assert.match(DATA_CSS, /\.elum-disclosure-summary:focus-visible\s*{[^}]*outline:/s);
@@ -216,6 +219,14 @@ test("breadcrumb draws chevrons between items with empty alt text so screen read
   assert.match(NAVIGATION_CSS, /\.elum-breadcrumb li \+ li::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
 });
 
+test("nav links keep the base focus ring that buttons and inputs use", () => {
+  assert.doesNotMatch(NAVIGATION_CSS, /\.elum-navlink:focus-visible/);
+});
+
+test("current nav link is marked with the breadcrumb chevron, which screen readers skip since aria-current already names it", () => {
+  assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
+});
+
 test("code, kbd, and pre keep the theme font instead of the browser's generic monospace", () => {
   assert.match(BASE_CSS, /code,\s*kbd,\s*pre\s*{[^}]*font-family:\s*inherit;/s);
 });
@@ -227,6 +238,48 @@ test("inline code is wrapped in backticks that screen readers skip, leaving code
 test("kbd wraps keys in brackets that screen readers skip", () => {
   assert.match(BASE_CSS, /kbd::before\s*{[^}]*content:\s*"\["\s*\/\s*"";/s);
   assert.match(BASE_CSS, /kbd::after\s*{[^}]*content:\s*"\]"\s*\/\s*"";/s);
+});
+
+test("app shell sets the sidebar beside main in a column its content can't widen", () => {
+  assert.match(BASE_CSS, /\.elum-shell\s*{[^}]*grid-template-columns:\s*\S+ minmax\(0, 1fr\);/s);
+});
+
+test("app shell spans the navbar and footer edge to edge across both columns", () => {
+  const spanning = BASE_CSS.match(/\.elum-shell > \.elum-navbar,\s*\.elum-shell > \.elum-footer\s*{([^}]*)}/s)?.[1];
+
+  assert.match(spanning, /grid-column:\s*1 \/ -1;/);
+  assert.match(spanning, /max-width:\s*none;/);
+});
+
+test("app shell stacks into one column on narrow screens", () => {
+  assert.match(BASE_CSS, /@media \(max-width: 48rem\)\s*{\s*\.elum-shell\s*{[^}]*grid-template-columns:\s*minmax\(0, 1fr\);/s);
+});
+
+test("sidebar list sticks below the navbar beside main and scrolls itself when taller than the viewport", () => {
+  assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*min-height:\s*var\(--elum-navbar-height\);/s);
+  const sticky = NAVIGATION_CSS.match(/@media \(min-width: 48\.001rem\)\s*{.*?\.elum-sidebar > ul\s*{([^}]*)}/s)?.[1];
+
+  assert.match(sticky, /position:\s*sticky;/);
+  assert.match(sticky, /top:\s*var\(--elum-navbar-height\);/);
+  assert.match(sticky, /max-height:\s*calc\(100vh - var\(--elum-navbar-height\)\);/);
+  assert.match(sticky, /overflow-y:\s*auto;/);
+});
+
+test("sidebar group headings trail a rule, since the neon theme's muted and accent colors don't tell them apart from links", () => {
+  const rule = NAVIGATION_CSS.match(/\.elum-sidebar h2::after\s*{([^}]*)}/s)?.[1];
+
+  assert.match(NAVIGATION_CSS, /\.elum-sidebar h2\s*{[^}]*display:\s*flex;/s);
+  assert.match(rule, /border-top:/);
+  assert.match(rule, /flex:\s*1;/);
+});
+
+test("navbar wraps onto new lines with a gap between items instead of scrolling sideways", () => {
+  assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*flex-wrap:\s*wrap;/s);
+  assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*gap:/s);
+});
+
+test("navbar brand pushes status items and links to the inline end", () => {
+  assert.match(NAVIGATION_CSS, /\.elum-navbar-brand\s*{[^}]*margin-inline-end:\s*auto;/s);
 });
 
 test("CSS bundle inlines the whole import chain into one standalone file", () => {
