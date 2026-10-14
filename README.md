@@ -113,7 +113,7 @@ Open `examples/playground.html` in a browser to see every component rendered tog
 
 ## Current Component Scope
 
-Button, Kbd, Code, Input, Textarea, Checkbox, Radio Group, Switch, Segmented Control, Select, Card, Alert, Badge, System Bar, App Shell, Navbar, Breadcrumb, Sidebar, Footer, Tabs, Toolbar, Query Row, Pagination, Empty State, Disclosure, Detail List, Status Label, Spinner, Skeleton, Metrics, Meter, Data List, Data Table, Separator, Feed, Output, Dialog, Action Menu.
+Button, Kbd, Code, Input, Textarea, Checkbox, Radio Group, Switch, Segmented Control, Select, Card, Alert, Badge, System Bar, App Shell, Navbar, Breadcrumb, Sidebar, Footer, Tabs, Toolbar, Query Row, Pagination, Empty State, Disclosure, Detail List, Status Label, Spinner, Skeleton, Metrics, Meter, Progress, Data List, Data Table, Separator, Feed, Output, Dialog, Action Menu.
 
 ## Browser And Stability Notes
 

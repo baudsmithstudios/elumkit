@@ -251,6 +251,22 @@ test("skeleton fill is long enough to span a full-width container at the base te
   assert.ok(cells * 0.55 * textSize >= containerWidth, `${cells} cells fall short of a ${containerWidth}rem container`);
 });
 
+test("progress with no aria-valuenow slides an accent block across the meter track", () => {
+  const indeterminate = TELEMETRY_CSS.match(/^\.elum-meter-track\[role="progressbar"\]:not\(\[aria-valuenow\]\)\s*{([^}]*)}/m)?.[1] ?? "";
+
+  assert.match(indeterminate, /animation:[^;]*\belum-progress\b[^;]*infinite/);
+  assert.match(indeterminate, /background-image:\s*linear-gradient\(var\(--elum-color-accent\), var\(--elum-color-accent\)\)/);
+  assert.match(indeterminate, /background-repeat:\s*no-repeat/);
+  assert.match(indeterminate, /background-size:\s*\d+% 100%/);
+  assert.match(TELEMETRY_CSS, /@keyframes elum-progress\s*{[^}]*background-position-x:\s*100%/s);
+});
+
+test("indeterminate progress keeps its block in forced colors, which would otherwise draw it in the accent color", () => {
+  const forced = TELEMETRY_CSS.match(/@media \(forced-colors: active\)\s*{(.*?)\n}/s)?.[1] ?? "";
+
+  assert.match(forced, /\.elum-meter-track\[role="progressbar"\]:not\(\[aria-valuenow\]\)\s*{[^}]*linear-gradient\(CanvasText, CanvasText\)/s);
+});
+
 test("code, kbd, and pre keep the theme font instead of the browser's generic monospace", () => {
   assert.match(BASE_CSS, /code,\s*kbd,\s*pre\s*{[^}]*font-family:\s*inherit;/s);
 });

@@ -15,6 +15,7 @@
 - `--elum-navbar-height` token for the navbar's minimum height and the sidebar's sticky offset.
 - Spinner component: `.elum-spinner` cycles a `|/-\` before a visible label announced as a status.
 - Skeleton component: `.elum-skeleton` placeholder line with a pulsing `░` fill, for regions marked `aria-busy`.
+- Progress component: `role="progressbar"` on `.elum-meter-track`, with a sliding block when `aria-valuenow` is absent.
 - Base styles for `<kbd>` (bracketed keys) and inline `<code>` (accent, backticked).
 
 ### Changed

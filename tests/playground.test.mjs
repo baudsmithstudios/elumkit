@@ -185,6 +185,19 @@ test("playground and snippets announce each spinner as a status with a visible l
   }
 });
 
+test("playground and snippets show named determinate and indeterminate progress bars", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const bars = readFileSync(file, "utf8").match(/<div\b[^>]*role="progressbar"[^>]*>/g) ?? [];
+    const determinate = bars.filter((bar) => /\baria-valuenow=/.test(bar));
+
+    assert.ok(determinate.length > 0 && determinate.length < bars.length, `expected determinate and indeterminate progress in ${file}`);
+    for (const bar of bars) {
+      assert.match(bar, classToken("elum-meter-track"));
+      assert.match(bar, /\baria-label(?:ledby)?="[^"]+"/, `progress bar has no name in ${file}`);
+    }
+  }
+});
+
 const VOID_ELEMENTS = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"]);
 
 function skeletonsInsideBusyRegions(html) {
