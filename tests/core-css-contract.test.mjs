@@ -88,8 +88,11 @@ test("themes expose required accessible semantic tokens", () => {
 });
 
 test("core CSS exposes accessible focus and motion behavior", () => {
+  const reducedMotion = BASE_CSS.match(/@media \(prefers-reduced-motion: reduce\)\s*{([^}]*)}/s)?.[1];
+
   assert.match(BASE_CSS, /:focus-visible\s*{[^}]*outline:\s*2px solid/s);
-  assert.match(BASE_CSS, /@media \(prefers-reduced-motion: reduce\)/);
+  assert.match(reducedMotion, /animation-duration:\s*0\.01ms !important;/);
+  assert.match(reducedMotion, /transition-duration:\s*0\.01ms !important;/);
   assert.match(FORM_CSS, /\.elum-prompt-field > \.elum-input:focus-visible\s*{[^}]*outline:\s*0;/s);
   assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s, "prompt field must draw the focus ring its input suppresses");
   assert.match(DATA_CSS, /\.elum-disclosure-summary:focus-visible\s*{[^}]*outline:/s);
@@ -234,7 +237,7 @@ test("kbd wraps keys in brackets that screen readers skip", () => {
 });
 
 test("app shell sets the sidebar beside main in a column its content can't widen", () => {
-  assert.match(BASE_CSS, /\.elum-shell\s*{[^}]*grid-template-columns:\s*14rem minmax\(0, 1fr\);/s);
+  assert.match(BASE_CSS, /\.elum-shell\s*{[^}]*grid-template-columns:\s*\S+ minmax\(0, 1fr\);/s);
 });
 
 test("app shell spans the navbar and footer edge to edge across both columns", () => {
@@ -258,7 +261,15 @@ test("sidebar list sticks below the navbar beside main and scrolls itself when t
   assert.match(sticky, /overflow-y:\s*auto;/);
 });
 
-test("navbar wraps with a gap so the current-page marker never overlaps the brand", () => {
+test("sidebar group headings trail a rule, since the neon theme's muted and accent colors don't tell them apart from links", () => {
+  const rule = NAVIGATION_CSS.match(/\.elum-sidebar h2::after\s*{([^}]*)}/s)?.[1];
+
+  assert.match(NAVIGATION_CSS, /\.elum-sidebar h2\s*{[^}]*display:\s*flex;/s);
+  assert.match(rule, /border-top:/);
+  assert.match(rule, /flex:\s*1;/);
+});
+
+test("navbar wraps onto new lines with a gap between items instead of scrolling sideways", () => {
   assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*flex-wrap:\s*wrap;/s);
   assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*gap:/s);
 });

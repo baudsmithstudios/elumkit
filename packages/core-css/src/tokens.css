@@ -28,6 +28,7 @@
   --elum-container-padding-block: 1rem;
 
   --elum-navbar-height: 2.75rem;
+  --elum-shell-gutter: calc(var(--elum-container-padding-inline) + var(--elum-space-4));
 
   --elum-grid-min: 16rem;
 }

@@ -6,7 +6,7 @@
   margin-top: 1.5rem;
   max-width: var(--elum-container-width);
   margin-inline: auto;
-  padding: var(--elum-space-4) calc(var(--elum-container-padding-inline) + var(--elum-space-4));
+  padding: var(--elum-space-4) var(--elum-shell-gutter);
   position: relative;
 }
 

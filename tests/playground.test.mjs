@@ -23,9 +23,17 @@ test("playground loads the core CSS source and demonstrates every documented cla
 test("playground and snippets expose query and pagination landmarks", () => {
   for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
     const html = readFileSync(file, "utf8");
+    const queries = html.match(new RegExp(`<form\\b[^>]*${classToken("elum-query").source}[^>]*>`, "g")) ?? [];
+    const paginations = html.match(new RegExp(`<nav\\b[^>]*${classToken("elum-pagination").source}[^>]*>`, "g")) ?? [];
 
-    assert.match(html, /class="elum-query" role="search" aria-label="Service filters"/);
-    assert.match(html, /aria-label="Pagination"/);
+    assert.ok(queries.length > 0 && paginations.length > 0, `expected a query row and pagination in ${file}`);
+    for (const query of queries) {
+      assert.match(query, /role="search"/);
+      assert.match(query, /aria-label="[^"]+"/);
+    }
+    for (const pagination of paginations) {
+      assert.match(pagination, /aria-label="[^"]+"/);
+    }
   }
 });
 

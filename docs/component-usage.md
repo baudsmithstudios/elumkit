@@ -122,7 +122,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - **Wrapper:** `.elum-sidebar` on a `<nav>` with an `aria-label`, holding one `<ul>`.
 - **Links:** `.elum-navlink` anchors in `<li>` items, with `aria-current="page"` on the current one.
-- **Groups:** an `<li>` holding an `<h2>` and a nested `<ul>` of links.
+- **Groups:** an `<li>` holding an `<h2>` and a nested `<ul>` of links. The heading trails a rule, like a labeled separator, so groups stand apart from links even where a theme's muted and accent colors are close.
 - Beside main, the list sticks below the navbar and scrolls on its own when it is taller than the viewport. Stacked on narrow screens, it scrolls with the page.
 
 ## Footer

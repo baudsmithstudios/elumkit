@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   gap: var(--elum-space-2) calc(var(--elum-space-4) * 2);
   min-height: var(--elum-navbar-height);
-  padding: var(--elum-space-3) calc(var(--elum-container-padding-inline) + var(--elum-space-4));
+  padding: var(--elum-space-3) var(--elum-shell-gutter);
   margin-bottom: 1.5rem;
   position: sticky;
   top: 0;
@@ -56,10 +56,8 @@
 }
 
 .elum-navlink[aria-current="page"]::before {
-  color: currentColor;
   content: "›" / "";
   font-size: 1.5em;
-  font-weight: 700;
   inset-inline-end: calc(100% + var(--elum-space-1));
   line-height: 1;
   position: absolute;
@@ -119,15 +117,24 @@
 }
 
 .elum-sidebar > ul {
-  padding: var(--elum-space-4) var(--elum-space-4) var(--elum-space-4) calc(var(--elum-container-padding-inline) + var(--elum-space-4));
+  padding: var(--elum-space-4) var(--elum-space-4) var(--elum-space-4) var(--elum-shell-gutter);
 }
 
 .elum-sidebar h2 {
+  align-items: center;
   color: var(--elum-color-muted);
+  display: flex;
   font-size: var(--elum-text-xs);
+  gap: var(--elum-space-2);
   letter-spacing: 0.08em;
   margin-block: var(--elum-space-3) var(--elum-space-1);
   text-transform: uppercase;
+}
+
+.elum-sidebar h2::after {
+  border-top: var(--elum-border-width) solid var(--elum-color-border);
+  content: "";
+  flex: 1;
 }
 
 @media (min-width: 48.001rem) {
