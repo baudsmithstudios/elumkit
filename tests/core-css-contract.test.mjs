@@ -138,6 +138,12 @@ test("table and row APIs expose responsive state hooks", () => {
   assert.match(DATA_CSS, /\.elum-table thead\s*{[^}]*clip-path:\s*inset\(50%\);/s);
 });
 
+test("truncated row text wraps in full on hover or keyboard focus, so zoomed text is never lost", () => {
+  for (const state of ["hover", "focus-visible"]) {
+    assert.match(DATA_CSS, new RegExp(`\\.elum-row:${state} :is\\(\\.elum-row-title, \\.elum-row-meta\\)[^{]*{[^}]*white-space:\\s*normal;`, "s"));
+  }
+});
+
 test("floating label field overlays a real label and floats it on focus or content", () => {
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:focus\s*\+\s*\.elum-label/);
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);

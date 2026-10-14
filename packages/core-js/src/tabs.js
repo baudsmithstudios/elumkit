@@ -21,6 +21,8 @@
       const panel = document.getElementById(tab.getAttribute("aria-controls"))
       panel.setAttribute("role", "tabpanel")
       panel.setAttribute("aria-labelledby", tab.id)
+      // lets keyboard users reach a panel that holds no focusable content
+      panel.tabIndex = 0
     })
     tablist.hidden = false
 

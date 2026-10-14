@@ -140,6 +140,25 @@ test("playground and snippets make table wraps named, focusable regions so keybo
   }
 });
 
+test("playground and snippets give a role to every div or span they name, since ARIA ignores names on generic elements", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    for (const element of readFileSync(file, "utf8").match(/<(?:div|span)\b[^>]*\baria-label="[^>]*>/g) ?? []) {
+      assert.match(element, /\brole="/, `named generic element in ${file}: ${element}`);
+    }
+  }
+});
+
+test("playground and snippets announce vertical separators as vertical", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const separators = readFileSync(file, "utf8").match(/<hr\b[^>]*data-orientation="vertical"[^>]*>/g) ?? [];
+
+    assert.ok(separators.length > 0, `expected a vertical separator in ${file}`);
+    for (const separator of separators) {
+      assert.match(separator, /\baria-orientation="vertical"/);
+    }
+  }
+});
+
 test("selected row examples expose semantic state", () => {
   for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
     const html = readFileSync(file, "utf8");

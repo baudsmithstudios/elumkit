@@ -155,7 +155,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - **Tablist:** `.elum-tabs` with `role="tablist"`, an accessible name, and `hidden`
 - **Tab:** `.elum-tab` on a `<button role="tab">` with `aria-selected`, an `id`, and `aria-controls`
-- **Panel:** a plain element with the `id` its tab's `aria-controls` names. The script adds `role="tabpanel"` and `aria-labelledby`.
+- **Panel:** a plain element with the `id` its tab's `aria-controls` names. The script adds `role="tabpanel"`, `aria-labelledby`, and `tabindex="0"` so keyboard users can reach a panel with no focusable content.
 - **Initial selection:** mark the starting tab `aria-selected="true"`
 - **Behavior:** load `packages/core-js/src/tabs.js` (`<script defer>`) to reveal the tablist and add roving focus, arrow/Home/End keys, and manual activation (Enter/Space or click)
 - **Without the script:** the tablist stays hidden and all panels stay visible, so no control announces tab behavior that nothing provides. Give each panel a heading so the stacked panels still say what they are.
@@ -211,7 +211,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Metrics
 
-- **List:** `.elum-metrics`
+- **List:** `.elum-metrics`; add `role="group"` when you give it an accessible name, since a name on a plain `<div>` is ignored
 - **Row:** `.elum-metric`
 - Use `.elum-metric-label`, `.elum-metric-value`, and `.elum-metric-unit` for aligned telemetry.
 - **Tile row:** `data-layout="tiles"` on the list, same child markup.
@@ -243,6 +243,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Row:** `.elum-row` on any element inside each `<li>` — `<a>`, `<div>`, `<p>`
 - Use `.elum-row-title`, `.elum-row-meta`, and `.elum-row-value` for compact aligned content.
 - **Stacked title and meta:** wrap them in `.elum-row-main` so long titles truncate instead of pushing `.elum-row-value` off the row.
+- **Truncated text:** the row grows to show the full title and meta on hover or keyboard focus. Only focusable rows (`<a>`) reveal it from the keyboard, so put long text on a link row.
 - **Selected state:** `data-selected="true"` for the visual hook, plus the appropriate semantic state for the context. For a current link, use `aria-current="true"`.
 
 ## Data Table
@@ -259,7 +260,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Separator
 
 - **Horizontal rule:** `.elum-separator` on `<hr>`
-- **Vertical rule:** add `data-orientation="vertical"` for an inline divider in a flex row
+- **Vertical rule:** add `data-orientation="vertical"` for an inline divider in a flex row, plus `aria-orientation="vertical"` so screen readers announce it as vertical
 - **Labeled divider:** `.elum-separator-labeled` on a heading (`<h2>`/`<h3>`) — label plus a rule filling the rest. Choose the heading level for the outline; the class only styles.
 
 ## Feed

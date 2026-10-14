@@ -55,6 +55,12 @@
   white-space: nowrap;
 }
 
+/* truncation hides text at high zoom, so the row grows to reveal it */
+.elum-row:hover :is(.elum-row-title, .elum-row-meta),
+.elum-row:focus-visible :is(.elum-row-title, .elum-row-meta) {
+  white-space: normal;
+}
+
 .elum-row-value {
   color: var(--elum-color-fg);
   font-variant-numeric: tabular-nums;

@@ -382,7 +382,7 @@
           </header>
           <p class="elum-card-subtitle">Aligned values and compact meter states.</p>
 
-          <div class="elum-metrics" aria-label="Runtime metrics">
+          <div class="elum-metrics" role="group" aria-label="Runtime metrics">
             <div class="elum-metric">
               <span class="elum-metric-label">Load</span>
               <span class="elum-metric-value">0.42</span>
@@ -400,7 +400,7 @@
             </div>
           </div>
 
-          <div class="elum-metrics" data-layout="tiles" aria-label="Service KPIs">
+          <div class="elum-metrics" data-layout="tiles" role="group" aria-label="Service KPIs">
             <div class="elum-metric" data-tone="success">
               <span class="elum-metric-label">Uptime <span class="elum-badge" data-tone="success">[OK]</span></span>
               <span class="elum-metric-value">99.98</span>
@@ -581,8 +581,8 @@
             <li>
               <a class="elum-row" href="#">
                 <span class="elum-row-main">
-                  <span class="elum-row-title">cache-node</span>
-                  <span class="elum-row-meta">primary region :: [WARM]</span>
+                  <span class="elum-row-title">cache-node-primary-region-replica-03</span>
+                  <span class="elum-row-meta">primary region :: [WARM] :: warmed from snapshot 4 minutes ago</span>
                 </span>
                 <span class="elum-row-value">1.8K</span>
               </a>
@@ -621,7 +621,7 @@
           <div class="elum-toolbar" role="group" aria-label="Status summary">
             <div class="elum-toolbar-group">
               <span class="elum-toolbar-value">ready</span>
-              <hr class="elum-separator" data-orientation="vertical" />
+              <hr class="elum-separator" data-orientation="vertical" aria-orientation="vertical" />
               <span class="elum-toolbar-value">3 nodes</span>
             </div>
           </div>
