@@ -226,7 +226,6 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Determinate:** `aria-valuenow`, `aria-valuemin`, `aria-valuemax`, and `--elum-meter-fill-width`, as on Meter. Tones apply the same way.
 - **Indeterminate:** leave out `aria-valuenow` when the remaining work is unknown. An accent block slides across the track instead of a fill, and stays still at the track's start under reduced motion.
 - **Label:** `aria-label` on the track element, or `aria-labelledby` pointing to a visible `.elum-meter-label`
-- **Why not `<progress>`:** styling its internals needs the same deprecated pseudo-elements as `<meter>`.
 
 ## Data List
 
