@@ -172,6 +172,19 @@
   );
 }
 
+.elum-meter-track[role="progressbar"]:not([aria-valuenow]) {
+  animation: elum-progress 1.4s ease-in-out infinite;
+  background-image: linear-gradient(var(--elum-color-accent), var(--elum-color-accent));
+  background-repeat: no-repeat;
+  background-size: 30% 100%;
+}
+
+@keyframes elum-progress {
+  to {
+    background-position-x: 100%;
+  }
+}
+
 @media (forced-colors: active) {
   .elum-meter-track,
   .elum-meter-track[data-tone] {
@@ -182,5 +195,9 @@
       Canvas var(--elum-meter-fill-width, 0%)
     );
     border-color: CanvasText;
+  }
+
+  .elum-meter-track[role="progressbar"]:not([aria-valuenow]) {
+    background-image: linear-gradient(CanvasText, CanvasText);
   }
 }
