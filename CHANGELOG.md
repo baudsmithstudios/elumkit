@@ -19,6 +19,7 @@
 
 - The current nav link is marked with a larger, centered `›` chevron (matching the breadcrumb) instead of `>`, and screen readers skip it since `aria-current` already names the link.
 - Navbar links are spaced 1.5rem apart so the current-link chevron clears the link before it.
+- Nav links use the same 2px focus ring as buttons, inputs, and other links instead of a thinner 1px ring, and every link's focus ring has slightly rounded corners.
 
 ### Fixed
 

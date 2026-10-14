@@ -58,7 +58,7 @@
 .elum-navlink[aria-current="page"]::before {
   content: "›" / "";
   font-size: 1.5em;
-  inset-inline-end: calc(100% + var(--elum-space-1));
+  inset-inline-end: calc(100% + var(--elum-space-2));
   line-height: 1;
   position: absolute;
   top: 50%;
@@ -68,11 +68,6 @@
 
 .elum-navlink:hover {
   color: var(--elum-color-fg);
-}
-
-.elum-navlink:focus-visible {
-  outline: var(--elum-color-focus) solid var(--elum-border-width);
-  outline-offset: calc(var(--elum-border-width) * 2);
 }
 
 .elum-navlink[aria-current="page"] {

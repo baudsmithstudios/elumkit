@@ -115,6 +115,10 @@ kbd::after {
   outline-offset: 2px;
 }
 
+a:focus-visible {
+  border-radius: var(--elum-radius-sm);
+}
+
 .elum-container {
   margin-inline: auto;
   max-width: var(--elum-container-width);

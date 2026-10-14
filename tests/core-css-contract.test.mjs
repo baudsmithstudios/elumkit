@@ -219,6 +219,10 @@ test("breadcrumb draws chevrons between items with empty alt text so screen read
   assert.match(NAVIGATION_CSS, /\.elum-breadcrumb li \+ li::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
 });
 
+test("nav links keep the base focus ring that buttons and inputs use", () => {
+  assert.doesNotMatch(NAVIGATION_CSS, /\.elum-navlink:focus-visible/);
+});
+
 test("current nav link is marked with the breadcrumb chevron, which screen readers skip since aria-current already names it", () => {
   assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
 });
