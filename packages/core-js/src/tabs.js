@@ -3,6 +3,7 @@
 
   const initTabs = (tablist) => {
     const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'))
+    const panels = tabs.map(tab => document.getElementById(tab.getAttribute("aria-controls")))
 
     const setRoving = (focusedTab) => {
       tabs.forEach(tab => tab.tabIndex = tab === focusedTab ? 0 : -1)
@@ -10,15 +11,15 @@
 
     const activate = (selectTab) => {
       setRoving(selectTab)
-      tabs.forEach(tab => {
+      tabs.forEach((tab, index) => {
         const isSelected = tab === selectTab
         tab.setAttribute("aria-selected", String(isSelected))
-        document.getElementById(tab.getAttribute("aria-controls")).hidden = !isSelected
+        panels[index].hidden = !isSelected
       })
     }
 
-    tabs.forEach(tab => {
-      const panel = document.getElementById(tab.getAttribute("aria-controls"))
+    tabs.forEach((tab, index) => {
+      const panel = panels[index]
       panel.setAttribute("role", "tabpanel")
       panel.setAttribute("aria-labelledby", tab.id)
       // lets keyboard users reach a panel that holds no focusable content

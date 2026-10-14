@@ -25,8 +25,7 @@
 - README claims WCAG 2.0 AA for the library side, replacing the unaudited 2.2 AA baseline, and says what apps must supply.
 - Truncated Data List row titles and meta wrap in full while the row is hovered or keyboard-focused.
 - Labelled Metrics examples carry `role="group"`, and vertical Separator examples carry `aria-orientation="vertical"`.
-- `tabs.js` makes each tab panel focusable with `tabindex="0"`.
-- Tabs ship with the tablist `hidden` and plain panels. `tabs.js` reveals the tablist and adds `role="tabpanel"` and `aria-labelledby`, so without the script no tab roles announce behavior nothing provides.
+- Tabs ship with the tablist `hidden` and plain panels. `tabs.js` reveals the tablist and adds `role="tabpanel"`, `aria-labelledby` and `tabindex="0"`, so without the script no tab roles announce behavior nothing provides.
 - Data Table wrapper examples are focusable, named regions (`tabindex="0"`, `role="region"`, `aria-label`), so keyboard users can scroll wide tables in Safari.
 - Data Table markup carries explicit table roles, so narrow-screen rows keep their header semantics in browsers that drop them on a `display` change. Screen readers now skip the drawn `data-label` text and announce the column header instead.
 - The current nav link is marked with a larger, centered `›` chevron (matching the breadcrumb) instead of `>`, and screen readers skip it since `aria-current` already names the link.

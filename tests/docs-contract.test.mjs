@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 
+import { THEMES } from "./themes.mjs";
+
 const README = readFileSync("README.md", "utf8");
 const REQUIRED_DOCS = [
   "docs/plain-html-quickstart.md",
@@ -30,7 +32,7 @@ test("component docs give every component in the README scope a section", () => 
 test("theming docs list every supported theme value", () => {
   const theming = readFileSync("docs/theming.md", "utf8");
 
-  for (const theme of ["dust", "iron", "neon"]) {
+  for (const theme of THEMES) {
     assert.match(theming, new RegExp(`\`${theme}\``));
   }
 });

@@ -5,10 +5,10 @@ import { test } from "node:test";
 
 import { buildCss } from "../scripts/build-css.mjs";
 import { DOCUMENTED_CLASSES } from "./documented-classes.mjs";
+import { THEMES, TOKENS_CSS } from "./themes.mjs";
 
 const COMPONENTS_DIR = "packages/core-css/src/components";
 const COMPONENT_FILES = readdirSync(COMPONENTS_DIR).filter((file) => file.endsWith(".css"));
-const TOKENS_CSS = readFileSync("packages/core-css/src/tokens.css", "utf8");
 const BASE_CSS = readFileSync("packages/core-css/src/base.css", "utf8");
 const FORM_CSS = readFileSync("packages/core-css/src/components/form.css", "utf8");
 const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css", "utf8");
@@ -27,7 +27,6 @@ const PUBLIC_CSS = [
   ...COMPONENT_FILES.map((file) => readFileSync(join(COMPONENTS_DIR, file), "utf8")),
 ].join("\n");
 
-const THEMES = ["dust", "iron", "neon"];
 const REQUIRED_TOKENS = [
   "--elum-color-bg",
   "--elum-color-surface",
@@ -82,8 +81,11 @@ test("themes expose required accessible semantic tokens", () => {
       assert.match(tokens[token], /^#[0-9a-f]{6}$/, `${theme} ${token} should be a hex color`);
     }
 
-    for (const token of ["--elum-color-fg", "--elum-color-muted", "--elum-color-accent", "--elum-color-success", "--elum-color-warn", "--elum-color-error", "--elum-color-info"]) {
-      assert.ok(contrastRatio(tokens[token], tokens["--elum-color-bg"]) >= 4.5, `${theme} ${token} should meet contrast`);
+    // alerts and hovered buttons draw text on the surface color, everything else on the page background
+    for (const background of ["--elum-color-bg", "--elum-color-surface"]) {
+      for (const token of ["--elum-color-fg", "--elum-color-muted", "--elum-color-accent", "--elum-color-success", "--elum-color-warn", "--elum-color-error", "--elum-color-info"]) {
+        assert.ok(contrastRatio(tokens[token], tokens[background]) >= 4.5, `${theme} ${token} should meet contrast on ${background}`);
+      }
     }
   }
 });
@@ -94,8 +96,11 @@ test("core CSS exposes accessible focus and motion behavior", () => {
   assert.match(BASE_CSS, /:focus-visible\s*{[^}]*outline:\s*2px solid/s);
   assert.match(reducedMotion, /animation-duration:\s*0\.01ms !important;/);
   assert.match(reducedMotion, /transition-duration:\s*0\.01ms !important;/);
+});
+
+test("prompt field draws the focus ring its input suppresses", () => {
   assert.match(FORM_CSS, /\.elum-prompt-field > \.elum-input:focus-visible\s*{[^}]*outline:\s*0;/s);
-  assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s, "prompt field must draw the focus ring its input suppresses");
+  assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s);
 });
 
 test("component CSS defines exactly the documented public classes", () => {
@@ -105,7 +110,9 @@ test("component CSS defines exactly the documented public classes", () => {
   assert.deepEqual([...definedClasses].filter((className) => !DOCUMENTED_CLASSES.has(className)), [], "CSS classes missing from docs");
 });
 
-test("form and feedback CSS honor the documented state hooks", () => {
+test("CSS honors the documented state hooks", () => {
+  assert.match(DATA_CSS, /\.elum-row\[data-selected="true"\]/);
+  assert.match(DATA_CSS, /\[data-column="status"\]/);
   assert.match(FORM_CSS, /\[aria-invalid="true"\]/);
   assert.match(FORM_CSS, /:disabled/);
   assert.match(FEEDBACK_CSS, /\[data-tone="success"\]/);
@@ -129,13 +136,17 @@ test("base CSS hardens against known cross-browser layout pitfalls", () => {
   assert.match(BASE_CSS, /button,\s*input,\s*select,\s*textarea[^{]*\{[^}]*font:\s*inherit/s);
 });
 
-test("table and row APIs expose responsive state hooks", () => {
-  assert.match(DATA_CSS, /\.elum-row\[data-selected="true"\]/);
+test("narrow tables hide the header visually but keep it for screen readers", () => {
   // empty alt text: the table roles already announce the column header
   assert.match(DATA_CSS, /content:\s*attr\(data-label\)\s*\/\s*"";/);
-  assert.match(DATA_CSS, /\[data-column="status"\]/);
   assert.doesNotMatch(DATA_CSS, /\.elum-table thead\s*{[^}]*display:\s*none;/s);
   assert.match(DATA_CSS, /\.elum-table thead\s*{[^}]*clip-path:\s*inset\(50%\);/s);
+});
+
+test("focused or selected rows keep their marker in forced colors, which strip the inset shadow that draws it", () => {
+  const forced = DATA_CSS.match(/@media \(forced-colors: active\)\s*{\s*\.elum-row:focus-visible,\s*\.elum-row\[data-selected="true"\]\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(forced, /border-inline-start:\s*3px solid CanvasText/);
 });
 
 test("truncated row text wraps in full on hover or keyboard focus, so zoomed text is never lost", () => {
@@ -150,8 +161,11 @@ test("floating label field overlays a real label and floats it on focus or conte
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-textarea:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
 });
 
-test("separator turns vertical via orientation hook and fills its labeled rule with a flex pseudo-element", () => {
+test("separator turns vertical via its orientation hook", () => {
   assert.match(SEPARATOR_CSS, /\.elum-separator\[data-orientation="vertical"\]\s*{[^}]*border-inline-start:/s);
+});
+
+test("labeled separator fills the rest of the line with its rule", () => {
   assert.match(SEPARATOR_CSS, /\.elum-separator-labeled::after\s*{[^}]*flex:\s*1;/s);
 });
 
@@ -159,9 +173,12 @@ test("metrics tile layout lays metrics out as a wrapping row", () => {
   assert.match(TELEMETRY_CSS, /\.elum-metrics\[data-layout="tiles"\]\s*{[^}]*grid-template-columns:\s*repeat\(auto-fit,/s);
 });
 
-test("feed rows carry a tone-coded accent bar and pin their meta to the trailing edge", () => {
+test("feed rows carry a tone-coded accent bar", () => {
   assert.match(FEED_CSS, /\.elum-feed-item\s*{[^}]*box-shadow:\s*inset[^}]*var\(--elum-feed-tone,\s*var\(--elum-color-info\)\)/s);
   assert.match(FEED_CSS, /\.elum-feed-item\[data-tone="error"\]\s*{[^}]*--elum-feed-tone:\s*var\(--elum-color-error\)/s);
+});
+
+test("feed rows pin their meta to the trailing edge", () => {
   assert.match(FEED_CSS, /\.elum-feed-meta\s*{[^}]*margin-inline-start:\s*auto/s);
 });
 
