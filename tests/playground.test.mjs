@@ -187,7 +187,6 @@ test("playground and snippets announce each spinner as a status with a visible l
 
 const VOID_ELEMENTS = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"]);
 
-// walks open tags since busy regions nest elements of their own tag, which a regex can't pair
 function skeletonsInsideBusyRegions(html) {
   const openElements = [];
   const skeletons = [];

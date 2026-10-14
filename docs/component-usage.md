@@ -96,7 +96,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Spinner
 
-- **Class:** `.elum-spinner` on a `<span>` with `role="status"` and a visible label, such as `Syncing replicas`
+- **Class:** `.elum-spinner` on a `<span>` with `role="status"` and a visible label.
 - Draws a cycling `|` `/` `-` `\` before the label. Screen readers skip the frames and announce the label.
 - Under `prefers-reduced-motion` the animation stops and the spinner shows a still `|`.
 
