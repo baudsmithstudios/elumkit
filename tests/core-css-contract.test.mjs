@@ -257,6 +257,7 @@ test("progress with no aria-valuenow slides an accent block across the meter tra
   assert.match(indeterminate, /animation:[^;]*\belum-progress\b[^;]*infinite/);
   assert.match(indeterminate, /background-image:\s*linear-gradient\(var\(--elum-color-accent\), var\(--elum-color-accent\)\)/);
   assert.match(indeterminate, /background-repeat:\s*no-repeat/);
+  assert.match(indeterminate, /background-size:\s*\d+% 100%/);
   assert.match(TELEMETRY_CSS, /@keyframes elum-progress\s*{[^}]*background-position-x:\s*100%/s);
 });
 
