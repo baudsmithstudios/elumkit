@@ -94,6 +94,19 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Status labels render with a same-color dot and short uppercase status text such as `READY` or `REVIEW`.
 - Default themes use a compact palette, so some tones may share a color.
 
+## Spinner
+
+- **Class:** `.elum-spinner` on a `<span>` with `role="status"` and a visible label.
+- Draws a cycling `|` `/` `-` `\` before the label. Screen readers skip the frames and announce the label.
+- Under `prefers-reduced-motion` the animation stops and the spinner shows a still `|`.
+
+## Skeleton
+
+- **Class:** `.elum-skeleton` on an empty element, inside a region marked `aria-busy="true"` while its content loads
+- Fills one line with a pulsing `░` shade that screen readers skip. Stack several for a paragraph or block, and set `width` to shorten a line.
+- The fill spans a full `--elum-container-width` at the base text size. Wider skeletons end short.
+- Under `prefers-reduced-motion` the pulse stops.
+
 ## System Bar
 
 - **Class:** `.elum-system-bar` on a `<section>` with an `aria-label`

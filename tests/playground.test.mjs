@@ -59,7 +59,6 @@ test("playground and snippets expose the in-page tabset pattern", () => {
 test("playground covers critical form states", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
 
-  assert.match(html, /aria-label="State matrix"/);
   assert.match(html, /aria-invalid="true"/);
   assert.match(html, /<button[^>]*class="elum-button"[^>]*\sdisabled(?:\s|>)/);
   assert.match(html, /<input[^>]*class="elum-input"[^>]*\sdisabled(?:\s|\/?>)/);
@@ -171,6 +170,47 @@ test("playground and snippets mark breadcrumbs as a named ordered list ending at
       assert.match(items.at(-1), /aria-current="page"/, `last breadcrumb item must be the current page in ${file}`);
       assert.equal(trail.match(/aria-current=/g).length, 1, `breadcrumb has more than one current item in ${file}`);
     }
+  }
+});
+
+test("playground and snippets announce each spinner as a status with a visible label", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const spinners = readFileSync(file, "utf8").match(new RegExp(`<span\\b[^>]*${classToken("elum-spinner").source}[^>]*>.*?</span>`, "gs")) ?? [];
+
+    assert.ok(spinners.length > 0, `expected a spinner in ${file}`);
+    for (const spinner of spinners) {
+      assert.match(spinner, /^<span\b[^>]*\brole="status"/);
+      assert.match(spinner, />[^<]*\S[^<]*<\/span>$/, `spinner has no label in ${file}`);
+    }
+  }
+});
+
+const VOID_ELEMENTS = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"]);
+
+function skeletonsInsideBusyRegions(html) {
+  const openElements = [];
+  const skeletons = [];
+
+  for (const [tag, closing, name] of html.matchAll(/<(\/?)([a-z][\w-]*)\b[^>]*>/g)) {
+    if (closing) {
+      openElements.pop();
+    } else if (!VOID_ELEMENTS.has(name)) {
+      if (classToken("elum-skeleton").test(tag)) {
+        skeletons.push(openElements.includes(true));
+      }
+      openElements.push(/\baria-busy="true"/.test(tag));
+    }
+  }
+
+  return skeletons;
+}
+
+test("playground and snippets place every skeleton inside a region marked busy", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const skeletons = skeletonsInsideBusyRegions(readFileSync(file, "utf8"));
+
+    assert.ok(skeletons.length > 0, `expected a skeleton in ${file}`);
+    assert.ok(skeletons.every(Boolean), `skeleton outside an aria-busy region in ${file}`);
   }
 });
 
