@@ -200,21 +200,21 @@
     </ul>
 
     <div class="elum-table-wrap">
-      <table class="elum-table">
-        <thead>
-          <tr>
-            <th scope="col">Service</th>
-            <th scope="col" data-column="status">Status</th>
-            <th scope="col" data-align="end">Latency</th>
-            <th scope="col" data-align="end">Actions</th>
+      <table class="elum-table" role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th scope="col" role="columnheader">Service</th>
+            <th scope="col" data-column="status" role="columnheader">Status</th>
+            <th scope="col" data-align="end" role="columnheader">Latency</th>
+            <th scope="col" data-align="end" role="columnheader">Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td data-label="Service">api-gateway</td>
-            <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
-            <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
-            <td data-label="Actions" data-align="end">
+        <tbody role="rowgroup">
+          <tr role="row">
+            <td data-label="Service" role="cell">api-gateway</td>
+            <td data-label="Status" data-column="status" role="cell"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
+            <td data-label="Latency" data-align="end" data-numeric="true" role="cell">42ms</td>
+            <td data-label="Actions" data-align="end" role="cell">
               <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-api-gateway" aria-label="Actions for api-gateway">⋯</button>
               <div class="elum-menu" id="menu-api-gateway" popover>
                 <a class="elum-menu-item" href="#">View logs</a>
@@ -223,11 +223,11 @@
               </div>
             </td>
           </tr>
-          <tr>
-            <td data-label="Service">worker-queue</td>
-            <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
-            <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
-            <td data-label="Actions" data-align="end">
+          <tr role="row">
+            <td data-label="Service" role="cell">worker-queue</td>
+            <td data-label="Status" data-column="status" role="cell"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
+            <td data-label="Latency" data-align="end" data-numeric="true" role="cell">118ms</td>
+            <td data-label="Actions" data-align="end" role="cell">
               <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-worker-queue" aria-label="Actions for worker-queue">⋯</button>
               <div class="elum-menu" id="menu-worker-queue" popover>
                 <a class="elum-menu-item" href="#">View logs</a>

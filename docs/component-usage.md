@@ -250,7 +250,8 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Wrapper:** `.elum-table-wrap`
 - **Table:** `.elum-table`
 - **Responsive narrow rows:** `data-label` on each cell
-- On narrow screens the table linearizes. The `data-label` text replaces table semantics.
+- On narrow screens the table linearizes. The `data-label` text is drawn as a visual label that screen readers skip, since they announce the column header instead.
+- **Roles:** add `role="table"` to the table, `role="rowgroup"` to `<thead>` and `<tbody>`, `role="row"` to each `<tr>`, `role="columnheader"` (or `rowheader`) to each `<th>`, and `role="cell"` to each `<td>`. Some browsers, notably Safari, drop native table semantics when the narrow layout changes the table's `display`. Explicit roles keep the headers announced.
 - **Numeric columns:** `data-numeric="true"` and `data-align="end"`
 - **Status column:** `data-column="status"` on header and cells to keep status output aligned
 

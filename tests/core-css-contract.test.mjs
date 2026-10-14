@@ -130,7 +130,8 @@ test("base CSS hardens against known cross-browser layout pitfalls", () => {
 
 test("table and row APIs expose responsive state hooks", () => {
   assert.match(DATA_CSS, /\.elum-row\[data-selected="true"\]/);
-  assert.match(DATA_CSS, /content:\s*attr\(data-label\);/);
+  // empty alt text: the table roles already announce the column header
+  assert.match(DATA_CSS, /content:\s*attr\(data-label\)\s*\/\s*"";/);
   assert.match(DATA_CSS, /\[data-column="status"\]/);
   assert.doesNotMatch(DATA_CSS, /\.elum-table thead\s*{[^}]*display:\s*none;/s);
   assert.match(DATA_CSS, /\.elum-table thead\s*{[^}]*clip-path:\s*inset\(50%\);/s);

@@ -109,6 +109,22 @@ test("example form controls expose accessible names", () => {
   }
 });
 
+test("playground and snippets give tables explicit roles, which survive the narrow-screen display change that drops native table semantics in some browsers", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const tables = readFileSync(file, "utf8").match(new RegExp(`<table\\b[^>]*${classToken("elum-table").source}[^>]*>.*?</table>`, "gs")) ?? [];
+
+    assert.ok(tables.length > 0, `expected a data table in ${file}`);
+    for (const table of tables) {
+      assert.match(table, /^<table\b[^>]*role="table"/);
+      for (const [tag, roles] of [["thead", "rowgroup"], ["tbody", "rowgroup"], ["tr", "row"], ["th", "columnheader|rowheader"], ["td", "cell"]]) {
+        for (const element of table.match(new RegExp(`<${tag}\\b[^>]*>`, "g")) ?? []) {
+          assert.match(element, new RegExp(`role="(?:${roles})"`), `missing role in ${file}: ${element}`);
+        }
+      }
+    }
+  }
+});
+
 test("selected row examples expose semantic state", () => {
   for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
     const html = readFileSync(file, "utf8");
