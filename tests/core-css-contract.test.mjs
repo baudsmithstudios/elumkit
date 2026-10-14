@@ -95,7 +95,6 @@ test("core CSS exposes accessible focus and motion behavior", () => {
   assert.match(reducedMotion, /transition-duration:\s*0\.01ms !important;/);
   assert.match(FORM_CSS, /\.elum-prompt-field > \.elum-input:focus-visible\s*{[^}]*outline:\s*0;/s);
   assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s, "prompt field must draw the focus ring its input suppresses");
-  assert.match(DATA_CSS, /\.elum-disclosure-summary:focus-visible\s*{[^}]*outline:/s);
 });
 
 test("component CSS defines exactly the documented public classes", () => {

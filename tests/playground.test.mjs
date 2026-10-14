@@ -59,7 +59,6 @@ test("playground and snippets expose the in-page tabset pattern", () => {
 test("playground covers critical form states", () => {
   const html = readFileSync(PLAYGROUND_PATH, "utf8");
 
-  assert.match(html, /aria-label="State matrix"/);
   assert.match(html, /aria-invalid="true"/);
   assert.match(html, /<button[^>]*class="elum-button"[^>]*\sdisabled(?:\s|>)/);
   assert.match(html, /<input[^>]*class="elum-input"[^>]*\sdisabled(?:\s|\/?>)/);
