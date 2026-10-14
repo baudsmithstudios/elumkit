@@ -110,6 +110,7 @@
     </style>
   </head>
   <body class="elum-shell">
+      <a class="elum-skip-link" href="#main">Skip to content</a>
       <nav class="elum-navbar" aria-label="Primary">
         <div class="elum-navbar-brand">
           Navigation
@@ -166,7 +167,7 @@
           </li>
         </ul>
       </nav>
-      <main class="elum-container elum-stack">
+      <main id="main" class="elum-container elum-stack">
       <header id="overview" class="elum-card elum-card-labeled playground-header">
         <div class="elum-card-header" data-inline="true">
           <div class="elum-card-title">Component system · V0.<span style="text-transform: none">x</span></div>
@@ -348,8 +349,8 @@
           <p>
             Badge state <span class="elum-badge" data-tone="warn">[WARNING]</span>
           </p>
-          <p>
-            <span class="elum-spinner" role="status">Syncing replicas</span>
+          <p role="status">
+            <span class="elum-spinner">Syncing replicas</span>
           </p>
           <div class="elum-stack" aria-busy="true">
             <div class="elum-skeleton"></div>

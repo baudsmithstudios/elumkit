@@ -173,13 +173,12 @@ test("playground and snippets mark breadcrumbs as a named ordered list ending at
   }
 });
 
-test("playground and snippets announce each spinner as a status with a visible label", () => {
+test("playground and snippets give each spinner a visible label", () => {
   for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
     const spinners = readFileSync(file, "utf8").match(new RegExp(`<span\\b[^>]*${classToken("elum-spinner").source}[^>]*>.*?</span>`, "gs")) ?? [];
 
     assert.ok(spinners.length > 0, `expected a spinner in ${file}`);
     for (const spinner of spinners) {
-      assert.match(spinner, /^<span\b[^>]*\brole="status"/);
       assert.match(spinner, />[^<]*\S[^<]*<\/span>$/, `spinner has no label in ${file}`);
     }
   }
@@ -200,30 +199,50 @@ test("playground and snippets show named determinate and indeterminate progress 
 
 const VOID_ELEMENTS = new Set(["area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr"]);
 
-function skeletonsInsideBusyRegions(html) {
+function insideRegions(html, className, regionAttribute) {
   const openElements = [];
-  const skeletons = [];
+  const matches = [];
 
   for (const [tag, closing, name] of html.matchAll(/<(\/?)([a-z][\w-]*)\b[^>]*>/g)) {
     if (closing) {
       openElements.pop();
     } else if (!VOID_ELEMENTS.has(name)) {
-      if (classToken("elum-skeleton").test(tag)) {
-        skeletons.push(openElements.includes(true));
+      if (classToken(className).test(tag)) {
+        matches.push(openElements.includes(true));
       }
-      openElements.push(/\baria-busy="true"/.test(tag));
+      openElements.push(regionAttribute.test(tag));
     }
   }
 
-  return skeletons;
+  return matches;
 }
 
 test("playground and snippets place every skeleton inside a region marked busy", () => {
   for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
-    const skeletons = skeletonsInsideBusyRegions(readFileSync(file, "utf8"));
+    const skeletons = insideRegions(readFileSync(file, "utf8"), "elum-skeleton", /\baria-busy="true"/);
 
     assert.ok(skeletons.length > 0, `expected a skeleton in ${file}`);
     assert.ok(skeletons.every(Boolean), `skeleton outside an aria-busy region in ${file}`);
+  }
+});
+
+test("playground and snippets place every spinner inside a status region that outlives it, so screen readers announce it", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const html = readFileSync(file, "utf8");
+    const spinners = insideRegions(html, "elum-spinner", /\brole="status"/);
+
+    assert.ok(spinners.every(Boolean), `spinner outside a role="status" region in ${file}`);
+    assert.doesNotMatch(html, new RegExp(`<[^>]*${classToken("elum-spinner").source}[^>]*role="status"|<[^>]*role="status"[^>]*${classToken("elum-spinner").source}`), `spinner carries its own status role in ${file}`);
+  }
+});
+
+test("playground and snippets open the app shell with a skip link to main", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const html = readFileSync(file, "utf8");
+    const target = html.match(new RegExp(`${classToken("elum-shell").source}[^>]*>\\s*<a\\b[^>]*${classToken("elum-skip-link").source}[^>]*href="#([^"]+)"`))?.[1];
+
+    assert.ok(target, `app shell does not open with a skip link in ${file}`);
+    assert.match(html, new RegExp(`<main\\b[^>]*\\bid="${target}"`), `skip link does not point at main in ${file}`);
   }
 });
 

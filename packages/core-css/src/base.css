@@ -150,6 +150,25 @@ a:focus-visible {
   max-width: none;
 }
 
+.elum-skip-link {
+  background: var(--elum-color-bg);
+  border-radius: var(--elum-radius-md);
+  inset-block-start: var(--elum-space-2);
+  inset-inline-start: var(--elum-space-2);
+  padding: var(--elum-space-2) var(--elum-space-3);
+  position: absolute;
+  /* above the sticky navbar */
+  z-index: 1000;
+}
+
+.elum-skip-link:not(:focus) {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 1px;
+}
+
 @media (max-width: 48rem) {
   .elum-shell {
     grid-template-columns: minmax(0, 1fr);

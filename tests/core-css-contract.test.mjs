@@ -291,6 +291,14 @@ test("app shell spans the navbar and footer edge to edge across both columns", (
   assert.match(spanning, /max-width:\s*none;/);
 });
 
+test("skip link stays out of the app shell grid and is hidden only until focused, so keyboard users can reach it", () => {
+  assert.match(BASE_CSS, /\.elum-skip-link\s*{[^}]*position:\s*absolute;/s);
+  const hidden = BASE_CSS.match(/\.elum-skip-link:not\(:focus\)\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(hidden, /clip-path:\s*inset\(50%\)/);
+  assert.doesNotMatch(hidden, /display:\s*none|visibility:\s*hidden/);
+});
+
 test("app shell stacks into one column on narrow screens", () => {
   assert.match(BASE_CSS, /@media \(max-width: 48rem\)\s*{\s*\.elum-shell\s*{[^}]*grid-template-columns:\s*minmax\(0, 1fr\);/s);
 });

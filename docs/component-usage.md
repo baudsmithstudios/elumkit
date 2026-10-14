@@ -10,7 +10,8 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## App Shell
 
-- **Wrapper:** `.elum-shell` on a block that directly contains, in order, a `.elum-navbar`, a `.elum-sidebar`, a `<main>`, and a `.elum-footer`.
+- **Wrapper:** `.elum-shell` on a block that directly contains, in order, a `.elum-skip-link`, a `.elum-navbar`, a `.elum-sidebar`, a `<main>`, and a `.elum-footer`.
+- **Skip link:** `.elum-skip-link` on an `<a href="#main">` pointing at an `id` on `<main>`. It stays hidden until focused, then appears over the navbar's top-left corner, so keyboard users can skip past the navbar and sidebar links.
 - The navbar and footer span the full width. The sidebar sits beside main at 14rem wide. Below 48rem everything stacks in that order.
 - The shell fills at least the viewport height, so the footer stays at the bottom on short pages.
 - `--elum-navbar-height` sets the navbar's minimum height and the offset the sidebar sticks below. Change it if your navbar content is taller.
@@ -96,9 +97,11 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Spinner
 
-- **Class:** `.elum-spinner` on a `<span>` with `role="status"` and a visible label.
+- **Class:** `.elum-spinner` on a `<span>` with a visible label, inside an element with `role="status"`.
+- **Announcements:** keep the `role="status"` element in the page and add or remove the spinner inside it. Screen readers often miss a status region that is inserted with its text already inside.
 - Draws a cycling `|` `/` `-` `\` before the label. Screen readers skip the frames and announce the label.
 - Under `prefers-reduced-motion` the animation stops and the spinner shows a still `|`.
+- **Motion:** remove the spinner when the work ends. WCAG 2.2.2 requires a way to stop motion that runs longer than 5 seconds beside usable content, so for work that can take longer, show determinate Progress or give users a way to stop it.
 
 ## Skeleton
 
@@ -106,6 +109,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Fills one line with a pulsing `░` shade that screen readers skip. Stack several for a paragraph or block, and set `width` to shorten a line.
 - The fill spans a full `--elum-container-width` at the base text size. Wider skeletons end short.
 - Under `prefers-reduced-motion` the pulse stops.
+- **Motion:** replace skeletons with content as soon as it loads. WCAG 2.2.2 requires a way to stop motion that runs longer than 5 seconds beside usable content, so a region that can stay loading longer needs a way to stop the pulse.
 
 ## System Bar
 
@@ -225,6 +229,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Markup:** the Meter markup with `role="progressbar"` on `.elum-meter-track`. Use Meter for a gauge (disk usage) and Progress for task completion.
 - **Determinate:** `aria-valuenow`, `aria-valuemin`, `aria-valuemax`, and `--elum-meter-fill-width`, as on Meter. Tones apply the same way.
 - **Indeterminate:** leave out `aria-valuenow` when the remaining work is unknown. An accent block slides across the track instead of a fill, and stays still at the track's start under reduced motion.
+- **Motion:** WCAG 2.2.2 requires a way to stop motion that runs longer than 5 seconds beside usable content. Switch an indeterminate bar to determinate once the remaining work is known, and remove it when the work ends.
 - **Label:** `aria-label` on the track element, or `aria-labelledby` pointing to a visible `.elum-meter-label`
 
 ## Data List
