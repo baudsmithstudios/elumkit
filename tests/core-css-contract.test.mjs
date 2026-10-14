@@ -206,6 +206,16 @@ test("segmented option shows focus and selection on its label, since the radio i
   assert.match(FORM_CSS, /\.elum-segmented-option:has\(:checked\)\s*{[^}]*background:/s);
 });
 
+test("segmented control brackets the checked option so selection isn't color-only, reserving bracket space on every option so nothing shifts", () => {
+  const reserved = FORM_CSS.match(/\.elum-segmented-option::before,\s*\.elum-segmented-option::after\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(FORM_CSS, /\.elum-segmented-option::before\s*{[^}]*content:\s*"\["\s*\/\s*"";/s);
+  assert.match(FORM_CSS, /\.elum-segmented-option::after\s*{[^}]*content:\s*"\]"\s*\/\s*"";/s);
+  // visibility, unlike a transparent color, stays hidden when forced colors repaint text
+  assert.match(reserved, /visibility:\s*hidden/);
+  assert.match(FORM_CSS, /\.elum-segmented-option:has\(:checked\)::before,\s*\.elum-segmented-option:has\(:checked\)::after\s*{[^}]*visibility:\s*visible/s);
+});
+
 test("segmented control marks the checked option with system colors in forced colors, which otherwise strip its fill", () => {
   const forced = FORM_CSS.match(/@media \(forced-colors: active\)\s*{\s*\.elum-segmented-option:has\(:checked\)\s*{([^}]*)}/s)?.[1] ?? "";
 

@@ -7,7 +7,7 @@
 - Dialog component: `.elum-dialog` on a native `<dialog>`,
 - Action Menu component: `.elum-menu` on a native popover opened by a `popovertarget` button.
 - Switch component: `.elum-switch` on a native checkbox with `role="switch"`.
-- Segmented Control component: `.elum-segmented` fieldset of radios styled as joined options.
+- Segmented Control component: `.elum-segmented` fieldset of radios styled as joined options, with the checked option bracketed.
 - Breadcrumb component: `.elum-breadcrumb` on a `<nav>` wrapping an ordered list of links.
 - App Shell layout: `.elum-shell` grid with a full-width navbar and footer around a sidebar and main.
 - Sidebar component: `.elum-sidebar` on a `<nav>`, sticky beside main, with optional grouped links.

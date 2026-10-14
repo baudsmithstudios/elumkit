@@ -63,6 +63,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Group:** `.elum-segmented` on a `<fieldset>`, named by `aria-label` or a `<legend class="elum-label">`
 - **Options:** `.elum-segmented-option` labels, each wrapping an `<input type="radio">`; all radios share one `name`
 - **State:** native `checked`; the radio is visually hidden but stays focusable, so Tab enters the group and arrow keys move the selection
+- **Checked option:** filled with the accent color and wrapped in `[` `]`, so selection doesn't rely on color alone. Every option reserves the bracket space, so the control doesn't shift when the selection changes. Screen readers skip the brackets.
 - **Disabled:** native `disabled` on the radio
 
 ## Card

@@ -162,10 +162,30 @@ fieldset.elum-field > .elum-label {
   border: var(--elum-border-width) solid var(--elum-color-border);
   color: var(--elum-color-muted);
   cursor: pointer;
+  /* a flex row trims the markup's whitespace inside the brackets */
+  display: inline-flex;
   font-size: var(--elum-text-sm);
   line-height: var(--elum-lh-tight);
   padding: var(--elum-space-2) var(--elum-space-3);
   position: relative;
+}
+
+.elum-segmented-option::before,
+.elum-segmented-option::after {
+  visibility: hidden;
+}
+
+.elum-segmented-option::before {
+  content: "[" / "";
+}
+
+.elum-segmented-option::after {
+  content: "]" / "";
+}
+
+.elum-segmented-option:has(:checked)::before,
+.elum-segmented-option:has(:checked)::after {
+  visibility: visible;
 }
 
 .elum-segmented-option + .elum-segmented-option {
