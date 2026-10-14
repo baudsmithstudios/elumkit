@@ -87,3 +87,39 @@
 .elum-status-label[data-tone="error"] {
   --elum-status-label-color: var(--elum-color-error);
 }
+
+.elum-spinner {
+  align-items: baseline;
+  display: inline-flex;
+  gap: var(--elum-space-2);
+}
+
+.elum-spinner::before {
+  animation: elum-spinner 0.52s steps(1) infinite;
+  color: var(--elum-color-accent);
+  content: "|" / "";
+}
+
+@keyframes elum-spinner {
+  0% { content: "|" / ""; }
+  25% { content: "/" / ""; }
+  50% { content: "-" / ""; }
+  75% { content: "\\" / ""; }
+}
+
+.elum-skeleton {
+  animation: elum-skeleton 1.6s ease-in-out infinite;
+  color: var(--elum-color-muted);
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.elum-skeleton::before {
+  /* enough cells to span a full-width container at the base text size */
+  content: "░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░" / "";
+}
+
+@keyframes elum-skeleton {
+  50% { opacity: 0.4; }
+}

@@ -227,6 +227,31 @@ test("current nav link is marked with the breadcrumb chevron, which screen reade
   assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
 });
 
+test("spinner cycles the | / - \\ frames with empty alt text so screen readers read only its label", () => {
+  const keyframes = FEEDBACK_CSS.match(/@keyframes elum-spinner\s*{(.*?)}\s*}/s)?.[1] ?? "";
+  const frames = [...keyframes.matchAll(/content:\s*"([^"]*)"\s*\/\s*"";/g)].map((match) => match[1]);
+
+  assert.deepEqual(frames, ["|", "/", "-", "\\\\"]);
+});
+
+test("spinner rests on a silent frame when the reduced-motion rule stops its animation", () => {
+  assert.match(FEEDBACK_CSS, /\.elum-spinner::before\s*{[^}]*animation:[^;]*\belum-spinner\b[^}]*content:\s*"\|"\s*\/\s*"";/s);
+});
+
+test("skeleton draws a ░ fill that screen readers skip and clips it at its own edge", () => {
+  assert.match(FEEDBACK_CSS, /\.elum-skeleton\s*{[^}]*overflow:\s*hidden;[^}]*white-space:\s*nowrap;/s);
+  assert.match(FEEDBACK_CSS, /\.elum-skeleton::before\s*{[^}]*content:\s*"░+"\s*\/\s*"";/s);
+});
+
+test("skeleton fill is long enough to span a full-width container at the base text size", () => {
+  const cells = FEEDBACK_CSS.match(/\.elum-skeleton::before\s*{[^}]*content:\s*"(░+)"/s)?.[1].length ?? 0;
+  const containerWidth = parseFloat(TOKENS_CSS.match(/--elum-container-width:\s*([\d.]+)rem;/)[1]);
+  const textSize = parseFloat(TOKENS_CSS.match(/--elum-text-md:\s*([\d.]+)rem;/)[1]);
+
+  // 0.55em is the narrowest cell in the font stack (Consolas)
+  assert.ok(cells * 0.55 * textSize >= containerWidth, `${cells} cells fall short of a ${containerWidth}rem container`);
+});
+
 test("code, kbd, and pre keep the theme font instead of the browser's generic monospace", () => {
   assert.match(BASE_CSS, /code,\s*kbd,\s*pre\s*{[^}]*font-family:\s*inherit;/s);
 });
