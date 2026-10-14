@@ -1,6 +1,12 @@
-<section class="elum-stack" aria-label="Project ElumKit snippets">
-  <nav class="elum-navbar">
+<div class="elum-shell">
+  <nav class="elum-navbar" aria-label="Primary">
     <div class="elum-navbar-brand">Navigation</div>
+    <span class="elum-system-bar-group">
+      <span class="elum-system-bar-item">
+        <span class="elum-system-bar-key">state</span>
+        <span class="elum-system-bar-value">[READY]</span>
+      </span>
+    </span>
     <section class="elum-navlinks">
       <a class="elum-navlink" href="#" aria-current="page">home</a>
       <a class="elum-navlink" href="#">devices</a>
@@ -8,339 +14,354 @@
     </section>
   </nav>
 
-  <nav class="elum-breadcrumb" aria-label="Breadcrumb">
-    <ol>
-      <li><a href="#">pipelines</a></li>
-      <li><a href="#">deploy-api</a></li>
-      <li><a href="#" aria-current="page">run-1842</a></li>
-    </ol>
+  <nav class="elum-sidebar" aria-label="Sections">
+    <ul>
+      <li><a class="elum-navlink" href="#" aria-current="page">overview</a></li>
+      <li>
+        <h2>Build</h2>
+        <ul>
+          <li><a class="elum-navlink" href="#">pipelines</a></li>
+          <li><a class="elum-navlink" href="#">runners</a></li>
+        </ul>
+      </li>
+    </ul>
   </nav>
 
-  <article class="elum-card elum-card-labeled elum-stack">
-    <header class="elum-card-header">
-      <h2 class="elum-card-title">Card Title</h2>
-    </header>
-    <p class="elum-card-subtitle">Dense, readable surface content.</p>
-    <p>Use cards for grouped content, settings sections, and compact panels.</p>
-    <p>Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search, or set <code>retries</code> in <code>config.yaml</code>.</p>
-    <p>Badge state <span class="elum-badge" data-tone="warn">[WARNING]</span></p>
-    <button class="elum-button" data-variant="tertiary" type="button">Tertiary Button</button>
-    <button class="elum-button" type="button">Secondary Button</button>
-    <button class="elum-button" data-variant="primary" type="button">Primary Button</button>
-  </article>
+  <main class="elum-container elum-stack">
+    <nav class="elum-breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="#">pipelines</a></li>
+        <li><a href="#">deploy-api</a></li>
+        <li><a href="#" aria-current="page">run-1842</a></li>
+      </ol>
+    </nav>
 
-  <form class="elum-stack" action="#" method="post">
-    <div class="elum-field">
-      <label class="elum-label" for="name">Name</label>
-      <span class="elum-prompt-field">
-        <span class="elum-input-prompt" aria-hidden="true">&gt;</span>
-        <input class="elum-input" id="name" name="name" type="text" placeholder="input_" />
-      </span>
-    </div>
+    <article class="elum-card elum-card-labeled elum-stack">
+      <header class="elum-card-header">
+        <h2 class="elum-card-title">Card Title</h2>
+      </header>
+      <p class="elum-card-subtitle">Dense, readable surface content.</p>
+      <p>Use cards for grouped content, settings sections, and compact panels.</p>
+      <p>Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search, or set <code>retries</code> in <code>config.yaml</code>.</p>
+      <p>Badge state <span class="elum-badge" data-tone="warn">[WARNING]</span></p>
+      <button class="elum-button" data-variant="tertiary" type="button">Tertiary Button</button>
+      <button class="elum-button" type="button">Secondary Button</button>
+      <button class="elum-button" data-variant="primary" type="button">Primary Button</button>
+    </article>
 
-    <div class="elum-field-float">
-      <input class="elum-input" id="label" name="label" type="text" placeholder=" " />
-      <label class="elum-label" for="label">Label</label>
-    </div>
-
-    <div class="elum-field">
-      <label class="elum-label" for="role">Role</label>
-      <select class="elum-select" id="role" name="role">
-        <option>Operator</option>
-        <option>Analyst</option>
-      </select>
-    </div>
-
-    <div class="elum-field">
-      <label class="elum-label" for="notes">Notes</label>
-      <textarea class="elum-textarea" id="notes" name="notes" placeholder="status update"></textarea>
-    </div>
-
-    <label class="elum-choice" for="notify">
-      <input class="elum-checkbox" id="notify" name="notify" type="checkbox" />
-      Send notifications
-    </label>
-
-    <label class="elum-choice" for="auto-restart">
-      <input class="elum-switch" id="auto-restart" name="auto-restart" type="checkbox" role="switch" checked />
-      Auto-restart
-    </label>
-
-    <fieldset class="elum-field">
-      <legend class="elum-label">Mode</legend>
-      <label class="elum-choice" for="mode-monitor">
-        <input class="elum-radio" id="mode-monitor" name="mode" type="radio" value="monitor" checked />
-        Monitor
-      </label>
-      <label class="elum-choice" for="mode-guard">
-        <input class="elum-radio" id="mode-guard" name="mode" type="radio" value="guard" />
-        Guard
-      </label>
-    </fieldset>
-  </form>
-
-  <aside class="elum-alert" data-tone="warn" role="status">
-    Disk usage crossed the configured warning threshold.
-  </aside>
-
-  <section class="elum-system-bar" aria-label="System status">
-    <strong class="elum-system-bar-brand">ElumKit</strong>
-    <span class="elum-system-bar-group">
-      <span class="elum-system-bar-item">
-        <span class="elum-system-bar-key">theme</span>
-        <span class="elum-system-bar-value">[IRON]</span>
-      </span>
-      <span class="elum-system-bar-item">
-        <span class="elum-system-bar-key">state</span>
-        <span class="elum-system-bar-value">[READY]</span>
-      </span>
-    </span>
-  </section>
-
-  <div class="elum-metrics" aria-label="Runtime metrics">
-    <div class="elum-metric">
-      <span class="elum-metric-label">Load</span>
-      <span class="elum-metric-value">0.42</span>
-      <span class="elum-metric-unit">avg</span>
-    </div>
-    <div class="elum-metric">
-      <span class="elum-metric-label">Memory</span>
-      <span class="elum-metric-value">64</span>
-      <span class="elum-metric-unit">%</span>
-    </div>
-  </div>
-
-  <div class="elum-metrics" data-layout="tiles" aria-label="Service KPIs">
-    <div class="elum-metric" data-tone="success">
-      <span class="elum-metric-label">Uptime</span>
-      <span class="elum-metric-value">99.98</span>
-      <span class="elum-metric-unit">%</span>
-    </div>
-    <div class="elum-metric">
-      <span class="elum-metric-label">P95</span>
-      <span class="elum-metric-value">320</span>
-      <span class="elum-metric-unit">ms</span>
-    </div>
-  </div>
-
-  <div class="elum-meter">
-    <div class="elum-meter-header">
-      <span class="elum-meter-label">Memory</span>
-      <span class="elum-meter-value">64%</span>
-    </div>
-    <div class="elum-meter-track" role="meter" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Memory usage" style="--elum-meter-fill-width: 64%"></div>
-  </div>
-
-  <ul class="elum-list" role="list" aria-label="Service rows">
-    <li>
-      <a class="elum-row" href="#" data-selected="true" aria-current="true">
-        <span class="elum-row-main">
-          <span class="elum-row-title">api-gateway</span>
-          <span class="elum-row-meta">edge cluster :: [HEALTHY]</span>
+    <form class="elum-stack" action="#" method="post">
+      <div class="elum-field">
+        <label class="elum-label" for="name">Name</label>
+        <span class="elum-prompt-field">
+          <span class="elum-input-prompt" aria-hidden="true">&gt;</span>
+          <input class="elum-input" id="name" name="name" type="text" placeholder="input_" />
         </span>
-        <span class="elum-row-value">99.9%</span>
-      </a>
-    </li>
-    <li>
-      <a class="elum-row" href="#">
-        <span class="elum-row-main">
-          <span class="elum-row-title">worker-queue</span>
-          <span class="elum-row-meta">background jobs :: [DELAYED]</span>
-        </span>
-        <span class="elum-row-value">42ms</span>
-      </a>
-    </li>
-  </ul>
+      </div>
 
-  <div class="elum-table-wrap">
-    <table class="elum-table">
-      <thead>
-        <tr>
-          <th scope="col">Service</th>
-          <th scope="col" data-column="status">Status</th>
-          <th scope="col" data-align="end">Latency</th>
-          <th scope="col" data-align="end">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td data-label="Service">api-gateway</td>
-          <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
-          <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
-          <td data-label="Actions" data-align="end">
-            <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-api-gateway" aria-label="Actions for api-gateway">⋯</button>
-            <div class="elum-menu" id="menu-api-gateway" popover>
-              <a class="elum-menu-item" href="#">View logs</a>
-              <button class="elum-menu-item" type="button">Restart</button>
-              <button class="elum-menu-item" type="button">Drain</button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td data-label="Service">worker-queue</td>
-          <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
-          <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
-          <td data-label="Actions" data-align="end">
-            <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-worker-queue" aria-label="Actions for worker-queue">⋯</button>
-            <div class="elum-menu" id="menu-worker-queue" popover>
-              <a class="elum-menu-item" href="#">View logs</a>
-              <button class="elum-menu-item" type="button">Restart</button>
-              <button class="elum-menu-item" type="button">Drain</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <div class="elum-field-float">
+        <input class="elum-input" id="label" name="label" type="text" placeholder=" " />
+        <label class="elum-label" for="label">Label</label>
+      </div>
 
-  <form class="elum-query" role="search" aria-label="Service filters" action="#" method="get">
-    <div class="elum-field">
-      <label class="elum-label" for="snippet-service-query">Search services</label>
-      <input class="elum-input" id="snippet-service-query" name="q" type="search" placeholder="api, queue, cache" />
-    </div>
-    <div class="elum-field">
-      <label class="elum-label" for="snippet-service-status">Status</label>
-      <select class="elum-select" id="snippet-service-status" name="status">
-        <option>Any status</option>
-        <option>Healthy</option>
-        <option>Delayed</option>
-      </select>
-    </div>
-    <button class="elum-button" type="submit">Apply</button>
-  </form>
+      <div class="elum-field">
+        <label class="elum-label" for="role">Role</label>
+        <select class="elum-select" id="role" name="role">
+          <option>Operator</option>
+          <option>Analyst</option>
+        </select>
+      </div>
 
-  <nav class="elum-pagination" aria-label="Pagination">
-    <button class="elum-button" data-variant="tertiary" type="button" aria-label="Previous page">Prev</button>
-    <span class="elum-pagination-status">2 of 4</span>
-    <button class="elum-button" data-variant="tertiary" type="button" aria-label="Next page">Next</button>
-  </nav>
+      <div class="elum-field">
+        <label class="elum-label" for="notes">Notes</label>
+        <textarea class="elum-textarea" id="notes" name="notes" placeholder="status update"></textarea>
+      </div>
 
-  <div class="elum-empty">
-    <div class="elum-empty-title">No results</div>
-    <p class="elum-empty-message">Adjust the filters and try again.</p>
-  </div>
+      <label class="elum-choice" for="notify">
+        <input class="elum-checkbox" id="notify" name="notify" type="checkbox" />
+        Send notifications
+      </label>
 
-  <details class="elum-disclosure">
-    <summary class="elum-disclosure-summary">Restore step details</summary>
-    <div class="elum-disclosure-content">
-      Started at 10:42 and completed without recorded failures.
-    </div>
-  </details>
+      <label class="elum-choice" for="auto-restart">
+        <input class="elum-switch" id="auto-restart" name="auto-restart" type="checkbox" role="switch" checked />
+        Auto-restart
+      </label>
 
-  <dl class="elum-detail-list">
-    <div class="elum-detail">
-      <dt class="elum-detail-term">Run ID</dt>
-      <dd class="elum-detail-value">1842</dd>
-    </div>
-    <div class="elum-detail">
-      <dt class="elum-detail-term">Status</dt>
-      <dd class="elum-detail-value"><span class="elum-status-label" data-tone="success">passed</span></dd>
-    </div>
-    <div class="elum-detail">
-      <dt class="elum-detail-term">Duration</dt>
-      <dd class="elum-detail-value">42s</dd>
-    </div>
-  </dl>
-
-  <!-- Tabs need additional JS. Copy packages/core-js/src/tabs.js and load it
-       with <script src="/assets/elumkit/tabs.js" defer></script>. Without it, all panels stay visible. -->
-  <div class="elum-tabs" role="tablist" aria-label="Service views">
-    <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents">Incidents</button>
-    <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime">Uptime</button>
-  </div>
-
-  <div id="panel-incidents" role="tabpanel" aria-labelledby="tab-incidents">Incident content here.</div>
-  <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime">Uptime content here.</div>
-
-  <div class="elum-toolbar" role="group" aria-label="Page actions">
-    <div class="elum-toolbar-group">
-      <button class="elum-button" type="button">Refresh</button>
-      <button class="elum-button" type="button">Export</button>
-      <fieldset class="elum-segmented" aria-label="Time range">
-        <label class="elum-segmented-option" for="range-1h">
-          <input id="range-1h" name="range" type="radio" value="1h" checked />
-          1h
+      <fieldset class="elum-field">
+        <legend class="elum-label">Mode</legend>
+        <label class="elum-choice" for="mode-monitor">
+          <input class="elum-radio" id="mode-monitor" name="mode" type="radio" value="monitor" checked />
+          Monitor
         </label>
-        <label class="elum-segmented-option" for="range-24h">
-          <input id="range-24h" name="range" type="radio" value="24h" />
-          24h
-        </label>
-        <label class="elum-segmented-option" for="range-7d">
-          <input id="range-7d" name="range" type="radio" value="7d" />
-          7d
+        <label class="elum-choice" for="mode-guard">
+          <input class="elum-radio" id="mode-guard" name="mode" type="radio" value="guard" />
+          Guard
         </label>
       </fieldset>
-    </div>
-    <div class="elum-toolbar-group" data-align="end">
-      <span class="elum-toolbar-label">freshness</span>
-      <span class="elum-toolbar-value">10:42</span>
-    </div>
-  </div>
-
-  <h2 class="elum-separator-labeled">System Status</h2>
-  <ul class="elum-feed">
-    <li class="elum-feed-item" data-tone="error">
-      <span>Backup job failed on node-03</span>
-      <span class="elum-feed-meta">10:42</span>
-    </li>
-    <li class="elum-feed-item" data-tone="warn">
-      <span>Disk usage above 90%</span>
-      <span class="elum-feed-meta">10:31</span>
-    </li>
-    <li class="elum-feed-item" data-tone="success">
-      <span>Restore verified</span>
-      <span class="elum-feed-meta">09:58</span>
-    </li>
-  </ul>
-
-  <h2 class="elum-separator-labeled">Restore Log</h2>
-  <figure class="elum-output">
-    <figcaption class="elum-output-meta">
-      <span>$ restore --verify snapshot-04</span>
-      <button class="elum-output-copy" type="button">Copy</button>
-    </figcaption>
-    <pre class="elum-output-body">ok • 012 chunks verified against manifest sha256:9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
-warn 001 chunk requeued
-done in 4.20s</pre>
-  </figure>
-
-  <h2 class="elum-separator-labeled">Dialog</h2>
-  <button class="elum-button" type="button" commandfor="confirm-restart" command="show-modal">Restart node</button>
-  <dialog class="elum-dialog" id="confirm-restart" aria-labelledby="confirm-restart-title">
-    <h2 class="elum-dialog-title" id="confirm-restart-title">Restart node-03?</h2>
-    <p>Active jobs on node-03 will be requeued.</p>
-    <form class="elum-dialog-actions" method="post" action="/nodes/node-03/restart">
-      <button class="elum-button" type="button" commandfor="confirm-restart" command="close">Cancel</button>
-      <button class="elum-button" type="submit" data-variant="primary">Restart</button>
     </form>
-  </dialog>
 
-  <button class="elum-button" type="button" commandfor="node-details" command="show-modal">Node details</button>
-  <dialog class="elum-dialog" id="node-details" data-placement="end" aria-labelledby="node-details-title">
-    <h2 class="elum-dialog-title" id="node-details-title">node-03</h2>
+    <aside class="elum-alert" data-tone="warn" role="status">
+      Disk usage crossed the configured warning threshold.
+    </aside>
+
+    <section class="elum-system-bar" aria-label="System status">
+      <strong class="elum-system-bar-brand">ElumKit</strong>
+      <span class="elum-system-bar-group">
+        <span class="elum-system-bar-item">
+          <span class="elum-system-bar-key">theme</span>
+          <span class="elum-system-bar-value">[IRON]</span>
+        </span>
+        <span class="elum-system-bar-item">
+          <span class="elum-system-bar-key">state</span>
+          <span class="elum-system-bar-value">[READY]</span>
+        </span>
+      </span>
+    </section>
+
+    <div class="elum-metrics" aria-label="Runtime metrics">
+      <div class="elum-metric">
+        <span class="elum-metric-label">Load</span>
+        <span class="elum-metric-value">0.42</span>
+        <span class="elum-metric-unit">avg</span>
+      </div>
+      <div class="elum-metric">
+        <span class="elum-metric-label">Memory</span>
+        <span class="elum-metric-value">64</span>
+        <span class="elum-metric-unit">%</span>
+      </div>
+    </div>
+
+    <div class="elum-metrics" data-layout="tiles" aria-label="Service KPIs">
+      <div class="elum-metric" data-tone="success">
+        <span class="elum-metric-label">Uptime</span>
+        <span class="elum-metric-value">99.98</span>
+        <span class="elum-metric-unit">%</span>
+      </div>
+      <div class="elum-metric">
+        <span class="elum-metric-label">P95</span>
+        <span class="elum-metric-value">320</span>
+        <span class="elum-metric-unit">ms</span>
+      </div>
+    </div>
+
+    <div class="elum-meter">
+      <div class="elum-meter-header">
+        <span class="elum-meter-label">Memory</span>
+        <span class="elum-meter-value">64%</span>
+      </div>
+      <div class="elum-meter-track" role="meter" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100" aria-label="Memory usage" style="--elum-meter-fill-width: 64%"></div>
+    </div>
+
+    <ul class="elum-list" role="list" aria-label="Service rows">
+      <li>
+        <a class="elum-row" href="#" data-selected="true" aria-current="true">
+          <span class="elum-row-main">
+            <span class="elum-row-title">api-gateway</span>
+            <span class="elum-row-meta">edge cluster :: [HEALTHY]</span>
+          </span>
+          <span class="elum-row-value">99.9%</span>
+        </a>
+      </li>
+      <li>
+        <a class="elum-row" href="#">
+          <span class="elum-row-main">
+            <span class="elum-row-title">worker-queue</span>
+            <span class="elum-row-meta">background jobs :: [DELAYED]</span>
+          </span>
+          <span class="elum-row-value">42ms</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="elum-table-wrap">
+      <table class="elum-table">
+        <thead>
+          <tr>
+            <th scope="col">Service</th>
+            <th scope="col" data-column="status">Status</th>
+            <th scope="col" data-align="end">Latency</th>
+            <th scope="col" data-align="end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Service">api-gateway</td>
+            <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
+            <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
+            <td data-label="Actions" data-align="end">
+              <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-api-gateway" aria-label="Actions for api-gateway">⋯</button>
+              <div class="elum-menu" id="menu-api-gateway" popover>
+                <a class="elum-menu-item" href="#">View logs</a>
+                <button class="elum-menu-item" type="button">Restart</button>
+                <button class="elum-menu-item" type="button">Drain</button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td data-label="Service">worker-queue</td>
+            <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
+            <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
+            <td data-label="Actions" data-align="end">
+              <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-worker-queue" aria-label="Actions for worker-queue">⋯</button>
+              <div class="elum-menu" id="menu-worker-queue" popover>
+                <a class="elum-menu-item" href="#">View logs</a>
+                <button class="elum-menu-item" type="button">Restart</button>
+                <button class="elum-menu-item" type="button">Drain</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <form class="elum-query" role="search" aria-label="Service filters" action="#" method="get">
+      <div class="elum-field">
+        <label class="elum-label" for="snippet-service-query">Search services</label>
+        <input class="elum-input" id="snippet-service-query" name="q" type="search" placeholder="api, queue, cache" />
+      </div>
+      <div class="elum-field">
+        <label class="elum-label" for="snippet-service-status">Status</label>
+        <select class="elum-select" id="snippet-service-status" name="status">
+          <option>Any status</option>
+          <option>Healthy</option>
+          <option>Delayed</option>
+        </select>
+      </div>
+      <button class="elum-button" type="submit">Apply</button>
+    </form>
+
+    <nav class="elum-pagination" aria-label="Pagination">
+      <button class="elum-button" data-variant="tertiary" type="button" aria-label="Previous page">Prev</button>
+      <span class="elum-pagination-status">2 of 4</span>
+      <button class="elum-button" data-variant="tertiary" type="button" aria-label="Next page">Next</button>
+    </nav>
+
+    <div class="elum-empty">
+      <div class="elum-empty-title">No results</div>
+      <p class="elum-empty-message">Adjust the filters and try again.</p>
+    </div>
+
+    <details class="elum-disclosure">
+      <summary class="elum-disclosure-summary">Restore step details</summary>
+      <div class="elum-disclosure-content">
+        Started at 10:42 and completed without recorded failures.
+      </div>
+    </details>
+
     <dl class="elum-detail-list">
       <div class="elum-detail">
-        <dt class="elum-detail-term">Status</dt>
-        <dd class="elum-detail-value"><span class="elum-status-label" data-tone="warn">degraded</span></dd>
+        <dt class="elum-detail-term">Run ID</dt>
+        <dd class="elum-detail-value">1842</dd>
       </div>
       <div class="elum-detail">
-        <dt class="elum-detail-term">Region</dt>
-        <dd class="elum-detail-value">us-west-2</dd>
+        <dt class="elum-detail-term">Status</dt>
+        <dd class="elum-detail-value"><span class="elum-status-label" data-tone="success">passed</span></dd>
+      </div>
+      <div class="elum-detail">
+        <dt class="elum-detail-term">Duration</dt>
+        <dd class="elum-detail-value">42s</dd>
       </div>
     </dl>
-    <div class="elum-dialog-actions">
-      <button class="elum-button" type="button" commandfor="node-details" command="close">Close</button>
-    </div>
-  </dialog>
 
-  <div class="elum-toolbar" role="group" aria-label="Status summary">
-    <div class="elum-toolbar-group">
-      <span class="elum-toolbar-value">ready</span>
-      <hr class="elum-separator" data-orientation="vertical" />
-      <span class="elum-toolbar-value">3 nodes</span>
+    <!-- Tabs need additional JS. Copy packages/core-js/src/tabs.js and load it
+         with <script src="/assets/elumkit/tabs.js" defer></script>. Without it, all panels stay visible. -->
+    <div class="elum-tabs" role="tablist" aria-label="Service views">
+      <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents">Incidents</button>
+      <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime">Uptime</button>
     </div>
-  </div>
-  <hr class="elum-separator" />
+
+    <div id="panel-incidents" role="tabpanel" aria-labelledby="tab-incidents">Incident content here.</div>
+    <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime">Uptime content here.</div>
+
+    <div class="elum-toolbar" role="group" aria-label="Page actions">
+      <div class="elum-toolbar-group">
+        <button class="elum-button" type="button">Refresh</button>
+        <button class="elum-button" type="button">Export</button>
+        <fieldset class="elum-segmented" aria-label="Time range">
+          <label class="elum-segmented-option" for="range-1h">
+            <input id="range-1h" name="range" type="radio" value="1h" checked />
+            1h
+          </label>
+          <label class="elum-segmented-option" for="range-24h">
+            <input id="range-24h" name="range" type="radio" value="24h" />
+            24h
+          </label>
+          <label class="elum-segmented-option" for="range-7d">
+            <input id="range-7d" name="range" type="radio" value="7d" />
+            7d
+          </label>
+        </fieldset>
+      </div>
+      <div class="elum-toolbar-group" data-align="end">
+        <span class="elum-toolbar-label">freshness</span>
+        <span class="elum-toolbar-value">10:42</span>
+      </div>
+    </div>
+
+    <h2 class="elum-separator-labeled">System Status</h2>
+    <ul class="elum-feed">
+      <li class="elum-feed-item" data-tone="error">
+        <span>Backup job failed on node-03</span>
+        <span class="elum-feed-meta">10:42</span>
+      </li>
+      <li class="elum-feed-item" data-tone="warn">
+        <span>Disk usage above 90%</span>
+        <span class="elum-feed-meta">10:31</span>
+      </li>
+      <li class="elum-feed-item" data-tone="success">
+        <span>Restore verified</span>
+        <span class="elum-feed-meta">09:58</span>
+      </li>
+    </ul>
+
+    <h2 class="elum-separator-labeled">Restore Log</h2>
+    <figure class="elum-output">
+      <figcaption class="elum-output-meta">
+        <span>$ restore --verify snapshot-04</span>
+        <button class="elum-output-copy" type="button">Copy</button>
+      </figcaption>
+      <pre class="elum-output-body">ok • 012 chunks verified against manifest sha256:9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
+  warn 001 chunk requeued
+  done in 4.20s</pre>
+    </figure>
+
+    <h2 class="elum-separator-labeled">Dialog</h2>
+    <button class="elum-button" type="button" commandfor="confirm-restart" command="show-modal">Restart node</button>
+    <dialog class="elum-dialog" id="confirm-restart" aria-labelledby="confirm-restart-title">
+      <h2 class="elum-dialog-title" id="confirm-restart-title">Restart node-03?</h2>
+      <p>Active jobs on node-03 will be requeued.</p>
+      <form class="elum-dialog-actions" method="post" action="/nodes/node-03/restart">
+        <button class="elum-button" type="button" commandfor="confirm-restart" command="close">Cancel</button>
+        <button class="elum-button" type="submit" data-variant="primary">Restart</button>
+      </form>
+    </dialog>
+
+    <button class="elum-button" type="button" commandfor="node-details" command="show-modal">Node details</button>
+    <dialog class="elum-dialog" id="node-details" data-placement="end" aria-labelledby="node-details-title">
+      <h2 class="elum-dialog-title" id="node-details-title">node-03</h2>
+      <dl class="elum-detail-list">
+        <div class="elum-detail">
+          <dt class="elum-detail-term">Status</dt>
+          <dd class="elum-detail-value"><span class="elum-status-label" data-tone="warn">degraded</span></dd>
+        </div>
+        <div class="elum-detail">
+          <dt class="elum-detail-term">Region</dt>
+          <dd class="elum-detail-value">us-west-2</dd>
+        </div>
+      </dl>
+      <div class="elum-dialog-actions">
+        <button class="elum-button" type="button" commandfor="node-details" command="close">Close</button>
+      </div>
+    </dialog>
+
+    <div class="elum-toolbar" role="group" aria-label="Status summary">
+      <div class="elum-toolbar-group">
+        <span class="elum-toolbar-value">ready</span>
+        <hr class="elum-separator" data-orientation="vertical" />
+        <span class="elum-toolbar-value">3 nodes</span>
+      </div>
+    </div>
+    <hr class="elum-separator" />
+  </main>
 
   <footer class="elum-footer">
     <p class="elum-footer-brand">©2026 Baudsmith Studios</p>
@@ -350,4 +371,4 @@ done in 4.20s</pre>
       <a class="elum-footer-link" href="#">Link Three</a>
     </div>
   </footer>
-</section>
+</div>

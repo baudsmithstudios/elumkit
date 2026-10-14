@@ -132,6 +132,27 @@ kbd::after {
   grid-template-columns: repeat(auto-fit, minmax(min(var(--elum-grid-min), 100%), 1fr));
 }
 
+.elum-shell {
+  display: grid;
+  grid-template-columns: 14rem minmax(0, 1fr);
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+.elum-shell > .elum-navbar,
+.elum-shell > .elum-footer {
+  grid-column: 1 / -1;
+  margin: 0;
+  max-width: none;
+}
+
+@media (max-width: 48rem) {
+  .elum-shell {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+  }
+}
+
 img, picture, video, canvas {
   display: block;
   max-width: 100%;

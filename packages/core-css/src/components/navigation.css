@@ -2,8 +2,9 @@
   align-items: center;
   justify-content: space-between;
   display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
+  flex-wrap: wrap;
+  gap: var(--elum-space-2) calc(var(--elum-space-4) * 2);
+  min-height: var(--elum-navbar-height);
   padding: var(--elum-space-3) calc(var(--elum-container-padding-inline) + var(--elum-space-4));
   margin-bottom: 1.5rem;
   position: sticky;
@@ -30,6 +31,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: var(--elum-lh-tight);
+  margin-inline-end: auto;
   padding: 0;
   text-transform: uppercase;
 }
@@ -37,7 +39,7 @@
 .elum-navlinks {
   align-items: center;
   display: flex;
-  gap: var(--elum-space-4);
+  gap: calc(var(--elum-space-4) * 1.5);
 }
 
 .elum-navlink {
@@ -55,12 +57,15 @@
 
 .elum-navlink[aria-current="page"]::before {
   color: currentColor;
-  content: ">";
+  content: "›" / "";
+  font-size: 1.5em;
   font-weight: 700;
-  inset-inline-start: calc(-1 * var(--elum-space-3) - 0.125rem);
+  inset-inline-end: calc(100% + var(--elum-space-1));
+  line-height: 1;
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  /* the chevron sits at x-height, below the center of the uppercase link text */
+  transform: translateY(-55%);
 }
 
 .elum-navlink:hover {
@@ -99,4 +104,44 @@
 .elum-breadcrumb [aria-current="page"] {
   color: var(--elum-color-fg);
   text-decoration: none;
+}
+
+.elum-sidebar {
+  border-inline-end: var(--elum-border-width) solid var(--elum-color-border);
+}
+
+.elum-sidebar ul {
+  display: grid;
+  gap: var(--elum-space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.elum-sidebar > ul {
+  padding: var(--elum-space-4) var(--elum-space-4) var(--elum-space-4) calc(var(--elum-container-padding-inline) + var(--elum-space-4));
+}
+
+.elum-sidebar h2 {
+  color: var(--elum-color-muted);
+  font-size: var(--elum-text-xs);
+  letter-spacing: 0.08em;
+  margin-block: var(--elum-space-3) var(--elum-space-1);
+  text-transform: uppercase;
+}
+
+@media (min-width: 48.001rem) {
+  .elum-sidebar > ul {
+    max-height: calc(100vh - var(--elum-navbar-height));
+    overflow-y: auto;
+    position: sticky;
+    top: var(--elum-navbar-height);
+  }
+}
+
+@media (max-width: 48rem) {
+  .elum-sidebar {
+    border-bottom: var(--elum-border-width) solid var(--elum-color-border);
+    border-inline-end: 0;
+  }
 }

@@ -27,6 +27,8 @@
   --elum-container-padding-inline: clamp(1rem, 3vw, 2rem);
   --elum-container-padding-block: 1rem;
 
+  --elum-navbar-height: 2.75rem;
+
   --elum-grid-min: 16rem;
 }
 

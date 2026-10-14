@@ -165,3 +165,28 @@ test("playground and snippets mark breadcrumbs as a named ordered list ending at
     }
   }
 });
+
+function sidebars(html) {
+  return html.match(new RegExp(`<nav\\b[^>]*${classToken("elum-sidebar").source}[^>]*>.*?</nav>`, "gs")) ?? [];
+}
+
+test("playground and snippets name the sidebar and mark exactly one current page in it", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const navs = sidebars(readFileSync(file, "utf8"));
+
+    assert.ok(navs.length > 0, `expected a sidebar in ${file}`);
+    for (const nav of navs) {
+      assert.match(nav, /^<nav\b[^>]*aria-label="[^"]+"/);
+      assert.equal(nav.match(/aria-current="page"/g)?.length, 1, `sidebar needs exactly one current page in ${file}`);
+    }
+  }
+});
+
+test("playground sidebar links all land on a section of the page", () => {
+  const html = readFileSync(PLAYGROUND_PATH, "utf8");
+  const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
+  const targets = [...sidebars(html)[0].matchAll(/href="#([^"]*)"/g)].map((match) => match[1]);
+
+  assert.ok(targets.length > 0, "playground sidebar has no section links");
+  assert.deepEqual(targets.filter((target) => !ids.has(target)), [], "sidebar links point at missing ids");
+});

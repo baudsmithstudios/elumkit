@@ -9,10 +9,20 @@
 - Switch component: `.elum-switch` on a native checkbox with `role="switch"`.
 - Segmented Control component: `.elum-segmented` fieldset of radios styled as joined options.
 - Breadcrumb component: `.elum-breadcrumb` on a `<nav>` wrapping an ordered list of links.
+- App Shell layout: `.elum-shell` grid with a full-width navbar and footer around a sidebar and main.
+- Sidebar component: `.elum-sidebar` on a `<nav>`, sticky beside main, with optional grouped links.
+- Navbar can hold `.elum-system-bar-group` status items between the brand and links.
+- `--elum-navbar-height` token for the navbar's minimum height and the sidebar's sticky offset.
 - Base styles for `<kbd>` (bracketed keys) and inline `<code>` (accent, backticked).
+
+### Changed
+
+- The current nav link is marked with a larger, centered `›` chevron (matching the breadcrumb) instead of `>`, and screen readers skip it since `aria-current` already names the link.
+- Navbar links are spaced 1.5rem apart so the current-link chevron clears the link before it.
 
 ### Fixed
 
+- Navbar wraps instead of scrolling sideways, so the current-link marker no longer overlaps the brand on narrow screens.
 - `<code>`, `<kbd>`, and `<pre>` use the theme font instead of the browser's generic monospace.
 
 ## [0.3.1] - 2026-07-12
