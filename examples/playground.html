@@ -196,7 +196,7 @@
           </header>
           <p class="elum-card-subtitle">Dense columns with mobile-readable data labels.</p>
 
-          <div class="elum-table-wrap">
+          <div class="elum-table-wrap" tabindex="0" role="region" aria-label="Service status">
             <table class="elum-table" role="table">
               <thead role="rowgroup">
                 <tr role="row">
@@ -448,15 +448,15 @@
           </header>
           <p class="elum-card-subtitle">Switch between views on a page</p>
 
-          <div class="elum-tabs" role="tablist" aria-label="Service views">
+          <div class="elum-tabs" role="tablist" aria-label="Service views" hidden>
             <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents">Incidents</button>
             <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime">Uptime</button>
           </div>
 
-          <div id="panel-incidents" role="tabpanel" aria-labelledby="tab-incidents">
+          <div id="panel-incidents">
             Incident content here.
           </div>
-          <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime">
+          <div id="panel-uptime">
             Uptime content here.
           </div>
         </article>

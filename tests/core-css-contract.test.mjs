@@ -20,6 +20,7 @@ const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "
 const DIALOG_CSS = readFileSync("packages/core-css/src/components/dialog.css", "utf8");
 const MENU_CSS = readFileSync("packages/core-css/src/components/menu.css", "utf8");
 const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
+const TABS_CSS = readFileSync("packages/core-css/src/components/tabs.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
 const PUBLIC_CSS = [
   BASE_CSS,
@@ -192,6 +193,10 @@ test("switch keeps its knob visible in forced colors, which otherwise strip the 
 
   assert.match(forced, /forced-color-adjust:\s*none/);
   assert.match(forced, /linear-gradient\(CanvasText, CanvasText\)/);
+});
+
+test("tablist honors hidden, which keeps controls out of view until tabs.js wires them up", () => {
+  assert.match(TABS_CSS, /\.elum-tabs\[hidden\]\s*{[^}]*display:\s*none;/s);
 });
 
 test("segmented option hides its radio without taking it out of the tab order or arrow-key navigation", () => {

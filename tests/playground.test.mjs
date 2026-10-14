@@ -43,14 +43,16 @@ test("playground and snippets expose the in-page tabset pattern", () => {
 
     const tabs = html.match(/<button\b[^>]*role="tab"[^>]*>/g) ?? [];
 
-    assert.match(html, /role="tablist"/);
+    // without tabs.js the tab roles would promise behavior nothing provides, so the tablist ships hidden and the script adds the panel roles
+    assert.match(html, /<div\b[^>]*role="tablist"[^>]*\bhidden\b/);
     assert.ok(tabs.length > 0, `expected tabs in ${file}`);
     for (const tab of tabs) {
       const panelId = tab.match(/\baria-controls="([^"]+)"/)?.[1];
-      const panel = html.match(new RegExp(`<[^>]*\\bid="${panelId}"[^>]*>`))?.[0] ?? "";
+      const panel = html.match(new RegExp(`<[^>]*\\bid="${panelId}"[^>]*>`))?.[0];
 
       assert.match(tab, /aria-selected="(?:true|false)"/);
-      assert.match(panel, /role="tabpanel"/, `tab controls missing tabpanel #${panelId} in ${file}`);
+      assert.ok(panel, `tab controls missing panel #${panelId} in ${file}`);
+      assert.doesNotMatch(panel, /\brole=|\baria-labelledby=/);
     }
     assert.doesNotMatch(html, /class="elum-tab"[^>]*aria-current="page"/);
   }
@@ -121,6 +123,19 @@ test("playground and snippets give tables explicit roles, which survive the narr
           assert.match(element, new RegExp(`role="(?:${roles})"`), `missing role in ${file}: ${element}`);
         }
       }
+    }
+  }
+});
+
+test("playground and snippets make table wraps named, focusable regions so keyboard users can scroll them in Safari", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const wraps = readFileSync(file, "utf8").match(new RegExp(`<div\\b[^>]*${classToken("elum-table-wrap").source}[^>]*>`, "g")) ?? [];
+
+    assert.ok(wraps.length > 0, `expected a table wrap in ${file}`);
+    for (const wrap of wraps) {
+      assert.match(wrap, /\btabindex="0"/);
+      assert.match(wrap, /\brole="region"/);
+      assert.match(wrap, /\baria-label="[^"]+"/);
     }
   }
 });

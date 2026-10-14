@@ -17,6 +17,13 @@
       })
     }
 
+    tabs.forEach(tab => {
+      const panel = document.getElementById(tab.getAttribute("aria-controls"))
+      panel.setAttribute("role", "tabpanel")
+      panel.setAttribute("aria-labelledby", tab.id)
+    })
+    tablist.hidden = false
+
     const initial = tabs.find(tab => tab.getAttribute("aria-selected") === "true") || tabs[0]
     activate(initial)
 

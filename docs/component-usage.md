@@ -153,12 +153,12 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 ## Tabs
 
-- **Tablist:** `.elum-tabs` with `role="tablist"` and an accessible name
+- **Tablist:** `.elum-tabs` with `role="tablist"`, an accessible name, and `hidden`
 - **Tab:** `.elum-tab` on a `<button role="tab">` with `aria-selected`, an `id`, and `aria-controls`
-- **Panel:** `role="tabpanel"` with `aria-labelledby`
+- **Panel:** a plain element with the `id` its tab's `aria-controls` names. The script adds `role="tabpanel"` and `aria-labelledby`.
 - **Initial selection:** mark the starting tab `aria-selected="true"`
-- **Behavior:** load `packages/core-js/src/tabs.js` (`<script defer>`) for roving focus, arrow/Home/End keys, and manual activation (Enter/Space or click)
-- **Without the script:** all panels stay visible and every tab is focusable — no content hidden
+- **Behavior:** load `packages/core-js/src/tabs.js` (`<script defer>`) to reveal the tablist and add roving focus, arrow/Home/End keys, and manual activation (Enter/Space or click)
+- **Without the script:** the tablist stays hidden and all panels stay visible, so no control announces tab behavior that nothing provides. Give each panel a heading so the stacked panels still say what they are.
 - One-page view switching. For page navigation, use the navbar.
 
 ## Toolbar
@@ -248,6 +248,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Data Table
 
 - **Wrapper:** `.elum-table-wrap`
+- **Keyboard scrolling:** give the wrapper `tabindex="0"`, `role="region"`, and an `aria-label` naming the table. Safari does not focus scroll containers, so without these, keyboard users cannot scroll a table wider than the screen. The region role and label tell screen reader users what they focused.
 - **Table:** `.elum-table`
 - **Responsive narrow rows:** `data-label` on each cell
 - On narrow screens the table linearizes. The `data-label` text is drawn as a visual label that screen readers skip, since they announce the column header instead.
