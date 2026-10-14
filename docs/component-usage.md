@@ -34,7 +34,8 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - **Wrapper:** `.elum-field` around the control, with a connected `<label class="elum-label" for="...">`
 - **Prompt input:** wrap `.elum-input` in `.elum-prompt-field` and place `.elum-input-prompt` before it for a persistent prompt such as `>`
-- **Invalid state:** `aria-invalid="true"`
+- **Invalid state:** `aria-invalid="true"`, plus an error message. The error-colored border alone signals the error by color only.
+- **Error message:** `.elum-field-error` on a `<p>` after the control, with an `id` that the control references in `aria-describedby`, so screen readers read the message with the control.
 - **Disabled state:** native `disabled`
 - **Keyboard:** native form element behavior
 - Note: the `<select>` dropdown pop-up on Linux running Chromium is rendered as a native GTK window and follows the system GTK theme regardless of `color-scheme`. On dark themes, the popup will appear light if the system GTK theme is light. This is a platform boundary. Switch to a dark system GTK theme for full consistency.
@@ -78,6 +79,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - **Class:** `.elum-alert`
 - **Tones:** `data-tone="success" | "warn" | "error"`
+- **Tone in text:** the tone color alone doesn't convey state, so also state it in text, such as a leading `.elum-badge` (`[WARN]`).
 - **Live region:** prefer `role="status"` and/or `aria-live="polite"` for status messaging
 - Default themes use a compact palette, so some tones may share a color. Edit theme tokens after copying ElumKit source when your application needs stronger visual distinction.
 
@@ -214,6 +216,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - Use `.elum-metric-label`, `.elum-metric-value`, and `.elum-metric-unit` for aligned telemetry.
 - **Tile row:** `data-layout="tiles"` on the list, same child markup.
 - **Value tone:** `data-tone="success" | "warn" | "error"` on the row.
+- **Tone in text:** the value color alone doesn't convey state, so also state it in text, such as a `.elum-badge` (`[OK]`) inside `.elum-metric-label`.
 
 ## Meter
 
@@ -221,6 +224,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Track:** `.elum-meter-track` on a `<div>` with `role="meter"`, `aria-valuenow`, `aria-valuemin`, and `aria-valuemax` for correct AT announcements
 - **Fill width:** `style="--elum-meter-fill-width: N%"` on the track element, matching the value as a percentage of the range
 - **Fill tones:** `data-tone="success" | "warn" | "error"` on the track element
+- **Tone in text:** the fill color alone doesn't convey state, so also state it in text, such as a `.elum-badge` (`[WARN]`) inside `.elum-meter-label`.
 - **Header:** optional `.elum-meter-header` above the track, holding `.elum-meter-label` and a readout in `.elum-meter-value`
 - **Label:** `aria-label` on the track element, or `aria-labelledby` pointing to a visible `.elum-meter-label`
 - **Why not `<meter>`:** styling `<meter>` internals requires deprecated non-standard pseudo-elements (`::-webkit-meter-bar` etc.) that MDN recommends against. `<div role="meter">` provides equivalent accessibility with full CSS control.
@@ -260,6 +264,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 
 - **Container:** `.elum-feed` on a `<ul>`
 - **Row:** `.elum-feed-item` on a `<li>`, `data-tone="success" | "warn" | "error"` for the left accent (defaults to info).
+- **Tone in text:** the accent color alone doesn't convey state, so also state it in text, such as a leading `.elum-badge` (`[ERROR]`).
 - **Trailing meta:** `.elum-feed-meta` for a right-pinned timestamp. The rest of the row is freeform.
 
 ## Output
@@ -285,6 +290,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Title:** `.elum-dialog-title` on a heading inside the dialog
 - **Actions:** `.elum-dialog-actions` on the button row, end-aligned. Use a `<form>` when the confirm button submits to the server.
 - **Open:** `<button command="show-modal" commandfor="dialog-id">`. **Close:** `<button command="close" commandfor="dialog-id">`. Escape also closes it.
+- **Browser support:** `command` and `commandfor` work in Chrome and Edge 135+, Firefox 144+, and Safari 26.2+ (Baseline since December 2025). Older browsers ignore them, so the dialog never opens. To support those browsers, load an invoker commands polyfill or call `showModal()` and `close()` from click handlers.
 - **Side panel:** `data-placement="end"` docks the dialog full height against the inline-end edge.
 - **Focus:** opening moves focus to the first focusable control inside the dialog. In a destructive confirm, put Cancel first so it receives focus.
 - No JavaScript.

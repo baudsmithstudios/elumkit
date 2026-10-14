@@ -65,6 +65,33 @@ test("playground covers critical form states", () => {
   assert.match(html, new RegExp(`${classToken("elum-choice").source}[^>]*data-disabled="true"`));
 });
 
+test("playground and snippets describe every invalid control with a visible error message, so the error isn't color-only", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const html = readFileSync(file, "utf8");
+    const invalid = html.match(/<(?:input|select|textarea)\b[^>]*aria-invalid="true"[^>]*>/g) ?? [];
+
+    assert.ok(invalid.length > 0, `expected an invalid control in ${file}`);
+    for (const control of invalid) {
+      const ids = control.match(/\baria-describedby="([^"]+)"/)?.[1].split(" ") ?? [];
+
+      assert.ok(ids.some((id) => new RegExp(`<[^>]*${classToken("elum-field-error").source}[^>]*\\bid="${id}"`).test(html)), `invalid control has no error message in ${file}: ${control}`);
+    }
+  }
+});
+
+test("playground and snippets state the tone of every toned alert, feed item and metric in a badge, so it isn't color-only", () => {
+  for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
+    const html = readFileSync(file, "utf8");
+    const toned = [...html.matchAll(/<(aside|li|div)\b([^>]*)>(?=(.*?)<\/\1>)/gs)]
+      .filter(([, , attributes]) => /\bclass="elum-(?:alert|feed-item|metric)"/.test(attributes) && /\bdata-tone=/.test(attributes));
+
+    assert.ok(toned.length > 0, `expected toned components in ${file}`);
+    for (const [element, , , content] of toned) {
+      assert.match(content, classToken("elum-badge"), `tone is color-only in ${file}: ${element.split("\n")[0]}`);
+    }
+  }
+});
+
 test("example form controls expose accessible names", () => {
   for (const file of [PLAYGROUND_PATH, SNIPPETS_PATH]) {
     const html = readFileSync(file, "utf8");

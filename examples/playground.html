@@ -372,7 +372,7 @@
             </span>
           </section>
           <aside class="elum-alert" data-tone="warn" role="status" aria-live="polite">
-            Disk usage is nearing the warning threshold.
+            <span class="elum-badge" data-tone="warn">[WARN]</span> Disk usage is nearing the warning threshold.
           </aside>
         </article>
 
@@ -402,7 +402,7 @@
 
           <div class="elum-metrics" data-layout="tiles" aria-label="Service KPIs">
             <div class="elum-metric" data-tone="success">
-              <span class="elum-metric-label">Uptime</span>
+              <span class="elum-metric-label">Uptime <span class="elum-badge" data-tone="success">[OK]</span></span>
               <span class="elum-metric-value">99.98</span>
               <span class="elum-metric-unit">%</span>
             </div>
@@ -412,7 +412,7 @@
               <span class="elum-metric-unit">ms</span>
             </div>
             <div class="elum-metric" data-tone="error">
-              <span class="elum-metric-label">Errors</span>
+              <span class="elum-metric-label">Errors <span class="elum-badge" data-tone="error">[ERROR]</span></span>
               <span class="elum-metric-value">12</span>
               <span class="elum-metric-unit">/hr</span>
             </div>
@@ -635,14 +635,17 @@
           <p class="elum-card-subtitle">Tone-coded rows for notifications and status.</p>
           <ul class="elum-feed">
             <li class="elum-feed-item" data-tone="error">
+              <span class="elum-badge" data-tone="error">[ERROR]</span>
               <span>Backup job failed on node-03</span>
               <span class="elum-feed-meta">10:42</span>
             </li>
             <li class="elum-feed-item" data-tone="warn">
+              <span class="elum-badge" data-tone="warn">[WARN]</span>
               <span>Disk usage above 90%</span>
               <span class="elum-feed-meta">10:31</span>
             </li>
             <li class="elum-feed-item" data-tone="success">
+              <span class="elum-badge" data-tone="success">[OK]</span>
               <span>Restore verified</span>
               <span class="elum-feed-meta">09:58</span>
             </li>
@@ -741,11 +744,12 @@ done in 4.20s</pre>
 
             <div class="state-cell elum-stack">
               <strong>Invalid</strong>
-              <input class="elum-input" type="text" value="invalid input" aria-label="Invalid input state" aria-invalid="true" />
-              <textarea class="elum-textarea" aria-label="Invalid textarea state" aria-invalid="true">invalid textarea</textarea>
-              <select class="elum-select" aria-label="Invalid select state" aria-invalid="true">
+              <input class="elum-input" type="text" value="invalid input" aria-label="Invalid input state" aria-invalid="true" aria-describedby="state-invalid-error" />
+              <textarea class="elum-textarea" aria-label="Invalid textarea state" aria-invalid="true" aria-describedby="state-invalid-error">invalid textarea</textarea>
+              <select class="elum-select" aria-label="Invalid select state" aria-invalid="true" aria-describedby="state-invalid-error">
                 <option>Invalid select</option>
               </select>
+              <p class="elum-field-error" id="state-invalid-error">Enter a valid value.</p>
             </div>
           </div>
         </section>

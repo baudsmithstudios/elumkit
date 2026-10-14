@@ -70,6 +70,12 @@
       </div>
 
       <div class="elum-field">
+        <label class="elum-label" for="retries">Retries</label>
+        <input class="elum-input" id="retries" name="retries" type="number" value="-1" aria-invalid="true" aria-describedby="retries-error" />
+        <p class="elum-field-error" id="retries-error">Retries must be 0 or more.</p>
+      </div>
+
+      <div class="elum-field">
         <label class="elum-label" for="role">Role</label>
         <select class="elum-select" id="role" name="role">
           <option>Operator</option>
@@ -106,7 +112,7 @@
     </form>
 
     <aside class="elum-alert" data-tone="warn" role="status">
-      Disk usage crossed the configured warning threshold.
+      <span class="elum-badge" data-tone="warn">[WARN]</span> Disk usage crossed the configured warning threshold.
     </aside>
 
     <section class="elum-system-bar" aria-label="System status">
@@ -138,7 +144,7 @@
 
     <div class="elum-metrics" data-layout="tiles" aria-label="Service KPIs">
       <div class="elum-metric" data-tone="success">
-        <span class="elum-metric-label">Uptime</span>
+        <span class="elum-metric-label">Uptime <span class="elum-badge" data-tone="success">[OK]</span></span>
         <span class="elum-metric-value">99.98</span>
         <span class="elum-metric-unit">%</span>
       </div>
@@ -321,14 +327,17 @@
     <h2 class="elum-separator-labeled">System Status</h2>
     <ul class="elum-feed">
       <li class="elum-feed-item" data-tone="error">
+        <span class="elum-badge" data-tone="error">[ERROR]</span>
         <span>Backup job failed on node-03</span>
         <span class="elum-feed-meta">10:42</span>
       </li>
       <li class="elum-feed-item" data-tone="warn">
+        <span class="elum-badge" data-tone="warn">[WARN]</span>
         <span>Disk usage above 90%</span>
         <span class="elum-feed-meta">10:31</span>
       </li>
       <li class="elum-feed-item" data-tone="success">
+        <span class="elum-badge" data-tone="success">[OK]</span>
         <span>Restore verified</span>
         <span class="elum-feed-meta">09:58</span>
       </li>

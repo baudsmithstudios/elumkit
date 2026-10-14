@@ -14,6 +14,7 @@
 - Navbar can hold `.elum-system-bar-group` status items between the brand and links.
 - `--elum-navbar-height` token for the navbar's minimum height and the sidebar's sticky offset.
 - Spinner component: `.elum-spinner` cycles a `|/-\` before a visible label, inside a `role="status"` region.
+- Field error message: `.elum-field-error`, linked to an invalid control with `aria-describedby`.
 - App Shell skip link: `.elum-skip-link`, hidden until focused, jumps past the navbar and sidebar to `<main>`.
 - Skeleton component: `.elum-skeleton` placeholder line with a pulsing `░` fill, for regions marked `aria-busy`.
 - Progress component: `role="progressbar"` on `.elum-meter-track`, with a sliding block when `aria-valuenow` is absent.

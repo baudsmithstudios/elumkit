@@ -72,6 +72,12 @@
   border-color: var(--elum-color-error);
 }
 
+.elum-field-error {
+  color: var(--elum-color-error);
+  font-size: var(--elum-text-xs);
+  margin: 0;
+}
+
 .elum-input:disabled,
 .elum-textarea:disabled,
 .elum-select:disabled {
