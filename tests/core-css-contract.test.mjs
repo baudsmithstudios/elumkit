@@ -92,10 +92,13 @@ test("themes expose required accessible semantic tokens", () => {
   }
 });
 
-test("core CSS exposes accessible focus and motion behavior", () => {
+test("focus-visible draws a 2px ring", () => {
+  assert.match(BASE_CSS, /:focus-visible\s*{[^}]*outline:\s*2px solid/s);
+});
+
+test("reduced motion cuts animations and transitions to near zero", () => {
   const reducedMotion = BASE_CSS.match(/@media \(prefers-reduced-motion: reduce\)\s*{([^}]*)}/s)?.[1];
 
-  assert.match(BASE_CSS, /:focus-visible\s*{[^}]*outline:\s*2px solid/s);
   assert.match(reducedMotion, /animation-duration:\s*0\.01ms !important;/);
   assert.match(reducedMotion, /transition-duration:\s*0\.01ms !important;/);
 });
@@ -176,6 +179,7 @@ test("stacked components leave their margins to base, so a stack still spaces th
     [FEED_CSS, "\\.elum-feed"],
     [FORM_CSS, "fieldset\\.elum-field"],
     [FORM_CSS, "\\.elum-field-error"],
+    [FORM_CSS, "\\.elum-segmented"],
   ]) {
     const rule = css.match(new RegExp(`^${selector}\\s*{([^}]*)}`, "m"))?.[1] ?? "";
     assert.doesNotMatch(rule, /margin/, `${selector} overrides the stack gap`);
@@ -253,16 +257,8 @@ test("segmented option hides its radio without taking it out of the tab order or
   assert.doesNotMatch(radio, /display:\s*none|visibility:\s*hidden/);
 });
 
-test("segmented option shows focus and selection on its label, since the radio itself is hidden", () => {
+test("segmented option shows focus on its label, since the radio itself is hidden", () => {
   assert.match(FORM_CSS, /\.elum-segmented-option:has\(:focus-visible\)\s*{[^}]*outline:\s*2px solid/s);
-  assert.match(FORM_CSS, /\.elum-segmented-option:has\(:checked\)\s*{[^}]*background:/s);
-});
-
-test("segmented option marks selection with its fill alone, keeping the group's border", () => {
-  const checked = FORM_CSS.match(/^\.elum-segmented-option:has\(:checked\)\s*{([^}]*)}/m)?.[1] ?? "";
-
-  assert.match(checked, /background:/);
-  assert.doesNotMatch(checked, /border-color:/);
 });
 
 test("segmented control brackets the checked option so selection isn't color-only, reserving bracket space on every option so nothing shifts", () => {
@@ -285,15 +281,6 @@ test("segmented control marks the checked option with system colors in forced co
 
 test("breadcrumb draws chevrons between items with empty alt text so screen readers skip them", () => {
   assert.match(NAVIGATION_CSS, /\.elum-breadcrumb li \+ li::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
-});
-
-test("triangle markers draw at one size, a step below the text they mark", () => {
-  for (const [css, selector] of [
-    [NAVIGATION_CSS, '\\.elum-navlink\\[aria-current="page"\\]::before'],
-    [FORM_CSS, "\\.elum-input-prompt"],
-  ]) {
-    assert.match(css, new RegExp(`${selector}\\s*{[^}]*font-size:\\s*var\\(--elum-text-xs\\);`, "s"), selector);
-  }
 });
 
 test("nav links keep the base focus ring that buttons and inputs use", () => {

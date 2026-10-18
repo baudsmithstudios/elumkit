@@ -126,7 +126,6 @@
   font-size: var(--elum-text-sm);
   gap: var(--elum-space-2);
   list-style: none;
-  margin: 0;
   padding: 0;
 }
 
@@ -153,7 +152,6 @@
   display: grid;
   gap: var(--elum-space-2);
   list-style: none;
-  margin: 0;
   padding: 0;
 }
 

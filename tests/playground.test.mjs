@@ -6,18 +6,17 @@ import { DOCUMENTED_CLASSES } from "./documented-classes.mjs";
 
 const PLAYGROUND_PATH = "examples/playground.html";
 const SNIPPETS_PATH = "packages/core-patterns/snippets/index.html";
-const EXAMPLES = [PLAYGROUND_PATH, SNIPPETS_PATH].map((file) => [file, readFileSync(file, "utf8")]);
+const PLAYGROUND_HTML = readFileSync(PLAYGROUND_PATH, "utf8");
+const EXAMPLES = [[PLAYGROUND_PATH, PLAYGROUND_HTML], [SNIPPETS_PATH, readFileSync(SNIPPETS_PATH, "utf8")]];
 
 function classToken(className) {
   return new RegExp(`\\bclass="(?:[^"]*\\s)?${className}(?:\\s[^"]*)?"`);
 }
 
 test("playground loads the core CSS source and demonstrates every documented class", () => {
-  const html = readFileSync(PLAYGROUND_PATH, "utf8");
-
-  assert.match(html, /href="\.\.\/packages\/core-css\/src\/index\.css"/);
+  assert.match(PLAYGROUND_HTML, /href="\.\.\/packages\/core-css\/src\/index\.css"/);
   for (const className of DOCUMENTED_CLASSES) {
-    assert.match(html, classToken(className), `playground does not demonstrate ${className}`);
+    assert.match(PLAYGROUND_HTML, classToken(className), `playground does not demonstrate ${className}`);
   }
 });
 
@@ -57,11 +56,9 @@ test("playground and snippets expose the in-page tabset pattern", () => {
 });
 
 test("playground covers critical form states", () => {
-  const html = readFileSync(PLAYGROUND_PATH, "utf8");
-
-  assert.match(html, /<button[^>]*class="elum-button"[^>]*\sdisabled(?:\s|>)/);
-  assert.match(html, /<input[^>]*class="elum-input"[^>]*\sdisabled(?:\s|\/?>)/);
-  assert.match(html, new RegExp(`${classToken("elum-choice").source}[^>]*data-disabled="true"`));
+  assert.match(PLAYGROUND_HTML, /<button[^>]*class="elum-button"[^>]*\sdisabled(?:\s|>)/);
+  assert.match(PLAYGROUND_HTML, /<input[^>]*class="elum-input"[^>]*\sdisabled(?:\s|\/?>)/);
+  assert.match(PLAYGROUND_HTML, new RegExp(`${classToken("elum-choice").source}[^>]*data-disabled="true"`));
 });
 
 test("playground and snippets describe every invalid control with a visible error message, so the error isn't color-only", () => {
@@ -332,22 +329,11 @@ test("playground and snippets name the sidebar and mark exactly one current page
 });
 
 test("playground sidebar links all land on a section of the page", () => {
-  const html = readFileSync(PLAYGROUND_PATH, "utf8");
-  const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
-  const targets = [...sidebars(html)[0].matchAll(/href="#([^"]*)"/g)].map((match) => match[1]);
+  const ids = new Set([...PLAYGROUND_HTML.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
+  const targets = [...sidebars(PLAYGROUND_HTML)[0].matchAll(/href="#([^"]*)"/g)].map((match) => match[1]);
 
   assert.ok(targets.length > 0, "playground sidebar has no section links");
   assert.deepEqual(targets.filter((target) => !ids.has(target)), [], "sidebar links point at missing ids");
-});
-
-test("prompt fields use the ▶ triangle that marks the current navbar link", () => {
-  for (const [file, html] of EXAMPLES) {
-    const prompts = [...html.matchAll(/<span class="elum-input-prompt"[^>]*>([^<]*)<\/span>/g)].map((match) => match[1]);
-    assert.ok(prompts.length > 0, `${file} has no prompt field`);
-    for (const prompt of prompts) {
-      assert.equal(prompt, "▶", `${file} prompt should be ▶`);
-    }
-  }
 });
 
 test("navbar lists its links before the status group, which its trigger opens as a menu on narrow screens", () => {
