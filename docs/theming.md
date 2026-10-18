@@ -41,11 +41,11 @@ Defined in `packages/core-css/src/tokens.css`:
 
 ## Font
 
-ElumKit ships JetBrains Mono (`packages/core-css/src/fonts/`) so every machine renders the same face. `--elum-font-family` lists it first, followed by system monospace fallbacks. The bundled file covers Latin, punctuation, currency, arrows, and box and block characters at weights 100–800, without coding ligatures. Characters outside it, such as Cyrillic or Greek, fall back to the next font in the stack one character at a time.
+ElumKit ships JetBrains Mono (`packages/core-css/src/fonts/`), first in `--elum-font-family`, so every machine renders the same face. The subset covers Latin, punctuation, currency, arrows, and box, block, and geometric-shape characters at weights 100–800, without ligatures. Other characters fall back to the next font in the stack.
 
-- **Use a different font:** override `--elum-font-family`. The browser never downloads a font that nothing uses, so the bundled file costs nothing when `src/` is linked. (The single-file bundle inlines it, so it is always part of that download.)
-- **Add characters:** declare another `@font-face` for `"JetBrains Mono"` with a `unicode-range` for the characters you need. The browser combines it with the bundled face.
-- **Rebuild the subset:** `packages/core-css/src/fonts/README.md` records the release and the exact command.
+- **Use a different font:** override `--elum-font-family`. Browsers skip unused fonts, so the bundled file costs nothing from `src/`; `dist/elumkit.css` always inlines it.
+- **Add characters:** declare another `"JetBrains Mono"` `@font-face` with a `unicode-range` for them.
+- **Rebuild the subset:** see `packages/core-css/src/fonts/README.md`.
 
 ## Color tokens
 

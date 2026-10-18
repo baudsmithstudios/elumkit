@@ -1,13 +1,12 @@
 # JetBrains Mono
 
-`JetBrainsMono.woff2` is a subset of the upright variable font from the
-[JetBrains Mono v2.304 release](https://github.com/JetBrains/JetBrainsMono/releases/tag/v2.304),
-licensed under the SIL Open Font License 1.1 (`OFL.txt`).
+`JetBrainsMono.woff2` is a subset of the upright variable font from
+[JetBrains Mono v2.304](https://github.com/JetBrains/JetBrainsMono/releases/tag/v2.304),
+licensed under the SIL OFL 1.1 (`OFL.txt`).
 
-The subset keeps Latin, punctuation, currency, arrows, box and block characters, and
-geometric shapes such as ▶, with the full 100–800 weight axis. It drops other scripts, the
-stylistic alternates, and the coding ligatures, so text renders exactly as
-written. Rebuild or widen it with [fontTools](https://github.com/fonttools/fonttools):
+It keeps Latin, punctuation, currency, arrows, and box, block, and geometric-shape
+characters at weights 100–800. Other scripts, stylistic alternates, and coding
+ligatures are dropped. Rebuild it with [fontTools](https://github.com/fonttools/fonttools):
 
 ```sh
 pyftsubset "fonts/variable/JetBrainsMono[wght].ttf" \
@@ -16,4 +15,4 @@ pyftsubset "fonts/variable/JetBrainsMono[wght].ttf" \
   --flavor=woff2 --output-file=JetBrainsMono.woff2
 ```
 
-If you widen `--unicodes`, update the `unicode-range` in `../fonts.css` to match.
+If you change `--unicodes`, match the `unicode-range` in `../fonts.css`.

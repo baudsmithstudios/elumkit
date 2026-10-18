@@ -22,7 +22,7 @@ ElumKit is a lean, terminal-inspired component system for modern web interfaces.
 - **Framework-agnostic baseline** — usable from vanilla HTML, Eleventy, and server-rendered templates
 - **No core JavaScript** — components rely on native HTML semantics; examples may use small demo scripts
 - **Responsive interface patterns** — tables, toolbars, query rows, and dense panels adapt to narrow screens
-- **Accessibility** — components meet WCAG 2.0 AA on the library side: keyboard-first patterns, 4.5:1 text contrast in every theme, and screen reader semantics. Conformance applies to whole pages, so your app supplies the rest, such as page titles, `lang`, label and error wording, and heading structure. [Component usage](docs/component-usage.md) lists what each component needs from your markup.
+- **Accessibility** — components meet WCAG 2.0 AA on the library side: keyboard-first patterns, 4.5:1 text contrast in every theme, and screen reader semantics.
 
 ## Design Principles
 
