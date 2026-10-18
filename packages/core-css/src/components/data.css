@@ -3,7 +3,6 @@
   border: var(--elum-border-width) solid var(--elum-color-border);
   border-radius: var(--elum-radius-md);
   list-style: none;
-  margin: 0;
   padding: 0;
 }
 
@@ -53,6 +52,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* truncation hides text at high zoom, so the row grows to reveal it */
+.elum-row:hover :is(.elum-row-title, .elum-row-meta),
+.elum-row:focus-visible :is(.elum-row-title, .elum-row-meta) {
+  white-space: normal;
 }
 
 .elum-row-value {
@@ -232,7 +237,7 @@
 
   .elum-table td::before {
     color: var(--elum-color-accent);
-    content: attr(data-label);
+    content: attr(data-label) / "";
     display: block;
     font-size: var(--elum-text-xs);
     font-weight: 700;

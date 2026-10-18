@@ -39,6 +39,14 @@ Defined in `packages/core-css/src/tokens.css`:
 - Radius/border tokens (`--elum-radius-*`, `--elum-border-width`)
 - Motion token (`--elum-motion-fast`)
 
+## Font
+
+ElumKit ships JetBrains Mono (`packages/core-css/src/fonts/`), first in `--elum-font-family`, so every machine renders the same face. The subset covers Latin, punctuation, currency, arrows, and box, block, and geometric-shape characters at weights 100–800, without ligatures. Other characters fall back to the next font in the stack.
+
+- **Use a different font:** override `--elum-font-family`. Browsers skip unused fonts, so the bundled file costs nothing from `src/`; `dist/elumkit.css` always inlines it.
+- **Add characters:** declare another `"JetBrains Mono"` `@font-face` with a `unicode-range` for them.
+- **Rebuild the subset:** see `packages/core-css/src/fonts/README.md`.
+
 ## Color tokens
 
 | Token | Role |
@@ -134,12 +142,6 @@ Same protocol as card properties. Supported:
 - `--elum-navbar-brand-size`
 - `--elum-navlink-color`
 - `--elum-navlink-size`
-
-## Button custom properties
-
-Same protocol. Supported:
-
-- `--elum-button-baseline-shift` — optically centers the uppercase label; default `0.078em` suits JetBrains Mono. Retune per font.
 
 ## Component behavior notes
 

@@ -1,7 +1,6 @@
 .elum-separator {
   border: 0;
   border-top: var(--elum-border-width) solid var(--elum-color-border);
-  margin: 0;
 }
 
 .elum-separator[data-orientation="vertical"] {
@@ -21,7 +20,6 @@
   gap: var(--elum-space-2);
   letter-spacing: 0.08em;
   line-height: var(--elum-lh-tight);
-  margin: 0;
   text-transform: uppercase;
 }
 

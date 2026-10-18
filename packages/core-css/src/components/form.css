@@ -46,9 +46,9 @@
 .elum-input-prompt {
   color: var(--elum-color-muted);
   flex: 0 0 auto;
-  font-size: var(--elum-text-sm);
+  font-size: var(--elum-text-xs);
   line-height: var(--elum-lh-normal);
-  margin-right: var(--elum-space-2);
+  margin-right: var(--elum-space-1);
 }
 
 .elum-prompt-field > .elum-input {
@@ -72,6 +72,11 @@
   border-color: var(--elum-color-error);
 }
 
+.elum-field-error {
+  color: var(--elum-color-error);
+  font-size: var(--elum-text-xs);
+}
+
 .elum-input:disabled,
 .elum-textarea:disabled,
 .elum-select:disabled {
@@ -90,7 +95,6 @@ fieldset.elum-field {
   background: transparent;
   border: var(--elum-border-width) solid var(--elum-color-border);
   border-radius: var(--elum-radius-md);
-  margin: 0;
   padding: var(--elum-space-3);
 }
 
@@ -154,7 +158,6 @@ fieldset.elum-field > .elum-label {
 .elum-segmented {
   border: 0;
   display: inline-flex;
-  margin: 0;
   padding: 0;
 }
 
@@ -162,10 +165,30 @@ fieldset.elum-field > .elum-label {
   border: var(--elum-border-width) solid var(--elum-color-border);
   color: var(--elum-color-muted);
   cursor: pointer;
+  /* a flex row trims the markup's whitespace inside the brackets */
+  display: inline-flex;
   font-size: var(--elum-text-sm);
   line-height: var(--elum-lh-tight);
   padding: var(--elum-space-2) var(--elum-space-3);
   position: relative;
+}
+
+.elum-segmented-option::before,
+.elum-segmented-option::after {
+  visibility: hidden;
+}
+
+.elum-segmented-option::before {
+  content: "[" / "";
+}
+
+.elum-segmented-option::after {
+  content: "]" / "";
+}
+
+.elum-segmented-option:has(:checked)::before,
+.elum-segmented-option:has(:checked)::after {
+  visibility: visible;
 }
 
 .elum-segmented-option + .elum-segmented-option {
@@ -198,7 +221,6 @@ fieldset.elum-field > .elum-label {
 
 .elum-segmented-option:has(:checked) {
   background: var(--elum-color-accent);
-  border-color: var(--elum-color-accent);
   color: var(--elum-color-bg);
 }
 

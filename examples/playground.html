@@ -110,11 +110,18 @@
     </style>
   </head>
   <body class="elum-shell">
+      <a class="elum-skip-link" href="#main">Skip to content</a>
       <nav class="elum-navbar" aria-label="Primary">
         <div class="elum-navbar-brand">
           Navigation
         </div>
-        <span class="elum-system-bar-group">
+        <section class="elum-navlinks">
+          <a class="elum-navlink" href="#" aria-current="page">home</a>
+          <a class="elum-navlink" href="#">devices</a>
+          <a class="elum-navlink" href="#">settings</a>
+        </section>
+        <button class="elum-button elum-navbar-status-trigger" data-variant="tertiary" type="button" popovertarget="playground-navbar-status">status</button>
+        <span class="elum-system-bar-group elum-menu" id="playground-navbar-status" popover>
           <span class="elum-system-bar-item">
             <span class="elum-system-bar-key">state</span>
             <span class="elum-system-bar-value">[READY]</span>
@@ -124,11 +131,6 @@
             <span class="elum-system-bar-value">eu-west</span>
           </span>
         </span>
-        <section class="elum-navlinks">
-          <a class="elum-navlink" href="#" aria-current="page">home</a>
-          <a class="elum-navlink" href="#">devices</a>
-          <a class="elum-navlink" href="#">settings</a>
-        </section>
       </nav>
       <nav class="elum-sidebar" aria-label="Playground sections">
         <ul>
@@ -166,7 +168,7 @@
           </li>
         </ul>
       </nav>
-      <main class="elum-container elum-stack">
+      <main id="main" class="elum-container elum-stack">
       <header id="overview" class="elum-card elum-card-labeled playground-header">
         <div class="elum-card-header" data-inline="true">
           <div class="elum-card-title">Component system · V0.<span style="text-transform: none">x</span></div>
@@ -195,24 +197,24 @@
           </header>
           <p class="elum-card-subtitle">Dense columns with mobile-readable data labels.</p>
 
-          <div class="elum-table-wrap">
-            <table class="elum-table">
-              <thead>
-                <tr>
-                  <th scope="col">Service</th>
-                  <th scope="col" data-column="status">Status</th>
-                  <th scope="col" data-align="end">Latency</th>
-                  <th scope="col" data-align="end">Events</th>
-                  <th scope="col" data-align="end">Actions</th>
+          <div class="elum-table-wrap" tabindex="0" role="region" aria-label="Service status">
+            <table class="elum-table" role="table">
+              <thead role="rowgroup">
+                <tr role="row">
+                  <th scope="col" role="columnheader">Service</th>
+                  <th scope="col" data-column="status" role="columnheader">Status</th>
+                  <th scope="col" data-align="end" role="columnheader">Latency</th>
+                  <th scope="col" data-align="end" role="columnheader">Events</th>
+                  <th scope="col" data-align="end" role="columnheader">Actions</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td data-label="Service">api-gateway</td>
-                  <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
-                  <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
-                  <td data-label="Events" data-align="end" data-numeric="true">1,284</td>
-                  <td data-label="Actions" data-align="end">
+              <tbody role="rowgroup">
+                <tr role="row">
+                  <td data-label="Service" role="cell">api-gateway</td>
+                  <td data-label="Status" data-column="status" role="cell"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
+                  <td data-label="Latency" data-align="end" data-numeric="true" role="cell">42ms</td>
+                  <td data-label="Events" data-align="end" data-numeric="true" role="cell">1,284</td>
+                  <td data-label="Actions" data-align="end" role="cell">
                     <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-api-gateway" aria-label="Actions for api-gateway">⋯</button>
                     <div class="elum-menu" id="menu-api-gateway" popover>
                       <a class="elum-menu-item" href="#">View logs</a>
@@ -221,12 +223,12 @@
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td data-label="Service">worker-queue</td>
-                  <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
-                  <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
-                  <td data-label="Events" data-align="end" data-numeric="true">876</td>
-                  <td data-label="Actions" data-align="end">
+                <tr role="row">
+                  <td data-label="Service" role="cell">worker-queue</td>
+                  <td data-label="Status" data-column="status" role="cell"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
+                  <td data-label="Latency" data-align="end" data-numeric="true" role="cell">118ms</td>
+                  <td data-label="Events" data-align="end" data-numeric="true" role="cell">876</td>
+                  <td data-label="Actions" data-align="end" role="cell">
                     <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-worker-queue" aria-label="Actions for worker-queue">⋯</button>
                     <div class="elum-menu" id="menu-worker-queue" popover>
                       <a class="elum-menu-item" href="#">View logs</a>
@@ -235,12 +237,12 @@
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td data-label="Service">cache-node</td>
-                  <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="accent">[WARM]</span></td>
-                  <td data-label="Latency" data-align="end" data-numeric="true">9ms</td>
-                  <td data-label="Events" data-align="end" data-numeric="true">2,048</td>
-                  <td data-label="Actions" data-align="end">
+                <tr role="row">
+                  <td data-label="Service" role="cell">cache-node</td>
+                  <td data-label="Status" data-column="status" role="cell"><span class="elum-badge" data-tone="accent">[WARM]</span></td>
+                  <td data-label="Latency" data-align="end" data-numeric="true" role="cell">9ms</td>
+                  <td data-label="Events" data-align="end" data-numeric="true" role="cell">2,048</td>
+                  <td data-label="Actions" data-align="end" role="cell">
                     <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-cache-node" aria-label="Actions for cache-node">⋯</button>
                     <div class="elum-menu" id="menu-cache-node" popover>
                       <a class="elum-menu-item" href="#">View logs</a>
@@ -296,7 +298,7 @@
           <div class="elum-field">
             <label class="elum-label" for="playground-name">Name</label>
             <span class="elum-prompt-field">
-              <span class="elum-input-prompt" aria-hidden="true">&gt;</span>
+              <span class="elum-input-prompt" aria-hidden="true">▶</span>
               <input class="elum-input" id="playground-name" name="name" type="text" placeholder="input_" />
             </span>
           </div>
@@ -348,8 +350,8 @@
           <p>
             Badge state <span class="elum-badge" data-tone="warn">[WARNING]</span>
           </p>
-          <p>
-            <span class="elum-spinner" role="status">Syncing replicas</span>
+          <p role="status">
+            <span class="elum-spinner">Syncing replicas</span>
           </p>
           <div class="elum-stack" aria-busy="true">
             <div class="elum-skeleton"></div>
@@ -371,7 +373,7 @@
             </span>
           </section>
           <aside class="elum-alert" data-tone="warn" role="status" aria-live="polite">
-            Disk usage is nearing the warning threshold.
+            <span class="elum-badge" data-tone="warn">[WARN]</span> Disk usage is nearing the warning threshold.
           </aside>
         </article>
 
@@ -381,7 +383,7 @@
           </header>
           <p class="elum-card-subtitle">Aligned values and compact meter states.</p>
 
-          <div class="elum-metrics" aria-label="Runtime metrics">
+          <div class="elum-metrics" role="group" aria-label="Runtime metrics">
             <div class="elum-metric">
               <span class="elum-metric-label">Load</span>
               <span class="elum-metric-value">0.42</span>
@@ -399,9 +401,9 @@
             </div>
           </div>
 
-          <div class="elum-metrics" data-layout="tiles" aria-label="Service KPIs">
+          <div class="elum-metrics" data-layout="tiles" role="group" aria-label="Service KPIs">
             <div class="elum-metric" data-tone="success">
-              <span class="elum-metric-label">Uptime</span>
+              <span class="elum-metric-label">Uptime <span class="elum-badge" data-tone="success">[OK]</span></span>
               <span class="elum-metric-value">99.98</span>
               <span class="elum-metric-unit">%</span>
             </div>
@@ -411,7 +413,7 @@
               <span class="elum-metric-unit">ms</span>
             </div>
             <div class="elum-metric" data-tone="error">
-              <span class="elum-metric-label">Errors</span>
+              <span class="elum-metric-label">Errors <span class="elum-badge" data-tone="error">[ERROR]</span></span>
               <span class="elum-metric-value">12</span>
               <span class="elum-metric-unit">/hr</span>
             </div>
@@ -447,15 +449,15 @@
           </header>
           <p class="elum-card-subtitle">Switch between views on a page</p>
 
-          <div class="elum-tabs" role="tablist" aria-label="Service views">
+          <div class="elum-tabs" role="tablist" aria-label="Service views" hidden>
             <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents">Incidents</button>
             <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime">Uptime</button>
           </div>
 
-          <div id="panel-incidents" role="tabpanel" aria-labelledby="tab-incidents">
+          <div id="panel-incidents">
             Incident content here.
           </div>
-          <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime">
+          <div id="panel-uptime">
             Uptime content here.
           </div>
         </article>
@@ -580,8 +582,8 @@
             <li>
               <a class="elum-row" href="#">
                 <span class="elum-row-main">
-                  <span class="elum-row-title">cache-node</span>
-                  <span class="elum-row-meta">primary region :: [WARM]</span>
+                  <span class="elum-row-title">cache-node-primary-region-replica-03</span>
+                  <span class="elum-row-meta">primary region :: [WARM] :: warmed from snapshot 4 minutes ago</span>
                 </span>
                 <span class="elum-row-value">1.8K</span>
               </a>
@@ -615,12 +617,11 @@
             <h2 class="elum-card-title">Separator</h2>
           </header>
           <p class="elum-card-subtitle">Horizontal, vertical, and labeled section dividers.</p>
-          <p></p>
           <h3 class="elum-separator-labeled">System Status</h3>
           <div class="elum-toolbar" role="group" aria-label="Status summary">
             <div class="elum-toolbar-group">
               <span class="elum-toolbar-value">ready</span>
-              <hr class="elum-separator" data-orientation="vertical" />
+              <hr class="elum-separator" data-orientation="vertical" aria-orientation="vertical" />
               <span class="elum-toolbar-value">3 nodes</span>
             </div>
           </div>
@@ -634,14 +635,17 @@
           <p class="elum-card-subtitle">Tone-coded rows for notifications and status.</p>
           <ul class="elum-feed">
             <li class="elum-feed-item" data-tone="error">
+              <span class="elum-badge" data-tone="error">[ERROR]</span>
               <span>Backup job failed on node-03</span>
               <span class="elum-feed-meta">10:42</span>
             </li>
             <li class="elum-feed-item" data-tone="warn">
+              <span class="elum-badge" data-tone="warn">[WARN]</span>
               <span>Disk usage above 90%</span>
               <span class="elum-feed-meta">10:31</span>
             </li>
             <li class="elum-feed-item" data-tone="success">
+              <span class="elum-badge" data-tone="success">[OK]</span>
               <span>Restore verified</span>
               <span class="elum-feed-meta">09:58</span>
             </li>
@@ -740,11 +744,12 @@ done in 4.20s</pre>
 
             <div class="state-cell elum-stack">
               <strong>Invalid</strong>
-              <input class="elum-input" type="text" value="invalid input" aria-label="Invalid input state" aria-invalid="true" />
-              <textarea class="elum-textarea" aria-label="Invalid textarea state" aria-invalid="true">invalid textarea</textarea>
-              <select class="elum-select" aria-label="Invalid select state" aria-invalid="true">
+              <input class="elum-input" type="text" value="invalid input" aria-label="Invalid input state" aria-invalid="true" aria-describedby="state-invalid-error" />
+              <textarea class="elum-textarea" aria-label="Invalid textarea state" aria-invalid="true" aria-describedby="state-invalid-error">invalid textarea</textarea>
+              <select class="elum-select" aria-label="Invalid select state" aria-invalid="true" aria-describedby="state-invalid-error">
                 <option>Invalid select</option>
               </select>
+              <p class="elum-field-error" id="state-invalid-error">Enter a valid value.</p>
             </div>
           </div>
         </section>
@@ -754,9 +759,9 @@ done in 4.20s</pre>
     <footer class="elum-footer">
       <p class="elum-footer-brand">©2026 Baudsmith Studios</p>
       <div class="elum-footer-links">
-        <a class="elum-footer-link" href="#">Link One</a>
-        <a class="elum-footer-link" href="#">Link Two</a>
-        <a class="elum-footer-link" href="#">Link Three</a>
+        <a class="elum-footer-link" href="#">LinkOne</a>
+        <a class="elum-footer-link" href="#">LinkTwo</a>
+        <a class="elum-footer-link" href="#">LinkThree</a>
       </div>
     </footer>
     <script>

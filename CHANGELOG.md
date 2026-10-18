@@ -7,26 +7,42 @@
 - Dialog component: `.elum-dialog` on a native `<dialog>`,
 - Action Menu component: `.elum-menu` on a native popover opened by a `popovertarget` button.
 - Switch component: `.elum-switch` on a native checkbox with `role="switch"`.
-- Segmented Control component: `.elum-segmented` fieldset of radios styled as joined options.
+- Segmented Control component: `.elum-segmented` fieldset of radios styled as joined options; the checked one is bracketed.
 - Breadcrumb component: `.elum-breadcrumb` on a `<nav>` wrapping an ordered list of links.
 - App Shell layout: `.elum-shell` grid with a full-width navbar and footer around a sidebar and main.
 - Sidebar component: `.elum-sidebar` on a `<nav>`, sticky beside main, with optional grouped links.
-- Navbar can hold `.elum-system-bar-group` status items between the brand and links.
+- Navbar can hold `.elum-system-bar-group` status items after the links.
 - `--elum-navbar-height` token for the navbar's minimum height and the sidebar's sticky offset.
-- Spinner component: `.elum-spinner` cycles a `|/-\` before a visible label announced as a status.
+- Spinner component: `.elum-spinner` cycles a `|/-\` before a visible label, inside a `role="status"` region.
+- Field error message: `.elum-field-error`, linked to an invalid control with `aria-describedby`.
+- App Shell skip link: `.elum-skip-link`, hidden until focused, jumps to `<main>`.
 - Skeleton component: `.elum-skeleton` placeholder line with a pulsing `░` fill, for regions marked `aria-busy`.
 - Progress component: `role="progressbar"` on `.elum-meter-track`, with a sliding block when `aria-valuenow` is absent.
+- Bundled JetBrains Mono (`src/fonts/`, SIL OFL 1.1): a 39KB Latin subset, weights 100–800, no ligatures. `dist/elumkit.css` inlines it, so strict CSPs need `data:` in `font-src`.
 - Base styles for `<kbd>` (bracketed keys) and inline `<code>` (accent, backticked).
 
 ### Changed
 
-- The current nav link is marked with a larger, centered `›` chevron (matching the breadcrumb) instead of `>`, and screen readers skip it since `aria-current` already names the link.
-- Navbar links are spaced 1.5rem apart so the current-link chevron clears the link before it.
-- Nav links use the same 2px focus ring as buttons, inputs, and other links instead of a thinner 1px ring, and every link's focus ring has slightly rounded corners.
+- README claims WCAG 2.0 AA for the library side (was an unaudited 2.2 AA) and lists what apps must supply.
+- Truncated Data List row text wraps in full on hover or keyboard focus.
+- Labelled Metrics examples carry `role="group"`, and vertical Separator examples carry `aria-orientation="vertical"`.
+- Tabs ship with the tablist `hidden` and plain panels; `tabs.js` reveals the tablist and adds the panel roles, so nothing announces tab behavior without the script.
+- Data Table wrapper examples are focusable, named regions, so keyboard users can scroll wide tables in Safari.
+- Data Table markup carries explicit table roles, so narrow-screen rows keep their header semantics. Screen readers skip the drawn `data-label` text.
+- The current nav link is marked with a small `▶` (was `>`), hidden from screen readers.
+- Prompt input examples use a small `▶` (was `>`), set closer to the input.
+- Navbar links are centered above 48rem. At 48rem and below the brand hides; at 42rem and below the status group collapses into a popover behind `.elum-navbar-status-trigger`.
+- Navbar links are spaced 1.5rem apart so the current-link marker clears the previous link.
+- Nav links use the shared 2px focus ring (was 1px), and link focus rings have slightly rounded corners.
+
+### Removed
+
+- `--elum-button-baseline-shift`. The bundled font centers button labels on its own; for another font, override `.elum-button`'s `padding-block`.
 
 ### Fixed
 
 - Navbar wraps instead of scrolling sideways, so the current-link marker no longer overlaps the brand on narrow screens.
+- Separators, Data Lists, Feeds, fieldset fields, and field errors get the `.elum-stack` gap. Base styles now zero `<hr>`, `<ul>`, `<ol>`, and `<fieldset>` margins, like `<p>` and headings.
 - `<code>`, `<kbd>`, and `<pre>` use the theme font instead of the browser's generic monospace.
 
 ## [0.3.1] - 2026-07-12

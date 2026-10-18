@@ -1,0 +1,10 @@
+/* the font ships with ElumKit so every machine renders the same face; the
+   unicode-range matches the subset, so other characters fall back per glyph */
+@font-face {
+  font-display: swap;
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 100 800;
+  src: url("./fonts/JetBrainsMono.woff2") format("woff2");
+  unicode-range: U+0000-024F, U+0259, U+02B0-036F, U+1E00-1EFF, U+2000-206F, U+20A0-20CF, U+2100-21FF, U+2500-25FF, U+FFFD;
+}

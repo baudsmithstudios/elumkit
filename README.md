@@ -7,7 +7,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-5faf87.svg" alt="MIT License"></a>
   <img src="https://img.shields.io/badge/approach-HTML--first-4f6d7a.svg" alt="HTML-first">
   <img src="https://img.shields.io/badge/distribution-owned%20source-5faf87.svg" alt="Owned source">
-  <img src="https://img.shields.io/badge/accessibility-WCAG%202.2%20AA%20baseline-00A3A3.svg" alt="WCAG 2.2 AA baseline">
+  <img src="https://img.shields.io/badge/accessibility-WCAG%202.0%20AA-00A3A3.svg" alt="WCAG 2.0 AA">
 </p>
 
 ## What It Does
@@ -22,7 +22,7 @@ ElumKit is a lean, terminal-inspired component system for modern web interfaces.
 - **Framework-agnostic baseline** — usable from vanilla HTML, Eleventy, and server-rendered templates
 - **No core JavaScript** — components rely on native HTML semantics; examples may use small demo scripts
 - **Responsive interface patterns** — tables, toolbars, query rows, and dense panels adapt to narrow screens
-- **Accessibility baseline** — keyboard-first patterns and WCAG 2.2 AA contrast targets
+- **Accessibility** — components meet WCAG 2.0 AA on the library side: keyboard-first patterns, 4.5:1 text contrast in every theme, and screen reader semantics.
 
 ## Design Principles
 
@@ -68,6 +68,10 @@ For example:
 ```text
 public/assets/elumkit/
   index.css
+  fonts.css
+  fonts/
+    JetBrainsMono.woff2
+    OFL.txt
   tokens.css
   base.css
   components/
@@ -153,4 +157,4 @@ This project is still at a very early stage of development. The documented class
 
 ## License
 
-ElumKit is released under the [MIT License](LICENSE).
+ElumKit is released under the [MIT License](LICENSE). The bundled JetBrains Mono font is licensed separately under the [SIL Open Font License 1.1](packages/core-css/src/fonts/OFL.txt).

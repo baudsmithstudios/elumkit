@@ -1,15 +1,16 @@
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 
 import { buildCss } from "../scripts/build-css.mjs";
 import { DOCUMENTED_CLASSES } from "./documented-classes.mjs";
+import { THEMES, TOKENS_CSS } from "./themes.mjs";
 
 const COMPONENTS_DIR = "packages/core-css/src/components";
 const COMPONENT_FILES = readdirSync(COMPONENTS_DIR).filter((file) => file.endsWith(".css"));
-const TOKENS_CSS = readFileSync("packages/core-css/src/tokens.css", "utf8");
 const BASE_CSS = readFileSync("packages/core-css/src/base.css", "utf8");
+const BUTTON_CSS = readFileSync("packages/core-css/src/components/button.css", "utf8");
 const FORM_CSS = readFileSync("packages/core-css/src/components/form.css", "utf8");
 const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css", "utf8");
 const TELEMETRY_CSS = readFileSync("packages/core-css/src/components/telemetry.css", "utf8");
@@ -20,13 +21,14 @@ const OUTPUT_CSS = readFileSync("packages/core-css/src/components/output.css", "
 const DIALOG_CSS = readFileSync("packages/core-css/src/components/dialog.css", "utf8");
 const MENU_CSS = readFileSync("packages/core-css/src/components/menu.css", "utf8");
 const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
+const TABS_CSS = readFileSync("packages/core-css/src/components/tabs.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
+const FONTS_CSS = readFileSync("packages/core-css/src/fonts.css", "utf8");
 const PUBLIC_CSS = [
   BASE_CSS,
   ...COMPONENT_FILES.map((file) => readFileSync(join(COMPONENTS_DIR, file), "utf8")),
 ].join("\n");
 
-const THEMES = ["dust", "iron", "neon"];
 const REQUIRED_TOKENS = [
   "--elum-color-bg",
   "--elum-color-surface",
@@ -67,8 +69,8 @@ function contrastRatio(firstColor, secondColor) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-test("core CSS entrypoint imports tokens, base, and every component file", () => {
-  for (const path of ["tokens.css", "base.css", ...COMPONENT_FILES.map((file) => `components/${file}`)]) {
+test("core CSS entrypoint imports fonts, tokens, base, and every component file", () => {
+  for (const path of ["fonts.css", "tokens.css", "base.css", ...COMPONENT_FILES.map((file) => `components/${file}`)]) {
     assert.match(INDEX_CSS, new RegExp(`@import "\\./${path.replace(".", "\\.")}";`), `index.css does not import ${path}`);
   }
 });
@@ -81,20 +83,34 @@ test("themes expose required accessible semantic tokens", () => {
       assert.match(tokens[token], /^#[0-9a-f]{6}$/, `${theme} ${token} should be a hex color`);
     }
 
-    for (const token of ["--elum-color-fg", "--elum-color-muted", "--elum-color-accent", "--elum-color-success", "--elum-color-warn", "--elum-color-error", "--elum-color-info"]) {
-      assert.ok(contrastRatio(tokens[token], tokens["--elum-color-bg"]) >= 4.5, `${theme} ${token} should meet contrast`);
+    // alerts and hovered buttons draw text on the surface color, everything else on the page background
+    for (const background of ["--elum-color-bg", "--elum-color-surface"]) {
+      for (const token of ["--elum-color-fg", "--elum-color-muted", "--elum-color-accent", "--elum-color-success", "--elum-color-warn", "--elum-color-error", "--elum-color-info"]) {
+        assert.ok(contrastRatio(tokens[token], tokens[background]) >= 4.5, `${theme} ${token} should meet contrast on ${background}`);
+      }
     }
   }
 });
 
-test("core CSS exposes accessible focus and motion behavior", () => {
+test("focus-visible draws a 2px ring", () => {
+  assert.match(BASE_CSS, /:focus-visible\s*{[^}]*outline:\s*2px solid/s);
+});
+
+test("reduced motion cuts animations and transitions to near zero", () => {
   const reducedMotion = BASE_CSS.match(/@media \(prefers-reduced-motion: reduce\)\s*{([^}]*)}/s)?.[1];
 
-  assert.match(BASE_CSS, /:focus-visible\s*{[^}]*outline:\s*2px solid/s);
   assert.match(reducedMotion, /animation-duration:\s*0\.01ms !important;/);
   assert.match(reducedMotion, /transition-duration:\s*0\.01ms !important;/);
+});
+
+test("button pads its label evenly, since the bundled font centers capitals on its own", () => {
+  const button = BUTTON_CSS.match(/^\.elum-button\s*{([^}]*)}/m)[1];
+  assert.match(button, /padding-block:\s*var\(--elum-space-2\);/);
+});
+
+test("prompt field draws the focus ring its input suppresses", () => {
   assert.match(FORM_CSS, /\.elum-prompt-field > \.elum-input:focus-visible\s*{[^}]*outline:\s*0;/s);
-  assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s, "prompt field must draw the focus ring its input suppresses");
+  assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s);
 });
 
 test("component CSS defines exactly the documented public classes", () => {
@@ -104,7 +120,9 @@ test("component CSS defines exactly the documented public classes", () => {
   assert.deepEqual([...definedClasses].filter((className) => !DOCUMENTED_CLASSES.has(className)), [], "CSS classes missing from docs");
 });
 
-test("form and feedback CSS honor the documented state hooks", () => {
+test("CSS honors the documented state hooks", () => {
+  assert.match(DATA_CSS, /\.elum-row\[data-selected="true"\]/);
+  assert.match(DATA_CSS, /\[data-column="status"\]/);
   assert.match(FORM_CSS, /\[aria-invalid="true"\]/);
   assert.match(FORM_CSS, /:disabled/);
   assert.match(FEEDBACK_CSS, /\[data-tone="success"\]/);
@@ -128,12 +146,23 @@ test("base CSS hardens against known cross-browser layout pitfalls", () => {
   assert.match(BASE_CSS, /button,\s*input,\s*select,\s*textarea[^{]*\{[^}]*font:\s*inherit/s);
 });
 
-test("table and row APIs expose responsive state hooks", () => {
-  assert.match(DATA_CSS, /\.elum-row\[data-selected="true"\]/);
-  assert.match(DATA_CSS, /content:\s*attr\(data-label\);/);
-  assert.match(DATA_CSS, /\[data-column="status"\]/);
+test("narrow tables hide the header visually but keep it for screen readers", () => {
+  // empty alt text: the table roles already announce the column header
+  assert.match(DATA_CSS, /content:\s*attr\(data-label\)\s*\/\s*"";/);
   assert.doesNotMatch(DATA_CSS, /\.elum-table thead\s*{[^}]*display:\s*none;/s);
   assert.match(DATA_CSS, /\.elum-table thead\s*{[^}]*clip-path:\s*inset\(50%\);/s);
+});
+
+test("focused or selected rows keep their marker in forced colors, which strip the inset shadow that draws it", () => {
+  const forced = DATA_CSS.match(/@media \(forced-colors: active\)\s*{\s*\.elum-row:focus-visible,\s*\.elum-row\[data-selected="true"\]\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(forced, /border-inline-start:\s*3px solid CanvasText/);
+});
+
+test("truncated row text wraps in full on hover or keyboard focus, so zoomed text is never lost", () => {
+  for (const state of ["hover", "focus-visible"]) {
+    assert.match(DATA_CSS, new RegExp(`\\.elum-row:${state} :is\\(\\.elum-row-title, \\.elum-row-meta\\)[^{]*{[^}]*white-space:\\s*normal;`, "s"));
+  }
 });
 
 test("floating label field overlays a real label and floats it on focus or content", () => {
@@ -142,8 +171,28 @@ test("floating label field overlays a real label and floats it on focus or conte
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-textarea:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
 });
 
-test("separator turns vertical via orientation hook and fills its labeled rule with a flex pseudo-element", () => {
+test("stacked components leave their margins to base, so a stack still spaces them", () => {
+  for (const [css, selector] of [
+    [SEPARATOR_CSS, "\\.elum-separator"],
+    [SEPARATOR_CSS, "\\.elum-separator-labeled"],
+    [DATA_CSS, "\\.elum-list"],
+    [FEED_CSS, "\\.elum-feed"],
+    [FORM_CSS, "fieldset\\.elum-field"],
+    [FORM_CSS, "\\.elum-field-error"],
+    [FORM_CSS, "\\.elum-segmented"],
+  ]) {
+    const rule = css.match(new RegExp(`^${selector}\\s*{([^}]*)}`, "m"))?.[1] ?? "";
+    assert.doesNotMatch(rule, /margin/, `${selector} overrides the stack gap`);
+  }
+  assert.match(BASE_CSS, /^hr,\s*ol,\s*ul\s*{[^}]*margin:\s*0;/m);
+  assert.match(BASE_CSS, /^fieldset\s*{[^}]*margin:\s*0;/m);
+});
+
+test("separator turns vertical via its orientation hook", () => {
   assert.match(SEPARATOR_CSS, /\.elum-separator\[data-orientation="vertical"\]\s*{[^}]*border-inline-start:/s);
+});
+
+test("labeled separator fills the rest of the line with its rule", () => {
   assert.match(SEPARATOR_CSS, /\.elum-separator-labeled::after\s*{[^}]*flex:\s*1;/s);
 });
 
@@ -151,9 +200,12 @@ test("metrics tile layout lays metrics out as a wrapping row", () => {
   assert.match(TELEMETRY_CSS, /\.elum-metrics\[data-layout="tiles"\]\s*{[^}]*grid-template-columns:\s*repeat\(auto-fit,/s);
 });
 
-test("feed rows carry a tone-coded accent bar and pin their meta to the trailing edge", () => {
+test("feed rows carry a tone-coded accent bar", () => {
   assert.match(FEED_CSS, /\.elum-feed-item\s*{[^}]*box-shadow:\s*inset[^}]*var\(--elum-feed-tone,\s*var\(--elum-color-info\)\)/s);
   assert.match(FEED_CSS, /\.elum-feed-item\[data-tone="error"\]\s*{[^}]*--elum-feed-tone:\s*var\(--elum-color-error\)/s);
+});
+
+test("feed rows pin their meta to the trailing edge", () => {
   assert.match(FEED_CSS, /\.elum-feed-meta\s*{[^}]*margin-inline-start:\s*auto/s);
 });
 
@@ -193,6 +245,10 @@ test("switch keeps its knob visible in forced colors, which otherwise strip the 
   assert.match(forced, /linear-gradient\(CanvasText, CanvasText\)/);
 });
 
+test("tablist honors hidden, which keeps controls out of view until tabs.js wires them up", () => {
+  assert.match(TABS_CSS, /\.elum-tabs\[hidden\]\s*{[^}]*display:\s*none;/s);
+});
+
 test("segmented option hides its radio without taking it out of the tab order or arrow-key navigation", () => {
   const radio = FORM_CSS.match(/\.elum-segmented-option > input\s*{([^}]*)}/s)?.[1] ?? "";
 
@@ -201,9 +257,18 @@ test("segmented option hides its radio without taking it out of the tab order or
   assert.doesNotMatch(radio, /display:\s*none|visibility:\s*hidden/);
 });
 
-test("segmented option shows focus and selection on its label, since the radio itself is hidden", () => {
+test("segmented option shows focus on its label, since the radio itself is hidden", () => {
   assert.match(FORM_CSS, /\.elum-segmented-option:has\(:focus-visible\)\s*{[^}]*outline:\s*2px solid/s);
-  assert.match(FORM_CSS, /\.elum-segmented-option:has\(:checked\)\s*{[^}]*background:/s);
+});
+
+test("segmented control brackets the checked option so selection isn't color-only, reserving bracket space on every option so nothing shifts", () => {
+  const reserved = FORM_CSS.match(/\.elum-segmented-option::before,\s*\.elum-segmented-option::after\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(FORM_CSS, /\.elum-segmented-option::before\s*{[^}]*content:\s*"\["\s*\/\s*"";/s);
+  assert.match(FORM_CSS, /\.elum-segmented-option::after\s*{[^}]*content:\s*"\]"\s*\/\s*"";/s);
+  // visibility, unlike a transparent color, stays hidden when forced colors repaint text
+  assert.match(reserved, /visibility:\s*hidden/);
+  assert.match(FORM_CSS, /\.elum-segmented-option:has\(:checked\)::before,\s*\.elum-segmented-option:has\(:checked\)::after\s*{[^}]*visibility:\s*visible/s);
 });
 
 test("segmented control marks the checked option with system colors in forced colors, which otherwise strip its fill", () => {
@@ -222,8 +287,8 @@ test("nav links keep the base focus ring that buttons and inputs use", () => {
   assert.doesNotMatch(NAVIGATION_CSS, /\.elum-navlink:focus-visible/);
 });
 
-test("current nav link is marked with the breadcrumb chevron, which screen readers skip since aria-current already names it", () => {
-  assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
+test("current nav link is marked with the Disclosure triangle, which screen readers skip since aria-current already names it", () => {
+  assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]::before\s*{[^}]*content:\s*"▶"\s*\/\s*"";/s);
 });
 
 test("spinner cycles the | / - \\ frames with empty alt text so screen readers read only its label", () => {
@@ -291,13 +356,21 @@ test("app shell spans the navbar and footer edge to edge across both columns", (
   assert.match(spanning, /max-width:\s*none;/);
 });
 
+test("skip link stays out of the app shell grid and is hidden only until focused, so keyboard users can reach it", () => {
+  assert.match(BASE_CSS, /\.elum-skip-link\s*{[^}]*position:\s*absolute;/s);
+  const hidden = BASE_CSS.match(/\.elum-skip-link:not\(:focus\)\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(hidden, /clip-path:\s*inset\(50%\)/);
+  assert.doesNotMatch(hidden, /display:\s*none|visibility:\s*hidden/);
+});
+
 test("app shell stacks into one column on narrow screens", () => {
   assert.match(BASE_CSS, /@media \(max-width: 48rem\)\s*{\s*\.elum-shell\s*{[^}]*grid-template-columns:\s*minmax\(0, 1fr\);/s);
 });
 
 test("sidebar list sticks below the navbar beside main and scrolls itself when taller than the viewport", () => {
   assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*min-height:\s*var\(--elum-navbar-height\);/s);
-  const sticky = NAVIGATION_CSS.match(/@media \(min-width: 48\.001rem\)\s*{.*?\.elum-sidebar > ul\s*{([^}]*)}/s)?.[1];
+  const sticky = NAVIGATION_CSS.match(/@media \(min-width: 48\.001rem\)\s*{\s*\.elum-sidebar > ul\s*{([^}]*)}/s)?.[1];
 
   assert.match(sticky, /position:\s*sticky;/);
   assert.match(sticky, /top:\s*var\(--elum-navbar-height\);/);
@@ -318,8 +391,29 @@ test("navbar wraps onto new lines with a gap between items instead of scrolling 
   assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*gap:/s);
 });
 
-test("navbar brand pushes status items and links to the inline end", () => {
-  assert.match(NAVIGATION_CSS, /\.elum-navbar-brand\s*{[^}]*margin-inline-end:\s*auto;/s);
+test("navbar centers its links between the brand and the status group once it is wide enough not to wrap", () => {
+  const wide = NAVIGATION_CSS.match(/@media \(min-width: 48\.001rem\)\s*{\s*\.elum-navbar\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(wide, /display:\s*grid;/);
+  assert.match(wide, /grid-template-columns:\s*1fr auto 1fr;/);
+});
+
+test("navbar drops the brand once it is too narrow to center the links", () => {
+  assert.match(NAVIGATION_CSS, /@media \(max-width: 48rem\)\s*{\s*\.elum-navbar-brand\s*{[^}]*display:\s*none;/s);
+});
+
+test("navbar status group shows inline at the inline end, and collapses behind its trigger on the narrowest screens", () => {
+  const inline = NAVIGATION_CSS.match(/@media \(min-width: 42\.001rem\)\s*{(.*?)\n}/s)?.[1] ?? "";
+  const collapsed = NAVIGATION_CSS.match(/@media \(max-width: 42rem\)\s*{(.*?)\n}/s)?.[1] ?? "";
+
+  assert.match(inline, /\.elum-navbar-status-trigger\s*{[^}]*display:\s*none;/s);
+  // the group is a popover, which browsers hide and lift out of the row unless overridden
+  const group = inline.match(/\.elum-navbar > \.elum-system-bar-group\s*{([^}]*)}/s)?.[1] ?? "";
+  assert.match(group, /display:\s*flex;/);
+  assert.match(group, /position:\s*static;/);
+  assert.match(group, /margin:\s*0;\s*margin-inline-start:\s*auto;/);
+  assert.match(collapsed, /\.elum-navbar > \.elum-system-bar-group:not\(:popover-open\)\s*{[^}]*display:\s*none;/s);
+  assert.match(collapsed, /\.elum-navbar-status-trigger\s*{[^}]*margin-inline-start:\s*auto;/s);
 });
 
 test("CSS bundle inlines the whole import chain into one standalone file", () => {
@@ -327,4 +421,33 @@ test("CSS bundle inlines the whole import chain into one standalone file", () =>
 
   assert.doesNotMatch(bundle, /@import/, "bundle must inline all imports so it stands alone");
   assert.match(bundle, /\.elum-footer\b/, "bundle must inline the chain through the last import");
+});
+
+test("CSS bundle inlines the font so embedding the one file carries it", () => {
+  const bundle = buildCss();
+
+  assert.doesNotMatch(bundle, /url\("\.\/fonts\//, "bundle must not reference font files beside it");
+  assert.match(bundle, /url\("data:font\/woff2;base64,[A-Za-z0-9+/]+=*"\)/);
+});
+
+test("font stack leads with the shipped JetBrains Mono, packaged with its OFL license", () => {
+  const leadFamily = TOKENS_CSS.match(/--elum-font-family:\s*("[^"]+")/)?.[1];
+  const fontFile = FONTS_CSS.match(/url\("\.\/([^"]+\.woff2)"\)/)?.[1] ?? "";
+
+  assert.match(FONTS_CSS, new RegExp(`@font-face\\s*{[^}]*font-family:\\s*${leadFamily};`, "s"));
+  assert.ok(existsSync(join("packages/core-css/src", fontFile)), `${fontFile} is missing`);
+  assert.ok(existsSync("packages/core-css/src/fonts/OFL.txt"), "the OFL requires its license to ship with the font");
+});
+
+test("shipped font's unicode-range covers every character the CSS draws", () => {
+  const ranges = (FONTS_CSS.match(/unicode-range:([^;]+);/)?.[1] ?? "").split(",").map((range) => {
+    const [start, end = start] = range.trim().replace(/^U\+/, "").split("-");
+    return [parseInt(start, 16), parseInt(end, 16)];
+  });
+  const drawn = new Set([...PUBLIC_CSS.matchAll(/content:\s*"([^"]+)"/g)].flatMap((match) => [...match[1]]));
+
+  for (const char of drawn) {
+    const code = char.codePointAt(0);
+    assert.ok(ranges.some(([start, end]) => code >= start && code <= end), `${char} is outside the shipped font`);
+  }
 });

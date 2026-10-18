@@ -1,17 +1,19 @@
 <div class="elum-shell">
+  <a class="elum-skip-link" href="#main">Skip to content</a>
   <nav class="elum-navbar" aria-label="Primary">
     <div class="elum-navbar-brand">Navigation</div>
-    <span class="elum-system-bar-group">
-      <span class="elum-system-bar-item">
-        <span class="elum-system-bar-key">state</span>
-        <span class="elum-system-bar-value">[READY]</span>
-      </span>
-    </span>
     <section class="elum-navlinks">
       <a class="elum-navlink" href="#" aria-current="page">home</a>
       <a class="elum-navlink" href="#">devices</a>
       <a class="elum-navlink" href="#">settings</a>
     </section>
+    <button class="elum-button elum-navbar-status-trigger" data-variant="tertiary" type="button" popovertarget="navbar-status">status</button>
+    <span class="elum-system-bar-group elum-menu" id="navbar-status" popover>
+      <span class="elum-system-bar-item">
+        <span class="elum-system-bar-key">state</span>
+        <span class="elum-system-bar-value">[READY]</span>
+      </span>
+    </span>
   </nav>
 
   <nav class="elum-sidebar" aria-label="Sections">
@@ -27,7 +29,7 @@
     </ul>
   </nav>
 
-  <main class="elum-container elum-stack">
+  <main id="main" class="elum-container elum-stack">
     <nav class="elum-breadcrumb" aria-label="Breadcrumb">
       <ol>
         <li><a href="#">pipelines</a></li>
@@ -44,7 +46,7 @@
       <p>Use cards for grouped content, settings sections, and compact panels.</p>
       <p>Press <kbd>Ctrl</kbd> + <kbd>K</kbd> to search, or set <code>retries</code> in <code>config.yaml</code>.</p>
       <p>Badge state <span class="elum-badge" data-tone="warn">[WARNING]</span></p>
-      <p><span class="elum-spinner" role="status">Syncing replicas</span></p>
+      <p role="status"><span class="elum-spinner">Syncing replicas</span></p>
       <div class="elum-stack" aria-busy="true">
         <div class="elum-skeleton"></div>
         <div class="elum-skeleton" style="width: 60%"></div>
@@ -58,7 +60,7 @@
       <div class="elum-field">
         <label class="elum-label" for="name">Name</label>
         <span class="elum-prompt-field">
-          <span class="elum-input-prompt" aria-hidden="true">&gt;</span>
+          <span class="elum-input-prompt" aria-hidden="true">▶</span>
           <input class="elum-input" id="name" name="name" type="text" placeholder="input_" />
         </span>
       </div>
@@ -66,6 +68,12 @@
       <div class="elum-field-float">
         <input class="elum-input" id="label" name="label" type="text" placeholder=" " />
         <label class="elum-label" for="label">Label</label>
+      </div>
+
+      <div class="elum-field">
+        <label class="elum-label" for="retries">Retries</label>
+        <input class="elum-input" id="retries" name="retries" type="number" value="-1" aria-invalid="true" aria-describedby="retries-error" />
+        <p class="elum-field-error" id="retries-error">Retries must be 0 or more.</p>
       </div>
 
       <div class="elum-field">
@@ -105,7 +113,7 @@
     </form>
 
     <aside class="elum-alert" data-tone="warn" role="status">
-      Disk usage crossed the configured warning threshold.
+      <span class="elum-badge" data-tone="warn">[WARN]</span> Disk usage crossed the configured warning threshold.
     </aside>
 
     <section class="elum-system-bar" aria-label="System status">
@@ -122,7 +130,7 @@
       </span>
     </section>
 
-    <div class="elum-metrics" aria-label="Runtime metrics">
+    <div class="elum-metrics" role="group" aria-label="Runtime metrics">
       <div class="elum-metric">
         <span class="elum-metric-label">Load</span>
         <span class="elum-metric-value">0.42</span>
@@ -135,9 +143,9 @@
       </div>
     </div>
 
-    <div class="elum-metrics" data-layout="tiles" aria-label="Service KPIs">
+    <div class="elum-metrics" data-layout="tiles" role="group" aria-label="Service KPIs">
       <div class="elum-metric" data-tone="success">
-        <span class="elum-metric-label">Uptime</span>
+        <span class="elum-metric-label">Uptime <span class="elum-badge" data-tone="success">[OK]</span></span>
         <span class="elum-metric-value">99.98</span>
         <span class="elum-metric-unit">%</span>
       </div>
@@ -192,22 +200,22 @@
       </li>
     </ul>
 
-    <div class="elum-table-wrap">
-      <table class="elum-table">
-        <thead>
-          <tr>
-            <th scope="col">Service</th>
-            <th scope="col" data-column="status">Status</th>
-            <th scope="col" data-align="end">Latency</th>
-            <th scope="col" data-align="end">Actions</th>
+    <div class="elum-table-wrap" tabindex="0" role="region" aria-label="Service status">
+      <table class="elum-table" role="table">
+        <thead role="rowgroup">
+          <tr role="row">
+            <th scope="col" role="columnheader">Service</th>
+            <th scope="col" data-column="status" role="columnheader">Status</th>
+            <th scope="col" data-align="end" role="columnheader">Latency</th>
+            <th scope="col" data-align="end" role="columnheader">Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td data-label="Service">api-gateway</td>
-            <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
-            <td data-label="Latency" data-align="end" data-numeric="true">42ms</td>
-            <td data-label="Actions" data-align="end">
+        <tbody role="rowgroup">
+          <tr role="row">
+            <td data-label="Service" role="cell">api-gateway</td>
+            <td data-label="Status" data-column="status" role="cell"><span class="elum-badge" data-tone="success">[HEALTHY]</span></td>
+            <td data-label="Latency" data-align="end" data-numeric="true" role="cell">42ms</td>
+            <td data-label="Actions" data-align="end" role="cell">
               <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-api-gateway" aria-label="Actions for api-gateway">⋯</button>
               <div class="elum-menu" id="menu-api-gateway" popover>
                 <a class="elum-menu-item" href="#">View logs</a>
@@ -216,11 +224,11 @@
               </div>
             </td>
           </tr>
-          <tr>
-            <td data-label="Service">worker-queue</td>
-            <td data-label="Status" data-column="status"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
-            <td data-label="Latency" data-align="end" data-numeric="true">118ms</td>
-            <td data-label="Actions" data-align="end">
+          <tr role="row">
+            <td data-label="Service" role="cell">worker-queue</td>
+            <td data-label="Status" data-column="status" role="cell"><span class="elum-badge" data-tone="warn">[DELAYED]</span></td>
+            <td data-label="Latency" data-align="end" data-numeric="true" role="cell">118ms</td>
+            <td data-label="Actions" data-align="end" role="cell">
               <button class="elum-button elum-menu-trigger" data-variant="tertiary" type="button" popovertarget="menu-worker-queue" aria-label="Actions for worker-queue">⋯</button>
               <div class="elum-menu" id="menu-worker-queue" popover>
                 <a class="elum-menu-item" href="#">View logs</a>
@@ -283,14 +291,14 @@
     </dl>
 
     <!-- Tabs need additional JS. Copy packages/core-js/src/tabs.js and load it
-         with <script src="/assets/elumkit/tabs.js" defer></script>. Without it, all panels stay visible. -->
-    <div class="elum-tabs" role="tablist" aria-label="Service views">
+         with <script src="/assets/elumkit/tabs.js" defer></script>. Without it, the tablist stays hidden and all panels stay visible. -->
+    <div class="elum-tabs" role="tablist" aria-label="Service views" hidden>
       <button class="elum-tab" id="tab-incidents" role="tab" aria-selected="true" aria-controls="panel-incidents">Incidents</button>
       <button class="elum-tab" id="tab-uptime" role="tab" aria-selected="false" aria-controls="panel-uptime">Uptime</button>
     </div>
 
-    <div id="panel-incidents" role="tabpanel" aria-labelledby="tab-incidents">Incident content here.</div>
-    <div id="panel-uptime" role="tabpanel" aria-labelledby="tab-uptime">Uptime content here.</div>
+    <div id="panel-incidents">Incident content here.</div>
+    <div id="panel-uptime">Uptime content here.</div>
 
     <div class="elum-toolbar" role="group" aria-label="Page actions">
       <div class="elum-toolbar-group">
@@ -320,14 +328,17 @@
     <h2 class="elum-separator-labeled">System Status</h2>
     <ul class="elum-feed">
       <li class="elum-feed-item" data-tone="error">
+        <span class="elum-badge" data-tone="error">[ERROR]</span>
         <span>Backup job failed on node-03</span>
         <span class="elum-feed-meta">10:42</span>
       </li>
       <li class="elum-feed-item" data-tone="warn">
+        <span class="elum-badge" data-tone="warn">[WARN]</span>
         <span>Disk usage above 90%</span>
         <span class="elum-feed-meta">10:31</span>
       </li>
       <li class="elum-feed-item" data-tone="success">
+        <span class="elum-badge" data-tone="success">[OK]</span>
         <span>Restore verified</span>
         <span class="elum-feed-meta">09:58</span>
       </li>
@@ -376,7 +387,7 @@
     <div class="elum-toolbar" role="group" aria-label="Status summary">
       <div class="elum-toolbar-group">
         <span class="elum-toolbar-value">ready</span>
-        <hr class="elum-separator" data-orientation="vertical" />
+        <hr class="elum-separator" data-orientation="vertical" aria-orientation="vertical" />
         <span class="elum-toolbar-value">3 nodes</span>
       </div>
     </div>

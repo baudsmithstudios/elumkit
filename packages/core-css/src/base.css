@@ -28,6 +28,7 @@ button, input, select, textarea, optgroup, option {
 }
 
 fieldset {
+  margin: 0;
   min-width: 0;
 }
 
@@ -41,6 +42,12 @@ a:hover {
 }
 
 p {
+  margin: 0;
+}
+
+hr,
+ol,
+ul {
   margin: 0;
 }
 
@@ -148,6 +155,25 @@ a:focus-visible {
   grid-column: 1 / -1;
   margin: 0;
   max-width: none;
+}
+
+.elum-skip-link {
+  background: var(--elum-color-bg);
+  border-radius: var(--elum-radius-md);
+  inset-block-start: var(--elum-space-2);
+  inset-inline-start: var(--elum-space-2);
+  padding: var(--elum-space-2) var(--elum-space-3);
+  position: absolute;
+  /* above the sticky navbar */
+  z-index: 1000;
+}
+
+.elum-skip-link:not(:focus) {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 1px;
 }
 
 @media (max-width: 48rem) {

@@ -4,6 +4,7 @@ Framework-agnostic style contract for ElumKit. Copy this source into your projec
 
 ## Contents
 
+- `src/fonts.css` and `src/fonts/`: the bundled JetBrains Mono font (see `src/fonts/README.md`)
 - `src/tokens.css`: theme tokens and design variables
 - `src/base.css`: minimal reset and base element styles
 - `src/components/*.css`: semantic component class styles
@@ -16,6 +17,8 @@ Copy the full `src/` directory into your app while preserving the directory stru
 ```text
 assets/elumkit/
   index.css
+  fonts.css
+  fonts/
   tokens.css
   base.css
   components/*.css
@@ -39,7 +42,7 @@ Supported default values are `dust`, `iron`, and `neon`. See [`docs/theming.md`]
 
 ## Single-file bundle
 
-`dist/elumkit.css` is the `src/index.css` import chain flattened into one file with no `@import`s. Use it when you have no CSS build step (single-binary embeds, server-rendered apps). If you have a bundler (Vite, Eleventy, etc.), point at `src/index.css` instead.
+`dist/elumkit.css` is the `src/index.css` import chain flattened into one file with no `@import`s. The font is inlined as a data URL, so the file carries it with nothing else to serve. If your Content Security Policy sets `font-src`, allow `data:`. Use it when you have no CSS build step (single-binary embeds, server-rendered apps). If you have a bundler (Vite, Eleventy, etc.), point at `src/index.css` instead.
 
 It is not tracked in git; build it from source:
 

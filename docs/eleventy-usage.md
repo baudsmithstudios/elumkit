@@ -15,12 +15,16 @@ For example:
 ```text
 public/assets/elumkit/
   index.css
+  fonts.css
+  fonts/
+    JetBrainsMono.woff2
+    OFL.txt
   tokens.css
   base.css
   components/*.css
 ```
 
-Preserve the directory structure so `index.css` can keep importing `tokens.css`, `base.css`, and `components/*.css`.
+Preserve the directory structure so `index.css` can keep importing `fonts.css`, `tokens.css`, `base.css`, and `components/*.css`, and `fonts.css` can find `fonts/`.
 
 ## 2) Include the copied CSS in your base layout
 
