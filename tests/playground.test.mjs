@@ -340,12 +340,12 @@ test("playground sidebar links all land on a section of the page", () => {
   assert.deepEqual(targets.filter((target) => !ids.has(target)), [], "sidebar links point at missing ids");
 });
 
-test("prompt fields use the › chevron that marks the current navbar link and separates breadcrumbs", () => {
+test("prompt fields use the ▶ triangle that marks the current navbar link", () => {
   for (const [file, html] of EXAMPLES) {
     const prompts = [...html.matchAll(/<span class="elum-input-prompt"[^>]*>([^<]*)<\/span>/g)].map((match) => match[1]);
     assert.ok(prompts.length > 0, `${file} has no prompt field`);
     for (const prompt of prompts) {
-      assert.equal(prompt, "›", `${file} prompt should be ›`);
+      assert.equal(prompt, "▶", `${file} prompt should be ▶`);
     }
   }
 });

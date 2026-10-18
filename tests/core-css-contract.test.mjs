@@ -287,12 +287,21 @@ test("breadcrumb draws chevrons between items with empty alt text so screen read
   assert.match(NAVIGATION_CSS, /\.elum-breadcrumb li \+ li::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
 });
 
+test("triangle markers draw at one size, a step below the text they mark", () => {
+  for (const [css, selector] of [
+    [NAVIGATION_CSS, '\\.elum-navlink\\[aria-current="page"\\]::before'],
+    [FORM_CSS, "\\.elum-input-prompt"],
+  ]) {
+    assert.match(css, new RegExp(`${selector}\\s*{[^}]*font-size:\\s*var\\(--elum-text-xs\\);`, "s"), selector);
+  }
+});
+
 test("nav links keep the base focus ring that buttons and inputs use", () => {
   assert.doesNotMatch(NAVIGATION_CSS, /\.elum-navlink:focus-visible/);
 });
 
-test("current nav link is marked with the breadcrumb chevron, which screen readers skip since aria-current already names it", () => {
-  assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]::before\s*{[^}]*content:\s*"›"\s*\/\s*"";/s);
+test("current nav link is marked with the Disclosure triangle, which screen readers skip since aria-current already names it", () => {
+  assert.match(NAVIGATION_CSS, /\.elum-navlink\[aria-current="page"\]::before\s*{[^}]*content:\s*"▶"\s*\/\s*"";/s);
 });
 
 test("spinner cycles the | / - \\ frames with empty alt text so screen readers read only its label", () => {

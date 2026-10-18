@@ -105,14 +105,13 @@
 }
 
 .elum-navlink[aria-current="page"]::before {
-  content: "›" / "";
-  font-size: 1.5em;
+  content: "▶" / "";
+  font-size: var(--elum-text-xs);
   inset-inline-end: calc(100% + var(--elum-space-2));
   line-height: 1;
   position: absolute;
   top: 50%;
-  /* the chevron sits at x-height, below the center of the uppercase link text */
-  transform: translateY(-55%);
+  transform: translateY(-50%);
 }
 
 .elum-navlink:hover {

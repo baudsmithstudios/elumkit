@@ -46,7 +46,7 @@
 .elum-input-prompt {
   color: var(--elum-color-muted);
   flex: 0 0 auto;
-  font-size: var(--elum-text-xl);
+  font-size: var(--elum-text-xs);
   line-height: var(--elum-lh-normal);
   margin-right: var(--elum-space-1);
 }
