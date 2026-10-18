@@ -68,6 +68,10 @@ For example:
 ```text
 public/assets/elumkit/
   index.css
+  fonts.css
+  fonts/
+    JetBrainsMono.woff2
+    OFL.txt
   tokens.css
   base.css
   components/
@@ -153,4 +157,4 @@ This project is still at a very early stage of development. The documented class
 
 ## License
 
-ElumKit is released under the [MIT License](LICENSE).
+ElumKit is released under the [MIT License](LICENSE). The bundled JetBrains Mono font is licensed separately under the [SIL Open Font License 1.1](packages/core-css/src/fonts/OFL.txt).

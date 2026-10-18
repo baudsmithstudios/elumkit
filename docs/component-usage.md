@@ -33,7 +33,7 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 ## Input / Textarea / Select
 
 - **Wrapper:** `.elum-field` around the control, with a connected `<label class="elum-label" for="...">`
-- **Prompt input:** wrap `.elum-input` in `.elum-prompt-field` and place `.elum-input-prompt` before it for a persistent prompt such as `>`
+- **Prompt input:** wrap `.elum-input` in `.elum-prompt-field` and place `.elum-input-prompt` before it for a persistent prompt such as `›`
 - **Invalid state:** `aria-invalid="true"`, plus an error message. The error-colored border alone signals the error by color only.
 - **Error message:** `.elum-field-error` on a `<p>` after the control, with an `id` that the control references in `aria-describedby`, so screen readers read the message with the control.
 - **Disabled state:** native `disabled`

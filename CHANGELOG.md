@@ -18,6 +18,7 @@
 - App Shell skip link: `.elum-skip-link`, hidden until focused, jumps past the navbar and sidebar to `<main>`.
 - Skeleton component: `.elum-skeleton` placeholder line with a pulsing `░` fill, for regions marked `aria-busy`.
 - Progress component: `role="progressbar"` on `.elum-meter-track`, with a sliding block when `aria-valuenow` is absent.
+- JetBrains Mono ships with the CSS (`src/fonts/`, SIL OFL 1.1), so every machine renders the same face instead of falling back to the system monospace. The file is a 38KB Latin subset with weights 100–800 and no coding ligatures. `dist/elumkit.css` inlines it, so the bundle stays one file; strict CSPs need `data:` in `font-src`.
 - Base styles for `<kbd>` (bracketed keys) and inline `<code>` (accent, backticked).
 
 ### Changed
@@ -29,6 +30,7 @@
 - Data Table wrapper examples are focusable, named regions (`tabindex="0"`, `role="region"`, `aria-label`), so keyboard users can scroll wide tables in Safari.
 - Data Table markup carries explicit table roles, so narrow-screen rows keep their header semantics in browsers that drop them on a `display` change. Screen readers now skip the drawn `data-label` text and announce the column header instead.
 - The current nav link is marked with a larger, centered `›` chevron (matching the breadcrumb) instead of `>`, and screen readers skip it since `aria-current` already names the link.
+- Prompt input examples use the `›` chevron instead of `>`, matching the navbar and breadcrumb. The prompt is drawn larger (`--elum-text-xl`) and sits closer to the input.
 - Navbar links are spaced 1.5rem apart so the current-link chevron clears the link before it.
 - Nav links use the same 2px focus ring as buttons, inputs, and other links instead of a thinner 1px ring, and every link's focus ring has slightly rounded corners.
 

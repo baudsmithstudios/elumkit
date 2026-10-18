@@ -39,6 +39,14 @@ Defined in `packages/core-css/src/tokens.css`:
 - Radius/border tokens (`--elum-radius-*`, `--elum-border-width`)
 - Motion token (`--elum-motion-fast`)
 
+## Font
+
+ElumKit ships JetBrains Mono (`packages/core-css/src/fonts/`) so every machine renders the same face. `--elum-font-family` lists it first, followed by system monospace fallbacks. The bundled file covers Latin, punctuation, currency, arrows, and box and block characters at weights 100–800, without coding ligatures. Characters outside it, such as Cyrillic or Greek, fall back to the next font in the stack one character at a time.
+
+- **Use a different font:** override `--elum-font-family`. The browser never downloads a font that nothing uses, so the bundled file costs nothing when `src/` is linked. (The single-file bundle inlines it, so it is always part of that download.)
+- **Add characters:** declare another `@font-face` for `"JetBrains Mono"` with a `unicode-range` for the characters you need. The browser combines it with the bundled face.
+- **Rebuild the subset:** `packages/core-css/src/fonts/README.md` records the release and the exact command.
+
 ## Color tokens
 
 | Token | Role |

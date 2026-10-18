@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 
@@ -67,8 +67,8 @@ function contrastRatio(firstColor, secondColor) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
-test("core CSS entrypoint imports tokens, base, and every component file", () => {
-  for (const path of ["tokens.css", "base.css", ...COMPONENT_FILES.map((file) => `components/${file}`)]) {
+test("core CSS entrypoint imports fonts, tokens, base, and every component file", () => {
+  for (const path of ["fonts.css", "tokens.css", "base.css", ...COMPONENT_FILES.map((file) => `components/${file}`)]) {
     assert.match(INDEX_CSS, new RegExp(`@import "\\./${path.replace(".", "\\.")}";`), `index.css does not import ${path}`);
   }
 });
@@ -374,4 +374,35 @@ test("CSS bundle inlines the whole import chain into one standalone file", () =>
 
   assert.doesNotMatch(bundle, /@import/, "bundle must inline all imports so it stands alone");
   assert.match(bundle, /\.elum-footer\b/, "bundle must inline the chain through the last import");
+});
+
+test("CSS bundle inlines the font so embedding the one file carries it", () => {
+  const bundle = buildCss();
+
+  assert.doesNotMatch(bundle, /url\("\.\/fonts\//, "bundle must not reference font files beside it");
+  assert.match(bundle, /url\("data:font\/woff2;base64,[A-Za-z0-9+/]+=*"\)/);
+});
+
+test("font stack leads with the shipped JetBrains Mono, packaged with its OFL license", () => {
+  const fontsCss = readFileSync("packages/core-css/src/fonts.css", "utf8");
+  const leadFamily = TOKENS_CSS.match(/--elum-font-family:\s*("[^"]+")/)?.[1];
+  const fontFile = fontsCss.match(/url\("\.\/([^"]+\.woff2)"\)/)?.[1] ?? "";
+
+  assert.match(fontsCss, new RegExp(`@font-face\\s*{[^}]*font-family:\\s*${leadFamily};`, "s"));
+  assert.ok(existsSync(join("packages/core-css/src", fontFile)), `${fontFile} is missing`);
+  assert.ok(existsSync("packages/core-css/src/fonts/OFL.txt"), "the OFL requires its license to ship with the font");
+});
+
+test("shipped font's unicode-range covers every character the CSS draws", () => {
+  const fontsCss = readFileSync("packages/core-css/src/fonts.css", "utf8");
+  const ranges = (fontsCss.match(/unicode-range:([^;]+);/)?.[1] ?? "").split(",").map((range) => {
+    const [start, end = start] = range.trim().replace(/^U\+/, "").split("-");
+    return [parseInt(start, 16), parseInt(end, 16)];
+  });
+  const drawn = new Set([...PUBLIC_CSS.matchAll(/content:\s*"([^"]+)"/g)].flatMap((match) => [...match[1]]));
+
+  for (const char of drawn) {
+    const code = char.codePointAt(0);
+    assert.ok(ranges.some(([start, end]) => code >= start && code <= end), `${char} is outside the shipped font`);
+  }
 });
