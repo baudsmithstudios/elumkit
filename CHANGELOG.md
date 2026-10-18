@@ -2,9 +2,11 @@
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-18
+
 ### Added
 
-- Dialog component: `.elum-dialog` on a native `<dialog>`,
+- Dialog component: `.elum-dialog` on a native `<dialog>`.
 - Action Menu component: `.elum-menu` on a native popover opened by a `popovertarget` button.
 - Switch component: `.elum-switch` on a native checkbox with `role="switch"`.
 - Segmented Control component: `.elum-segmented` fieldset of radios styled as joined options; the checked one is bracketed.
@@ -42,7 +44,7 @@
 ### Fixed
 
 - Navbar wraps instead of scrolling sideways, so the current-link marker no longer overlaps the brand on narrow screens.
-- Separators, Data Lists, Feeds, fieldset fields, and field errors get the `.elum-stack` gap. Base styles now zero `<hr>`, `<ul>`, `<ol>`, and `<fieldset>` margins, like `<p>` and headings.
+- Separators, Data Lists, Feeds, fieldset fields, field errors, and Segmented Controls get the `.elum-stack` gap. Base styles now zero `<hr>`, `<ul>`, `<ol>`, and `<fieldset>` margins, like `<p>` and headings.
 - `<code>`, `<kbd>`, and `<pre>` use the theme font instead of the browser's generic monospace.
 
 ## [0.3.1] - 2026-07-12
@@ -132,7 +134,8 @@
   theming guide
 - `examples/playground.html` for visual review of all components and states
 
-[Unreleased]: https://github.com/baudsmithstudios/elumkit/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/baudsmithstudios/elumkit/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/baudsmithstudios/elumkit/releases/tag/v0.4.0
 [0.3.1]: https://github.com/baudsmithstudios/elumkit/releases/tag/v0.3.1
 [0.3.0]: https://github.com/baudsmithstudios/elumkit/releases/tag/v0.3.0
 [0.2.0]: https://github.com/baudsmithstudios/elumkit/releases/tag/v0.2.0
