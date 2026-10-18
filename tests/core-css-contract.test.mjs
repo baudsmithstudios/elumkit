@@ -344,7 +344,7 @@ test("app shell stacks into one column on narrow screens", () => {
 
 test("sidebar list sticks below the navbar beside main and scrolls itself when taller than the viewport", () => {
   assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*min-height:\s*var\(--elum-navbar-height\);/s);
-  const sticky = NAVIGATION_CSS.match(/@media \(min-width: 48\.001rem\)\s*{.*?\.elum-sidebar > ul\s*{([^}]*)}/s)?.[1];
+  const sticky = NAVIGATION_CSS.match(/@media \(min-width: 48\.001rem\)\s*{\s*\.elum-sidebar > ul\s*{([^}]*)}/s)?.[1];
 
   assert.match(sticky, /position:\s*sticky;/);
   assert.match(sticky, /top:\s*var\(--elum-navbar-height\);/);
@@ -365,8 +365,29 @@ test("navbar wraps onto new lines with a gap between items instead of scrolling 
   assert.match(NAVIGATION_CSS, /\.elum-navbar\s*{[^}]*gap:/s);
 });
 
-test("navbar brand pushes status items and links to the inline end", () => {
-  assert.match(NAVIGATION_CSS, /\.elum-navbar-brand\s*{[^}]*margin-inline-end:\s*auto;/s);
+test("navbar centers its links between the brand and the status group once it is wide enough not to wrap", () => {
+  const wide = NAVIGATION_CSS.match(/@media \(min-width: 48\.001rem\)\s*{\s*\.elum-navbar\s*{([^}]*)}/s)?.[1] ?? "";
+
+  assert.match(wide, /display:\s*grid;/);
+  assert.match(wide, /grid-template-columns:\s*1fr auto 1fr;/);
+});
+
+test("navbar drops the brand once it is too narrow to center the links", () => {
+  assert.match(NAVIGATION_CSS, /@media \(max-width: 48rem\)\s*{\s*\.elum-navbar-brand\s*{[^}]*display:\s*none;/s);
+});
+
+test("navbar status group shows inline at the inline end, and collapses behind its trigger on the narrowest screens", () => {
+  const inline = NAVIGATION_CSS.match(/@media \(min-width: 42\.001rem\)\s*{(.*?)\n}/s)?.[1] ?? "";
+  const collapsed = NAVIGATION_CSS.match(/@media \(max-width: 42rem\)\s*{(.*?)\n}/s)?.[1] ?? "";
+
+  assert.match(inline, /\.elum-navbar-status-trigger\s*{[^}]*display:\s*none;/s);
+  // the group is a popover, which browsers hide and lift out of the row unless overridden
+  const group = inline.match(/\.elum-navbar > \.elum-system-bar-group\s*{([^}]*)}/s)?.[1] ?? "";
+  assert.match(group, /display:\s*flex;/);
+  assert.match(group, /position:\s*static;/);
+  assert.match(group, /margin:\s*0 0 0 auto;/);
+  assert.match(collapsed, /\.elum-navbar > \.elum-system-bar-group:not\(:popover-open\)\s*{[^}]*display:\s*none;/s);
+  assert.match(collapsed, /\.elum-navbar-status-trigger\s*{[^}]*margin-inline-start:\s*auto;/s);
 });
 
 test("CSS bundle inlines the whole import chain into one standalone file", () => {

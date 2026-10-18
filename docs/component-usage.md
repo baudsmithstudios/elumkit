@@ -127,7 +127,10 @@ Use semantic HTML first. Add ARIA only when native semantics are not enough.
 - **Wrapper:** `.elum-navbar` on a `<nav>`; sticks to the top of the viewport and wraps on narrow screens
 - **Brand:** `.elum-navbar-brand` on the wordmark label
 - **Links:** `.elum-navlinks` containing `.elum-navlink` anchors
-- **Status:** a `.elum-system-bar-group` may sit between the brand and the links
+- **Status:** a `.elum-system-bar-group` may follow the links, at the inline end. Give it `.elum-menu`, an `id`, and the `popover` attribute, and put a tertiary `.elum-button` with `.elum-navbar-status-trigger` and `popovertarget` pointing at that `id` before it.
+- Above 48rem the links sit centered between the brand and the status group, whether or not a status group is present.
+- At 48rem and below the brand is hidden, and the links sit at the inline start with the status group at the inline end.
+- At 42rem and below the status group collapses into a menu opened by its trigger, which behaves like an Action Menu. Wider navbars hide the trigger and show the group inline.
 - **Current page:** `aria-current="page"` on the active link
 - Use for top-level page navigation. For switching views on one page, use tabs.
 

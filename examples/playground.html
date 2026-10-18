@@ -115,7 +115,13 @@
         <div class="elum-navbar-brand">
           Navigation
         </div>
-        <span class="elum-system-bar-group">
+        <section class="elum-navlinks">
+          <a class="elum-navlink" href="#" aria-current="page">home</a>
+          <a class="elum-navlink" href="#">devices</a>
+          <a class="elum-navlink" href="#">settings</a>
+        </section>
+        <button class="elum-button elum-navbar-status-trigger" data-variant="tertiary" type="button" popovertarget="playground-navbar-status">status</button>
+        <span class="elum-system-bar-group elum-menu" id="playground-navbar-status" popover>
           <span class="elum-system-bar-item">
             <span class="elum-system-bar-key">state</span>
             <span class="elum-system-bar-value">[READY]</span>
@@ -125,11 +131,6 @@
             <span class="elum-system-bar-value">eu-west</span>
           </span>
         </span>
-        <section class="elum-navlinks">
-          <a class="elum-navlink" href="#" aria-current="page">home</a>
-          <a class="elum-navlink" href="#">devices</a>
-          <a class="elum-navlink" href="#">settings</a>
-        </section>
       </nav>
       <nav class="elum-sidebar" aria-label="Playground sections">
         <ul>

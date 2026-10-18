@@ -1,6 +1,5 @@
 .elum-navbar {
   align-items: center;
-  justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
   gap: var(--elum-space-2) calc(var(--elum-space-4) * 2);
@@ -31,9 +30,58 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: var(--elum-lh-tight);
-  margin-inline-end: auto;
   padding: 0;
   text-transform: uppercase;
+}
+
+/* equal side columns keep the links centered whether or not a status group
+   fills the third; narrower navbars wrap as a flex row instead */
+@media (min-width: 48.001rem) {
+  .elum-navbar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+  }
+}
+
+@media (max-width: 48rem) {
+  .elum-navbar-brand {
+    display: none;
+  }
+}
+
+/* the status group is a popover menu, so wider navbars undo the popover and
+   menu styles to show it inline */
+@media (min-width: 42.001rem) {
+  .elum-navbar-status-trigger {
+    display: none;
+  }
+
+  .elum-navbar > .elum-system-bar-group {
+    background: transparent;
+    border: 0;
+    color: var(--elum-color-muted);
+    display: flex;
+    margin: 0 0 0 auto;
+    overflow: visible;
+    padding: 0;
+    position: static;
+  }
+}
+
+@media (max-width: 42rem) {
+  .elum-navbar-status-trigger {
+    margin-inline-start: auto;
+  }
+
+  .elum-navbar > .elum-system-bar-group:not(:popover-open) {
+    display: none;
+  }
+
+  .elum-navbar > .elum-system-bar-group:popover-open {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: var(--elum-space-2) var(--elum-space-3);
+  }
 }
 
 .elum-navlinks {

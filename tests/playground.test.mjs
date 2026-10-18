@@ -349,3 +349,14 @@ test("prompt fields use the › chevron that marks the current navbar link and s
     }
   }
 });
+
+test("navbar lists its links before the status group, which its trigger opens as a menu on narrow screens", () => {
+  for (const [file, html] of EXAMPLES) {
+    const navbar = html.match(/<nav class="elum-navbar"[\s\S]*?<\/nav>/)?.[0] ?? "";
+    const target = navbar.match(/class="[^"]*elum-navbar-status-trigger[^"]*"[^>]*popovertarget="([^"]+)"/)?.[1];
+    const group = navbar.match(/<span class="elum-system-bar-group elum-menu" id="([^"]+)" popover>/)?.[1];
+
+    assert.ok(target && target === group, `${file} navbar trigger should open the status group popover`);
+    assert.ok(navbar.indexOf('class="elum-navlinks"') < navbar.indexOf("elum-navbar-status-trigger"), `${file} navbar should list links first`);
+  }
+});

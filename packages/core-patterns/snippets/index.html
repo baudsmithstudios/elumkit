@@ -2,17 +2,18 @@
   <a class="elum-skip-link" href="#main">Skip to content</a>
   <nav class="elum-navbar" aria-label="Primary">
     <div class="elum-navbar-brand">Navigation</div>
-    <span class="elum-system-bar-group">
-      <span class="elum-system-bar-item">
-        <span class="elum-system-bar-key">state</span>
-        <span class="elum-system-bar-value">[READY]</span>
-      </span>
-    </span>
     <section class="elum-navlinks">
       <a class="elum-navlink" href="#" aria-current="page">home</a>
       <a class="elum-navlink" href="#">devices</a>
       <a class="elum-navlink" href="#">settings</a>
     </section>
+    <button class="elum-button elum-navbar-status-trigger" data-variant="tertiary" type="button" popovertarget="navbar-status">status</button>
+    <span class="elum-system-bar-group elum-menu" id="navbar-status" popover>
+      <span class="elum-system-bar-item">
+        <span class="elum-system-bar-key">state</span>
+        <span class="elum-system-bar-value">[READY]</span>
+      </span>
+    </span>
   </nav>
 
   <nav class="elum-sidebar" aria-label="Sections">
