@@ -10,6 +10,7 @@ import { THEMES, TOKENS_CSS } from "./themes.mjs";
 const COMPONENTS_DIR = "packages/core-css/src/components";
 const COMPONENT_FILES = readdirSync(COMPONENTS_DIR).filter((file) => file.endsWith(".css"));
 const BASE_CSS = readFileSync("packages/core-css/src/base.css", "utf8");
+const BUTTON_CSS = readFileSync("packages/core-css/src/components/button.css", "utf8");
 const FORM_CSS = readFileSync("packages/core-css/src/components/form.css", "utf8");
 const FEEDBACK_CSS = readFileSync("packages/core-css/src/components/feedback.css", "utf8");
 const TELEMETRY_CSS = readFileSync("packages/core-css/src/components/telemetry.css", "utf8");
@@ -22,6 +23,7 @@ const MENU_CSS = readFileSync("packages/core-css/src/components/menu.css", "utf8
 const NAVIGATION_CSS = readFileSync("packages/core-css/src/components/navigation.css", "utf8");
 const TABS_CSS = readFileSync("packages/core-css/src/components/tabs.css", "utf8");
 const INDEX_CSS = readFileSync("packages/core-css/src/index.css", "utf8");
+const FONTS_CSS = readFileSync("packages/core-css/src/fonts.css", "utf8");
 const PUBLIC_CSS = [
   BASE_CSS,
   ...COMPONENT_FILES.map((file) => readFileSync(join(COMPONENTS_DIR, file), "utf8")),
@@ -99,7 +101,7 @@ test("core CSS exposes accessible focus and motion behavior", () => {
 });
 
 test("button pads its label evenly, since the bundled font centers capitals on its own", () => {
-  const button = readFileSync(join(COMPONENTS_DIR, "button.css"), "utf8").match(/^\.elum-button\s*{([^}]*)}/m)[1];
+  const button = BUTTON_CSS.match(/^\.elum-button\s*{([^}]*)}/m)[1];
   assert.match(button, /padding-block:\s*var\(--elum-space-2\);/);
 });
 
@@ -164,6 +166,22 @@ test("floating label field overlays a real label and floats it on focus or conte
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:focus\s*\+\s*\.elum-label/);
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-input:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
   assert.match(FORM_CSS, /\.elum-field-float\s*>\s*\.elum-textarea:not\(:placeholder-shown\)\s*\+\s*\.elum-label/);
+});
+
+test("stacked components leave their margins to base, so a stack still spaces them", () => {
+  for (const [css, selector] of [
+    [SEPARATOR_CSS, "\\.elum-separator"],
+    [SEPARATOR_CSS, "\\.elum-separator-labeled"],
+    [DATA_CSS, "\\.elum-list"],
+    [FEED_CSS, "\\.elum-feed"],
+    [FORM_CSS, "fieldset\\.elum-field"],
+    [FORM_CSS, "\\.elum-field-error"],
+  ]) {
+    const rule = css.match(new RegExp(`^${selector}\\s*{([^}]*)}`, "m"))?.[1] ?? "";
+    assert.doesNotMatch(rule, /margin/, `${selector} overrides the stack gap`);
+  }
+  assert.match(BASE_CSS, /^hr,\s*ol,\s*ul\s*{[^}]*margin:\s*0;/m);
+  assert.match(BASE_CSS, /^fieldset\s*{[^}]*margin:\s*0;/m);
 });
 
 test("separator turns vertical via its orientation hook", () => {
@@ -238,6 +256,13 @@ test("segmented option hides its radio without taking it out of the tab order or
 test("segmented option shows focus and selection on its label, since the radio itself is hidden", () => {
   assert.match(FORM_CSS, /\.elum-segmented-option:has\(:focus-visible\)\s*{[^}]*outline:\s*2px solid/s);
   assert.match(FORM_CSS, /\.elum-segmented-option:has\(:checked\)\s*{[^}]*background:/s);
+});
+
+test("segmented option marks selection with its fill alone, keeping the group's border", () => {
+  const checked = FORM_CSS.match(/^\.elum-segmented-option:has\(:checked\)\s*{([^}]*)}/m)?.[1] ?? "";
+
+  assert.match(checked, /background:/);
+  assert.doesNotMatch(checked, /border-color:/);
 });
 
 test("segmented control brackets the checked option so selection isn't color-only, reserving bracket space on every option so nothing shifts", () => {
@@ -390,7 +415,7 @@ test("navbar status group shows inline at the inline end, and collapses behind i
   const group = inline.match(/\.elum-navbar > \.elum-system-bar-group\s*{([^}]*)}/s)?.[1] ?? "";
   assert.match(group, /display:\s*flex;/);
   assert.match(group, /position:\s*static;/);
-  assert.match(group, /margin:\s*0 0 0 auto;/);
+  assert.match(group, /margin:\s*0;\s*margin-inline-start:\s*auto;/);
   assert.match(collapsed, /\.elum-navbar > \.elum-system-bar-group:not\(:popover-open\)\s*{[^}]*display:\s*none;/s);
   assert.match(collapsed, /\.elum-navbar-status-trigger\s*{[^}]*margin-inline-start:\s*auto;/s);
 });
@@ -410,18 +435,16 @@ test("CSS bundle inlines the font so embedding the one file carries it", () => {
 });
 
 test("font stack leads with the shipped JetBrains Mono, packaged with its OFL license", () => {
-  const fontsCss = readFileSync("packages/core-css/src/fonts.css", "utf8");
   const leadFamily = TOKENS_CSS.match(/--elum-font-family:\s*("[^"]+")/)?.[1];
-  const fontFile = fontsCss.match(/url\("\.\/([^"]+\.woff2)"\)/)?.[1] ?? "";
+  const fontFile = FONTS_CSS.match(/url\("\.\/([^"]+\.woff2)"\)/)?.[1] ?? "";
 
-  assert.match(fontsCss, new RegExp(`@font-face\\s*{[^}]*font-family:\\s*${leadFamily};`, "s"));
+  assert.match(FONTS_CSS, new RegExp(`@font-face\\s*{[^}]*font-family:\\s*${leadFamily};`, "s"));
   assert.ok(existsSync(join("packages/core-css/src", fontFile)), `${fontFile} is missing`);
   assert.ok(existsSync("packages/core-css/src/fonts/OFL.txt"), "the OFL requires its license to ship with the font");
 });
 
 test("shipped font's unicode-range covers every character the CSS draws", () => {
-  const fontsCss = readFileSync("packages/core-css/src/fonts.css", "utf8");
-  const ranges = (fontsCss.match(/unicode-range:([^;]+);/)?.[1] ?? "").split(",").map((range) => {
+  const ranges = (FONTS_CSS.match(/unicode-range:([^;]+);/)?.[1] ?? "").split(",").map((range) => {
     const [start, end = start] = range.trim().replace(/^U\+/, "").split("-");
     return [parseInt(start, 16), parseInt(end, 16)];
   });

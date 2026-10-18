@@ -28,6 +28,7 @@ button, input, select, textarea, optgroup, option {
 }
 
 fieldset {
+  margin: 0;
   min-width: 0;
 }
 
@@ -41,6 +42,12 @@ a:hover {
 }
 
 p {
+  margin: 0;
+}
+
+hr,
+ol,
+ul {
   margin: 0;
 }
 

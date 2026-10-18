@@ -61,7 +61,8 @@
     border: 0;
     color: var(--elum-color-muted);
     display: flex;
-    margin: 0 0 0 auto;
+    margin: 0;
+    margin-inline-start: auto;
     overflow: visible;
     padding: 0;
     position: static;

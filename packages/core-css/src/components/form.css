@@ -75,7 +75,6 @@
 .elum-field-error {
   color: var(--elum-color-error);
   font-size: var(--elum-text-xs);
-  margin: 0;
 }
 
 .elum-input:disabled,
@@ -96,7 +95,6 @@ fieldset.elum-field {
   background: transparent;
   border: var(--elum-border-width) solid var(--elum-color-border);
   border-radius: var(--elum-radius-md);
-  margin: 0;
   padding: var(--elum-space-3);
 }
 
@@ -224,7 +222,6 @@ fieldset.elum-field > .elum-label {
 
 .elum-segmented-option:has(:checked) {
   background: var(--elum-color-accent);
-  border-color: var(--elum-color-accent);
   color: var(--elum-color-bg);
 }
 

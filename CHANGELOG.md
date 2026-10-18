@@ -11,7 +11,7 @@
 - Breadcrumb component: `.elum-breadcrumb` on a `<nav>` wrapping an ordered list of links.
 - App Shell layout: `.elum-shell` grid with a full-width navbar and footer around a sidebar and main.
 - Sidebar component: `.elum-sidebar` on a `<nav>`, sticky beside main, with optional grouped links.
-- Navbar can hold `.elum-system-bar-group` status items between the brand and links.
+- Navbar can hold `.elum-system-bar-group` status items after the links.
 - `--elum-navbar-height` token for the navbar's minimum height and the sidebar's sticky offset.
 - Spinner component: `.elum-spinner` cycles a `|/-\` before a visible label, inside a `role="status"` region.
 - Field error message: `.elum-field-error`, linked to an invalid control with `aria-describedby`.
@@ -31,7 +31,7 @@
 - Data Table markup carries explicit table roles, so narrow-screen rows keep their header semantics in browsers that drop them on a `display` change. Screen readers now skip the drawn `data-label` text and announce the column header instead.
 - The current nav link is marked with a larger, centered `›` chevron (matching the breadcrumb) instead of `>`, and screen readers skip it since `aria-current` already names the link.
 - Prompt input examples use the `›` chevron instead of `>`, matching the navbar and breadcrumb. The prompt is drawn larger (`--elum-text-xl`) and sits closer to the input.
-- Navbar links are centered between the brand and the status group above 48rem, and the status group follows the links in the markup instead of sitting between the brand and the links. At 48rem and below the brand is hidden; at 42rem and below the status group collapses into a popover menu behind a `.elum-navbar-status-trigger` button.
+- Navbar links are centered between the brand and the status group above 48rem. At 48rem and below the brand is hidden; at 42rem and below the status group collapses into a popover menu behind a `.elum-navbar-status-trigger` button.
 - Navbar links are spaced 1.5rem apart so the current-link chevron clears the link before it.
 - Nav links use the same 2px focus ring as buttons, inputs, and other links instead of a thinner 1px ring, and every link's focus ring has slightly rounded corners.
 
@@ -42,6 +42,7 @@
 ### Fixed
 
 - Navbar wraps instead of scrolling sideways, so the current-link marker no longer overlaps the brand on narrow screens.
+- Separators, Data Lists, Feeds, fieldset fields, and field error messages inside `.elum-stack` get the stack's gap instead of touching the element above. Their margin resets moved to the base styles, which now zero the margins of every `<hr>`, `<ul>`, `<ol>`, and `<fieldset>`, as they already did for `<p>` and headings.
 - `<code>`, `<kbd>`, and `<pre>` use the theme font instead of the browser's generic monospace.
 
 ## [0.3.1] - 2026-07-12
