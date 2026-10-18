@@ -35,6 +35,10 @@
 - Navbar links are spaced 1.5rem apart so the current-link chevron clears the link before it.
 - Nav links use the same 2px focus ring as buttons, inputs, and other links instead of a thinner 1px ring, and every link's focus ring has slightly rounded corners.
 
+### Removed
+
+- `--elum-button-baseline-shift`. Button labels sat about 1px below center with the bundled JetBrains Mono, which centers capitals without an offset. Apps on another font can override `.elum-button`'s `padding-block` instead.
+
 ### Fixed
 
 - Navbar wraps instead of scrolling sideways, so the current-link marker no longer overlaps the brand on narrow screens.

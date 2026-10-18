@@ -98,6 +98,11 @@ test("core CSS exposes accessible focus and motion behavior", () => {
   assert.match(reducedMotion, /transition-duration:\s*0\.01ms !important;/);
 });
 
+test("button pads its label evenly, since the bundled font centers capitals on its own", () => {
+  const button = readFileSync(join(COMPONENTS_DIR, "button.css"), "utf8").match(/^\.elum-button\s*{([^}]*)}/m)[1];
+  assert.match(button, /padding-block:\s*var\(--elum-space-2\);/);
+});
+
 test("prompt field draws the focus ring its input suppresses", () => {
   assert.match(FORM_CSS, /\.elum-prompt-field > \.elum-input:focus-visible\s*{[^}]*outline:\s*0;/s);
   assert.match(FORM_CSS, /\.elum-prompt-field:focus-within\s*{[^}]*outline:\s*2px solid/s);
